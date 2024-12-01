@@ -1,0 +1,2 @@
+Compiling (bitstream) accelerator binary: kernel
+Log file: /mnt/castor/seas_home/s/songqij/ese532_code/hw6/saved_x/link/vivado/vpl/prj/prj.runs/impl_1/runme.log

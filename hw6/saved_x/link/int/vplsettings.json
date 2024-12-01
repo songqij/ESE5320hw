@@ -1,0 +1,18 @@
+{
+    "kernelContainerValues": [
+        "mmult_fpga:xo"
+    ],
+    "compile": "false",
+    "debug": "false",
+    "exportScript": "false",
+    "gccHostCompile": "false",
+    "generateEstimateRpt": "false",
+    "keepSolution": "false",
+    "link": "false",
+    "logDir": "\/mnt\/castor\/seas_home\/s\/songqij\/ese532_code\/hw6\/apps\/mmult\/_x\/logs\/link",
+    "package": "false",
+    "reportDir": "\/mnt\/castor\/seas_home\/s\/songqij\/ese532_code\/hw6\/apps\/mmult\/_x\/reports\/link",
+    "saveTemps": "false",
+    "verbose": "false",
+    "vplNoIpCache": "false"
+}

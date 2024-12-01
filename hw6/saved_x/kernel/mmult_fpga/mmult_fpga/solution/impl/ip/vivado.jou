@@ -1,0 +1,12 @@
+#-----------------------------------------------------------
+# Vivado v2020.2 (64-bit)
+# SW Build 3064766 on Wed Nov 18 09:12:47 MST 2020
+# IP Build 3064653 on Wed Nov 18 14:17:31 MST 2020
+# Start of session at: Thu Oct 17 03:36:28 2024
+# Process ID: 23339
+# Current directory: /mnt/castor/seas_home/s/songqij/ese532_code/hw6/apps/mmult/_x/kernel/mmult_fpga/mmult_fpga/solution/impl/ip
+# Command line: vivado -notrace -mode batch -source run_ippack.tcl
+# Log file: /mnt/castor/seas_home/s/songqij/ese532_code/hw6/apps/mmult/_x/kernel/mmult_fpga/mmult_fpga/solution/impl/ip/vivado.log
+# Journal file: /mnt/castor/seas_home/s/songqij/ese532_code/hw6/apps/mmult/_x/kernel/mmult_fpga/mmult_fpga/solution/impl/ip/vivado.jou
+#-----------------------------------------------------------
+source run_ippack.tcl -notrace

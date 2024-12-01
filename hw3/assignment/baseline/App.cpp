@@ -18,7 +18,8 @@ int main()
   Load_data(Input_data);
 
   stopwatch time_scale;
-  stopwatch time_filter;
+  stopwatch time_hFilter;
+  stopwatch time_vFilter;
   stopwatch time_differentiate;
   stopwatch time_compress;
   stopwatch total_time;
@@ -32,9 +33,7 @@ int main()
     Scale(Input_data + Frame * FRAME_SIZE, Temp_data[0]);
     time_scale.stop();
 
-    time_filter.start();
-    Filter(Temp_data[0], Temp_data[1]);
-    time_filter.stop();
+    Filter(Temp_data[0], Temp_data[1], &time_hFilter, &time_vFilter);
 
     time_differentiate.start();
     Differentiate(Temp_data[1], Temp_data[2]);
@@ -47,18 +46,21 @@ int main()
     total_time.stop();
   }
   std::cout << "Total latency of Scale is: " << time_scale.latency() << " ns." << std::endl;
-  std::cout << "Total latency of Filter is: " << time_filter.latency() << " ns." << std::endl;
+  std::cout << "Total latency of horizontal-filter is: " << time_hFilter.latency() << " ns." << std::endl;
+  std::cout << "Total latency of vertical-filter is: " << time_vFilter.latency() << " ns." << std::endl;
   std::cout << "Total latency of Differentiate is: " << time_differentiate.latency() << " ns." << std::endl;
   std::cout << "Total latency of Compress is: " << time_compress.latency() << " ns." << std::endl;
   std::cout << "Total time taken by the loop is: " << total_time.latency() << " ns." << std::endl;
   std::cout << "---------------------------------------------------------------" << std::endl;
   std::cout << "Average latency of Scale per loop iteration is: " << time_scale.avg_latency() << " ns." << std::endl;
-  std::cout << "Average latency of Filter per loop iteration is: " << time_filter.avg_latency() << " ns." << std::endl;
+  std::cout << "Average latency of horizontal-filter is: " << time_hFilter.avg_latency() << " ns." << std::endl;
+  std::cout << "Average latency of vertical-filter is: " << time_vFilter.avg_latency() << " ns." << std::endl;
   std::cout << "Average latency of Differentiate per loop iteration is: " << time_differentiate.avg_latency() << " ns." << std::endl;
   std::cout << "Average latency of Compress per loop iteration is: " << time_compress.avg_latency() << " ns." << std::endl;
   std::cout << "Average latency of each loop iteration is: " << total_time.avg_latency() << " ns." << std::endl;
+  std::cout << "Size is " << Size << std::endl;
 
-  Store_data("Output.bin", Output_data, Size);
+  Store_data("Output_base.bin", Output_data, Size);
   Check_data(Output_data, Size);
 
   for (int i = 0; i < STAGES - 1; i++)

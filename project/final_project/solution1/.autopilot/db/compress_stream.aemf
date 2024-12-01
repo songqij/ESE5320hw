@@ -1,0 +1,1367 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<cdfg:DBCdfg xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:cdfg="http://www.autoesl.com/DBCdfg" timeStamp="1732219907403">
+  <ports id="1" name="chunk_arr_stream" type="PortType" originalName="chunk_arr_stream" coreName="FIFO" coreId="33" bitwidth="8" iftype="IfTypeRom">
+    <dataOutputObjs>nbreadreq</dataOutputObjs>
+    <dataOutputObjs>read</dataOutputObjs>
+    <dataOutputObjs>nbreadreq</dataOutputObjs>
+    <dataOutputObjs>read</dataOutputObjs>
+  </ports>
+  <ports id="2" name="codeword_stream" type="PortType" originalName="codeword_stream" coreName="FIFO" coreId="49" bitwidth="16" direction="DirOut" iftype="IfTypeRom">
+    <dataInputObjs>write</dataInputObjs>
+    <dataInputObjs>write</dataInputObjs>
+  </ports>
+  <ports id="3" name="gmem_load_loc" type="PortType" coreName="FIFO_SRL" coreId="49" bitwidth="32" iftype="IfTypeRom">
+    <dataOutputObjs>read</dataOutputObjs>
+  </ports>
+  <edges id="127" source_obj="//@ports.2" sink_obj="//@blocks.0/@node_objs.6"/>
+  <edges id="128" edge_type="CtrlEdge" source_obj="//@regions.0/@basic_blocks.0" sink_obj="//@blocks.0/@node_objs.7"/>
+  <edges id="131" edge_type="CtrlEdge" source_obj="//@blocks.0" sink_obj="//@regions.0/@basic_blocks.0/@node_objs.0"/>
+  <edges id="132" source_obj="//@regions.0/@basic_blocks.0/@node_objs.1" sink_obj="//@regions.0/@basic_blocks.0/@node_objs.0" is_back_edge="1"/>
+  <edges id="133" edge_type="CtrlEdge" source_obj="//@regions.0/@basic_blocks.1" sink_obj="//@regions.0/@basic_blocks.0/@node_objs.0" is_back_edge="1"/>
+  <edges id="134" source_obj="//@regions.0/@basic_blocks.0/@node_objs.0" sink_obj="//@regions.0/@basic_blocks.0/@node_objs.1"/>
+  <edges id="137" source_obj="//@regions.0/@basic_blocks.0/@node_objs.0" sink_obj="//@regions.0/@basic_blocks.0/@node_objs.2"/>
+  <edges id="140" source_obj="//@regions.0/@basic_blocks.0/@node_objs.2" sink_obj="//@regions.0/@basic_blocks.0/@node_objs.3"/>
+  <edges id="141" edge_type="CtrlEdge" source_obj="//@regions.0/@basic_blocks.1" sink_obj="//@regions.0/@basic_blocks.0/@node_objs.3"/>
+  <edges id="142" edge_type="CtrlEdge" source_obj="//@blocks.1" sink_obj="//@regions.0/@basic_blocks.0/@node_objs.3"/>
+  <edges id="143" edge_type="CtrlEdge" source_obj="//@regions.1/@basic_blocks.0" sink_obj="//@blocks.1/@node_objs.0"/>
+  <edges id="144" source_obj="//@regions.0/@basic_blocks.0/@node_objs.0" sink_obj="//@regions.0/@basic_blocks.1/@node_objs.0"/>
+  <edges id="145" source_obj="//@blocks.0/@node_objs.5" sink_obj="//@regions.0/@basic_blocks.1/@node_objs.1"/>
+  <edges id="148" source_obj="//@regions.0/@basic_blocks.1/@node_objs.0" sink_obj="//@regions.0/@basic_blocks.1/@node_objs.1"/>
+  <edges id="151" source_obj="//@regions.0/@basic_blocks.1/@node_objs.1" sink_obj="//@regions.0/@basic_blocks.1/@node_objs.2"/>
+  <edges id="152" edge_type="CtrlEdge" source_obj="//@regions.0/@basic_blocks.0" sink_obj="//@regions.0/@basic_blocks.1/@node_objs.3"/>
+  <edges id="153" source_obj="//@regions.1/@basic_blocks.0/@node_objs.1" sink_obj="//@regions.1/@basic_blocks.0/@node_objs.0" is_back_edge="1"/>
+  <edges id="154" edge_type="CtrlEdge" source_obj="//@regions.1/@basic_blocks.1" sink_obj="//@regions.1/@basic_blocks.0/@node_objs.0" is_back_edge="1"/>
+  <edges id="157" edge_type="CtrlEdge" source_obj="//@blocks.1" sink_obj="//@regions.1/@basic_blocks.0/@node_objs.0"/>
+  <edges id="158" source_obj="//@regions.1/@basic_blocks.0/@node_objs.0" sink_obj="//@regions.1/@basic_blocks.0/@node_objs.1"/>
+  <edges id="161" source_obj="//@regions.1/@basic_blocks.0/@node_objs.0" sink_obj="//@regions.1/@basic_blocks.0/@node_objs.2"/>
+  <edges id="164" source_obj="//@regions.1/@basic_blocks.0/@node_objs.2" sink_obj="//@regions.1/@basic_blocks.0/@node_objs.3"/>
+  <edges id="165" edge_type="CtrlEdge" source_obj="//@regions.1/@basic_blocks.1" sink_obj="//@regions.1/@basic_blocks.0/@node_objs.3"/>
+  <edges id="166" edge_type="CtrlEdge" source_obj="//@blocks.2" sink_obj="//@regions.1/@basic_blocks.0/@node_objs.3"/>
+  <edges id="167" edge_type="CtrlEdge" source_obj="//@regions.2/@basic_blocks.0" sink_obj="//@blocks.2/@node_objs.0"/>
+  <edges id="168" source_obj="//@regions.1/@basic_blocks.0/@node_objs.0" sink_obj="//@regions.1/@basic_blocks.1/@node_objs.0"/>
+  <edges id="169" source_obj="//@blocks.0/@node_objs.0" sink_obj="//@regions.1/@basic_blocks.1/@node_objs.1"/>
+  <edges id="171" source_obj="//@regions.1/@basic_blocks.1/@node_objs.0" sink_obj="//@regions.1/@basic_blocks.1/@node_objs.1"/>
+  <edges id="173" source_obj="//@regions.1/@basic_blocks.1/@node_objs.1" sink_obj="//@regions.1/@basic_blocks.1/@node_objs.2"/>
+  <edges id="174" source_obj="//@blocks.0/@node_objs.1" sink_obj="//@regions.1/@basic_blocks.1/@node_objs.3"/>
+  <edges id="176" source_obj="//@regions.1/@basic_blocks.1/@node_objs.0" sink_obj="//@regions.1/@basic_blocks.1/@node_objs.3"/>
+  <edges id="178" source_obj="//@regions.1/@basic_blocks.1/@node_objs.3" sink_obj="//@regions.1/@basic_blocks.1/@node_objs.4"/>
+  <edges id="179" source_obj="//@blocks.0/@node_objs.2" sink_obj="//@regions.1/@basic_blocks.1/@node_objs.5"/>
+  <edges id="181" source_obj="//@regions.1/@basic_blocks.1/@node_objs.0" sink_obj="//@regions.1/@basic_blocks.1/@node_objs.5"/>
+  <edges id="183" source_obj="//@regions.1/@basic_blocks.1/@node_objs.5" sink_obj="//@regions.1/@basic_blocks.1/@node_objs.6"/>
+  <edges id="184" source_obj="//@blocks.0/@node_objs.3" sink_obj="//@regions.1/@basic_blocks.1/@node_objs.7"/>
+  <edges id="186" source_obj="//@regions.1/@basic_blocks.1/@node_objs.0" sink_obj="//@regions.1/@basic_blocks.1/@node_objs.7"/>
+  <edges id="188" source_obj="//@regions.1/@basic_blocks.1/@node_objs.7" sink_obj="//@regions.1/@basic_blocks.1/@node_objs.8"/>
+  <edges id="189" edge_type="CtrlEdge" source_obj="//@regions.1/@basic_blocks.0" sink_obj="//@regions.1/@basic_blocks.1/@node_objs.9"/>
+  <edges id="190" source_obj="//@regions.2/@basic_blocks.0/@node_objs.1" sink_obj="//@regions.2/@basic_blocks.0/@node_objs.0" is_back_edge="1"/>
+  <edges id="191" edge_type="CtrlEdge" source_obj="//@regions.2/@basic_blocks.1" sink_obj="//@regions.2/@basic_blocks.0/@node_objs.0" is_back_edge="1"/>
+  <edges id="194" edge_type="CtrlEdge" source_obj="//@blocks.2" sink_obj="//@regions.2/@basic_blocks.0/@node_objs.0"/>
+  <edges id="195" source_obj="//@regions.2/@basic_blocks.0/@node_objs.0" sink_obj="//@regions.2/@basic_blocks.0/@node_objs.1"/>
+  <edges id="198" source_obj="//@regions.2/@basic_blocks.0/@node_objs.0" sink_obj="//@regions.2/@basic_blocks.0/@node_objs.2"/>
+  <edges id="201" source_obj="//@regions.2/@basic_blocks.0/@node_objs.2" sink_obj="//@regions.2/@basic_blocks.0/@node_objs.3"/>
+  <edges id="202" edge_type="CtrlEdge" source_obj="//@regions.2/@basic_blocks.1" sink_obj="//@regions.2/@basic_blocks.0/@node_objs.3"/>
+  <edges id="203" edge_type="CtrlEdge" source_obj="//@blocks.3" sink_obj="//@regions.2/@basic_blocks.0/@node_objs.3"/>
+  <edges id="204" source_obj="//@regions.2/@basic_blocks.0/@node_objs.0" sink_obj="//@regions.2/@basic_blocks.1/@node_objs.0"/>
+  <edges id="205" source_obj="//@blocks.0/@node_objs.4" sink_obj="//@regions.2/@basic_blocks.1/@node_objs.1"/>
+  <edges id="207" source_obj="//@regions.2/@basic_blocks.1/@node_objs.0" sink_obj="//@regions.2/@basic_blocks.1/@node_objs.1"/>
+  <edges id="210" source_obj="//@regions.2/@basic_blocks.1/@node_objs.1" sink_obj="//@regions.2/@basic_blocks.1/@node_objs.2"/>
+  <edges id="211" edge_type="CtrlEdge" source_obj="//@regions.2/@basic_blocks.0" sink_obj="//@regions.2/@basic_blocks.1/@node_objs.3"/>
+  <edges id="214" source_obj="//@ports.0" sink_obj="//@blocks.3/@node_objs.0"/>
+  <edges id="217" source_obj="//@blocks.3/@node_objs.0" sink_obj="//@blocks.3/@node_objs.1"/>
+  <edges id="218" edge_type="CtrlEdge" source_obj="//@blocks.12" sink_obj="//@blocks.3/@node_objs.1"/>
+  <edges id="219" edge_type="CtrlEdge" source_obj="//@blocks.4" sink_obj="//@blocks.3/@node_objs.1"/>
+  <edges id="224" source_obj="//@ports.0" sink_obj="//@blocks.4/@node_objs.2"/>
+  <edges id="225" source_obj="//@blocks.4/@node_objs.2" sink_obj="//@blocks.4/@node_objs.3"/>
+  <edges id="228" source_obj="//@blocks.4/@node_objs.1" sink_obj="//@blocks.4/@node_objs.4"/>
+  <edges id="229" source_obj="//@blocks.4/@node_objs.3" sink_obj="//@blocks.4/@node_objs.5"/>
+  <edges id="230" source_obj="//@blocks.4/@node_objs.0" sink_obj="//@blocks.4/@node_objs.5"/>
+  <edges id="231" edge_type="CtrlEdge" source_obj="//@blocks.5" sink_obj="//@blocks.4/@node_objs.6"/>
+  <edges id="234" edge_type="CtrlEdge" source_obj="//@blocks.4" sink_obj="//@blocks.5/@node_objs.0"/>
+  <edges id="235" source_obj="//@blocks.7/@node_objs.11" sink_obj="//@blocks.5/@node_objs.0" is_back_edge="1"/>
+  <edges id="236" edge_type="CtrlEdge" source_obj="//@blocks.10" sink_obj="//@blocks.5/@node_objs.0" is_back_edge="1"/>
+  <edges id="238" edge_type="CtrlEdge" source_obj="//@blocks.4" sink_obj="//@blocks.5/@node_objs.1"/>
+  <edges id="239" source_obj="//@blocks.10/@node_objs.0" sink_obj="//@blocks.5/@node_objs.1" is_back_edge="1"/>
+  <edges id="240" edge_type="CtrlEdge" source_obj="//@blocks.10" sink_obj="//@blocks.5/@node_objs.1" is_back_edge="1"/>
+  <edges id="241" source_obj="//@blocks.5/@node_objs.1" sink_obj="//@blocks.5/@node_objs.2"/>
+  <edges id="242" source_obj="//@blocks.0/@node_objs.6" sink_obj="//@blocks.5/@node_objs.2"/>
+  <edges id="243" source_obj="//@blocks.5/@node_objs.2" sink_obj="//@blocks.5/@node_objs.3"/>
+  <edges id="244" edge_type="CtrlEdge" source_obj="//@blocks.11" sink_obj="//@blocks.5/@node_objs.3"/>
+  <edges id="245" edge_type="CtrlEdge" source_obj="//@blocks.6" sink_obj="//@blocks.5/@node_objs.3"/>
+  <edges id="247" source_obj="//@ports.0" sink_obj="//@blocks.6/@node_objs.0"/>
+  <edges id="249" source_obj="//@blocks.6/@node_objs.0" sink_obj="//@blocks.6/@node_objs.1"/>
+  <edges id="250" edge_type="CtrlEdge" source_obj="//@blocks.11" sink_obj="//@blocks.6/@node_objs.1"/>
+  <edges id="251" edge_type="CtrlEdge" source_obj="//@blocks.7" sink_obj="//@blocks.6/@node_objs.1"/>
+  <edges id="252" source_obj="//@blocks.4/@node_objs.0" sink_obj="//@blocks.7/@node_objs.0"/>
+  <edges id="253" source_obj="//@blocks.4/@node_objs.1" sink_obj="//@blocks.7/@node_objs.1"/>
+  <edges id="255" source_obj="//@ports.0" sink_obj="//@blocks.7/@node_objs.2"/>
+  <edges id="256" source_obj="//@blocks.7/@node_objs.2" sink_obj="//@blocks.7/@node_objs.3"/>
+  <edges id="257" source_obj="//@blocks.7/@node_objs.0" sink_obj="//@blocks.7/@node_objs.4"/>
+  <edges id="260" source_obj="//@blocks.7/@node_objs.4" sink_obj="//@blocks.7/@node_objs.5"/>
+  <edges id="261" source_obj="//@blocks.7/@node_objs.2" sink_obj="//@blocks.7/@node_objs.5"/>
+  <edges id="262" source_obj="//@blocks.7/@node_objs.1" sink_obj="//@blocks.7/@node_objs.6"/>
+  <edges id="265" source_obj="//@blocks.0/@node_objs.5" sink_obj="//@blocks.7/@node_objs.7"/>
+  <edges id="266" source_obj="//@blocks.0/@node_objs.0" sink_obj="//@blocks.7/@node_objs.7"/>
+  <edges id="267" source_obj="//@blocks.0/@node_objs.1" sink_obj="//@blocks.7/@node_objs.7"/>
+  <edges id="268" source_obj="//@blocks.0/@node_objs.2" sink_obj="//@blocks.7/@node_objs.7"/>
+  <edges id="269" source_obj="//@blocks.0/@node_objs.3" sink_obj="//@blocks.7/@node_objs.7"/>
+  <edges id="270" source_obj="//@blocks.0/@node_objs.4" sink_obj="//@blocks.7/@node_objs.7"/>
+  <edges id="271" source_obj="//@blocks.5/@node_objs.0" sink_obj="//@blocks.7/@node_objs.7"/>
+  <edges id="272" source_obj="//@blocks.7/@node_objs.5" sink_obj="//@blocks.7/@node_objs.7"/>
+  <edges id="273" source_obj="//@blocks.7/@node_objs.6" sink_obj="//@blocks.7/@node_objs.7"/>
+  <edges id="274" source_obj="//@blocks.7/@node_objs.7" sink_obj="//@blocks.7/@node_objs.8"/>
+  <edges id="275" source_obj="//@blocks.7/@node_objs.7" sink_obj="//@blocks.7/@node_objs.9"/>
+  <edges id="276" source_obj="//@blocks.7/@node_objs.9" sink_obj="//@blocks.7/@node_objs.10"/>
+  <edges id="277" source_obj="//@blocks.7/@node_objs.7" sink_obj="//@blocks.7/@node_objs.11"/>
+  <edges id="278" source_obj="//@blocks.7/@node_objs.8" sink_obj="//@blocks.7/@node_objs.12"/>
+  <edges id="279" edge_type="CtrlEdge" source_obj="//@blocks.8" sink_obj="//@blocks.7/@node_objs.12"/>
+  <edges id="280" edge_type="CtrlEdge" source_obj="//@blocks.9" sink_obj="//@blocks.7/@node_objs.12"/>
+  <edges id="281" source_obj="//@blocks.7/@node_objs.10" sink_obj="//@blocks.9/@node_objs.0"/>
+  <edges id="282" source_obj="//@blocks.4/@node_objs.0" sink_obj="//@blocks.9/@node_objs.0"/>
+  <edges id="283" edge_type="CtrlEdge" source_obj="//@blocks.10" sink_obj="//@blocks.9/@node_objs.1"/>
+  <edges id="286" source_obj="//@blocks.8/@node_objs.0" sink_obj="//@ports.1"/>
+  <edges id="287" source_obj="//@blocks.7/@node_objs.0" sink_obj="//@blocks.8/@node_objs.0"/>
+  <edges id="288" source_obj="//@blocks.7/@node_objs.1" sink_obj="//@blocks.8/@node_objs.1"/>
+  <edges id="290" source_obj="//@blocks.8/@node_objs.1" sink_obj="//@blocks.8/@node_objs.2"/>
+  <edges id="291" source_obj="//@blocks.4/@node_objs.1" sink_obj="//@blocks.8/@node_objs.2"/>
+  <edges id="292" source_obj="//@blocks.7/@node_objs.3" sink_obj="//@blocks.8/@node_objs.3"/>
+  <edges id="293" source_obj="//@blocks.4/@node_objs.0" sink_obj="//@blocks.8/@node_objs.3"/>
+  <edges id="294" edge_type="CtrlEdge" source_obj="//@blocks.10" sink_obj="//@blocks.8/@node_objs.4"/>
+  <edges id="295" source_obj="//@blocks.5/@node_objs.1" sink_obj="//@blocks.10/@node_objs.0"/>
+  <edges id="297" edge_type="CtrlEdge" source_obj="//@blocks.5" sink_obj="//@blocks.10/@node_objs.1"/>
+  <edges id="298" source_obj="//@blocks.4/@node_objs.0" sink_obj="//@blocks.11/@node_objs.0"/>
+  <edges id="300" source_obj="//@blocks.11/@node_objs.1" sink_obj="//@ports.1"/>
+  <edges id="301" source_obj="//@blocks.11/@node_objs.0" sink_obj="//@blocks.11/@node_objs.1"/>
+  <edges id="302" edge_type="CtrlEdge" source_obj="//@blocks.12" sink_obj="//@blocks.11/@node_objs.2"/>
+  <edges id="448" edge_type="CtrlEdge" source_obj="//@blocks.0" sink_obj="//@regions.0/@basic_blocks.0"/>
+  <edges id="449" edge_type="CtrlEdge" source_obj="//@regions.0/@basic_blocks.0" sink_obj="//@blocks.1"/>
+  <edges id="450" edge_type="CtrlEdge" source_obj="//@regions.0/@basic_blocks.0" sink_obj="//@regions.0/@basic_blocks.1"/>
+  <edges id="451" edge_type="CtrlEdge" source_obj="//@regions.0/@basic_blocks.1" sink_obj="//@regions.0/@basic_blocks.0" is_back_edge="1"/>
+  <edges id="452" edge_type="CtrlEdge" source_obj="//@blocks.1" sink_obj="//@regions.1/@basic_blocks.0"/>
+  <edges id="453" edge_type="CtrlEdge" source_obj="//@regions.1/@basic_blocks.0" sink_obj="//@blocks.2"/>
+  <edges id="454" edge_type="CtrlEdge" source_obj="//@regions.1/@basic_blocks.0" sink_obj="//@regions.1/@basic_blocks.1"/>
+  <edges id="455" edge_type="CtrlEdge" source_obj="//@regions.1/@basic_blocks.1" sink_obj="//@regions.1/@basic_blocks.0" is_back_edge="1"/>
+  <edges id="456" edge_type="CtrlEdge" source_obj="//@blocks.2" sink_obj="//@regions.2/@basic_blocks.0"/>
+  <edges id="457" edge_type="CtrlEdge" source_obj="//@regions.2/@basic_blocks.0" sink_obj="//@blocks.3"/>
+  <edges id="458" edge_type="CtrlEdge" source_obj="//@regions.2/@basic_blocks.0" sink_obj="//@regions.2/@basic_blocks.1"/>
+  <edges id="459" edge_type="CtrlEdge" source_obj="//@regions.2/@basic_blocks.1" sink_obj="//@regions.2/@basic_blocks.0" is_back_edge="1"/>
+  <edges id="460" edge_type="CtrlEdge" source_obj="//@blocks.3" sink_obj="//@blocks.4"/>
+  <edges id="461" edge_type="CtrlEdge" source_obj="//@blocks.3" sink_obj="//@blocks.12"/>
+  <edges id="462" edge_type="CtrlEdge" source_obj="//@blocks.4" sink_obj="//@blocks.5"/>
+  <edges id="463" edge_type="CtrlEdge" source_obj="//@blocks.5" sink_obj="//@blocks.6"/>
+  <edges id="464" edge_type="CtrlEdge" source_obj="//@blocks.5" sink_obj="//@blocks.11"/>
+  <edges id="465" edge_type="CtrlEdge" source_obj="//@blocks.6" sink_obj="//@blocks.7"/>
+  <edges id="466" edge_type="CtrlEdge" source_obj="//@blocks.6" sink_obj="//@blocks.11"/>
+  <edges id="467" edge_type="CtrlEdge" source_obj="//@blocks.7" sink_obj="//@blocks.9"/>
+  <edges id="468" edge_type="CtrlEdge" source_obj="//@blocks.7" sink_obj="//@blocks.8"/>
+  <edges id="469" edge_type="CtrlEdge" source_obj="//@blocks.8" sink_obj="//@blocks.10"/>
+  <edges id="470" edge_type="CtrlEdge" source_obj="//@blocks.9" sink_obj="//@blocks.10"/>
+  <edges id="471" edge_type="CtrlEdge" source_obj="//@blocks.10" sink_obj="//@blocks.5" is_back_edge="1"/>
+  <edges id="472" edge_type="CtrlEdge" source_obj="//@blocks.11" sink_obj="//@blocks.12"/>
+  <edges id="473" edge_type="VirtEdge" source_obj="//@blocks.3/@node_objs.0" sink_obj="//@blocks.4/@node_objs.2"/>
+  <edges id="474" edge_type="VirtEdge" source_obj="//@blocks.3/@node_objs.0" sink_obj="//@blocks.7/@node_objs.2"/>
+  <edges id="475" edge_type="VirtEdge" source_obj="//@blocks.4/@node_objs.2" sink_obj="//@blocks.6/@node_objs.0"/>
+  <edges id="476" edge_type="VirtEdge" source_obj="//@blocks.4/@node_objs.5" sink_obj="//@blocks.11/@node_objs.0"/>
+  <edges id="477" edge_type="VirtEdge" source_obj="//@blocks.4/@node_objs.2" sink_obj="//@blocks.7/@node_objs.2"/>
+  <edges id="478" edge_type="VirtEdge" source_obj="//@blocks.4/@node_objs.4" sink_obj="//@blocks.7/@node_objs.1"/>
+  <edges id="479" edge_type="VirtEdge" source_obj="//@blocks.4/@node_objs.5" sink_obj="//@blocks.7/@node_objs.0"/>
+  <edges id="480" edge_type="VirtEdge" source_obj="//@blocks.4/@node_objs.5" sink_obj="//@blocks.9/@node_objs.0"/>
+  <edges id="481" edge_type="VirtEdge" source_obj="//@blocks.4/@node_objs.4" sink_obj="//@blocks.8/@node_objs.2"/>
+  <edges id="482" edge_type="VirtEdge" source_obj="//@blocks.4/@node_objs.5" sink_obj="//@blocks.8/@node_objs.3"/>
+  <edges id="483" edge_type="VirtEdge" source_obj="//@blocks.6/@node_objs.0" sink_obj="//@blocks.7/@node_objs.2"/>
+  <edges id="484" edge_type="VirtEdge" source_obj="//@blocks.7/@node_objs.0" sink_obj="//@blocks.9/@node_objs.0"/>
+  <edges id="485" edge_type="VirtEdge" source_obj="//@blocks.7/@node_objs.0" sink_obj="//@blocks.8/@node_objs.3"/>
+  <edges id="486" edge_type="VirtEdge" source_obj="//@blocks.7/@node_objs.1" sink_obj="//@blocks.8/@node_objs.2"/>
+  <blocks id="17" name="entry" type="BlockType">
+    <controlOutputObjs>phi</controlOutputObjs>
+    <controlOutputObjs>memset.loop.i.i</controlOutputObjs>
+    <node_objs xsi:type="cdfg:CdfgNode" id="4" name="assoc_mem_quarter_0" lineNumber="164" originalName="mem.quarter_0" fileName="Server/p3/lzw.cpp" fileDirectory=".." rtlName="assoc_mem_quarter_0_U" coreName="RAM" implIndex="auto" control="auto" opType="ram" coreId="83" contextFuncName="compress_stream" bitwidth="64" opcode="alloca" m_display="0" m_topoIndex="1" m_clusterGroupNumber="-1">
+      <inlineStackInfo fileName="Server/p3/lzw.cpp" linenumber="164" fileDirectory="/mnt/castor/seas_home/s/songqij/ese532_code/project" functionName="compress_stream"/>
+      <inlineStackInfo fileName="Server/p3/lzw.cpp" linenumber="270" fileDirectory="/mnt/castor/seas_home/s/songqij/ese532_code/project" functionName="lzw"/>
+      <dataOutputObjs>getelementptr</dataOutputObjs>
+      <dataOutputObjs>call</dataOutputObjs>
+      <constName>empty</constName>
+    </node_objs>
+    <node_objs xsi:type="cdfg:CdfgNode" id="5" name="assoc_mem_quarter_1" lineNumber="164" originalName="mem.quarter_1" fileName="Server/p3/lzw.cpp" fileDirectory=".." rtlName="assoc_mem_quarter_1_U" coreName="RAM" implIndex="auto" control="auto" opType="ram" coreId="83" contextFuncName="compress_stream" bitwidth="64" opcode="alloca" m_display="0" m_topoIndex="2" m_clusterGroupNumber="-1">
+      <inlineStackInfo fileName="Server/p3/lzw.cpp" linenumber="164" fileDirectory="/mnt/castor/seas_home/s/songqij/ese532_code/project" functionName="compress_stream"/>
+      <inlineStackInfo fileName="Server/p3/lzw.cpp" linenumber="270" fileDirectory="/mnt/castor/seas_home/s/songqij/ese532_code/project" functionName="lzw"/>
+      <dataOutputObjs>getelementptr</dataOutputObjs>
+      <dataOutputObjs>call</dataOutputObjs>
+      <constName>empty</constName>
+    </node_objs>
+    <node_objs xsi:type="cdfg:CdfgNode" id="6" name="assoc_mem_quarter_2" lineNumber="164" originalName="mem.quarter_2" fileName="Server/p3/lzw.cpp" fileDirectory=".." rtlName="assoc_mem_quarter_2_U" coreName="RAM" implIndex="auto" control="auto" opType="ram" coreId="83" contextFuncName="compress_stream" bitwidth="64" opcode="alloca" m_display="0" m_topoIndex="3" m_clusterGroupNumber="-1">
+      <inlineStackInfo fileName="Server/p3/lzw.cpp" linenumber="164" fileDirectory="/mnt/castor/seas_home/s/songqij/ese532_code/project" functionName="compress_stream"/>
+      <inlineStackInfo fileName="Server/p3/lzw.cpp" linenumber="270" fileDirectory="/mnt/castor/seas_home/s/songqij/ese532_code/project" functionName="lzw"/>
+      <dataOutputObjs>getelementptr</dataOutputObjs>
+      <dataOutputObjs>call</dataOutputObjs>
+      <constName>empty</constName>
+    </node_objs>
+    <node_objs xsi:type="cdfg:CdfgNode" id="7" name="assoc_mem_quarter_3" lineNumber="164" originalName="mem.quarter_3" fileName="Server/p3/lzw.cpp" fileDirectory=".." rtlName="assoc_mem_quarter_3_U" coreName="RAM" implIndex="auto" control="auto" opType="ram" coreId="83" contextFuncName="compress_stream" bitwidth="64" opcode="alloca" m_display="0" m_topoIndex="4" m_clusterGroupNumber="-1">
+      <inlineStackInfo fileName="Server/p3/lzw.cpp" linenumber="164" fileDirectory="/mnt/castor/seas_home/s/songqij/ese532_code/project" functionName="compress_stream"/>
+      <inlineStackInfo fileName="Server/p3/lzw.cpp" linenumber="270" fileDirectory="/mnt/castor/seas_home/s/songqij/ese532_code/project" functionName="lzw"/>
+      <dataOutputObjs>getelementptr</dataOutputObjs>
+      <dataOutputObjs>call</dataOutputObjs>
+      <constName>empty</constName>
+    </node_objs>
+    <node_objs xsi:type="cdfg:CdfgNode" id="8" name="assoc_mem_value" lineNumber="164" originalName="mem.value" fileName="Server/p3/lzw.cpp" fileDirectory=".." rtlName="assoc_mem_value_U" coreName="RAM" implIndex="auto" control="auto" opType="ram" coreId="83" contextFuncName="compress_stream" bitwidth="12" opcode="alloca" m_display="0" m_topoIndex="5" m_clusterGroupNumber="-1">
+      <inlineStackInfo fileName="Server/p3/lzw.cpp" linenumber="164" fileDirectory="/mnt/castor/seas_home/s/songqij/ese532_code/project" functionName="compress_stream"/>
+      <inlineStackInfo fileName="Server/p3/lzw.cpp" linenumber="270" fileDirectory="/mnt/castor/seas_home/s/songqij/ese532_code/project" functionName="lzw"/>
+      <dataOutputObjs>getelementptr</dataOutputObjs>
+      <dataOutputObjs>call</dataOutputObjs>
+      <constName>empty</constName>
+    </node_objs>
+    <node_objs xsi:type="cdfg:CdfgNode" id="9" name="hash_table" lineNumber="165" originalName="hash_table" fileName="Server/p3/lzw.cpp" fileDirectory=".." rtlName="hash_table_U" coreName="RAM" implIndex="auto" control="auto" opType="ram" coreId="83" contextFuncName="compress_stream" bitwidth="33" opcode="alloca" m_display="0" m_topoIndex="6" m_clusterGroupNumber="-1">
+      <inlineStackInfo fileName="Server/p3/lzw.cpp" linenumber="165" fileDirectory="/mnt/castor/seas_home/s/songqij/ese532_code/project" functionName="compress_stream"/>
+      <inlineStackInfo fileName="Server/p3/lzw.cpp" linenumber="270" fileDirectory="/mnt/castor/seas_home/s/songqij/ese532_code/project" functionName="lzw"/>
+      <dataOutputObjs>getelementptr</dataOutputObjs>
+      <dataOutputObjs>call</dataOutputObjs>
+      <constName>empty</constName>
+    </node_objs>
+    <node_objs xsi:type="cdfg:CdfgNode" id="13" name="gmem_load_loc_read" originalName="chunk_size" coreName="FIFO_SRL" implIndex="srl" control="auto" opType="fifo" coreId="81" bitwidth="32" opcode="read" m_display="0" m_delay="2.16" m_topoIndex="7" m_clusterGroupNumber="-1">
+      <dataInputObjs>gmem_load_loc</dataInputObjs>
+      <dataOutputObjs>icmp</dataOutputObjs>
+    </node_objs>
+    <node_objs xsi:type="cdfg:CdfgNode" id="16" name="br_ln165" lineNumber="165" fileName="Server/p3/lzw.cpp" fileDirectory=".." coreId="132" contextFuncName="compress_stream" opcode="br" m_display="0" m_delay="0.48" m_topoIndex="8" m_clusterGroupNumber="-1">
+      <inlineStackInfo fileName="Server/p3/lzw.cpp" linenumber="165" fileDirectory="/mnt/castor/seas_home/s/songqij/ese532_code/project" functionName="compress_stream"/>
+      <inlineStackInfo fileName="Server/p3/lzw.cpp" linenumber="270" fileDirectory="/mnt/castor/seas_home/s/songqij/ese532_code/project" functionName="lzw"/>
+      <controlInputObjs>memset.loop.i.i</controlInputObjs>
+    </node_objs>
+    <fileValidLineNumbers fileName="Server/p3/lzw.cpp">
+      <validLinenumbers>164</validLinenumbers>
+      <validLinenumbers>165</validLinenumbers>
+      <validLinenumbers>270</validLinenumbers>
+    </fileValidLineNumbers>
+  </blocks>
+  <blocks id="31" name="split.i.i.preheader" type="BlockType">
+    <controlInputObjs>memset.loop.i.i</controlInputObjs>
+    <controlOutputObjs>br</controlOutputObjs>
+    <controlOutputObjs>phi</controlOutputObjs>
+    <controlOutputObjs>split.i.i</controlOutputObjs>
+    <node_objs xsi:type="cdfg:CdfgNode" id="30" name="br_ln0" coreId="49" opcode="br" nodeLabel="2.0" m_display="0" m_delay="0.48" m_topoIndex="17" m_clusterGroupNumber="-1">
+      <controlInputObjs>split.i.i</controlInputObjs>
+    </node_objs>
+  </blocks>
+  <blocks id="52" name=".preheader.i.i.preheader" type="BlockType">
+    <controlInputObjs>split.i.i</controlInputObjs>
+    <controlOutputObjs>br</controlOutputObjs>
+    <controlOutputObjs>phi</controlOutputObjs>
+    <controlOutputObjs>.preheader.i.i</controlOutputObjs>
+    <node_objs xsi:type="cdfg:CdfgNode" id="51" name="br_ln0" coreId="0" opcode="br" nodeLabel="4.0" m_display="0" m_delay="0.48" m_topoIndex="32" m_clusterGroupNumber="-1">
+      <controlInputObjs>.preheader.i.i</controlInputObjs>
+    </node_objs>
+  </blocks>
+  <blocks id="68" name="_Z10assoc_initP11assoc_mem_t.exit.i.i" type="BlockType">
+    <controlInputObjs>.preheader.i.i</controlInputObjs>
+    <controlOutputObjs>br</controlOutputObjs>
+    <controlOutputObjs>.lr.ph.i.i</controlOutputObjs>
+    <controlOutputObjs>.exit</controlOutputObjs>
+    <node_objs xsi:type="cdfg:CdfgNode" id="66" name="tmp_i_i" lineNumber="136" fileName="/mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/common/technology/autopilot/hls_stream_39.h" fileDirectory=".." coreName="FIFO" implIndex="memory" control="auto" opType="fifo" coreId="78" contextFuncName="empty" bitwidth="1" opcode="nbreadreq" nodeLabel="6.0" m_display="0" m_topoIndex="41" m_clusterGroupNumber="-1">
+      <inlineStackInfo fileName="/mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/common/technology/autopilot/hls_stream_39.h" linenumber="136" fileDirectory="/mnt/castor/seas_home/s/songqij/ese532_code/project" functionName="empty"/>
+      <dataInputObjs>chunk_arr_stream</dataInputObjs>
+      <dataOutputObjs>br</dataOutputObjs>
+      <constName>empty</constName>
+    </node_objs>
+    <node_objs xsi:type="cdfg:CdfgNode" id="67" name="br_ln173" lineNumber="173" fileName="Server/p3/lzw.cpp" fileDirectory=".." coreId="0" contextFuncName="compress_stream" opcode="br" nodeLabel="6.0" m_display="0" m_topoIndex="42" m_clusterGroupNumber="-1">
+      <inlineStackInfo fileName="Server/p3/lzw.cpp" linenumber="173" fileDirectory="/mnt/castor/seas_home/s/songqij/ese532_code/project" functionName="compress_stream"/>
+      <inlineStackInfo fileName="Server/p3/lzw.cpp" linenumber="270" fileDirectory="/mnt/castor/seas_home/s/songqij/ese532_code/project" functionName="lzw"/>
+      <dataInputObjs>nbreadreq</dataInputObjs>
+      <controlInputObjs>.exit</controlInputObjs>
+      <controlInputObjs>.lr.ph.i.i</controlInputObjs>
+    </node_objs>
+    <fileValidLineNumbers fileName="/mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/common/technology/autopilot/hls_stream_39.h">
+      <validLinenumbers>136</validLinenumbers>
+    </fileValidLineNumbers>
+    <fileValidLineNumbers fileName="Server/p3/lzw.cpp">
+      <validLinenumbers>173</validLinenumbers>
+      <validLinenumbers>270</validLinenumbers>
+    </fileValidLineNumbers>
+  </blocks>
+  <blocks id="76" name=".lr.ph.i.i" type="BlockType">
+    <controlInputObjs>_Z10assoc_initP11assoc_mem_t.exit.i.i</controlInputObjs>
+    <controlOutputObjs>br</controlOutputObjs>
+    <controlOutputObjs>phi</controlOutputObjs>
+    <controlOutputObjs>phi</controlOutputObjs>
+    <controlOutputObjs>block_81</controlOutputObjs>
+    <node_objs xsi:type="cdfg:CdfgNode" id="69" name="p_0" originalName="val" coreId="0" bitwidth="16" opcode="alloca" nodeLabel="6.0" m_display="0" m_topoIndex="43" m_clusterGroupNumber="-1">
+      <dataOutputObjs>store</dataOutputObjs>
+      <dataOutputObjs>load</dataOutputObjs>
+      <dataOutputObjs>store</dataOutputObjs>
+      <dataOutputObjs>store</dataOutputObjs>
+      <dataOutputObjs>load</dataOutputObjs>
+      <constName>empty</constName>
+    </node_objs>
+    <node_objs xsi:type="cdfg:CdfgNode" id="70" name="nextCode" originalName="nextCode" coreId="0" bitwidth="32" opcode="alloca" nodeLabel="6.0" m_display="0" m_topoIndex="44" m_clusterGroupNumber="-1">
+      <dataOutputObjs>store</dataOutputObjs>
+      <dataOutputObjs>load</dataOutputObjs>
+      <dataOutputObjs>store</dataOutputObjs>
+      <constName>empty</constName>
+    </node_objs>
+    <node_objs xsi:type="cdfg:CdfgNode" id="71" name="tmp_V" lineNumber="145" originalName="tmp.V" fileName="/mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/common/technology/autopilot/hls_stream_39.h" fileDirectory=".." coreName="FIFO" implIndex="memory" control="auto" opType="fifo" coreId="78" contextFuncName="read" bitwidth="8" opcode="read" nodeLabel="6.0" m_display="0" m_delay="1.94" m_topoIndex="45" m_clusterGroupNumber="-1">
+      <inlineStackInfo fileName="/mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/common/technology/autopilot/hls_stream_39.h" linenumber="145" fileDirectory="/mnt/castor/seas_home/s/songqij/ese532_code/project" functionName="read"/>
+      <dataInputObjs>chunk_arr_stream</dataInputObjs>
+      <dataOutputObjs>zext</dataOutputObjs>
+    </node_objs>
+    <node_objs xsi:type="cdfg:CdfgNode" id="72" name="zext_ln172" lineNumber="172" fileName="Server/p3/lzw.cpp" fileDirectory=".." rtlName="zext_ln172_fu_352_p1" coreId="0" contextFuncName="compress_stream" bitwidth="16" opcode="zext" nodeLabel="6.0" m_display="0" m_topoIndex="46" m_clusterGroupNumber="-1">
+      <inlineStackInfo fileName="Server/p3/lzw.cpp" linenumber="172" fileDirectory="/mnt/castor/seas_home/s/songqij/ese532_code/project" functionName="compress_stream"/>
+      <inlineStackInfo fileName="Server/p3/lzw.cpp" linenumber="270" fileDirectory="/mnt/castor/seas_home/s/songqij/ese532_code/project" functionName="lzw"/>
+      <dataInputObjs>read</dataInputObjs>
+      <dataOutputObjs>store</dataOutputObjs>
+    </node_objs>
+    <node_objs xsi:type="cdfg:CdfgNode" id="73" name="nextCode_write_ln179" lineNumber="179" fileName="Server/p3/lzw.cpp" fileDirectory=".." coreId="0" contextFuncName="compress_stream" opcode="store" nodeLabel="6.0" m_display="0" m_delay="0.48" m_topoIndex="47" m_clusterGroupNumber="-1">
+      <inlineStackInfo fileName="Server/p3/lzw.cpp" linenumber="179" fileDirectory="/mnt/castor/seas_home/s/songqij/ese532_code/project" functionName="compress_stream"/>
+      <inlineStackInfo fileName="Server/p3/lzw.cpp" linenumber="270" fileDirectory="/mnt/castor/seas_home/s/songqij/ese532_code/project" functionName="lzw"/>
+      <dataInputObjs>alloca</dataInputObjs>
+      <constName>empty</constName>
+    </node_objs>
+    <node_objs xsi:type="cdfg:CdfgNode" id="74" name="p_0_write_ln179" lineNumber="179" fileName="Server/p3/lzw.cpp" fileDirectory=".." coreId="2350613400" contextFuncName="compress_stream" opcode="store" nodeLabel="6.0" m_display="0" m_delay="0.54" m_topoIndex="48" m_clusterGroupNumber="-1">
+      <inlineStackInfo fileName="Server/p3/lzw.cpp" linenumber="179" fileDirectory="/mnt/castor/seas_home/s/songqij/ese532_code/project" functionName="compress_stream"/>
+      <inlineStackInfo fileName="Server/p3/lzw.cpp" linenumber="270" fileDirectory="/mnt/castor/seas_home/s/songqij/ese532_code/project" functionName="lzw"/>
+      <dataInputObjs>zext</dataInputObjs>
+      <dataInputObjs>alloca</dataInputObjs>
+    </node_objs>
+    <node_objs xsi:type="cdfg:CdfgNode" id="75" name="br_ln179" lineNumber="179" fileName="Server/p3/lzw.cpp" fileDirectory=".." coreId="0" contextFuncName="compress_stream" opcode="br" nodeLabel="6.0" m_display="0" m_delay="0.48" m_topoIndex="49" m_clusterGroupNumber="-1">
+      <inlineStackInfo fileName="Server/p3/lzw.cpp" linenumber="179" fileDirectory="/mnt/castor/seas_home/s/songqij/ese532_code/project" functionName="compress_stream"/>
+      <inlineStackInfo fileName="Server/p3/lzw.cpp" linenumber="270" fileDirectory="/mnt/castor/seas_home/s/songqij/ese532_code/project" functionName="lzw"/>
+      <controlInputObjs>block_81</controlInputObjs>
+    </node_objs>
+    <fileValidLineNumbers fileName="/mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/common/technology/autopilot/hls_stream_39.h">
+      <validLinenumbers>145</validLinenumbers>
+    </fileValidLineNumbers>
+    <fileValidLineNumbers fileName="Server/p3/lzw.cpp">
+      <validLinenumbers>172</validLinenumbers>
+      <validLinenumbers>179</validLinenumbers>
+      <validLinenumbers>270</validLinenumbers>
+    </fileValidLineNumbers>
+  </blocks>
+  <blocks id="81" name="block_81" type="BlockType">
+    <controlInputObjs>.lr.ph.i.i</controlInputObjs>
+    <controlInputObjs>block_111</controlInputObjs>
+    <controlOutputObjs>br</controlOutputObjs>
+    <controlOutputObjs>br</controlOutputObjs>
+    <controlOutputObjs>.split.i.i</controlOutputObjs>
+    <controlOutputObjs>.loopexit.loopexit.i.i</controlOutputObjs>
+    <node_objs xsi:type="cdfg:CdfgNode" id="77" name="assoc_mem_fill_0_i_i" originalName="assoc_mem.fill" coreId="2177" bitwidth="32" opcode="phi" nodeLabel="7.0" m_display="0" m_topoIndex="50" m_clusterGroupNumber="-1">
+      <dataInputObjs>extractvalue</dataInputObjs>
+      <dataOutputObjs>call</dataOutputObjs>
+      <controlInputObjs>.lr.ph.i.i</controlInputObjs>
+      <controlInputObjs>block_111</controlInputObjs>
+      <constName>empty</constName>
+    </node_objs>
+    <node_objs xsi:type="cdfg:CdfgNode" id="78" name="i_3" originalName="i" coreId="2350208160" bitwidth="32" opcode="phi" nodeLabel="7.0" m_display="0" m_topoIndex="51" m_clusterGroupNumber="-1">
+      <dataInputObjs>add</dataInputObjs>
+      <dataOutputObjs>icmp</dataOutputObjs>
+      <dataOutputObjs>add</dataOutputObjs>
+      <controlInputObjs>.lr.ph.i.i</controlInputObjs>
+      <controlInputObjs>block_111</controlInputObjs>
+      <constName>empty</constName>
+    </node_objs>
+    <node_objs xsi:type="cdfg:CdfgNode" id="79" name="icmp_ln179" lineNumber="179" fileName="Server/p3/lzw.cpp" fileDirectory=".." rtlName="icmp_ln179_fu_366_p2" opType="icmp" coreId="49" contextFuncName="compress_stream" bitwidth="1" opcode="icmp" nodeLabel="7.0" m_display="0" m_delay="1.11" m_topoIndex="52" m_clusterGroupNumber="-1">
+      <inlineStackInfo fileName="Server/p3/lzw.cpp" linenumber="179" fileDirectory="/mnt/castor/seas_home/s/songqij/ese532_code/project" functionName="compress_stream"/>
+      <inlineStackInfo fileName="Server/p3/lzw.cpp" linenumber="270" fileDirectory="/mnt/castor/seas_home/s/songqij/ese532_code/project" functionName="lzw"/>
+      <dataInputObjs>phi</dataInputObjs>
+      <dataInputObjs>read</dataInputObjs>
+      <dataOutputObjs>br</dataOutputObjs>
+    </node_objs>
+    <node_objs xsi:type="cdfg:CdfgNode" id="80" name="br_ln179" lineNumber="179" fileName="Server/p3/lzw.cpp" fileDirectory=".." coreId="49" contextFuncName="compress_stream" opcode="br" nodeLabel="7.0" m_display="0" m_topoIndex="53" m_clusterGroupNumber="-1">
+      <inlineStackInfo fileName="Server/p3/lzw.cpp" linenumber="179" fileDirectory="/mnt/castor/seas_home/s/songqij/ese532_code/project" functionName="compress_stream"/>
+      <inlineStackInfo fileName="Server/p3/lzw.cpp" linenumber="270" fileDirectory="/mnt/castor/seas_home/s/songqij/ese532_code/project" functionName="lzw"/>
+      <dataInputObjs>icmp</dataInputObjs>
+      <controlInputObjs>.loopexit.loopexit.i.i</controlInputObjs>
+      <controlInputObjs>.split.i.i</controlInputObjs>
+    </node_objs>
+    <fileValidLineNumbers fileName="Server/p3/lzw.cpp">
+      <validLinenumbers>179</validLinenumbers>
+      <validLinenumbers>270</validLinenumbers>
+    </fileValidLineNumbers>
+  </blocks>
+  <blocks id="85" name=".split.i.i" type="BlockType">
+    <controlInputObjs>block_81</controlInputObjs>
+    <controlOutputObjs>br</controlOutputObjs>
+    <controlOutputObjs>block_99</controlOutputObjs>
+    <controlOutputObjs>.loopexit.loopexit.i.i</controlOutputObjs>
+    <node_objs xsi:type="cdfg:CdfgNode" id="83" name="tmp_1_i_i" lineNumber="136" fileName="/mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/common/technology/autopilot/hls_stream_39.h" fileDirectory=".." coreName="FIFO" implIndex="memory" control="auto" opType="fifo" coreId="78" contextFuncName="empty" bitwidth="1" opcode="nbreadreq" nodeLabel="7.0" m_display="0" m_topoIndex="54" m_clusterGroupNumber="-1">
+      <inlineStackInfo fileName="/mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/common/technology/autopilot/hls_stream_39.h" linenumber="136" fileDirectory="/mnt/castor/seas_home/s/songqij/ese532_code/project" functionName="empty"/>
+      <dataInputObjs>chunk_arr_stream</dataInputObjs>
+      <dataOutputObjs>br</dataOutputObjs>
+      <constName>empty</constName>
+    </node_objs>
+    <node_objs xsi:type="cdfg:CdfgNode" id="84" name="br_ln180" lineNumber="180" fileName="Server/p3/lzw.cpp" fileDirectory=".." coreId="49" contextFuncName="compress_stream" opcode="br" nodeLabel="7.0" m_display="0" m_topoIndex="55" m_clusterGroupNumber="-1">
+      <inlineStackInfo fileName="Server/p3/lzw.cpp" linenumber="180" fileDirectory="/mnt/castor/seas_home/s/songqij/ese532_code/project" functionName="compress_stream"/>
+      <inlineStackInfo fileName="Server/p3/lzw.cpp" linenumber="270" fileDirectory="/mnt/castor/seas_home/s/songqij/ese532_code/project" functionName="lzw"/>
+      <dataInputObjs>nbreadreq</dataInputObjs>
+      <controlInputObjs>.loopexit.loopexit.i.i</controlInputObjs>
+      <controlInputObjs>block_99</controlInputObjs>
+    </node_objs>
+    <fileValidLineNumbers fileName="/mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/common/technology/autopilot/hls_stream_39.h">
+      <validLinenumbers>136</validLinenumbers>
+    </fileValidLineNumbers>
+    <fileValidLineNumbers fileName="Server/p3/lzw.cpp">
+      <validLinenumbers>180</validLinenumbers>
+      <validLinenumbers>270</validLinenumbers>
+    </fileValidLineNumbers>
+  </blocks>
+  <blocks id="99" name="block_99" type="BlockType">
+    <controlInputObjs>.split.i.i</controlInputObjs>
+    <controlOutputObjs>br</controlOutputObjs>
+    <controlOutputObjs>._crit_edge</controlOutputObjs>
+    <controlOutputObjs>block_105</controlOutputObjs>
+    <node_objs xsi:type="cdfg:CdfgNode" id="86" name="p_0_load" lineNumber="183" fileName="Server/p3/lzw.cpp" fileDirectory=".." coreId="1377" contextFuncName="compress_stream" bitwidth="16" opcode="load" nodeLabel="7.0" m_display="0" m_topoIndex="56" m_clusterGroupNumber="-1">
+      <inlineStackInfo fileName="Server/p3/lzw.cpp" linenumber="183" fileDirectory="/mnt/castor/seas_home/s/songqij/ese532_code/project" functionName="compress_stream"/>
+      <inlineStackInfo fileName="Server/p3/lzw.cpp" linenumber="270" fileDirectory="/mnt/castor/seas_home/s/songqij/ese532_code/project" functionName="lzw"/>
+      <dataInputObjs>alloca</dataInputObjs>
+      <dataOutputObjs>trunc</dataOutputObjs>
+      <dataOutputObjs>write</dataOutputObjs>
+    </node_objs>
+    <node_objs xsi:type="cdfg:CdfgNode" id="87" name="nextCode_load" lineNumber="179" fileName="Server/p3/lzw.cpp" fileDirectory=".." coreId="0" contextFuncName="compress_stream" bitwidth="32" opcode="load" nodeLabel="7.0" m_display="0" m_topoIndex="57" m_clusterGroupNumber="-1">
+      <inlineStackInfo fileName="Server/p3/lzw.cpp" linenumber="179" fileDirectory="/mnt/castor/seas_home/s/songqij/ese532_code/project" functionName="compress_stream"/>
+      <inlineStackInfo fileName="Server/p3/lzw.cpp" linenumber="270" fileDirectory="/mnt/castor/seas_home/s/songqij/ese532_code/project" functionName="lzw"/>
+      <dataInputObjs>alloca</dataInputObjs>
+      <dataOutputObjs>trunc</dataOutputObjs>
+      <dataOutputObjs>add</dataOutputObjs>
+    </node_objs>
+    <node_objs xsi:type="cdfg:CdfgNode" id="88" name="tmp_V_2" lineNumber="145" originalName="tmp.V" fileName="/mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/common/technology/autopilot/hls_stream_39.h" fileDirectory=".." coreName="FIFO" implIndex="memory" control="auto" opType="fifo" coreId="78" contextFuncName="read" bitwidth="8" opcode="read" nodeLabel="7.0" m_display="0" m_delay="1.94" m_topoIndex="58" m_clusterGroupNumber="-1">
+      <inlineStackInfo fileName="/mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/common/technology/autopilot/hls_stream_39.h" linenumber="145" fileDirectory="/mnt/castor/seas_home/s/songqij/ese532_code/project" functionName="read"/>
+      <dataInputObjs>chunk_arr_stream</dataInputObjs>
+      <dataOutputObjs>zext</dataOutputObjs>
+      <dataOutputObjs>bitconcatenate</dataOutputObjs>
+    </node_objs>
+    <node_objs xsi:type="cdfg:CdfgNode" id="89" name="zext_ln183" lineNumber="183" fileName="Server/p3/lzw.cpp" fileDirectory=".." rtlName="zext_ln183_fu_392_p1" coreId="0" contextFuncName="compress_stream" bitwidth="16" opcode="zext" nodeLabel="8.0" m_display="0" m_topoIndex="67" m_clusterGroupNumber="-1">
+      <inlineStackInfo fileName="Server/p3/lzw.cpp" linenumber="183" fileDirectory="/mnt/castor/seas_home/s/songqij/ese532_code/project" functionName="compress_stream"/>
+      <inlineStackInfo fileName="Server/p3/lzw.cpp" linenumber="270" fileDirectory="/mnt/castor/seas_home/s/songqij/ese532_code/project" functionName="lzw"/>
+      <dataInputObjs>read</dataInputObjs>
+      <dataOutputObjs>store</dataOutputObjs>
+    </node_objs>
+    <node_objs xsi:type="cdfg:CdfgNode" id="90" name="trunc_ln183" lineNumber="183" fileName="Server/p3/lzw.cpp" fileDirectory=".." rtlName="trunc_ln183_fu_374_p1" coreId="0" contextFuncName="compress_stream" bitwidth="12" opcode="trunc" nodeLabel="7.0" m_display="0" m_topoIndex="59" m_clusterGroupNumber="-1">
+      <inlineStackInfo fileName="Server/p3/lzw.cpp" linenumber="183" fileDirectory="/mnt/castor/seas_home/s/songqij/ese532_code/project" functionName="compress_stream"/>
+      <inlineStackInfo fileName="Server/p3/lzw.cpp" linenumber="270" fileDirectory="/mnt/castor/seas_home/s/songqij/ese532_code/project" functionName="lzw"/>
+      <dataInputObjs>load</dataInputObjs>
+      <dataOutputObjs>bitconcatenate</dataOutputObjs>
+    </node_objs>
+    <node_objs xsi:type="cdfg:CdfgNode" id="91" name="trunc_ln" lineNumber="183" fileName="Server/p3/lzw.cpp" fileDirectory=".." rtlName="trunc_ln_fu_378_p3" coreId="0" contextFuncName="compress_stream" bitwidth="20" opcode="bitconcatenate" nodeLabel="7.0" m_display="0" m_topoIndex="60" m_clusterGroupNumber="-1">
+      <inlineStackInfo fileName="Server/p3/lzw.cpp" linenumber="183" fileDirectory="/mnt/castor/seas_home/s/songqij/ese532_code/project" functionName="compress_stream"/>
+      <inlineStackInfo fileName="Server/p3/lzw.cpp" linenumber="270" fileDirectory="/mnt/castor/seas_home/s/songqij/ese532_code/project" functionName="lzw"/>
+      <dataInputObjs>trunc</dataInputObjs>
+      <dataInputObjs>read</dataInputObjs>
+      <dataOutputObjs>call</dataOutputObjs>
+    </node_objs>
+    <node_objs xsi:type="cdfg:CdfgNode" id="92" name="trunc_ln179" lineNumber="179" fileName="Server/p3/lzw.cpp" fileDirectory=".." rtlName="trunc_ln179_fu_387_p1" coreId="0" contextFuncName="compress_stream" bitwidth="12" opcode="trunc" nodeLabel="7.0" m_display="0" m_topoIndex="61" m_clusterGroupNumber="-1">
+      <inlineStackInfo fileName="Server/p3/lzw.cpp" linenumber="179" fileDirectory="/mnt/castor/seas_home/s/songqij/ese532_code/project" functionName="compress_stream"/>
+      <inlineStackInfo fileName="Server/p3/lzw.cpp" linenumber="270" fileDirectory="/mnt/castor/seas_home/s/songqij/ese532_code/project" functionName="lzw"/>
+      <dataInputObjs>load</dataInputObjs>
+      <dataOutputObjs>call</dataOutputObjs>
+    </node_objs>
+    <node_objs xsi:type="cdfg:CdfgNode" id="93" name="call_ret_i_i" lineNumber="185" fileName="Server/p3/lzw.cpp" fileDirectory=".." rtlName="grp_lookup_and_insert_fu_280" coreId="49" contextFuncName="compress_stream" bitwidth="65" opcode="call" nodeLabel="7.0" nodeLatency="1" m_display="0" m_topoIndex="62" m_clusterGroupNumber="-1">
+      <inlineStackInfo fileName="Server/p3/lzw.cpp" linenumber="185" fileDirectory="/mnt/castor/seas_home/s/songqij/ese532_code/project" functionName="compress_stream"/>
+      <inlineStackInfo fileName="Server/p3/lzw.cpp" linenumber="270" fileDirectory="/mnt/castor/seas_home/s/songqij/ese532_code/project" functionName="lzw"/>
+      <dataInputObjs>alloca</dataInputObjs>
+      <dataInputObjs>alloca</dataInputObjs>
+      <dataInputObjs>alloca</dataInputObjs>
+      <dataInputObjs>alloca</dataInputObjs>
+      <dataInputObjs>alloca</dataInputObjs>
+      <dataInputObjs>alloca</dataInputObjs>
+      <dataInputObjs>phi</dataInputObjs>
+      <dataInputObjs>bitconcatenate</dataInputObjs>
+      <dataInputObjs>trunc</dataInputObjs>
+      <dataOutputObjs>extractvalue</dataOutputObjs>
+      <dataOutputObjs>extractvalue</dataOutputObjs>
+      <dataOutputObjs>extractvalue</dataOutputObjs>
+      <constName>lookup_and_insert</constName>
+    </node_objs>
+    <node_objs xsi:type="cdfg:CdfgNode" id="94" name="hit" lineNumber="185" originalName="hit" fileName="Server/p3/lzw.cpp" fileDirectory=".." coreId="959722545" contextFuncName="compress_stream" bitwidth="1" opcode="extractvalue" nodeLabel="8.0" m_display="0" m_topoIndex="68" m_clusterGroupNumber="-1">
+      <inlineStackInfo fileName="Server/p3/lzw.cpp" linenumber="185" fileDirectory="/mnt/castor/seas_home/s/songqij/ese532_code/project" functionName="compress_stream"/>
+      <inlineStackInfo fileName="Server/p3/lzw.cpp" linenumber="270" fileDirectory="/mnt/castor/seas_home/s/songqij/ese532_code/project" functionName="lzw"/>
+      <dataInputObjs>call</dataInputObjs>
+      <dataOutputObjs>br</dataOutputObjs>
+    </node_objs>
+    <node_objs xsi:type="cdfg:CdfgNode" id="95" name="P" lineNumber="185" originalName="P" fileName="Server/p3/lzw.cpp" fileDirectory=".." coreId="2350648208" contextFuncName="compress_stream" bitwidth="32" opcode="extractvalue" nodeLabel="8.0" m_display="0" m_topoIndex="69" m_clusterGroupNumber="-1">
+      <inlineStackInfo fileName="Server/p3/lzw.cpp" linenumber="185" fileDirectory="/mnt/castor/seas_home/s/songqij/ese532_code/project" functionName="compress_stream"/>
+      <inlineStackInfo fileName="Server/p3/lzw.cpp" linenumber="270" fileDirectory="/mnt/castor/seas_home/s/songqij/ese532_code/project" functionName="lzw"/>
+      <dataInputObjs>call</dataInputObjs>
+      <dataOutputObjs>trunc</dataOutputObjs>
+    </node_objs>
+    <node_objs xsi:type="cdfg:CdfgNode" id="96" name="trunc_ln172" lineNumber="172" fileName="Server/p3/lzw.cpp" fileDirectory=".." rtlName="trunc_ln172_fu_403_p1" coreId="132" contextFuncName="compress_stream" bitwidth="16" opcode="trunc" nodeLabel="8.0" m_display="0" m_topoIndex="70" m_clusterGroupNumber="-1">
+      <inlineStackInfo fileName="Server/p3/lzw.cpp" linenumber="172" fileDirectory="/mnt/castor/seas_home/s/songqij/ese532_code/project" functionName="compress_stream"/>
+      <inlineStackInfo fileName="Server/p3/lzw.cpp" linenumber="270" fileDirectory="/mnt/castor/seas_home/s/songqij/ese532_code/project" functionName="lzw"/>
+      <dataInputObjs>extractvalue</dataInputObjs>
+      <dataOutputObjs>store</dataOutputObjs>
+    </node_objs>
+    <node_objs xsi:type="cdfg:CdfgNode" id="97" name="assoc_mem_fill" lineNumber="185" originalName="assoc_mem.fill" fileName="Server/p3/lzw.cpp" fileDirectory=".." coreId="2350220809" contextFuncName="compress_stream" bitwidth="32" opcode="extractvalue" nodeLabel="8.0" m_display="0" m_topoIndex="71" m_clusterGroupNumber="-1">
+      <inlineStackInfo fileName="Server/p3/lzw.cpp" linenumber="185" fileDirectory="/mnt/castor/seas_home/s/songqij/ese532_code/project" functionName="compress_stream"/>
+      <inlineStackInfo fileName="Server/p3/lzw.cpp" linenumber="270" fileDirectory="/mnt/castor/seas_home/s/songqij/ese532_code/project" functionName="lzw"/>
+      <dataInputObjs>call</dataInputObjs>
+      <dataOutputObjs>phi</dataOutputObjs>
+    </node_objs>
+    <node_objs xsi:type="cdfg:CdfgNode" id="98" name="br_ln187" lineNumber="187" fileName="Server/p3/lzw.cpp" fileDirectory=".." coreId="0" contextFuncName="compress_stream" opcode="br" nodeLabel="8.0" m_display="0" m_topoIndex="72" m_clusterGroupNumber="-1">
+      <inlineStackInfo fileName="Server/p3/lzw.cpp" linenumber="187" fileDirectory="/mnt/castor/seas_home/s/songqij/ese532_code/project" functionName="compress_stream"/>
+      <inlineStackInfo fileName="Server/p3/lzw.cpp" linenumber="270" fileDirectory="/mnt/castor/seas_home/s/songqij/ese532_code/project" functionName="lzw"/>
+      <dataInputObjs>extractvalue</dataInputObjs>
+      <controlInputObjs>block_105</controlInputObjs>
+      <controlInputObjs>._crit_edge</controlInputObjs>
+    </node_objs>
+    <fileValidLineNumbers fileName="/mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/common/technology/autopilot/hls_stream_39.h">
+      <validLinenumbers>145</validLinenumbers>
+    </fileValidLineNumbers>
+    <fileValidLineNumbers fileName="Server/p3/lzw.cpp">
+      <validLinenumbers>183</validLinenumbers>
+      <validLinenumbers>179</validLinenumbers>
+      <validLinenumbers>185</validLinenumbers>
+      <validLinenumbers>172</validLinenumbers>
+      <validLinenumbers>187</validLinenumbers>
+      <validLinenumbers>270</validLinenumbers>
+    </fileValidLineNumbers>
+  </blocks>
+  <blocks id="105" name="block_105" type="BlockType">
+    <controlInputObjs>block_99</controlInputObjs>
+    <controlOutputObjs>br</controlOutputObjs>
+    <controlOutputObjs>block_111</controlOutputObjs>
+    <node_objs xsi:type="cdfg:CdfgNode" id="100" name="codeword_stream_write_ln174" lineNumber="174" fileName="/mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/common/technology/autopilot/hls_stream_39.h" fileDirectory=".." coreName="FIFO" implIndex="memory" control="auto" opType="fifo" coreId="78" contextFuncName="write" opcode="write" nodeLabel="8.0" m_display="0" m_delay="1.94" m_topoIndex="73" m_clusterGroupNumber="-1">
+      <inlineStackInfo fileName="/mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/common/technology/autopilot/hls_stream_39.h" linenumber="174" fileDirectory="/mnt/castor/seas_home/s/songqij/ese532_code/project" functionName="write"/>
+      <dataInputObjs>load</dataInputObjs>
+      <dataOutputObjs>codeword_stream</dataOutputObjs>
+    </node_objs>
+    <node_objs xsi:type="cdfg:CdfgNode" id="101" name="nextCode_1" lineNumber="191" originalName="nextCode" fileName="Server/p3/lzw.cpp" fileDirectory=".." rtlName="nextCode_1_fu_411_p2" coreName="Adder" implIndex="fabric" control="auto" opType="add" coreId="1" contextFuncName="compress_stream" bitwidth="32" opcode="add" nodeLabel="8.0" m_display="0" m_delay="1.2" m_topoIndex="74" m_clusterGroupNumber="-1">
+      <inlineStackInfo fileName="Server/p3/lzw.cpp" linenumber="191" fileDirectory="/mnt/castor/seas_home/s/songqij/ese532_code/project" functionName="compress_stream"/>
+      <inlineStackInfo fileName="Server/p3/lzw.cpp" linenumber="270" fileDirectory="/mnt/castor/seas_home/s/songqij/ese532_code/project" functionName="lzw"/>
+      <dataInputObjs>load</dataInputObjs>
+      <dataOutputObjs>store</dataOutputObjs>
+      <constName>empty</constName>
+    </node_objs>
+    <node_objs xsi:type="cdfg:CdfgNode" id="102" name="nextCode_write_ln191" lineNumber="191" fileName="Server/p3/lzw.cpp" fileDirectory=".." coreId="2350164896" contextFuncName="compress_stream" opcode="store" nodeLabel="8.0" m_display="0" m_delay="0.48" m_topoIndex="75" m_clusterGroupNumber="-1">
+      <inlineStackInfo fileName="Server/p3/lzw.cpp" linenumber="191" fileDirectory="/mnt/castor/seas_home/s/songqij/ese532_code/project" functionName="compress_stream"/>
+      <inlineStackInfo fileName="Server/p3/lzw.cpp" linenumber="270" fileDirectory="/mnt/castor/seas_home/s/songqij/ese532_code/project" functionName="lzw"/>
+      <dataInputObjs>add</dataInputObjs>
+      <dataInputObjs>alloca</dataInputObjs>
+    </node_objs>
+    <node_objs xsi:type="cdfg:CdfgNode" id="103" name="p_0_write_ln183" lineNumber="183" fileName="Server/p3/lzw.cpp" fileDirectory=".." coreId="0" contextFuncName="compress_stream" opcode="store" nodeLabel="8.0" m_display="0" m_delay="0.54" m_topoIndex="76" m_clusterGroupNumber="-1">
+      <inlineStackInfo fileName="Server/p3/lzw.cpp" linenumber="183" fileDirectory="/mnt/castor/seas_home/s/songqij/ese532_code/project" functionName="compress_stream"/>
+      <inlineStackInfo fileName="Server/p3/lzw.cpp" linenumber="270" fileDirectory="/mnt/castor/seas_home/s/songqij/ese532_code/project" functionName="lzw"/>
+      <dataInputObjs>zext</dataInputObjs>
+      <dataInputObjs>alloca</dataInputObjs>
+    </node_objs>
+    <node_objs xsi:type="cdfg:CdfgNode" id="104" name="br_ln0" coreId="2350550576" opcode="br" nodeLabel="8.0" m_display="0" m_topoIndex="77" m_clusterGroupNumber="-1">
+      <controlInputObjs>block_111</controlInputObjs>
+    </node_objs>
+    <fileValidLineNumbers fileName="/mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/common/technology/autopilot/hls_stream_39.h">
+      <validLinenumbers>174</validLinenumbers>
+    </fileValidLineNumbers>
+    <fileValidLineNumbers fileName="Server/p3/lzw.cpp">
+      <validLinenumbers>191</validLinenumbers>
+      <validLinenumbers>183</validLinenumbers>
+      <validLinenumbers>270</validLinenumbers>
+    </fileValidLineNumbers>
+  </blocks>
+  <blocks id="108" name="._crit_edge" type="BlockType">
+    <controlInputObjs>block_99</controlInputObjs>
+    <controlOutputObjs>br</controlOutputObjs>
+    <controlOutputObjs>block_111</controlOutputObjs>
+    <node_objs xsi:type="cdfg:CdfgNode" id="106" name="p_0_write_ln187" lineNumber="187" fileName="Server/p3/lzw.cpp" fileDirectory=".." coreId="0" contextFuncName="compress_stream" opcode="store" nodeLabel="8.0" m_display="0" m_delay="0.54" m_topoIndex="78" m_clusterGroupNumber="-1">
+      <inlineStackInfo fileName="Server/p3/lzw.cpp" linenumber="187" fileDirectory="/mnt/castor/seas_home/s/songqij/ese532_code/project" functionName="compress_stream"/>
+      <inlineStackInfo fileName="Server/p3/lzw.cpp" linenumber="270" fileDirectory="/mnt/castor/seas_home/s/songqij/ese532_code/project" functionName="lzw"/>
+      <dataInputObjs>trunc</dataInputObjs>
+      <dataInputObjs>alloca</dataInputObjs>
+    </node_objs>
+    <node_objs xsi:type="cdfg:CdfgNode" id="107" name="br_ln187" lineNumber="187" fileName="Server/p3/lzw.cpp" fileDirectory=".." coreId="0" contextFuncName="compress_stream" opcode="br" nodeLabel="8.0" m_display="0" m_topoIndex="79" m_clusterGroupNumber="-1">
+      <inlineStackInfo fileName="Server/p3/lzw.cpp" linenumber="187" fileDirectory="/mnt/castor/seas_home/s/songqij/ese532_code/project" functionName="compress_stream"/>
+      <inlineStackInfo fileName="Server/p3/lzw.cpp" linenumber="270" fileDirectory="/mnt/castor/seas_home/s/songqij/ese532_code/project" functionName="lzw"/>
+      <controlInputObjs>block_111</controlInputObjs>
+    </node_objs>
+    <fileValidLineNumbers fileName="Server/p3/lzw.cpp">
+      <validLinenumbers>187</validLinenumbers>
+      <validLinenumbers>270</validLinenumbers>
+    </fileValidLineNumbers>
+  </blocks>
+  <blocks id="111" name="block_111" type="BlockType">
+    <controlInputObjs>block_105</controlInputObjs>
+    <controlInputObjs>._crit_edge</controlInputObjs>
+    <controlOutputObjs>phi</controlOutputObjs>
+    <controlOutputObjs>phi</controlOutputObjs>
+    <controlOutputObjs>br</controlOutputObjs>
+    <controlOutputObjs>br</controlOutputObjs>
+    <controlOutputObjs>block_81</controlOutputObjs>
+    <node_objs xsi:type="cdfg:CdfgNode" id="109" name="i_4" lineNumber="179" originalName="i" fileName="Server/p3/lzw.cpp" fileDirectory=".." rtlName="i_4_fu_431_p2" coreName="Adder" implIndex="fabric" control="auto" opType="add" coreId="1" contextFuncName="compress_stream" bitwidth="32" opcode="add" nodeLabel="8.0" m_display="0" m_delay="1.2" m_topoIndex="80" m_clusterGroupNumber="-1">
+      <inlineStackInfo fileName="Server/p3/lzw.cpp" linenumber="179" fileDirectory="/mnt/castor/seas_home/s/songqij/ese532_code/project" functionName="compress_stream"/>
+      <inlineStackInfo fileName="Server/p3/lzw.cpp" linenumber="270" fileDirectory="/mnt/castor/seas_home/s/songqij/ese532_code/project" functionName="lzw"/>
+      <dataInputObjs>phi</dataInputObjs>
+      <dataOutputObjs>phi</dataOutputObjs>
+      <constName>empty</constName>
+    </node_objs>
+    <node_objs xsi:type="cdfg:CdfgNode" id="110" name="br_ln0" coreId="0" opcode="br" nodeLabel="8.0" m_display="0" m_topoIndex="81" m_clusterGroupNumber="-1">
+      <controlInputObjs>block_81</controlInputObjs>
+    </node_objs>
+    <fileValidLineNumbers fileName="Server/p3/lzw.cpp">
+      <validLinenumbers>179</validLinenumbers>
+      <validLinenumbers>270</validLinenumbers>
+    </fileValidLineNumbers>
+  </blocks>
+  <blocks id="115" name=".loopexit.loopexit.i.i" type="BlockType">
+    <controlInputObjs>block_81</controlInputObjs>
+    <controlInputObjs>.split.i.i</controlInputObjs>
+    <controlOutputObjs>br</controlOutputObjs>
+    <controlOutputObjs>br</controlOutputObjs>
+    <controlOutputObjs>.exit</controlOutputObjs>
+    <node_objs xsi:type="cdfg:CdfgNode" id="112" name="p_0_load_1" lineNumber="174" fileName="/mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/common/technology/autopilot/hls_stream_39.h" fileDirectory=".." coreId="49" contextFuncName="write" bitwidth="16" opcode="load" nodeLabel="7.0" m_display="0" m_topoIndex="63" m_clusterGroupNumber="-1">
+      <inlineStackInfo fileName="/mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/common/technology/autopilot/hls_stream_39.h" linenumber="174" fileDirectory="/mnt/castor/seas_home/s/songqij/ese532_code/project" functionName="write"/>
+      <dataInputObjs>alloca</dataInputObjs>
+      <dataOutputObjs>write</dataOutputObjs>
+    </node_objs>
+    <node_objs xsi:type="cdfg:CdfgNode" id="113" name="codeword_stream_write_ln174" lineNumber="174" fileName="/mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/common/technology/autopilot/hls_stream_39.h" fileDirectory=".." coreName="FIFO" implIndex="memory" control="auto" opType="fifo" coreId="78" contextFuncName="write" opcode="write" nodeLabel="7.0" m_display="0" m_delay="1.94" m_topoIndex="64" m_clusterGroupNumber="-1">
+      <inlineStackInfo fileName="/mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/common/technology/autopilot/hls_stream_39.h" linenumber="174" fileDirectory="/mnt/castor/seas_home/s/songqij/ese532_code/project" functionName="write"/>
+      <dataInputObjs>load</dataInputObjs>
+      <dataOutputObjs>codeword_stream</dataOutputObjs>
+    </node_objs>
+    <node_objs xsi:type="cdfg:CdfgNode" id="114" name="br_ln197" lineNumber="197" fileName="Server/p3/lzw.cpp" fileDirectory=".." coreId="1" contextFuncName="compress_stream" opcode="br" nodeLabel="7.0" m_display="0" m_topoIndex="65" m_clusterGroupNumber="-1">
+      <inlineStackInfo fileName="Server/p3/lzw.cpp" linenumber="197" fileDirectory="/mnt/castor/seas_home/s/songqij/ese532_code/project" functionName="compress_stream"/>
+      <inlineStackInfo fileName="Server/p3/lzw.cpp" linenumber="270" fileDirectory="/mnt/castor/seas_home/s/songqij/ese532_code/project" functionName="lzw"/>
+      <controlInputObjs>.exit</controlInputObjs>
+    </node_objs>
+    <fileValidLineNumbers fileName="/mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/common/technology/autopilot/hls_stream_39.h">
+      <validLinenumbers>174</validLinenumbers>
+    </fileValidLineNumbers>
+    <fileValidLineNumbers fileName="Server/p3/lzw.cpp">
+      <validLinenumbers>197</validLinenumbers>
+      <validLinenumbers>270</validLinenumbers>
+    </fileValidLineNumbers>
+  </blocks>
+  <blocks id="117" name=".exit" type="BlockType">
+    <controlInputObjs>_Z10assoc_initP11assoc_mem_t.exit.i.i</controlInputObjs>
+    <controlInputObjs>.loopexit.loopexit.i.i</controlInputObjs>
+    <controlOutputObjs>br</controlOutputObjs>
+    <controlOutputObjs>br</controlOutputObjs>
+    <node_objs xsi:type="cdfg:CdfgNode" id="116" name="_ln0" coreId="0" opcode="ret" nodeLabel="7.0" m_display="0" m_topoIndex="66" m_clusterGroupNumber="-1"/>
+  </blocks>
+  <regions anchor_node="-1" region_type="8" interval="1" typeName="Pipeline" id="445" pipe_depth="1" RegionName="Loop 1">
+    <basic_blocks id="24" name="memset.loop.i.i" type="BlockType">
+      <controlInputObjs>entry</controlInputObjs>
+      <controlInputObjs>memset.loop.split.i.i</controlInputObjs>
+      <controlOutputObjs>br</controlOutputObjs>
+      <controlOutputObjs>br</controlOutputObjs>
+      <controlOutputObjs>split.i.i.preheader</controlOutputObjs>
+      <controlOutputObjs>memset.loop.split.i.i</controlOutputObjs>
+      <node_objs xsi:type="cdfg:CdfgNode" id="18" name="empty" coreId="49" bitwidth="16" opcode="phi" nodeLabel="1.0" m_display="0" m_topoIndex="9" m_clusterGroupNumber="-1">
+        <dataInputObjs>add</dataInputObjs>
+        <dataOutputObjs>add</dataOutputObjs>
+        <dataOutputObjs>icmp</dataOutputObjs>
+        <dataOutputObjs>zext</dataOutputObjs>
+        <controlInputObjs>entry</controlInputObjs>
+        <controlInputObjs>memset.loop.split.i.i</controlInputObjs>
+        <constName>empty</constName>
+      </node_objs>
+      <node_objs xsi:type="cdfg:CdfgNode" id="19" name="empty_56" rtlName="empty_56_fu_298_p2" coreName="Adder" implIndex="fabric" control="auto" opType="add" coreId="1" bitwidth="16" opcode="add" nodeLabel="1.0" m_display="0" m_delay="1.01" m_topoIndex="10" m_clusterGroupNumber="-1">
+        <dataInputObjs>phi</dataInputObjs>
+        <dataOutputObjs>phi</dataOutputObjs>
+        <constName>empty</constName>
+      </node_objs>
+      <node_objs xsi:type="cdfg:CdfgNode" id="21" name="exitcond386_i_i" rtlName="exitcond386_i_i_fu_304_p2" opType="icmp" coreId="305" bitwidth="1" opcode="icmp" nodeLabel="1.0" m_display="0" m_delay="0.86" m_topoIndex="11" m_clusterGroupNumber="-1">
+        <dataInputObjs>phi</dataInputObjs>
+        <dataOutputObjs>br</dataOutputObjs>
+        <constName>empty</constName>
+      </node_objs>
+      <node_objs xsi:type="cdfg:CdfgNode" id="23" name="br_ln0" coreId="2350235888" opcode="br" nodeLabel="1.0" m_display="0" m_topoIndex="12" m_clusterGroupNumber="-1">
+        <dataInputObjs>icmp</dataInputObjs>
+        <controlInputObjs>memset.loop.split.i.i</controlInputObjs>
+        <controlInputObjs>split.i.i.preheader</controlInputObjs>
+      </node_objs>
+    </basic_blocks>
+    <basic_blocks id="29" name="memset.loop.split.i.i" type="BlockType">
+      <controlInputObjs>memset.loop.i.i</controlInputObjs>
+      <controlOutputObjs>phi</controlOutputObjs>
+      <controlOutputObjs>br</controlOutputObjs>
+      <controlOutputObjs>memset.loop.i.i</controlOutputObjs>
+      <node_objs xsi:type="cdfg:CdfgNode" id="25" name="p_cast_i_i" rtlName="p_cast_i_i_fu_310_p1" coreId="4294967295" bitwidth="64" opcode="zext" nodeLabel="1.0" m_display="0" m_topoIndex="13" m_clusterGroupNumber="-1">
+        <dataInputObjs>phi</dataInputObjs>
+        <dataOutputObjs>getelementptr</dataOutputObjs>
+      </node_objs>
+      <node_objs xsi:type="cdfg:CdfgNode" id="26" name="hash_table_addr" coreId="0" bitwidth="15" opcode="getelementptr" nodeLabel="1.0" m_display="0" m_topoIndex="14" m_clusterGroupNumber="-1">
+        <dataInputObjs>alloca</dataInputObjs>
+        <dataInputObjs>zext</dataInputObjs>
+        <dataOutputObjs>store</dataOutputObjs>
+        <constName>empty</constName>
+      </node_objs>
+      <node_objs xsi:type="cdfg:CdfgNode" id="27" name="hash_table_addr_write_ln0" coreName="RAM" implIndex="auto" control="auto" opType="ram" coreId="83" opcode="store" nodeLabel="1.0" m_display="0" m_delay="1.35" m_topoIndex="15" m_clusterGroupNumber="-1">
+        <dataInputObjs>getelementptr</dataInputObjs>
+        <constName>empty</constName>
+      </node_objs>
+      <node_objs xsi:type="cdfg:CdfgNode" id="28" name="br_ln0" coreId="0" opcode="br" nodeLabel="1.0" m_display="0" m_topoIndex="16" m_clusterGroupNumber="-1">
+        <controlInputObjs>memset.loop.i.i</controlInputObjs>
+      </node_objs>
+    </basic_blocks>
+  </regions>
+  <regions anchor_node="-1" region_type="8" interval="1" typeName="Pipeline" id="446" pipe_depth="1" RegionName="VITIS_LOOP_58_1">
+    <basic_blocks id="38" name="split.i.i" type="BlockType">
+      <controlInputObjs>split.i.i.preheader</controlInputObjs>
+      <controlInputObjs>.split4.i.i</controlInputObjs>
+      <controlOutputObjs>br</controlOutputObjs>
+      <controlOutputObjs>br</controlOutputObjs>
+      <controlOutputObjs>.preheader.i.i.preheader</controlOutputObjs>
+      <controlOutputObjs>.split4.i.i</controlOutputObjs>
+      <node_objs xsi:type="cdfg:CdfgNode" id="32" name="i" lineNumber="58" originalName="i" fileName="Server/p3/lzw.cpp" fileDirectory=".." coreId="0" contextFuncName="assoc_init" bitwidth="6" opcode="phi" nodeLabel="3.0" m_display="0" m_topoIndex="18" m_clusterGroupNumber="-1">
+        <inlineStackInfo fileName="Server/p3/lzw.cpp" linenumber="58" fileDirectory="/mnt/castor/seas_home/s/songqij/ese532_code/project" functionName="assoc_init"/>
+        <dataInputObjs>add</dataInputObjs>
+        <dataOutputObjs>add</dataOutputObjs>
+        <dataOutputObjs>icmp</dataOutputObjs>
+        <dataOutputObjs>zext</dataOutputObjs>
+        <controlInputObjs>.split4.i.i</controlInputObjs>
+        <controlInputObjs>split.i.i.preheader</controlInputObjs>
+        <constName>empty</constName>
+      </node_objs>
+      <node_objs xsi:type="cdfg:CdfgNode" id="33" name="add_ln58" lineNumber="58" fileName="Server/p3/lzw.cpp" fileDirectory=".." rtlName="add_ln58_fu_315_p2" coreName="Adder" implIndex="fabric" control="auto" opType="add" coreId="1" contextFuncName="assoc_init" bitwidth="6" opcode="add" nodeLabel="3.0" m_display="0" m_delay="0.88" m_topoIndex="19" m_clusterGroupNumber="-1">
+        <inlineStackInfo fileName="Server/p3/lzw.cpp" linenumber="58" fileDirectory="/mnt/castor/seas_home/s/songqij/ese532_code/project" functionName="assoc_init"/>
+        <dataInputObjs>phi</dataInputObjs>
+        <dataOutputObjs>phi</dataOutputObjs>
+        <constName>empty</constName>
+      </node_objs>
+      <node_objs xsi:type="cdfg:CdfgNode" id="35" name="icmp_ln58" lineNumber="58" fileName="Server/p3/lzw.cpp" fileDirectory=".." rtlName="icmp_ln58_fu_321_p2" opType="icmp" coreId="1217" contextFuncName="assoc_init" bitwidth="1" opcode="icmp" nodeLabel="3.0" m_display="0" m_delay="0.87" m_topoIndex="20" m_clusterGroupNumber="-1">
+        <inlineStackInfo fileName="Server/p3/lzw.cpp" linenumber="58" fileDirectory="/mnt/castor/seas_home/s/songqij/ese532_code/project" functionName="assoc_init"/>
+        <dataInputObjs>phi</dataInputObjs>
+        <dataOutputObjs>br</dataOutputObjs>
+        <constName>empty</constName>
+      </node_objs>
+      <node_objs xsi:type="cdfg:CdfgNode" id="37" name="br_ln58" lineNumber="58" fileName="Server/p3/lzw.cpp" fileDirectory=".." coreId="132" contextFuncName="assoc_init" opcode="br" nodeLabel="3.0" m_display="0" m_topoIndex="21" m_clusterGroupNumber="-1">
+        <inlineStackInfo fileName="Server/p3/lzw.cpp" linenumber="58" fileDirectory="/mnt/castor/seas_home/s/songqij/ese532_code/project" functionName="assoc_init"/>
+        <dataInputObjs>icmp</dataInputObjs>
+        <controlInputObjs>.split4.i.i</controlInputObjs>
+        <controlInputObjs>.preheader.i.i.preheader</controlInputObjs>
+      </node_objs>
+      <fileValidLineNumbers fileName="Server/p3/lzw.cpp">
+        <validLinenumbers>58</validLinenumbers>
+      </fileValidLineNumbers>
+    </basic_blocks>
+    <basic_blocks id="50" name=".split4.i.i" type="BlockType">
+      <controlInputObjs>split.i.i</controlInputObjs>
+      <controlOutputObjs>phi</controlOutputObjs>
+      <controlOutputObjs>br</controlOutputObjs>
+      <controlOutputObjs>split.i.i</controlOutputObjs>
+      <node_objs xsi:type="cdfg:CdfgNode" id="39" name="i_cast_i_i" lineNumber="58" fileName="Server/p3/lzw.cpp" fileDirectory=".." rtlName="i_cast_i_i_fu_327_p1" coreId="2350641456" contextFuncName="assoc_init" bitwidth="64" opcode="zext" nodeLabel="3.0" m_display="0" m_topoIndex="22" m_clusterGroupNumber="-1">
+        <inlineStackInfo fileName="Server/p3/lzw.cpp" linenumber="58" fileDirectory="/mnt/castor/seas_home/s/songqij/ese532_code/project" functionName="assoc_init"/>
+        <dataInputObjs>phi</dataInputObjs>
+        <dataOutputObjs>getelementptr</dataOutputObjs>
+        <dataOutputObjs>getelementptr</dataOutputObjs>
+        <dataOutputObjs>getelementptr</dataOutputObjs>
+        <dataOutputObjs>getelementptr</dataOutputObjs>
+      </node_objs>
+      <node_objs xsi:type="cdfg:CdfgNode" id="41" name="assoc_mem_quarter_0_addr" lineNumber="59" fileName="Server/p3/lzw.cpp" fileDirectory=".." coreId="0" contextFuncName="assoc_init" bitwidth="5" opcode="getelementptr" nodeLabel="3.0" m_display="0" m_topoIndex="23" m_clusterGroupNumber="-1">
+        <inlineStackInfo fileName="Server/p3/lzw.cpp" linenumber="59" fileDirectory="/mnt/castor/seas_home/s/songqij/ese532_code/project" functionName="assoc_init"/>
+        <dataInputObjs>alloca</dataInputObjs>
+        <dataInputObjs>zext</dataInputObjs>
+        <dataOutputObjs>store</dataOutputObjs>
+        <constName>empty</constName>
+      </node_objs>
+      <node_objs xsi:type="cdfg:CdfgNode" id="42" name="assoc_mem_quarter_0_addr_write_ln59" lineNumber="59" fileName="Server/p3/lzw.cpp" fileDirectory=".." coreName="RAM" implIndex="auto" control="auto" opType="ram" coreId="83" contextFuncName="assoc_init" opcode="store" nodeLabel="3.0" m_display="0" m_delay="1.35" m_topoIndex="24" m_clusterGroupNumber="-1">
+        <inlineStackInfo fileName="Server/p3/lzw.cpp" linenumber="59" fileDirectory="/mnt/castor/seas_home/s/songqij/ese532_code/project" functionName="assoc_init"/>
+        <dataInputObjs>getelementptr</dataInputObjs>
+        <constName>empty</constName>
+      </node_objs>
+      <node_objs xsi:type="cdfg:CdfgNode" id="43" name="assoc_mem_quarter_1_addr" lineNumber="60" fileName="Server/p3/lzw.cpp" fileDirectory=".." coreId="1217" contextFuncName="assoc_init" bitwidth="5" opcode="getelementptr" nodeLabel="3.0" m_display="0" m_topoIndex="25" m_clusterGroupNumber="-1">
+        <inlineStackInfo fileName="Server/p3/lzw.cpp" linenumber="60" fileDirectory="/mnt/castor/seas_home/s/songqij/ese532_code/project" functionName="assoc_init"/>
+        <dataInputObjs>alloca</dataInputObjs>
+        <dataInputObjs>zext</dataInputObjs>
+        <dataOutputObjs>store</dataOutputObjs>
+        <constName>empty</constName>
+      </node_objs>
+      <node_objs xsi:type="cdfg:CdfgNode" id="44" name="assoc_mem_quarter_1_addr_write_ln60" lineNumber="60" fileName="Server/p3/lzw.cpp" fileDirectory=".." coreName="RAM" implIndex="auto" control="auto" opType="ram" coreId="83" contextFuncName="assoc_init" opcode="store" nodeLabel="3.0" m_display="0" m_delay="1.35" m_topoIndex="26" m_clusterGroupNumber="-1">
+        <inlineStackInfo fileName="Server/p3/lzw.cpp" linenumber="60" fileDirectory="/mnt/castor/seas_home/s/songqij/ese532_code/project" functionName="assoc_init"/>
+        <dataInputObjs>getelementptr</dataInputObjs>
+        <constName>empty</constName>
+      </node_objs>
+      <node_objs xsi:type="cdfg:CdfgNode" id="45" name="assoc_mem_quarter_2_addr" lineNumber="61" fileName="Server/p3/lzw.cpp" fileDirectory=".." coreId="49" contextFuncName="assoc_init" bitwidth="5" opcode="getelementptr" nodeLabel="3.0" m_display="0" m_topoIndex="27" m_clusterGroupNumber="-1">
+        <inlineStackInfo fileName="Server/p3/lzw.cpp" linenumber="61" fileDirectory="/mnt/castor/seas_home/s/songqij/ese532_code/project" functionName="assoc_init"/>
+        <dataInputObjs>alloca</dataInputObjs>
+        <dataInputObjs>zext</dataInputObjs>
+        <dataOutputObjs>store</dataOutputObjs>
+        <constName>empty</constName>
+      </node_objs>
+      <node_objs xsi:type="cdfg:CdfgNode" id="46" name="assoc_mem_quarter_2_addr_write_ln61" lineNumber="61" fileName="Server/p3/lzw.cpp" fileDirectory=".." coreName="RAM" implIndex="auto" control="auto" opType="ram" coreId="83" contextFuncName="assoc_init" opcode="store" nodeLabel="3.0" m_display="0" m_delay="1.35" m_topoIndex="28" m_clusterGroupNumber="-1">
+        <inlineStackInfo fileName="Server/p3/lzw.cpp" linenumber="61" fileDirectory="/mnt/castor/seas_home/s/songqij/ese532_code/project" functionName="assoc_init"/>
+        <dataInputObjs>getelementptr</dataInputObjs>
+        <constName>empty</constName>
+      </node_objs>
+      <node_objs xsi:type="cdfg:CdfgNode" id="47" name="assoc_mem_quarter_3_addr" lineNumber="62" fileName="Server/p3/lzw.cpp" fileDirectory=".." coreId="0" contextFuncName="assoc_init" bitwidth="5" opcode="getelementptr" nodeLabel="3.0" m_display="0" m_topoIndex="29" m_clusterGroupNumber="-1">
+        <inlineStackInfo fileName="Server/p3/lzw.cpp" linenumber="62" fileDirectory="/mnt/castor/seas_home/s/songqij/ese532_code/project" functionName="assoc_init"/>
+        <dataInputObjs>alloca</dataInputObjs>
+        <dataInputObjs>zext</dataInputObjs>
+        <dataOutputObjs>store</dataOutputObjs>
+        <constName>empty</constName>
+      </node_objs>
+      <node_objs xsi:type="cdfg:CdfgNode" id="48" name="assoc_mem_quarter_3_addr_write_ln62" lineNumber="62" fileName="Server/p3/lzw.cpp" fileDirectory=".." coreName="RAM" implIndex="auto" control="auto" opType="ram" coreId="83" contextFuncName="assoc_init" opcode="store" nodeLabel="3.0" m_display="0" m_delay="1.35" m_topoIndex="30" m_clusterGroupNumber="-1">
+        <inlineStackInfo fileName="Server/p3/lzw.cpp" linenumber="62" fileDirectory="/mnt/castor/seas_home/s/songqij/ese532_code/project" functionName="assoc_init"/>
+        <dataInputObjs>getelementptr</dataInputObjs>
+        <constName>empty</constName>
+      </node_objs>
+      <node_objs xsi:type="cdfg:CdfgNode" id="49" name="br_ln0" coreId="13" opcode="br" nodeLabel="3.0" m_display="0" m_topoIndex="31" m_clusterGroupNumber="-1">
+        <controlInputObjs>split.i.i</controlInputObjs>
+      </node_objs>
+      <fileValidLineNumbers fileName="Server/p3/lzw.cpp">
+        <validLinenumbers>58</validLinenumbers>
+        <validLinenumbers>59</validLinenumbers>
+        <validLinenumbers>60</validLinenumbers>
+        <validLinenumbers>61</validLinenumbers>
+        <validLinenumbers>62</validLinenumbers>
+      </fileValidLineNumbers>
+    </basic_blocks>
+  </regions>
+  <regions anchor_node="-1" region_type="8" interval="1" typeName="Pipeline" id="447" pipe_depth="1" RegionName="VITIS_LOOP_64_2">
+    <basic_blocks id="59" name=".preheader.i.i" type="BlockType">
+      <controlInputObjs>.preheader.i.i.preheader</controlInputObjs>
+      <controlInputObjs>.split2.i.i</controlInputObjs>
+      <controlOutputObjs>br</controlOutputObjs>
+      <controlOutputObjs>br</controlOutputObjs>
+      <controlOutputObjs>_Z10assoc_initP11assoc_mem_t.exit.i.i</controlOutputObjs>
+      <controlOutputObjs>.split2.i.i</controlOutputObjs>
+      <node_objs xsi:type="cdfg:CdfgNode" id="53" name="i_2" lineNumber="64" originalName="i" fileName="Server/p3/lzw.cpp" fileDirectory=".." coreId="2350626384" contextFuncName="assoc_init" bitwidth="7" opcode="phi" nodeLabel="5.0" m_display="0" m_topoIndex="33" m_clusterGroupNumber="-1">
+        <inlineStackInfo fileName="Server/p3/lzw.cpp" linenumber="64" fileDirectory="/mnt/castor/seas_home/s/songqij/ese532_code/project" functionName="assoc_init"/>
+        <dataInputObjs>add</dataInputObjs>
+        <dataOutputObjs>add</dataOutputObjs>
+        <dataOutputObjs>icmp</dataOutputObjs>
+        <dataOutputObjs>zext</dataOutputObjs>
+        <controlInputObjs>.split2.i.i</controlInputObjs>
+        <controlInputObjs>.preheader.i.i.preheader</controlInputObjs>
+        <constName>empty</constName>
+      </node_objs>
+      <node_objs xsi:type="cdfg:CdfgNode" id="54" name="add_ln64" lineNumber="64" fileName="Server/p3/lzw.cpp" fileDirectory=".." rtlName="add_ln64_fu_335_p2" coreName="Adder" implIndex="fabric" control="auto" opType="add" coreId="1" contextFuncName="assoc_init" bitwidth="7" opcode="add" nodeLabel="5.0" m_display="0" m_delay="0.89" m_topoIndex="34" m_clusterGroupNumber="-1">
+        <inlineStackInfo fileName="Server/p3/lzw.cpp" linenumber="64" fileDirectory="/mnt/castor/seas_home/s/songqij/ese532_code/project" functionName="assoc_init"/>
+        <dataInputObjs>phi</dataInputObjs>
+        <dataOutputObjs>phi</dataOutputObjs>
+        <constName>empty</constName>
+      </node_objs>
+      <node_objs xsi:type="cdfg:CdfgNode" id="56" name="icmp_ln64" lineNumber="64" fileName="Server/p3/lzw.cpp" fileDirectory=".." rtlName="icmp_ln64_fu_341_p2" opType="icmp" coreId="49" contextFuncName="assoc_init" bitwidth="1" opcode="icmp" nodeLabel="5.0" m_display="0" m_delay="0.86" m_topoIndex="35" m_clusterGroupNumber="-1">
+        <inlineStackInfo fileName="Server/p3/lzw.cpp" linenumber="64" fileDirectory="/mnt/castor/seas_home/s/songqij/ese532_code/project" functionName="assoc_init"/>
+        <dataInputObjs>phi</dataInputObjs>
+        <dataOutputObjs>br</dataOutputObjs>
+        <constName>empty</constName>
+      </node_objs>
+      <node_objs xsi:type="cdfg:CdfgNode" id="58" name="br_ln64" lineNumber="64" fileName="Server/p3/lzw.cpp" fileDirectory=".." coreId="2350624464" contextFuncName="assoc_init" opcode="br" nodeLabel="5.0" m_display="0" m_topoIndex="36" m_clusterGroupNumber="-1">
+        <inlineStackInfo fileName="Server/p3/lzw.cpp" linenumber="64" fileDirectory="/mnt/castor/seas_home/s/songqij/ese532_code/project" functionName="assoc_init"/>
+        <dataInputObjs>icmp</dataInputObjs>
+        <controlInputObjs>.split2.i.i</controlInputObjs>
+        <controlInputObjs>_Z10assoc_initP11assoc_mem_t.exit.i.i</controlInputObjs>
+      </node_objs>
+      <fileValidLineNumbers fileName="Server/p3/lzw.cpp">
+        <validLinenumbers>64</validLinenumbers>
+      </fileValidLineNumbers>
+    </basic_blocks>
+    <basic_blocks id="65" name=".split2.i.i" type="BlockType">
+      <controlInputObjs>.preheader.i.i</controlInputObjs>
+      <controlOutputObjs>phi</controlOutputObjs>
+      <controlOutputObjs>br</controlOutputObjs>
+      <controlOutputObjs>.preheader.i.i</controlOutputObjs>
+      <node_objs xsi:type="cdfg:CdfgNode" id="60" name="i_2_cast_i_i" lineNumber="64" fileName="Server/p3/lzw.cpp" fileDirectory=".." rtlName="i_2_cast_i_i_fu_347_p1" coreId="49" contextFuncName="assoc_init" bitwidth="64" opcode="zext" nodeLabel="5.0" m_display="0" m_topoIndex="37" m_clusterGroupNumber="-1">
+        <inlineStackInfo fileName="Server/p3/lzw.cpp" linenumber="64" fileDirectory="/mnt/castor/seas_home/s/songqij/ese532_code/project" functionName="assoc_init"/>
+        <dataInputObjs>phi</dataInputObjs>
+        <dataOutputObjs>getelementptr</dataOutputObjs>
+      </node_objs>
+      <node_objs xsi:type="cdfg:CdfgNode" id="62" name="assoc_mem_value_addr" lineNumber="65" fileName="Server/p3/lzw.cpp" fileDirectory=".." coreId="2350611424" contextFuncName="assoc_init" bitwidth="6" opcode="getelementptr" nodeLabel="5.0" m_display="0" m_topoIndex="38" m_clusterGroupNumber="-1">
+        <inlineStackInfo fileName="Server/p3/lzw.cpp" linenumber="65" fileDirectory="/mnt/castor/seas_home/s/songqij/ese532_code/project" functionName="assoc_init"/>
+        <dataInputObjs>alloca</dataInputObjs>
+        <dataInputObjs>zext</dataInputObjs>
+        <dataOutputObjs>store</dataOutputObjs>
+        <constName>empty</constName>
+      </node_objs>
+      <node_objs xsi:type="cdfg:CdfgNode" id="63" name="assoc_mem_value_addr_write_ln65" lineNumber="65" fileName="Server/p3/lzw.cpp" fileDirectory=".." coreName="RAM" implIndex="auto" control="auto" opType="ram" coreId="83" contextFuncName="assoc_init" opcode="store" nodeLabel="5.0" m_display="0" m_delay="0.79" m_topoIndex="39" m_clusterGroupNumber="-1">
+        <inlineStackInfo fileName="Server/p3/lzw.cpp" linenumber="65" fileDirectory="/mnt/castor/seas_home/s/songqij/ese532_code/project" functionName="assoc_init"/>
+        <dataInputObjs>getelementptr</dataInputObjs>
+        <constName>empty</constName>
+      </node_objs>
+      <node_objs xsi:type="cdfg:CdfgNode" id="64" name="br_ln0" coreId="49" opcode="br" nodeLabel="5.0" m_display="0" m_topoIndex="40" m_clusterGroupNumber="-1">
+        <controlInputObjs>.preheader.i.i</controlInputObjs>
+      </node_objs>
+      <fileValidLineNumbers fileName="Server/p3/lzw.cpp">
+        <validLinenumbers>64</validLinenumbers>
+        <validLinenumbers>65</validLinenumbers>
+      </fileValidLineNumbers>
+    </basic_blocks>
+  </regions>
+  <ScheduleInfo time="0"/>
+  <ScheduleInfo time="1"/>
+  <ScheduleInfo time="2"/>
+  <ScheduleInfo time="3"/>
+  <ScheduleInfo time="4"/>
+  <ScheduleInfo time="5"/>
+  <ScheduleInfo time="6"/>
+  <ScheduleInfo time="7"/>
+  <ScheduleInfo time="8"/>
+  <regnodes realName="p_0_load_reg_491">
+    <nodeIds>86</nodeIds>
+  </regnodes>
+  <regnodes realName="gmem_load_loc_read_reg_437">
+    <nodeIds>13</nodeIds>
+  </regnodes>
+  <regnodes realName="i_reg_234">
+    <nodeIds>32</nodeIds>
+  </regnodes>
+  <regnodes realName="add_ln58_reg_450">
+    <nodeIds>33</nodeIds>
+  </regnodes>
+  <regnodes realName="p_0_reg_470">
+    <nodeIds>69</nodeIds>
+  </regnodes>
+  <regnodes realName="i_3_reg_268">
+    <nodeIds>78</nodeIds>
+  </regnodes>
+  <regnodes realName="assoc_mem_fill_reg_517">
+    <nodeIds>97</nodeIds>
+  </regnodes>
+  <regnodes realName="i_4_reg_522">
+    <nodeIds>109</nodeIds>
+  </regnodes>
+  <regnodes realName="assoc_mem_fill_0_i_i_reg_256">
+    <nodeIds>77</nodeIds>
+  </regnodes>
+  <regnodes realName="add_ln64_reg_458">
+    <nodeIds>54</nodeIds>
+  </regnodes>
+  <regnodes realName="tmp_i_i_reg_466">
+    <nodeIds>66</nodeIds>
+  </regnodes>
+  <regnodes realName="i_2_reg_245">
+    <nodeIds>53</nodeIds>
+  </regnodes>
+  <regnodes realName="trunc_ln_reg_504">
+    <nodeIds>91</nodeIds>
+  </regnodes>
+  <regnodes realName="tmp_V_2_reg_499">
+    <nodeIds>88</nodeIds>
+  </regnodes>
+  <regnodes realName="nextCode_reg_478">
+    <nodeIds>70</nodeIds>
+  </regnodes>
+  <regnodes realName="empty_56_reg_442">
+    <nodeIds>19</nodeIds>
+  </regnodes>
+  <regnodes realName="trunc_ln179_reg_509">
+    <nodeIds>92</nodeIds>
+  </regnodes>
+  <regnodes realName="empty_reg_223">
+    <nodeIds>18</nodeIds>
+  </regnodes>
+  <expressionNodes realName="assoc_mem_value_alloca_fu_102">
+    <nodeIds>8</nodeIds>
+  </expressionNodes>
+  <expressionNodes realName="hit_fu_395">
+    <nodeIds>94</nodeIds>
+  </expressionNodes>
+  <expressionNodes realName="trunc_ln183_fu_374">
+    <nodeIds>90</nodeIds>
+  </expressionNodes>
+  <expressionNodes realName="zext_ln183_fu_392">
+    <nodeIds>89</nodeIds>
+  </expressionNodes>
+  <expressionNodes realName="assoc_mem_quarter_1_addr_gep_fu_171">
+    <nodeIds>43</nodeIds>
+  </expressionNodes>
+  <expressionNodes realName="assoc_mem_quarter_2_addr_gep_fu_184">
+    <nodeIds>45</nodeIds>
+  </expressionNodes>
+  <expressionNodes realName="zext_ln172_fu_352">
+    <nodeIds>72</nodeIds>
+  </expressionNodes>
+  <expressionNodes realName="P_fu_399">
+    <nodeIds>95</nodeIds>
+  </expressionNodes>
+  <expressionNodes realName="nextCode_1_fu_411">
+    <nodeIds>101</nodeIds>
+  </expressionNodes>
+  <expressionNodes realName="assoc_mem_value_addr_gep_fu_210">
+    <nodeIds>62</nodeIds>
+  </expressionNodes>
+  <expressionNodes realName="hash_table_addr_gep_fu_145">
+    <nodeIds>26</nodeIds>
+  </expressionNodes>
+  <expressionNodes realName="assoc_mem_quarter_3_addr_gep_fu_197">
+    <nodeIds>47</nodeIds>
+  </expressionNodes>
+  <expressionNodes realName="add_ln58_fu_315">
+    <nodeIds>33</nodeIds>
+  </expressionNodes>
+  <expressionNodes realName="nextCode_fu_114">
+    <nodeIds>70</nodeIds>
+  </expressionNodes>
+  <expressionNodes realName="assoc_mem_quarter_0_addr_gep_fu_158">
+    <nodeIds>41</nodeIds>
+  </expressionNodes>
+  <expressionNodes realName="hash_table_alloca_fu_106">
+    <nodeIds>9</nodeIds>
+  </expressionNodes>
+  <expressionNodes realName="add_ln64_fu_335">
+    <nodeIds>54</nodeIds>
+  </expressionNodes>
+  <expressionNodes realName="i_2_phi_fu_249">
+    <nodeIds>53</nodeIds>
+  </expressionNodes>
+  <expressionNodes realName="assoc_mem_quarter_0_alloca_fu_86">
+    <nodeIds>4</nodeIds>
+  </expressionNodes>
+  <expressionNodes realName="empty_phi_fu_227">
+    <nodeIds>18</nodeIds>
+  </expressionNodes>
+  <expressionNodes realName="assoc_mem_quarter_1_alloca_fu_90">
+    <nodeIds>5</nodeIds>
+  </expressionNodes>
+  <expressionNodes realName="i_2_cast_i_i_fu_347">
+    <nodeIds>60</nodeIds>
+  </expressionNodes>
+  <expressionNodes realName="p_0_fu_110">
+    <nodeIds>69</nodeIds>
+  </expressionNodes>
+  <expressionNodes realName="assoc_mem_quarter_2_alloca_fu_94">
+    <nodeIds>6</nodeIds>
+  </expressionNodes>
+  <expressionNodes realName="assoc_mem_quarter_3_alloca_fu_98">
+    <nodeIds>7</nodeIds>
+  </expressionNodes>
+  <expressionNodes realName="exitcond386_i_i_fu_304">
+    <nodeIds>21</nodeIds>
+  </expressionNodes>
+  <expressionNodes realName="i_phi_fu_238">
+    <nodeIds>32</nodeIds>
+  </expressionNodes>
+  <expressionNodes realName="trunc_ln172_fu_403">
+    <nodeIds>96</nodeIds>
+  </expressionNodes>
+  <expressionNodes realName="assoc_mem_fill_fu_407">
+    <nodeIds>97</nodeIds>
+  </expressionNodes>
+  <expressionNodes realName="icmp_ln179_fu_366">
+    <nodeIds>79</nodeIds>
+  </expressionNodes>
+  <expressionNodes realName="trunc_ln179_fu_387">
+    <nodeIds>92</nodeIds>
+  </expressionNodes>
+  <expressionNodes realName="icmp_ln64_fu_341">
+    <nodeIds>56</nodeIds>
+  </expressionNodes>
+  <expressionNodes realName="assoc_mem_fill_0_i_i_phi_fu_260">
+    <nodeIds>77</nodeIds>
+  </expressionNodes>
+  <expressionNodes realName="i_3_phi_fu_272">
+    <nodeIds>78</nodeIds>
+  </expressionNodes>
+  <expressionNodes realName="p_cast_i_i_fu_310">
+    <nodeIds>25</nodeIds>
+  </expressionNodes>
+  <expressionNodes realName="icmp_ln58_fu_321">
+    <nodeIds>35</nodeIds>
+  </expressionNodes>
+  <expressionNodes realName="trunc_ln_fu_378">
+    <nodeIds>91</nodeIds>
+  </expressionNodes>
+  <expressionNodes realName="i_cast_i_i_fu_327">
+    <nodeIds>39</nodeIds>
+  </expressionNodes>
+  <expressionNodes realName="empty_56_fu_298">
+    <nodeIds>19</nodeIds>
+  </expressionNodes>
+  <expressionNodes realName="i_4_fu_431">
+    <nodeIds>109</nodeIds>
+  </expressionNodes>
+  <moduleNodes realName="grp_lookup_and_insert_fu_280">
+    <nodeIds>93</nodeIds>
+  </moduleNodes>
+  <ioNodes realName="grp_load_fu_294">
+    <nodeIds>86</nodeIds>
+    <nodeIds>112</nodeIds>
+  </ioNodes>
+  <ioNodes realName="store_ln191_store_fu_416">
+    <nodeIds>102</nodeIds>
+  </ioNodes>
+  <ioNodes realName="store_ln187_store_fu_426">
+    <nodeIds>106</nodeIds>
+  </ioNodes>
+  <ioNodes realName="gmem_load_loc_read_read_fu_118">
+    <nodeIds>13</nodeIds>
+  </ioNodes>
+  <ioNodes realName="grp_read_fu_132">
+    <nodeIds>71</nodeIds>
+    <nodeIds>88</nodeIds>
+  </ioNodes>
+  <ioNodes realName="store_ln183_store_fu_421">
+    <nodeIds>103</nodeIds>
+  </ioNodes>
+  <ioNodes realName="store_ln179_store_fu_356">
+    <nodeIds>73</nodeIds>
+  </ioNodes>
+  <ioNodes realName="grp_nbreadreq_fu_124">
+    <nodeIds>66</nodeIds>
+    <nodeIds>83</nodeIds>
+  </ioNodes>
+  <ioNodes realName="grp_write_fu_138">
+    <nodeIds>113</nodeIds>
+    <nodeIds>100</nodeIds>
+  </ioNodes>
+  <ioNodes realName="store_ln179_store_fu_361">
+    <nodeIds>74</nodeIds>
+  </ioNodes>
+  <ioNodes realName="nextCode_load_load_fu_371">
+    <nodeIds>87</nodeIds>
+  </ioNodes>
+  <memoryPorts dataString="assoc_mem_quarter_0">
+    <nodeIds>42</nodeIds>
+  </memoryPorts>
+  <memoryPorts dataString="assoc_mem_quarter_0" portID="100">
+    <nodeIds>93</nodeIds>
+  </memoryPorts>
+  <memoryPorts dataString="assoc_mem_quarter_1">
+    <nodeIds>44</nodeIds>
+  </memoryPorts>
+  <memoryPorts dataString="assoc_mem_quarter_1" portID="100">
+    <nodeIds>93</nodeIds>
+  </memoryPorts>
+  <memoryPorts dataString="assoc_mem_quarter_2">
+    <nodeIds>46</nodeIds>
+  </memoryPorts>
+  <memoryPorts dataString="assoc_mem_quarter_2" portID="100">
+    <nodeIds>93</nodeIds>
+  </memoryPorts>
+  <memoryPorts dataString="assoc_mem_quarter_3">
+    <nodeIds>48</nodeIds>
+  </memoryPorts>
+  <memoryPorts dataString="assoc_mem_quarter_3" portID="100">
+    <nodeIds>93</nodeIds>
+  </memoryPorts>
+  <memoryPorts dataString="assoc_mem_value">
+    <nodeIds>63</nodeIds>
+  </memoryPorts>
+  <memoryPorts dataString="assoc_mem_value" portID="100">
+    <nodeIds>93</nodeIds>
+  </memoryPorts>
+  <memoryPorts dataString="hash_table">
+    <nodeIds>27</nodeIds>
+  </memoryPorts>
+  <memoryPorts dataString="hash_table" portID="100">
+    <nodeIds>93</nodeIds>
+  </memoryPorts>
+  <ioPorts name="chunk_arr_stream">
+    <contents name="nbreadreq">
+      <nodeIds>66</nodeIds>
+      <nodeIds>83</nodeIds>
+    </contents>
+    <contents name="read">
+      <nodeIds>71</nodeIds>
+      <nodeIds>88</nodeIds>
+    </contents>
+  </ioPorts>
+  <ioPorts name="codeword_stream">
+    <contents name="write">
+      <nodeIds>100</nodeIds>
+      <nodeIds>113</nodeIds>
+    </contents>
+  </ioPorts>
+  <ioPorts name="gmem_load_loc">
+    <contents name="read">
+      <nodeIds>13</nodeIds>
+    </contents>
+  </ioPorts>
+  <fsm>
+    <states id="1">
+      <operations id="4" stage="1" latency="1"/>
+      <operations id="5" stage="1" latency="1"/>
+      <operations id="6" stage="1" latency="1"/>
+      <operations id="7" stage="1" latency="1"/>
+      <operations id="8" stage="1" latency="1"/>
+      <operations id="9" stage="1" latency="1"/>
+      <operations id="10" stage="1" latency="1"/>
+      <operations id="11" stage="1" latency="1"/>
+      <operations id="12" stage="1" latency="1"/>
+      <operations id="13" stage="1" latency="1"/>
+      <operations id="14" stage="1" latency="1"/>
+      <operations id="15" stage="1" latency="1"/>
+      <operations id="16" stage="1" latency="1"/>
+    </states>
+    <states id="2">
+      <operations id="18" stage="1" latency="1"/>
+      <operations id="19" stage="1" latency="1"/>
+      <operations id="20" stage="1" latency="1"/>
+      <operations id="21" stage="1" latency="1"/>
+      <operations id="22" stage="1" latency="1"/>
+      <operations id="23" stage="1" latency="1"/>
+      <operations id="25" stage="1" latency="1"/>
+      <operations id="26" stage="1" latency="1"/>
+      <operations id="27" stage="1" latency="1"/>
+      <operations id="28" stage="1" latency="1"/>
+    </states>
+    <states id="3">
+      <operations id="30" stage="1" latency="1"/>
+    </states>
+    <states id="4">
+      <operations id="32" stage="1" latency="1"/>
+      <operations id="33" stage="1" latency="1"/>
+      <operations id="34" stage="1" latency="1"/>
+      <operations id="35" stage="1" latency="1"/>
+      <operations id="36" stage="1" latency="1"/>
+      <operations id="37" stage="1" latency="1"/>
+      <operations id="39" stage="1" latency="1"/>
+      <operations id="40" stage="1" latency="1"/>
+      <operations id="41" stage="1" latency="1"/>
+      <operations id="42" stage="1" latency="1"/>
+      <operations id="43" stage="1" latency="1"/>
+      <operations id="44" stage="1" latency="1"/>
+      <operations id="45" stage="1" latency="1"/>
+      <operations id="46" stage="1" latency="1"/>
+      <operations id="47" stage="1" latency="1"/>
+      <operations id="48" stage="1" latency="1"/>
+      <operations id="49" stage="1" latency="1"/>
+    </states>
+    <states id="5">
+      <operations id="51" stage="1" latency="1"/>
+    </states>
+    <states id="6">
+      <operations id="53" stage="1" latency="1"/>
+      <operations id="54" stage="1" latency="1"/>
+      <operations id="55" stage="1" latency="1"/>
+      <operations id="56" stage="1" latency="1"/>
+      <operations id="57" stage="1" latency="1"/>
+      <operations id="58" stage="1" latency="1"/>
+      <operations id="60" stage="1" latency="1"/>
+      <operations id="61" stage="1" latency="1"/>
+      <operations id="62" stage="1" latency="1"/>
+      <operations id="63" stage="1" latency="1"/>
+      <operations id="64" stage="1" latency="1"/>
+    </states>
+    <states id="7">
+      <operations id="66" stage="1" latency="1"/>
+      <operations id="67" stage="1" latency="1"/>
+      <operations id="69" stage="1" latency="1"/>
+      <operations id="70" stage="1" latency="1"/>
+      <operations id="71" stage="1" latency="1"/>
+      <operations id="72" stage="1" latency="1"/>
+      <operations id="73" stage="1" latency="1"/>
+      <operations id="74" stage="1" latency="1"/>
+      <operations id="75" stage="1" latency="1"/>
+    </states>
+    <states id="8">
+      <operations id="77" stage="1" latency="1"/>
+      <operations id="78" stage="1" latency="1"/>
+      <operations id="79" stage="1" latency="1"/>
+      <operations id="80" stage="1" latency="1"/>
+      <operations id="82" stage="1" latency="1"/>
+      <operations id="83" stage="1" latency="1"/>
+      <operations id="84" stage="1" latency="1"/>
+      <operations id="86" stage="1" latency="1"/>
+      <operations id="87" stage="1" latency="1"/>
+      <operations id="88" stage="1" latency="1"/>
+      <operations id="90" stage="1" latency="1"/>
+      <operations id="91" stage="1" latency="1"/>
+      <operations id="92" stage="1" latency="1"/>
+      <operations id="93" stage="2" latency="2"/>
+      <operations id="112" stage="1" latency="1"/>
+      <operations id="113" stage="1" latency="1"/>
+      <operations id="114" stage="1" latency="1"/>
+      <operations id="116" stage="1" latency="1"/>
+    </states>
+    <states id="9">
+      <operations id="89" stage="1" latency="1"/>
+      <operations id="93" stage="1" latency="2"/>
+      <operations id="94" stage="1" latency="1"/>
+      <operations id="95" stage="1" latency="1"/>
+      <operations id="96" stage="1" latency="1"/>
+      <operations id="97" stage="1" latency="1"/>
+      <operations id="98" stage="1" latency="1"/>
+      <operations id="100" stage="1" latency="1"/>
+      <operations id="101" stage="1" latency="1"/>
+      <operations id="102" stage="1" latency="1"/>
+      <operations id="103" stage="1" latency="1"/>
+      <operations id="104" stage="1" latency="1"/>
+      <operations id="106" stage="1" latency="1"/>
+      <operations id="107" stage="1" latency="1"/>
+      <operations id="109" stage="1" latency="1"/>
+      <operations id="110" stage="1" latency="1"/>
+    </states>
+    <transitions inState="1" outState="2">
+      <condition id="-1"/>
+    </transitions>
+    <transitions inState="3" outState="4">
+      <condition id="-1"/>
+    </transitions>
+    <transitions inState="5" outState="6">
+      <condition id="-1"/>
+    </transitions>
+    <transitions inState="7" outState="8">
+      <condition id="-1"/>
+    </transitions>
+    <transitions inState="8" outState="9">
+      <condition id="-1"/>
+    </transitions>
+    <transitions inState="9" outState="8">
+      <condition id="-1"/>
+    </transitions>
+    <transitions inState="2" outState="3">
+      <condition id="-1"/>
+    </transitions>
+    <transitions inState="2" outState="2">
+      <condition id="-1"/>
+    </transitions>
+    <transitions inState="4" outState="5">
+      <condition id="-1"/>
+    </transitions>
+    <transitions inState="4" outState="4">
+      <condition id="-1"/>
+    </transitions>
+    <transitions inState="6" outState="7">
+      <condition id="-1"/>
+    </transitions>
+    <transitions inState="6" outState="6">
+      <condition id="-1"/>
+    </transitions>
+  </fsm>
+  <CFGRegionsRoot>
+    <cfgRegions mId="1" mTag="compress_stream" mII="-1" mDepth="-1" mMinTripCount="-1" mMaxTripCount="-1" mMinLatency="-1" mMaxLatency="-1">
+      <subRegions>2</subRegions>
+      <subRegions>3</subRegions>
+      <subRegions>4</subRegions>
+      <subRegions>5</subRegions>
+      <subRegions>6</subRegions>
+      <subRegions>7</subRegions>
+      <subRegions>8</subRegions>
+      <subRegions>9</subRegions>
+      <subRegions>10</subRegions>
+      <subRegions>11</subRegions>
+      <mDfPipe/>
+    </cfgRegions>
+    <cfgRegions mId="2" mTag="Entry" mII="-1" mDepth="-1" mMinTripCount="-1" mMaxTripCount="-1">
+      <basicBlocks>17</basicBlocks>
+      <mDfPipe/>
+    </cfgRegions>
+    <cfgRegions mId="3" mTag="Loop_1" mII="1" mDepth="1" mMinTripCount="32768" mMaxTripCount="32768" mMinLatency="32768" mMaxLatency="32768" mType="1">
+      <basicBlocks>24</basicBlocks>
+      <basicBlocks>29</basicBlocks>
+      <mDfPipe/>
+    </cfgRegions>
+    <cfgRegions mId="4" mTag="Region 1" mII="-1" mDepth="-1" mMinTripCount="-1" mMaxTripCount="-1">
+      <basicBlocks>31</basicBlocks>
+      <mDfPipe/>
+    </cfgRegions>
+    <cfgRegions mId="5" mTag="VITIS_LOOP_58_1" mII="1" mDepth="1" mMinTripCount="32" mMaxTripCount="32" mMinLatency="32" mMaxLatency="32" mType="1">
+      <basicBlocks>38</basicBlocks>
+      <basicBlocks>50</basicBlocks>
+      <mDfPipe/>
+    </cfgRegions>
+    <cfgRegions mId="6" mTag="Region 2" mII="-1" mDepth="-1" mMinTripCount="-1" mMaxTripCount="-1">
+      <basicBlocks>52</basicBlocks>
+      <mDfPipe/>
+    </cfgRegions>
+    <cfgRegions mId="7" mTag="VITIS_LOOP_64_2" mII="1" mDepth="1" mMinTripCount="64" mMaxTripCount="64" mMinLatency="64" mMaxLatency="64" mType="1">
+      <basicBlocks>59</basicBlocks>
+      <basicBlocks>65</basicBlocks>
+      <mDfPipe/>
+    </cfgRegions>
+    <cfgRegions mId="8" mTag="Region 3" mII="-1" mDepth="-1" mMinTripCount="-1" mMaxTripCount="-1">
+      <basicBlocks>68</basicBlocks>
+      <basicBlocks>76</basicBlocks>
+      <mDfPipe/>
+    </cfgRegions>
+    <cfgRegions mId="9" mTag="VITIS_LOOP_179_1" mII="-1" mDepth="-1" mMinTripCount="-1" mMaxTripCount="-1" mMinLatency="-1" mMaxLatency="-1" mType="1">
+      <basicBlocks>81</basicBlocks>
+      <basicBlocks>85</basicBlocks>
+      <basicBlocks>99</basicBlocks>
+      <basicBlocks>105</basicBlocks>
+      <basicBlocks>108</basicBlocks>
+      <basicBlocks>111</basicBlocks>
+      <mDfPipe/>
+    </cfgRegions>
+    <cfgRegions mId="10" mTag="Region 4" mII="-1" mDepth="-1" mMinTripCount="-1" mMaxTripCount="-1">
+      <basicBlocks>115</basicBlocks>
+      <mDfPipe/>
+    </cfgRegions>
+    <cfgRegions mId="11" mTag="Return" mII="-1" mDepth="-1" mMinTripCount="-1" mMaxTripCount="-1">
+      <basicBlocks>117</basicBlocks>
+      <mDfPipe/>
+    </cfgRegions>
+  </CFGRegionsRoot>
+</cdfg:DBCdfg>

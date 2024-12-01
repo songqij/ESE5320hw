@@ -1,0 +1,15 @@
+#-----------------------------------------------------------
+# Vitis Analyzer v2020.2 (64-bit)
+# SW Build 3064766 on Wed Nov 18 09:12:47 MST 2020
+# 
+# Start of session at: Fri Oct 25 16:04:31 2024
+# Process ID: 25960
+# Current directory: /mnt/castor/seas_home/s/songqij/ese532_code/hw7
+# Command line: vitis_analyzer
+# Log file: /mnt/castor/seas_home/s/songqij/ese532_code/hw7/vitis_analyzer.log
+# Journal file: /mnt/castor/seas_home/s/songqij/ese532_code/hw7/vitis_analyzer.jou
+#-----------------------------------------------------------
+start_gui
+create_project dummy
+close_project
+create_project dummy

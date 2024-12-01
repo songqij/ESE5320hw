@@ -1,0 +1,40 @@
+Begin Function 'read3'
+
+RTL state condition: (1'b1 == ap_CS_fsm_pp0_stage0)
+# ST_71
+local c <phi_49> <integer> <Phi> 'phi' </mnt/castor/seas_home/s/songqij/ese532_code/hw6/apps/mmult/fpga/hls/MMult.cpp:49>
+add_ln49 /mnt/castor/seas_home/s/songqij/ese532_code/hw6/apps/mmult/fpga/hls/MMult.cpp:49
+reg: c_reg_156[17:0] lv
+
+local icmp_ln49 <icmp_49> <integer> <Comparator> 'icmp' </mnt/castor/seas_home/s/songqij/ese532_code/hw6/apps/mmult/fpga/hls/MMult.cpp:49>
+icmp_ln49 /mnt/castor/seas_home/s/songqij/ese532_code/hw6/apps/mmult/fpga/hls/MMult.cpp:49
+reg: icmp_ln49_reg_334[0:0] lv
+
+local icmp_ln174 <icmp_174> <integer> <Comparator> 'icmp' </mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/common/technology/autopilot/hls_stream_39.h:174>
+icmp_ln174 /mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/common/technology/autopilot/hls_stream_39.h:174
+reg: icmp_ln174_reg_338[0:0] lv
+
+# ST_72
+local shiftreg_i_i <phi_174> <integer> <Phi> 'phi' </mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/common/technology/autopilot/hls_stream_39.h:174>
+trunc_ln174_2 /mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/common/technology/autopilot/hls_stream_39.h:174
+reg: shiftreg_i_i_reg_167[479:0] lv
+
+local shiftreg2_i_i <phi_174> <integer> <Phi> 'phi' </mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/common/technology/autopilot/hls_stream_39.h:174>
+trunc_ln174_4 /mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/common/technology/autopilot/hls_stream_39.h:174
+reg: shiftreg2_i_i_reg_179[479:0] lv
+
+local b0_addr_read <read_174> <integer> <> 'read' </mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/common/technology/autopilot/hls_stream_39.h:174>
+b0_addr_read /mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/common/technology/autopilot/hls_stream_39.h:174
+reg: b0_addr_read_reg_342[511:0] lv
+
+local trunc_ln174 <trunc_174> <integer> <> 'trunc' </mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/common/technology/autopilot/hls_stream_39.h:174>
+trunc_ln174 /mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/common/technology/autopilot/hls_stream_39.h:174
+reg: trunc_ln174_reg_347[31:0] lv
+
+local b1_addr_read <read_174> <integer> <> 'read' </mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/common/technology/autopilot/hls_stream_39.h:174>
+b1_addr_read /mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/common/technology/autopilot/hls_stream_39.h:174
+reg: b1_addr_read_reg_352[511:0] lv
+
+
+End Function 'read3'
+

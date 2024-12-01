@@ -1,0 +1,24 @@
+INFO: [SIM 2] *************** CSIM start ***************
+INFO: [SIM 4] CSIM will launch GCC as the compiler.
+   Compiling ../../../../vitis/testbench.cpp in debug mode
+   Compiling ../../../../vitis/lzw.cpp in debug mode
+   Generating csim.exe
+Our message is: WYS*WYGWYS*WYSWYSG
+
+code_word is 87
+code_word is 89
+code_word is 83
+code_word is 42
+code_word is 256
+code_word is 71
+code_word is 256
+code_word is 258
+code_word is 262
+code_word is 262
+code_word is 71
+The compressed output stream is: 2 184 22 64 166 2 160 128 1 28 32 1 2 8 48 65 128 142 
+Compressed size: 18 bytes
+Original size: 18 bytes
+Compression ratio: 1
+INFO: [SIM 1] CSim done with 0 errors.
+INFO: [SIM 3] *************** CSIM finish ***************

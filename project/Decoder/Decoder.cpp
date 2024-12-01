@@ -66,7 +66,7 @@ int main(int Parameter_count, char * Parameters[])
     std::cout << "Usage: " << Parameters[0] << " <Compressed file> <Decompressed file>\n";
     return EXIT_SUCCESS;
   }
-
+  
   Input.open(Parameters[1], std::ios::binary);
   if (!Input.good())
   {
@@ -83,6 +83,7 @@ int main(int Parameter_count, char * Parameters[])
 
   chunk_list Chunks;
   int i = 0;
+
   while (true)
   {
     uint32_t Header;

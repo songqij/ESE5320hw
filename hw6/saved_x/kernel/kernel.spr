@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="kernel" dir="">
+  <FileSets>
+    <FileSet Name="kernel_mmult_fpga" Type="DesignSrcs">
+      <File Path="/mnt/castor/seas_home/s/songqij/ese532_code/hw6/apps/mmult/fpga/hls/MMult.cpp"/>
+      <Config/>
+    </FileSet>
+  </FileSets>
+  <Runs/>
+</project>

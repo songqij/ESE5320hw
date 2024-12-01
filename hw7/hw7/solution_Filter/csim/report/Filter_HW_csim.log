@@ -1,0 +1,14 @@
+INFO: [SIM 2] *************** CSIM start ***************
+INFO: [SIM 4] CSIM will launch GCC as the compiler.
+   Generating csim.exe
+/usr/bin/ld: obj/testbench_Filter.o: in function `main':
+/mnt/castor/seas_home/s/songqij/ese532_code/hw7/hw7/solution_Filter/csim/build/../../../../testbench_Filter.cpp:194:(.text+0x32b): undefined reference to `Filter_horizontal_HW(unsigned char const*, unsigned char*)'
+/usr/bin/ld: /mnt/castor/seas_home/s/songqij/ese532_code/hw7/hw7/solution_Filter/csim/build/../../../../testbench_Filter.cpp:199:(.text+0x36e): undefined reference to `Filter_vertical_HW(unsigned char const*, unsigned char*)'
+/usr/bin/ld: /mnt/castor/seas_home/s/songqij/ese532_code/hw7/hw7/solution_Filter/csim/build/../../../../testbench_Filter.cpp:204:(.text+0x3b1): undefined reference to `Filter_vertical_HW(unsigned char const*, unsigned char*)'
+/usr/bin/ld: obj/Filter_steaming.o: in function `Filter_HW(unsigned char const*, unsigned char*)':
+/mnt/castor/seas_home/s/songqij/ese532_code/hw7/hw7/solution_Filter/csim/build/../../../../Filter_steaming.cpp:198:(.text+0x618): undefined reference to `Filter_horizontal_HW(unsigned char const*, unsigned char*)'
+/usr/bin/ld: /mnt/castor/seas_home/s/songqij/ese532_code/hw7/hw7/solution_Filter/csim/build/../../../../Filter_steaming.cpp:199:(.text+0x631): undefined reference to `Filter_vertical_HW(unsigned char const*, unsigned char*)'
+collect2: error: ld returned 1 exit status
+make: *** [Makefile.rules:393: csim.exe] Error 1
+ERR: [SIM 100] 'csim_design' failed: compilation error(s).
+INFO: [SIM 3] *************** CSIM finish ***************

@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="kernel">
+  <platform vendor="avnet.com" boardid="u96v2_sbc_base" name="u96v2_sbc_base" featureRomTime="0">
+    <version major="1" minor="0"/>
+    <description/>
+    <board name="avnet.com:ultra96v2:1.2" vendor="avnet.com" fpga="xczu3eg-sbva484-1-i">
+      <interfaces/>
+      <images>
+        <image name="ultra96v2_top.jpg" type="HDPI"/>
+        <image name="" type="MDPI"/>
+        <image name="" type="LDPI"/>
+      </images>
+      <id>
+        <vendor/>
+        <device/>
+        <subsystem/>
+      </id>
+    </board>
+    <build_flow/>
+    <host architecture="unknown"/>
+    <device name="fpga0" fpgaDevice="zynquplus:xczu3eg:sbva484:-1:i" addrWidth="0">
+      <core name="OCL_REGION_0" target="bitstream" type="clc_region" clockFreq="0MHz" numComputeUnits="60">
+        <kernelClocks>
+          <clock port="KERNEL_CLK" frequency="300.000000MHz"/>
+          <clock port="DATA_CLK" frequency="150.000000MHz"/>
+        </kernelClocks>
+        <kernel name="mmult_fpga" language="c" vlnv="xilinx.com:hls:mmult_fpga:1.0" preferredWorkGroupSizeMultiple="0" workGroupSize="1" debug="true" interrupt="true" hwControlProtocol="ap_ctrl_chain">
+          <module name="mmult_fpga">
+            <module name="execution" instName="execution_U0" type="DataflowHS"/>
+            <module name="read3" instName="read3_U0" type="DataflowHS">
+              <rtlPort name="m_axi_b0_AWVALID" object="b0" protocol="m_axi"/>
+              <rtlPort name="m_axi_b1_AWVALID" object="b1" protocol="m_axi"/>
+              <rtlPort name="A" object="A" protocol="ap_none"/>
+              <rtlPort name="B" object="B" protocol="ap_none"/>
+              <rtlPort name="C" object="C" protocol="ap_none"/>
+            </module>
+            <module name="write_r" instName="write_U0" type="DataflowHS">
+              <rtlPort name="m_axi_b2_AWVALID" object="b2" protocol="m_axi"/>
+            </module>
+          </module>
+          <port name="M_AXI_B0" mode="master" range="0xFFFFFFFF" dataWidth="512" portType="addressable" base="0x0"/>
+          <port name="M_AXI_B1" mode="master" range="0xFFFFFFFF" dataWidth="512" portType="addressable" base="0x0"/>
+          <port name="M_AXI_B2" mode="master" range="0xFFFFFFFF" dataWidth="512" portType="addressable" base="0x0"/>
+          <port name="S_AXI_CONTROL" mode="slave" range="0x1000" dataWidth="32" portType="addressable" base="0x0"/>
+          <arg name="A" addressQualifier="1" id="0" port="M_AXI_B0" size="0x8" offset="0x10" hostOffset="0x0" hostSize="0x8" type="void*"/>
+          <arg name="B" addressQualifier="1" id="1" port="M_AXI_B1" size="0x8" offset="0x1C" hostOffset="0x0" hostSize="0x8" type="void*"/>
+          <arg name="C" addressQualifier="1" id="2" port="M_AXI_B2" size="0x8" offset="0x28" hostOffset="0x0" hostSize="0x8" type="void*"/>
+          <compileWorkGroupSize x="1" y="1" z="1"/>
+          <maxWorkGroupSize x="1" y="1" z="1"/>
+          <string_table/>
+          <instance name="mmult_fpga_1">
+            <addrRemap base="0x00B0000000" port="S_AXI_CONTROL"/>
+          </instance>
+          <FIFOInformation>
+            <FIFOInst>
+              <Name>A_tmp_U</Name>
+              <ParentInst/>
+              <StaticDepth>2</StaticDepth>
+              <RuntimeDepth>mOutPtr</RuntimeDepth>
+              <InterfaceList>
+                <Interface>clk</Interface>
+                <Interface>reset</Interface>
+                <Interface>if_write</Interface>
+                <Interface>if_din</Interface>
+                <Interface>if_full_n</Interface>
+                <Interface>if_read</Interface>
+                <Interface>if_empty_n</Interface>
+              </InterfaceList>
+            </FIFOInst>
+            <FIFOInst>
+              <Name>B_tmp_U</Name>
+              <ParentInst/>
+              <StaticDepth>2</StaticDepth>
+              <RuntimeDepth>mOutPtr</RuntimeDepth>
+              <InterfaceList>
+                <Interface>clk</Interface>
+                <Interface>reset</Interface>
+                <Interface>if_write</Interface>
+                <Interface>if_din</Interface>
+                <Interface>if_full_n</Interface>
+                <Interface>if_read</Interface>
+                <Interface>if_empty_n</Interface>
+              </InterfaceList>
+            </FIFOInst>
+            <FIFOInst>
+              <Name>result_U</Name>
+              <ParentInst/>
+              <StaticDepth>2</StaticDepth>
+              <RuntimeDepth>mOutPtr</RuntimeDepth>
+              <InterfaceList>
+                <Interface>clk</Interface>
+                <Interface>reset</Interface>
+                <Interface>if_write</Interface>
+                <Interface>if_din</Interface>
+                <Interface>if_full_n</Interface>
+                <Interface>if_read</Interface>
+                <Interface>if_empty_n</Interface>
+              </InterfaceList>
+            </FIFOInst>
+          </FIFOInformation>
+        </kernel>
+        <connection srcType="core" srcInst="OCL_REGION_0" srcPort="zynq_ultra_ps_e_0_M_AXI_HPM1_FPD" dstType="kernel" dstInst="mmult_fpga_1" dstPort="S_AXI_CONTROL"/>
+        <connection srcType="core" srcInst="OCL_REGION_0" srcPort="zynq_ultra_ps_e_0_S_AXI_HP0_FPD" dstType="kernel" dstInst="mmult_fpga_1" dstPort="M_AXI_B0"/>
+        <connection srcType="core" srcInst="OCL_REGION_0" srcPort="zynq_ultra_ps_e_0_S_AXI_HP1_FPD" dstType="kernel" dstInst="mmult_fpga_1" dstPort="M_AXI_B1"/>
+        <connection srcType="core" srcInst="OCL_REGION_0" srcPort="zynq_ultra_ps_e_0_S_AXI_HP2_FPD" dstType="kernel" dstInst="mmult_fpga_1" dstPort="M_AXI_B2"/>
+      </core>
+    </device>
+  </platform>
+</project>

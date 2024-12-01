@@ -9,16 +9,24 @@ void mmult(const matrix_type Input_1[MATRIX_WIDTH * MATRIX_WIDTH],
 	matrix_type Buffer_1[MATRIX_WIDTH][MATRIX_WIDTH];
 	matrix_type Buffer_2[MATRIX_WIDTH][MATRIX_WIDTH];
 
+	#pragma HLS array_partition variable=Buffer_1 dim=2
+	#pragma HLS array_partition variable=Buffer_2 dim=1
+
 	Init_loop_i: for (int i = 0; i < MATRIX_WIDTH; i++)
 		Init_loop_j: for (int j = 0; j < MATRIX_WIDTH; j++) {
+			#pragma HLS pipeline II=1
 			Buffer_1[i][j] = Input_1[i * MATRIX_WIDTH + j];
 			Buffer_2[i][j] = Input_2[i * MATRIX_WIDTH + j];
 		}
 
 	Main_loop_i: for (int i = 0; i < MATRIX_WIDTH; i++)
+
 		Main_loop_j: for (int j = 0; j < MATRIX_WIDTH; j++) {
+		#pragma HLS pipeline
+
 			matrix_type Result = 0;
 			Main_loop_k: for (int k = 0; k < MATRIX_WIDTH; k++) {
+				//#pragma HLS unroll
 				Result += Buffer_1[i][k] * Buffer_2[k][j];
 			}
 			Output[i * MATRIX_WIDTH + j] = Result;

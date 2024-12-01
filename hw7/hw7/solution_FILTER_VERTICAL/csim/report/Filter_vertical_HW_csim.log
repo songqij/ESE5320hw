@@ -1,0 +1,30 @@
+INFO: [SIM 2] *************** CSIM start ***************
+INFO: [SIM 4] CSIM will launch GCC as the compiler.
+   Compiling ../../../../testbench_vertical.cpp in debug mode
+   Compiling ../../../../testbench_Filter.cpp in debug mode
+   Compiling ../../../../testbench.cpp in debug mode
+   Generating csim.exe
+/usr/bin/ld: obj/testbench_Filter.o: in function `Create_frame(int, int)':
+/mnt/castor/seas_home/s/songqij/ese532_code/hw7/hw7/solution_FILTER_VERTICAL/csim/build/../../../../testbench_Filter.cpp:126: multiple definition of `Create_frame(int, int)'; obj/testbench_vertical.o:/mnt/castor/seas_home/s/songqij/ese532_code/hw7/hw7/solution_FILTER_VERTICAL/csim/build/../../../../testbench_vertical.cpp:132: first defined here
+/usr/bin/ld: obj/testbench_Filter.o: in function `Destroy_frame(unsigned char*)':
+/mnt/castor/seas_home/s/songqij/ese532_code/hw7/hw7/solution_FILTER_VERTICAL/csim/build/../../../../testbench_Filter.cpp:138: multiple definition of `Destroy_frame(unsigned char*)'; obj/testbench_vertical.o:/mnt/castor/seas_home/s/songqij/ese532_code/hw7/hw7/solution_FILTER_VERTICAL/csim/build/../../../../testbench_vertical.cpp:144: first defined here
+/usr/bin/ld: obj/testbench_Filter.o: in function `Randomize_frame(unsigned char*, int, int)':
+/mnt/castor/seas_home/s/songqij/ese532_code/hw7/hw7/solution_FILTER_VERTICAL/csim/build/../../../../testbench_Filter.cpp:144: multiple definition of `Randomize_frame(unsigned char*, int, int)'; obj/testbench_vertical.o:/mnt/castor/seas_home/s/songqij/ese532_code/hw7/hw7/solution_FILTER_VERTICAL/csim/build/../../../../testbench_vertical.cpp:150: first defined here
+/usr/bin/ld: obj/testbench_Filter.o: in function `Compare_frames(unsigned char const*, unsigned char const*, int, int)':
+/mnt/castor/seas_home/s/songqij/ese532_code/hw7/hw7/solution_FILTER_VERTICAL/csim/build/../../../../testbench_Filter.cpp:152: multiple definition of `Compare_frames(unsigned char const*, unsigned char const*, int, int)'; obj/testbench_vertical.o:/mnt/castor/seas_home/s/songqij/ese532_code/hw7/hw7/solution_FILTER_VERTICAL/csim/build/../../../../testbench_vertical.cpp:158: first defined here
+/usr/bin/ld: obj/testbench_Filter.o: in function `main':
+/mnt/castor/seas_home/s/songqij/ese532_code/hw7/hw7/solution_FILTER_VERTICAL/csim/build/../../../../testbench_Filter.cpp:181: multiple definition of `main'; obj/testbench_vertical.o:/mnt/castor/seas_home/s/songqij/ese532_code/hw7/hw7/solution_FILTER_VERTICAL/csim/build/../../../../testbench_vertical.cpp:184: first defined here
+/usr/bin/ld: obj/testbench.o: in function `Create_frame(int, int)':
+/mnt/castor/seas_home/s/songqij/ese532_code/hw7/hw7/solution_FILTER_VERTICAL/csim/build/../../../../testbench.cpp:128: multiple definition of `Create_frame(int, int)'; obj/testbench_vertical.o:/mnt/castor/seas_home/s/songqij/ese532_code/hw7/hw7/solution_FILTER_VERTICAL/csim/build/../../../../testbench_vertical.cpp:132: first defined here
+/usr/bin/ld: obj/testbench.o: in function `Destroy_frame(unsigned char*)':
+/mnt/castor/seas_home/s/songqij/ese532_code/hw7/hw7/solution_FILTER_VERTICAL/csim/build/../../../../testbench.cpp:140: multiple definition of `Destroy_frame(unsigned char*)'; obj/testbench_vertical.o:/mnt/castor/seas_home/s/songqij/ese532_code/hw7/hw7/solution_FILTER_VERTICAL/csim/build/../../../../testbench_vertical.cpp:144: first defined here
+/usr/bin/ld: obj/testbench.o: in function `Randomize_frame(unsigned char*, int, int)':
+/mnt/castor/seas_home/s/songqij/ese532_code/hw7/hw7/solution_FILTER_VERTICAL/csim/build/../../../../testbench.cpp:146: multiple definition of `Randomize_frame(unsigned char*, int, int)'; obj/testbench_vertical.o:/mnt/castor/seas_home/s/songqij/ese532_code/hw7/hw7/solution_FILTER_VERTICAL/csim/build/../../../../testbench_vertical.cpp:150: first defined here
+/usr/bin/ld: obj/testbench.o: in function `Compare_frames(unsigned char const*, unsigned char const*, int, int)':
+/mnt/castor/seas_home/s/songqij/ese532_code/hw7/hw7/solution_FILTER_VERTICAL/csim/build/../../../../testbench.cpp:154: multiple definition of `Compare_frames(unsigned char const*, unsigned char const*, int, int)'; obj/testbench_vertical.o:/mnt/castor/seas_home/s/songqij/ese532_code/hw7/hw7/solution_FILTER_VERTICAL/csim/build/../../../../testbench_vertical.cpp:158: first defined here
+/usr/bin/ld: obj/testbench.o: in function `main':
+/mnt/castor/seas_home/s/songqij/ese532_code/hw7/hw7/solution_FILTER_VERTICAL/csim/build/../../../../testbench.cpp:176: multiple definition of `main'; obj/testbench_vertical.o:/mnt/castor/seas_home/s/songqij/ese532_code/hw7/hw7/solution_FILTER_VERTICAL/csim/build/../../../../testbench_vertical.cpp:184: first defined here
+collect2: error: ld returned 1 exit status
+make: *** [Makefile.rules:393: csim.exe] Error 1
+ERR: [SIM 100] 'csim_design' failed: compilation error(s).
+INFO: [SIM 3] *************** CSIM finish ***************

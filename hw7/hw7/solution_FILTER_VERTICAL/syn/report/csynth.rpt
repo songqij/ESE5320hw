@@ -1,0 +1,27 @@
+
+
+================================================================
+== Synthesis Summary Report of 'Filter_vertical_HW'
+================================================================
++ General Information: 
+    * Date:           Mon Oct 21 18:53:18 2024
+    * Version:        2020.2 (Build 3064766 on Wed Nov 18 09:12:47 MST 2020)
+    * Project:        hw7
+    * Solution:       solution_FILTER_VERTICAL (Vitis Kernel Flow Target)
+    * Product family: zynquplus
+    * Target device:  xczu3eg-sbva484-1-i
+    
+
++ Performance & Resource Estimates: 
+    
+    PS: '+' for module; 'o' for loop; '*' for dataflow
+    +----------------------+--------+-------+---------+-----------+----------+---------+------+----------+---------+---------+-----------+-----------+-----+
+    |        Modules       |  Issue |       | Latency |  Latency  | Iteration|         | Trip |          |         |         |           |           |     |
+    |        & Loops       |  Type  | Slack | (cycles)|    (ns)   |  Latency | Interval| Count| Pipelined|  BRAM   |   DSP   |     FF    |    LUT    | URAM|
+    +----------------------+--------+-------+---------+-----------+----------+---------+------+----------+---------+---------+-----------+-----------+-----+
+    |+ Filter_vertical_HW  |  Timing|   0.00|   233209|  1.555e+06|         -|   233210|     -|        no|  2 (~0%)|  2 (~0%)|  1895 (1%)|  2341 (3%)|    -|
+    | o VITIS_LOOP_152_2   |       -|  -4.87|   233208|  1.555e+06|       492|        -|   474|        no|        -|        -|          -|          -|    -|
+    |  o VITIS_LOOP_154_3  |       -|  -4.87|       81|    540.027|        76|        1|     6|       yes|        -|        -|          -|          -|    -|
+    |  o VITIS_LOOP_158_4  |       -|  -4.87|      406|  2.707e+03|       144|        1|   264|       yes|        -|        -|          -|          -|    -|
+    +----------------------+--------+-------+---------+-----------+----------+---------+------+----------+---------+---------+-----------+-----------+-----+
+

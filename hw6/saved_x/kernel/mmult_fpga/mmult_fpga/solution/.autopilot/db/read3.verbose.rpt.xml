@@ -1,0 +1,267 @@
+<profile>
+
+<section name = "Vitis HLS Report for 'read3'" level="0">
+<item name = "Date">Thu Oct 17 03:36:18 2024
+</item>
+<item name = "Version">2020.2 (Build 3064766 on Wed Nov 18 09:12:47 MST 2020)</item>
+<item name = "Project">mmult_fpga</item>
+<item name = "Solution">solution (Vitis Kernel Flow Target)</item>
+<item name = "Product family">zynquplus</item>
+<item name = "Target device">xczu3eg-sbva484-1-i</item>
+</section>
+
+<section name = "Performance Estimates" level="0">
+<item name = "Timing">
+<section name = "" level="1">
+<item name = "Summary"><table name="" hasTotal="0">
+<keys size="4">Clock, Target, Estimated, Uncertainty</keys>
+<column name="ap_clk">6.67 ns, 4.867 ns, 1.80 ns</column>
+</table>
+</item>
+</section>
+</item>
+<item name = "Latency">
+<section name = "" level="1">
+<item name = "Summary"><table name="" hasTotal="0">
+<keys size="8">, min, max, min, max, min, max, Type</keys>
+<column name="">133192, 133192, 0.888 ms, 0.888 ms, 133192, 133192, none</column>
+</table>
+</item>
+<item name = "Detail">
+<section name = "" level="1">
+<item name = "Instance"><table name="" hasTotal="0">
+<keys size="9">Instance, Module, min, max, min, max, min, max, Type</keys>
+</table>
+</item>
+<item name = "Loop"><table name="" hasTotal="0">
+<keys size="8">Loop Name, min, max, Latency, achieved, target, Count, Pipelined</keys>
+<column name="- VITIS_LOOP_49_1">133121, 133121, 3, 1, 1, 133120, yes</column>
+</table>
+</item>
+</section>
+</item>
+</section>
+</item>
+</section>
+
+<section name = "Utilization Estimates" level="0">
+<item name = "Summary"><table name="" hasTotal="1">
+<keys size="6">Name, BRAM_18K, DSP, FF, LUT, URAM</keys>
+<column name="DSP">-, -, -, -, -</column>
+<column name="Expression">-, -, 0, 75, -</column>
+<column name="FIFO">-, -, -, -, -</column>
+<column name="Instance">-, -, -, -, -</column>
+<column name="Memory">-, -, -, -, -</column>
+<column name="Multiplexer">-, -, -, 550, -</column>
+<column name="Register">-, -, 2115, -, -</column>
+<specialColumn name="Available">432, 360, 141120, 70560, 0</specialColumn>
+<specialColumn name="Utilization (%)">0, 0, 1, ~0, 0</specialColumn>
+</table>
+</item>
+<item name = "Detail">
+<section name = "" level="1">
+<item name = "Instance"><table name="" hasTotal="1">
+<keys size="7">Instance, Module, BRAM_18K, DSP, FF, LUT, URAM</keys>
+</table>
+</item>
+<item name = "DSP"><table name="" hasTotal="0">
+<keys size="3">Instance, Module, Expression</keys>
+</table>
+</item>
+<item name = "Memory"><table name="" hasTotal="1">
+<keys size="10">Memory, Module, BRAM_18K, FF, LUT, URAM, Words, Bits, Banks, W*Bits*Banks</keys>
+</table>
+</item>
+<item name = "FIFO"><table name="" hasTotal="1">
+<keys size="8">Name, BRAM_18K, FF, LUT, URAM, Depth, Bits, Size:D*B</keys>
+</table>
+</item>
+<item name = "Expression"><table name="" hasTotal="1">
+<keys size="7">Variable Name, Operation, DSP, FF, LUT, Bitwidth P0, Bitwidth P1</keys>
+<column name="add_ln49_fu_251_p2">+, 0, 0, 25, 18, 1</column>
+<column name="ap_ext_blocking_cur_n">and, 0, 0, 2, 1, 1</column>
+<column name="ap_ext_blocking_n">and, 0, 0, 2, 1, 2</column>
+<column name="ap_int_blocking_cur_n">and, 0, 0, 2, 1, 1</column>
+<column name="ap_int_blocking_n">and, 0, 0, 2, 1, 2</column>
+<column name="ap_predicate_op254_read_state72">and, 0, 0, 2, 1, 1</column>
+<column name="ap_predicate_op261_write_state73">and, 0, 0, 2, 1, 1</column>
+<column name="ap_predicate_op263_write_state73">and, 0, 0, 2, 1, 1</column>
+<column name="ap_str_blocking_n">and, 0, 0, 2, 2, 2</column>
+<column name="icmp_ln174_fu_267_p2">icmp, 0, 0, 9, 4, 1</column>
+<column name="icmp_ln49_fu_257_p2">icmp, 0, 0, 13, 18, 18</column>
+<column name="ap_block_pp0_stage0_01001">or, 0, 0, 2, 1, 1</column>
+<column name="ap_block_state1">or, 0, 0, 2, 1, 1</column>
+<column name="ap_block_state1_io">or, 0, 0, 2, 1, 1</column>
+<column name="ap_block_state72_pp0_stage0_iter1">or, 0, 0, 2, 1, 1</column>
+<column name="ap_block_state73_pp0_stage0_iter2">or, 0, 0, 2, 1, 1</column>
+<column name="ap_enable_pp0">xor, 0, 0, 2, 1, 2</column>
+</table>
+</item>
+<item name = "Multiplexer"><table name="" hasTotal="1">
+<keys size="5">Name, LUT, Input Size, Bits, Total Bits</keys>
+<column name="A_tmp3_blk_n">9, 2, 1, 2</column>
+<column name="A_tmp3_din">14, 3, 32, 96</column>
+<column name="B_tmp4_blk_n">9, 2, 1, 2</column>
+<column name="C_out_blk_n">9, 2, 1, 2</column>
+<column name="ap_NS_fsm">377, 73, 1, 73</column>
+<column name="ap_done">9, 2, 1, 2</column>
+<column name="ap_enable_reg_pp0_iter1">9, 2, 1, 2</column>
+<column name="ap_enable_reg_pp0_iter2">14, 3, 1, 3</column>
+<column name="ap_phi_mux_empty_37_phi_fu_203_p4">14, 3, 512, 1536</column>
+<column name="ap_phi_mux_p_in_i_i_phi_fu_194_p4">14, 3, 512, 1536</column>
+<column name="b0_blk_n_AR">9, 2, 1, 2</column>
+<column name="b0_blk_n_R">9, 2, 1, 2</column>
+<column name="b1_blk_n_AR">9, 2, 1, 2</column>
+<column name="b1_blk_n_R">9, 2, 1, 2</column>
+<column name="c_reg_156">9, 2, 18, 36</column>
+<column name="real_start">9, 2, 1, 2</column>
+<column name="shiftreg2_i_i_reg_179">9, 2, 480, 960</column>
+<column name="shiftreg_i_i_reg_167">9, 2, 480, 960</column>
+</table>
+</item>
+<item name = "Register"><table name="" hasTotal="1">
+<keys size="5">Name, FF, LUT, Bits, Const Bits</keys>
+<column name="ap_CS_fsm">72, 0, 72, 0</column>
+<column name="ap_done_reg">1, 0, 1, 0</column>
+<column name="ap_enable_reg_pp0_iter0">1, 0, 1, 0</column>
+<column name="ap_enable_reg_pp0_iter1">1, 0, 1, 0</column>
+<column name="ap_enable_reg_pp0_iter2">1, 0, 1, 0</column>
+<column name="b0_addr_read_reg_342">512, 0, 512, 0</column>
+<column name="b1_addr_read_reg_352">512, 0, 512, 0</column>
+<column name="c_reg_156">18, 0, 18, 0</column>
+<column name="icmp_ln174_reg_338">1, 0, 1, 0</column>
+<column name="icmp_ln174_reg_338_pp0_iter1_reg">1, 0, 1, 0</column>
+<column name="icmp_ln49_reg_334">1, 0, 1, 0</column>
+<column name="icmp_ln49_reg_334_pp0_iter1_reg">1, 0, 1, 0</column>
+<column name="shiftreg2_i_i_reg_179">480, 0, 480, 0</column>
+<column name="shiftreg_i_i_reg_167">480, 0, 480, 0</column>
+<column name="start_once_reg">1, 0, 1, 0</column>
+<column name="trunc_ln174_reg_347">32, 0, 32, 0</column>
+</table>
+</item>
+</section>
+</item>
+</section>
+
+<section name = "Interface" level="0">
+<item name = "Summary"><table name="" hasTotal="0">
+<keys size="6">RTL Ports, Dir, Bits, Protocol, Source Object, C Type</keys>
+<column name="ap_clk">in, 1, ap_ctrl_hs, read3, return value</column>
+<column name="ap_rst">in, 1, ap_ctrl_hs, read3, return value</column>
+<column name="ap_start">in, 1, ap_ctrl_hs, read3, return value</column>
+<column name="start_full_n">in, 1, ap_ctrl_hs, read3, return value</column>
+<column name="ap_done">out, 1, ap_ctrl_hs, read3, return value</column>
+<column name="ap_continue">in, 1, ap_ctrl_hs, read3, return value</column>
+<column name="ap_idle">out, 1, ap_ctrl_hs, read3, return value</column>
+<column name="ap_ready">out, 1, ap_ctrl_hs, read3, return value</column>
+<column name="start_out">out, 1, ap_ctrl_hs, read3, return value</column>
+<column name="start_write">out, 1, ap_ctrl_hs, read3, return value</column>
+<column name="ap_ext_blocking_n">out, 1, ap_ctrl_hs, read3, return value</column>
+<column name="ap_str_blocking_n">out, 1, ap_ctrl_hs, read3, return value</column>
+<column name="ap_int_blocking_n">out, 1, ap_ctrl_hs, read3, return value</column>
+<column name="m_axi_b0_AWVALID">out, 1, m_axi, b0, pointer</column>
+<column name="m_axi_b0_AWREADY">in, 1, m_axi, b0, pointer</column>
+<column name="m_axi_b0_AWADDR">out, 64, m_axi, b0, pointer</column>
+<column name="m_axi_b0_AWID">out, 1, m_axi, b0, pointer</column>
+<column name="m_axi_b0_AWLEN">out, 32, m_axi, b0, pointer</column>
+<column name="m_axi_b0_AWSIZE">out, 3, m_axi, b0, pointer</column>
+<column name="m_axi_b0_AWBURST">out, 2, m_axi, b0, pointer</column>
+<column name="m_axi_b0_AWLOCK">out, 2, m_axi, b0, pointer</column>
+<column name="m_axi_b0_AWCACHE">out, 4, m_axi, b0, pointer</column>
+<column name="m_axi_b0_AWPROT">out, 3, m_axi, b0, pointer</column>
+<column name="m_axi_b0_AWQOS">out, 4, m_axi, b0, pointer</column>
+<column name="m_axi_b0_AWREGION">out, 4, m_axi, b0, pointer</column>
+<column name="m_axi_b0_AWUSER">out, 1, m_axi, b0, pointer</column>
+<column name="m_axi_b0_WVALID">out, 1, m_axi, b0, pointer</column>
+<column name="m_axi_b0_WREADY">in, 1, m_axi, b0, pointer</column>
+<column name="m_axi_b0_WDATA">out, 512, m_axi, b0, pointer</column>
+<column name="m_axi_b0_WSTRB">out, 64, m_axi, b0, pointer</column>
+<column name="m_axi_b0_WLAST">out, 1, m_axi, b0, pointer</column>
+<column name="m_axi_b0_WID">out, 1, m_axi, b0, pointer</column>
+<column name="m_axi_b0_WUSER">out, 1, m_axi, b0, pointer</column>
+<column name="m_axi_b0_ARVALID">out, 1, m_axi, b0, pointer</column>
+<column name="m_axi_b0_ARREADY">in, 1, m_axi, b0, pointer</column>
+<column name="m_axi_b0_ARADDR">out, 64, m_axi, b0, pointer</column>
+<column name="m_axi_b0_ARID">out, 1, m_axi, b0, pointer</column>
+<column name="m_axi_b0_ARLEN">out, 32, m_axi, b0, pointer</column>
+<column name="m_axi_b0_ARSIZE">out, 3, m_axi, b0, pointer</column>
+<column name="m_axi_b0_ARBURST">out, 2, m_axi, b0, pointer</column>
+<column name="m_axi_b0_ARLOCK">out, 2, m_axi, b0, pointer</column>
+<column name="m_axi_b0_ARCACHE">out, 4, m_axi, b0, pointer</column>
+<column name="m_axi_b0_ARPROT">out, 3, m_axi, b0, pointer</column>
+<column name="m_axi_b0_ARQOS">out, 4, m_axi, b0, pointer</column>
+<column name="m_axi_b0_ARREGION">out, 4, m_axi, b0, pointer</column>
+<column name="m_axi_b0_ARUSER">out, 1, m_axi, b0, pointer</column>
+<column name="m_axi_b0_RVALID">in, 1, m_axi, b0, pointer</column>
+<column name="m_axi_b0_RREADY">out, 1, m_axi, b0, pointer</column>
+<column name="m_axi_b0_RDATA">in, 512, m_axi, b0, pointer</column>
+<column name="m_axi_b0_RLAST">in, 1, m_axi, b0, pointer</column>
+<column name="m_axi_b0_RID">in, 1, m_axi, b0, pointer</column>
+<column name="m_axi_b0_RUSER">in, 1, m_axi, b0, pointer</column>
+<column name="m_axi_b0_RRESP">in, 2, m_axi, b0, pointer</column>
+<column name="m_axi_b0_BVALID">in, 1, m_axi, b0, pointer</column>
+<column name="m_axi_b0_BREADY">out, 1, m_axi, b0, pointer</column>
+<column name="m_axi_b0_BRESP">in, 2, m_axi, b0, pointer</column>
+<column name="m_axi_b0_BID">in, 1, m_axi, b0, pointer</column>
+<column name="m_axi_b0_BUSER">in, 1, m_axi, b0, pointer</column>
+<column name="m_axi_b1_AWVALID">out, 1, m_axi, b1, pointer</column>
+<column name="m_axi_b1_AWREADY">in, 1, m_axi, b1, pointer</column>
+<column name="m_axi_b1_AWADDR">out, 64, m_axi, b1, pointer</column>
+<column name="m_axi_b1_AWID">out, 1, m_axi, b1, pointer</column>
+<column name="m_axi_b1_AWLEN">out, 32, m_axi, b1, pointer</column>
+<column name="m_axi_b1_AWSIZE">out, 3, m_axi, b1, pointer</column>
+<column name="m_axi_b1_AWBURST">out, 2, m_axi, b1, pointer</column>
+<column name="m_axi_b1_AWLOCK">out, 2, m_axi, b1, pointer</column>
+<column name="m_axi_b1_AWCACHE">out, 4, m_axi, b1, pointer</column>
+<column name="m_axi_b1_AWPROT">out, 3, m_axi, b1, pointer</column>
+<column name="m_axi_b1_AWQOS">out, 4, m_axi, b1, pointer</column>
+<column name="m_axi_b1_AWREGION">out, 4, m_axi, b1, pointer</column>
+<column name="m_axi_b1_AWUSER">out, 1, m_axi, b1, pointer</column>
+<column name="m_axi_b1_WVALID">out, 1, m_axi, b1, pointer</column>
+<column name="m_axi_b1_WREADY">in, 1, m_axi, b1, pointer</column>
+<column name="m_axi_b1_WDATA">out, 512, m_axi, b1, pointer</column>
+<column name="m_axi_b1_WSTRB">out, 64, m_axi, b1, pointer</column>
+<column name="m_axi_b1_WLAST">out, 1, m_axi, b1, pointer</column>
+<column name="m_axi_b1_WID">out, 1, m_axi, b1, pointer</column>
+<column name="m_axi_b1_WUSER">out, 1, m_axi, b1, pointer</column>
+<column name="m_axi_b1_ARVALID">out, 1, m_axi, b1, pointer</column>
+<column name="m_axi_b1_ARREADY">in, 1, m_axi, b1, pointer</column>
+<column name="m_axi_b1_ARADDR">out, 64, m_axi, b1, pointer</column>
+<column name="m_axi_b1_ARID">out, 1, m_axi, b1, pointer</column>
+<column name="m_axi_b1_ARLEN">out, 32, m_axi, b1, pointer</column>
+<column name="m_axi_b1_ARSIZE">out, 3, m_axi, b1, pointer</column>
+<column name="m_axi_b1_ARBURST">out, 2, m_axi, b1, pointer</column>
+<column name="m_axi_b1_ARLOCK">out, 2, m_axi, b1, pointer</column>
+<column name="m_axi_b1_ARCACHE">out, 4, m_axi, b1, pointer</column>
+<column name="m_axi_b1_ARPROT">out, 3, m_axi, b1, pointer</column>
+<column name="m_axi_b1_ARQOS">out, 4, m_axi, b1, pointer</column>
+<column name="m_axi_b1_ARREGION">out, 4, m_axi, b1, pointer</column>
+<column name="m_axi_b1_ARUSER">out, 1, m_axi, b1, pointer</column>
+<column name="m_axi_b1_RVALID">in, 1, m_axi, b1, pointer</column>
+<column name="m_axi_b1_RREADY">out, 1, m_axi, b1, pointer</column>
+<column name="m_axi_b1_RDATA">in, 512, m_axi, b1, pointer</column>
+<column name="m_axi_b1_RLAST">in, 1, m_axi, b1, pointer</column>
+<column name="m_axi_b1_RID">in, 1, m_axi, b1, pointer</column>
+<column name="m_axi_b1_RUSER">in, 1, m_axi, b1, pointer</column>
+<column name="m_axi_b1_RRESP">in, 2, m_axi, b1, pointer</column>
+<column name="m_axi_b1_BVALID">in, 1, m_axi, b1, pointer</column>
+<column name="m_axi_b1_BREADY">out, 1, m_axi, b1, pointer</column>
+<column name="m_axi_b1_BRESP">in, 2, m_axi, b1, pointer</column>
+<column name="m_axi_b1_BID">in, 1, m_axi, b1, pointer</column>
+<column name="m_axi_b1_BUSER">in, 1, m_axi, b1, pointer</column>
+<column name="A_tmp3_din">out, 32, ap_fifo, A_tmp3, pointer</column>
+<column name="A_tmp3_full_n">in, 1, ap_fifo, A_tmp3, pointer</column>
+<column name="A_tmp3_write">out, 1, ap_fifo, A_tmp3, pointer</column>
+<column name="B_tmp4_din">out, 32, ap_fifo, B_tmp4, pointer</column>
+<column name="B_tmp4_full_n">in, 1, ap_fifo, B_tmp4, pointer</column>
+<column name="B_tmp4_write">out, 1, ap_fifo, B_tmp4, pointer</column>
+<column name="A">in, 64, ap_none, A, scalar</column>
+<column name="B">in, 64, ap_none, B, scalar</column>
+<column name="C">in, 64, ap_none, C, scalar</column>
+<column name="C_out_din">out, 64, ap_fifo, C_out, pointer</column>
+<column name="C_out_full_n">in, 1, ap_fifo, C_out, pointer</column>
+<column name="C_out_write">out, 1, ap_fifo, C_out, pointer</column>
+</table>
+</item>
+</section>
+</profile>

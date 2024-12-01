@@ -1,0 +1,2 @@
+performing high-level synthesis for kernel: mmult_fpga
+Log file: /mnt/castor/seas_home/s/songqij/ese532_code/hw6/apps/mmult/_x/kernel/mmult_fpga/vitis_hls.log

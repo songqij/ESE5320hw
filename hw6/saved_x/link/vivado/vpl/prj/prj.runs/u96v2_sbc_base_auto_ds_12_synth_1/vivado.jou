@@ -1,0 +1,12 @@
+#-----------------------------------------------------------
+# Vivado v2020.2 (64-bit)
+# SW Build 3064766 on Wed Nov 18 09:12:47 MST 2020
+# IP Build 3064653 on Wed Nov 18 14:17:31 MST 2020
+# Start of session at: Thu Oct 17 03:42:44 2024
+# Process ID: 30776
+# Current directory: /mnt/castor/seas_home/s/songqij/ese532_code/hw6/apps/mmult/_x/link/vivado/vpl/prj/prj.runs/u96v2_sbc_base_auto_ds_12_synth_1
+# Command line: vivado -log u96v2_sbc_base_auto_ds_12.vds -product Vivado -mode batch -messageDb vivado.pb -notrace -source u96v2_sbc_base_auto_ds_12.tcl
+# Log file: /mnt/castor/seas_home/s/songqij/ese532_code/hw6/apps/mmult/_x/link/vivado/vpl/prj/prj.runs/u96v2_sbc_base_auto_ds_12_synth_1/u96v2_sbc_base_auto_ds_12.vds
+# Journal file: /mnt/castor/seas_home/s/songqij/ese532_code/hw6/apps/mmult/_x/link/vivado/vpl/prj/prj.runs/u96v2_sbc_base_auto_ds_12_synth_1/vivado.jou
+#-----------------------------------------------------------
+source u96v2_sbc_base_auto_ds_12.tcl -notrace

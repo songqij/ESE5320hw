@@ -27,29 +27,29 @@ Filter_horizontal:
     mov x12, -5994                  ; x12 = -OUTPUT_WIDTH
     mov x11, 6000                   ; x11 = INPUT_WIDTH
 .L3:
-    add x6, x7, x12                 ; Begin annotating here, adding the instructions and your descriptions to the table.
-    mov x4, x9                      
+    add x6, x7, x12                 ; add x7 and x12 to x6, to get it to output of the first element of the first line
+    mov x4, x9                      ; move x9 to x4, which is the input of the first element of the first line
     .p2align 3,,7
 .L7:
-    mov x0, 0                       
-    mov w1, 0                       
+    mov x0, 0                       ;set the register to 0,which is used to monitor the loop3
+    mov w1, 0                       ;set the register to 0,which is used to monitor the sum
     .p2align 3,,7
 .L4:
-    ldrb    w3, [x4, x0]            
-    ldr w2, [x5, x0, lsl 2]         
-    add x0, x0, 1                   
-    cmp x0, 7                       
-    madd    w1, w3, w2, w1          
-    bne .L4                         
-    lsr w1, w1, 8                   
-    strb    w1, [x6], 1             ; Please pay careful attention to the addressing mode. It involves a post increment.
-    add x4, x4, 1                   
-    cmp x7, x6                      
-    bne .L7                         
-    add x7, x7, x10                 
-    add x9, x9, x11                 
-    cmp x7, x8                      
-    bne .L3                         ; Stop annotating here. Include this instruction in the table.
+    ldrb    w3, [x4, x0]            ;Load a byte from memory into register w3,which is the input address
+    ldr w2, [x5, x0, lsl 2]         ;Load a byte and shift 2 into register w2,which is the address of Coefficients
+    add x0, x0, 1                   ;add x0 and 1 to x0 , icdicates i in c code
+    cmp x0, 7                       ;compare x0 to 7, whether the loop3 has finished
+    madd    w1, w3, w2, w1          ;multiple w2 and w2 then add with w1 and then save to w1
+    bne .L4                         ;check whether the cmp is true if not go back to L4
+    lsr w1, w1, 8                   ;do the left shift shift 8 bits
+    strb    w1, [x6], 1             ;store the w1 to the address of x6 and then x6+1, x6 address is the first element of the output
+    add x4, x4, 1                   ;x4 add 1 to x4
+    cmp x7, x6                      ;compare x7 and x6, which means to check whether finished the loop2
+    bne .L7                         ;check if the comprasion is true , if not go back to L7
+    add x7, x7, x10                 ;x7 add x10 to x7,which means go to the next output line
+    add x9, x9, x11                 ;x9 add x11 to x9 , which means go to thr next input line
+    cmp x7, x8                      ;compare x7 and x8
+    bne .L3                         ;check if comprasion is true, if not go back to L3
     ret                             
     .cfi_endproc
 .LFE22:

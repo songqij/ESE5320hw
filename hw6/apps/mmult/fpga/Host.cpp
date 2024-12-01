@@ -56,7 +56,11 @@ int main(int argc, char *argv[])
     cl::Program::Binaries bins{{fileBuf, fileBufSize}};
     cl::Program program(context, devices, bins, NULL, &err);
     cl::CommandQueue q(context, device, CL_QUEUE_PROFILING_ENABLE, &err);
-    cl::Kernel krnl_mmult(program, "mmult_fpga", &err);
+    cl::CommandQueue q1(context, device, CL_QUEUE_PROFILING_ENABLE, &err);
+    cl::CommandQueue q2(context, device, CL_QUEUE_PROFILING_ENABLE, &err);
+    cl::CommandQueue q3(context, device, CL_QUEUE_PROFILING_ENABLE, &err);
+    cl::Kernel krnl_mmult_1(program, "mmult_fpga", &err);
+    cl::Kernel krnl_mmult_2(program, "mmult_fpga", &err);
 
     // ------------------------------------------------------------------------------------
     // Step 2: Create buffers and initialize test values
@@ -94,33 +98,342 @@ int main(int argc, char *argv[])
     // ------------------------------------------------------------------------------------
 
     timer2.add("Running kernel");
-    std::vector<cl::Event> read_events;
-    for (int i = 0; i < NUM_TESTS; i++)
-    {
-        std::vector<cl::Event> exec_events, write_events;
-        cl::Event write_ev, exec_ev, read_ev;
+    // std::vector<cl::Event> read_events;
+    // for (int i = 0; i < NUM_TESTS; i++)
+    // {
+    //     std::vector<cl::Event> exec_events, write_events;
+    //     cl::Event write_ev, exec_ev, read_ev;
 
-        krnl_mmult.setArg(0, a_buf[i%NUM_MAT]);
-        krnl_mmult.setArg(1, b_buf[i%NUM_MAT]);
-        krnl_mmult.setArg(2, c_buf[i%NUM_MAT]);
-        if(i == 0)
-        {
-            q.enqueueMigrateMemObjects({a_buf[i%NUM_MAT], b_buf[i%NUM_MAT]}, 0 /* 0 means from host*/, NULL, &write_ev);
-        }
-        else
-        {
-            q.enqueueMigrateMemObjects({a_buf[i%NUM_MAT], b_buf[i%NUM_MAT]}, 0 /* 0 means from host*/, &read_events, &write_ev);
-            read_events.pop_back();
+    //     krnl_mmult.setArg(0, a_buf[i%NUM_MAT]);
+    //     krnl_mmult.setArg(1, b_buf[i%NUM_MAT]);
+    //     krnl_mmult.setArg(2, c_buf[i%NUM_MAT]);
+    //     if(i == 0) 
+    //     {
+    //         q.enqueueMigrateMemObjects({a_buf[i%NUM_MAT], b_buf[i%NUM_MAT]}, 0 /* 0 means from host*/, NULL, &write_ev);
+    //     }
+    //     else
+    //     {
+    //         q.enqueueMigrateMemObjects({a_buf[i%NUM_MAT], b_buf[i%NUM_MAT]}, 0 /* 0 means from host*/, &read_events, &write_ev);
+    //         read_events.pop_back();
+    //     }
+
+    //     write_events.push_back(write_ev);
+    //     q.enqueueTask(krnl_mmult, &write_events, &exec_ev);
+    //     exec_events.push_back(exec_ev);
+    //     q.enqueueMigrateMemObjects({c_buf[i%NUM_MAT]}, CL_MIGRATE_MEM_OBJECT_HOST, &exec_events, &read_ev);
+    //     read_events.push_back(read_ev);
+    // }
+
+    // q.finish();
+
+    // cl::Event w[NUM_TESTS], x[NUM_TESTS], r[NUM_TESTS];
+    // std::vector<cl::Event> w_wl[NUM_TESTS], x_wl[NUM_TESTS], r_wl[NUM_TESTS];
+
+    
+    // krnl_mmult.setArg(0, a_buf[0]);
+    // krnl_mmult.setArg(1, b_buf[0]);
+    // krnl_mmult.setArg(2, c_buf[0]);
+    // q.enqueueMigrateMemObjects({a_buf[0], b_buf[0]}, 0, NULL, &w[0]);
+    // x_wl[0].push_back(w[0]);
+    // w_wl[1].push_back(w[0]);
+
+    // q.enqueueTask(krnl_mmult, &x_wl[0], &x[0]);
+    // krnl_mmult.setArg(0, a_buf[1]);
+    // krnl_mmult.setArg(1, b_buf[1]);
+    // krnl_mmult.setArg(2, c_buf[1]);
+    // q.enqueueMigrateMemObjects({a_buf[1], b_buf[1]}, 0, &w_wl[1], &w[1]);
+    // r_wl[0].push_back(x[0]);
+    // x_wl[1].push_back(w[1]);
+    // w_wl[2].push_back(w[1]);
+
+    // for (int i = 0; i < NUM_TESTS - 2; i++) {
+    //     q.enqueueMigrateMemObjects({c_buf[i%NUM_MAT]}, CL_MIGRATE_MEM_OBJECT_HOST, &r_wl[i], &r[i]);
+    //     krnl_mmult.setArg(0, a_buf[(i+1)%NUM_MAT]);
+    //     krnl_mmult.setArg(1, b_buf[(i+1)%NUM_MAT]);
+    //     krnl_mmult.setArg(2, c_buf[(i+1)%NUM_MAT]);
+    //     q.enqueueTask(krnl_mmult, &x_wl[i+1], &x[i+1]);
+    //     q.enqueueMigrateMemObjects({a_buf[(i+2)%NUM_MAT], b_buf[(i+2)%NUM_MAT]}, 0, &w_wl[i+2], &w[i+2]);
+    //     r_wl[i+1].push_back(r[i]);
+    //     r_wl[i+1].push_back(x[i+1]);
+    //     x_wl[i+2].push_back(w[i+1]);
+    //     w_wl[i+3].push_back(w[i+2]);
+    // }
+
+    // q.enqueueMigrateMemObjects({c_buf[(NUM_TESTS-2)%NUM_MAT]}, CL_MIGRATE_MEM_OBJECT_HOST, &r_wl[NUM_TESTS-2], &r[NUM_TESTS-2]);
+    // krnl_mmult.setArg(0, a_buf[(NUM_TESTS-1)%NUM_MAT]);
+    // krnl_mmult.setArg(1, b_buf[(NUM_TESTS-1)%NUM_MAT]);
+    // krnl_mmult.setArg(2, c_buf[(NUM_TESTS-1)%NUM_MAT]);
+    // q.enqueueTask(krnl_mmult, &x_wl[NUM_TESTS-1], &x[NUM_TESTS-1]);
+    // r_wl[NUM_TESTS-1].push_back(r[NUM_TESTS-2]);
+    // r_wl[NUM_TESTS-1].push_back(x[NUM_TESTS-1]);
+
+    // q.enqueueMigrateMemObjects({c_buf[(NUM_TESTS-1)%NUM_MAT]}, CL_MIGRATE_MEM_OBJECT_HOST, &r_wl[NUM_TESTS-1], &r[NUM_TESTS-1]);
+    // q.finish();
+
+    // cl::Event w[NUM_TESTS], x[NUM_TESTS], r[NUM_TESTS];
+    // std::vector<cl::Event> w_wl[NUM_TESTS], x_wl[NUM_TESTS], r_wl[NUM_TESTS];
+    // for (int i = 0; i < 4; i += 4)
+    // {
+
+    //     if(i == 0) 
+    //     {
+    //         krnl_mmult.setArg(0, a_buf[i%NUM_MAT]);
+    //         krnl_mmult.setArg(1, b_buf[i%NUM_MAT]);
+    //         krnl_mmult.setArg(2, c_buf[i%NUM_MAT]);
+    //         q.enqueueMigrateMemObjects({a_buf[0], b_buf[0]}, 0 /* 0 means from host*/, NULL, &w[0]);
+    //         krnl_mmult.setArg(0, a_buf[(i+1)%NUM_MAT]);
+    //         krnl_mmult.setArg(1, b_buf[(i+1)%NUM_MAT]);
+    //         krnl_mmult.setArg(2, c_buf[(i+1)%NUM_MAT]);
+    //         q1.enqueueMigrateMemObjects({a_buf[1], b_buf[1]}, 0 /* 0 means from host*/, NULL, &w[1]);
+    //         krnl_mmult.setArg(0, a_buf[(i+2)%NUM_MAT]);
+    //         krnl_mmult.setArg(1, b_buf[(i+2)%NUM_MAT]);
+    //         krnl_mmult.setArg(2, c_buf[(i+2)%NUM_MAT]);
+    //         q2.enqueueMigrateMemObjects({a_buf[2], b_buf[2]}, 0 /* 0 means from host*/, NULL, &w[2]);
+    //         krnl_mmult.setArg(0, a_buf[(i+3)%NUM_MAT]);
+    //         krnl_mmult.setArg(1, b_buf[(i+3)%NUM_MAT]);
+    //         krnl_mmult.setArg(2, c_buf[(i+3)%NUM_MAT]);
+    //         q3.enqueueMigrateMemObjects({a_buf[3], b_buf[3]}, 0 /* 0 means from host*/, NULL, &w[3]);
+    //     }
+    //     else
+    //     {
+    //         krnl_mmult.setArg(0, a_buf[i%NUM_MAT]);
+    //         krnl_mmult.setArg(1, b_buf[i%NUM_MAT]);
+    //         krnl_mmult.setArg(2, c_buf[i%NUM_MAT]);
+    //         q.enqueueMigrateMemObjects({a_buf[i%NUM_MAT], b_buf[i%NUM_MAT]}, 0 /* 0 means from host*/, &w_wl[i], &w[i]);
+    //         krnl_mmult.setArg(0, a_buf[(i+1)%NUM_MAT]);
+    //         krnl_mmult.setArg(1, b_buf[(i+1)%NUM_MAT]);
+    //         krnl_mmult.setArg(2, c_buf[(i+1)%NUM_MAT]);
+    //         q1.enqueueMigrateMemObjects({a_buf[(i+1)%NUM_MAT], b_buf[(i+1)%NUM_MAT]}, 0 /* 0 means from host*/, &w_wl[i+1], &w[i+1]);
+    //         krnl_mmult.setArg(0, a_buf[(i+2)%NUM_MAT]);
+    //         krnl_mmult.setArg(1, b_buf[(i+2)%NUM_MAT]);
+    //         krnl_mmult.setArg(2, c_buf[(i+2)%NUM_MAT]);
+    //         q2.enqueueMigrateMemObjects({a_buf[(i+2)%NUM_MAT], b_buf[(i+2)%NUM_MAT]}, 0 /* 0 means from host*/, &w_wl[i+2], &w[i+2]);
+    //         krnl_mmult.setArg(0, a_buf[(i+3)%NUM_MAT]);
+    //         krnl_mmult.setArg(1, b_buf[(i+3)%NUM_MAT]);
+    //         krnl_mmult.setArg(2, c_buf[(i+3)%NUM_MAT]);
+    //         q3.enqueueMigrateMemObjects({a_buf[(i+3)%NUM_MAT], b_buf[(i+3)%NUM_MAT]}, 0 /* 0 means from host*/, &w_wl[i+3], &w[i+3]);
+    //     }
+
+    //     x_wl[i].push_back(w[i]);
+    //     x_wl[i+1].push_back(w[i+1]);
+    //     x_wl[i+2].push_back(w[i+2]);
+    //     x_wl[i+3].push_back(w[i+3]);
+
+    //     q.enqueueTask(krnl_mmult, &x_wl[i], &x[i]);
+    //     q1.enqueueTask(krnl_mmult, &x_wl[i+1], &x[i+1]);
+    //     q2.enqueueTask(krnl_mmult, &x_wl[i+2], &x[i+2]);
+    //     q3.enqueueTask(krnl_mmult, &x_wl[i+3], &x[i+3]);
+
+    //     r_wl[i].push_back(x[i]);
+    //     r_wl[i+1].push_back(x[i+1]);
+    //     r_wl[i+2].push_back(x[i+2]);
+    //     r_wl[i+3].push_back(x[i+3]);
+
+    //     q.enqueueMigrateMemObjects({c_buf[i%NUM_MAT]}, CL_MIGRATE_MEM_OBJECT_HOST, &r_wl[i], &r[i]);
+    //     q1.enqueueMigrateMemObjects({c_buf[(i+1)%NUM_MAT]}, CL_MIGRATE_MEM_OBJECT_HOST, &r_wl[i+1], &r[i+1]);
+    //     q2.enqueueMigrateMemObjects({c_buf[(i+2)%NUM_MAT]}, CL_MIGRATE_MEM_OBJECT_HOST, &r_wl[i+2], &r[i+2]);
+    //     q3.enqueueMigrateMemObjects({c_buf[(i+3)%NUM_MAT]}, CL_MIGRATE_MEM_OBJECT_HOST, &r_wl[i+3], &r[i+3]);
+
+    //     w_wl[i+4].push_back(r[i]);
+    //     w_wl[i+5].push_back(r[i+1]);
+    //     w_wl[i+6].push_back(r[i+2]);
+    //     w_wl[i+7].push_back(r[i+3]);
+    // }
+
+    // q.finish();
+    // q1.finish();
+    // q2.finish();
+    // q3.finish();
+
+    // cl::Event w[NUM_TESTS], x[NUM_TESTS], r[NUM_TESTS];
+    // std::vector<cl::Event> w_wl[NUM_TESTS], x_wl[NUM_TESTS], r_wl[NUM_TESTS];
+    // for (int i = 0; i < NUM_TESTS; i+=4) {
+
+    //     krnl_mmult.setArg(0, a_buf[i%NUM_MAT]);
+    //     krnl_mmult.setArg(1, b_buf[i%NUM_MAT]);
+    //     krnl_mmult.setArg(2, c_buf[i%NUM_MAT]);
+
+    //     if (i == 0) {
+    //         q.enqueueMigrateMemObjects({a_buf[i%NUM_MAT], b_buf[i%NUM_MAT]}, 0, NULL, &w[i]);
+    //     } else {
+    //         q.enqueueMigrateMemObjects({a_buf[i%NUM_MAT], b_buf[i%NUM_MAT]}, 0, &w_wl[i], &w[i]);
+    //     } 
+
+    //     x_wl[i].push_back(w[i]);
+    //     if (i + 1 < NUM_TESTS) {
+    //         w_wl[i+1].push_back(w[i]);
+    //     }
+
+    //     q.enqueueTask(krnl_mmult, &x_wl[i], &x[i]);
+    //     r_wl[i].push_back(x[i]);
+
+    //     krnl_mmult.setArg(0, a_buf[(i+1)%NUM_MAT]);
+    //     krnl_mmult.setArg(1, b_buf[(i+1)%NUM_MAT]);
+    //     krnl_mmult.setArg(2, c_buf[(i+1)%NUM_MAT]);
+    //     q.enqueueMigrateMemObjects({a_buf[(i+1)%NUM_MAT], b_buf[(i+1)%NUM_MAT]}, 0, &w_wl[i+1], &w[i+1]);
+    //     x_wl[i+1].push_back(w[i+1]);
+    //     if (i + 2 < NUM_TESTS) {
+    //         w_wl[i+2].push_back(w[i+1]);
+    //     }
+
+    //     q.enqueueMigrateMemObjects({c_buf[i%NUM_MAT]}, CL_MIGRATE_MEM_OBJECT_HOST, &r_wl[i], &r[i]);
+    //     if (i + 4 < NUM_TESTS) {
+    //         w_wl[i+4].push_back(r[i]);
+    //     }
+    //     if (i + 1 < NUM_TESTS) {
+    //         r_wl[i+1].push_back(r[i]);
+    //     }
+
+    //     q.enqueueTask(krnl_mmult, &x_wl[i+1], &x[i+1]);
+    //     r_wl[i+1].push_back(x[i+1]);
+
+    //     krnl_mmult.setArg(0, a_buf[(i+2)%NUM_MAT]);
+    //     krnl_mmult.setArg(1, b_buf[(i+2)%NUM_MAT]);
+    //     krnl_mmult.setArg(2, c_buf[(i+2)%NUM_MAT]);
+    //     q.enqueueMigrateMemObjects({a_buf[(i+2)%NUM_MAT], b_buf[(i+2)%NUM_MAT]}, 0, &w_wl[i+2], &w[i+2]);
+    //     x_wl[i+2].push_back(w[i+2]);
+    //     if (i + 3 < NUM_TESTS) {
+    //         w_wl[i+3].push_back(w[i+2]);
+    //     }
+
+    //     q.enqueueMigrateMemObjects({c_buf[(i+1)%NUM_MAT]}, CL_MIGRATE_MEM_OBJECT_HOST, &r_wl[i+1], &r[i+1]);
+    //     if (i + 5 < NUM_TESTS) {
+    //         w_wl[i+5].push_back(r[i+1]);
+    //     }
+    //     if (i + 2 < NUM_TESTS) {
+    //         r_wl[i+2].push_back(r[i+1]);
+    //     }
+
+    //     q.enqueueTask(krnl_mmult, &x_wl[i+2], &x[i+2]);
+    //     r_wl[i+2].push_back(x[i+2]);
+
+    //     krnl_mmult.setArg(0, a_buf[(i+3)%NUM_MAT]);
+    //     krnl_mmult.setArg(1, b_buf[(i+3)%NUM_MAT]);
+    //     krnl_mmult.setArg(2, c_buf[(i+3)%NUM_MAT]);
+    //     q.enqueueMigrateMemObjects({a_buf[(i+3)%NUM_MAT], b_buf[(i+3)%NUM_MAT]}, 0, &w_wl[i+3], &w[i+3]);
+    //     x_wl[i+3].push_back(w[i+3]);
+    //     if (i + 4 < NUM_TESTS) {
+    //         w_wl[i+4].push_back(w[i+3]);
+    //     }
+
+    //     q.enqueueMigrateMemObjects({c_buf[(i+2)%NUM_MAT]}, CL_MIGRATE_MEM_OBJECT_HOST, &r_wl[i+2], &r[i+2]);
+    //     if (i + 6 < NUM_TESTS) {
+    //         w_wl[i+6].push_back(r[i+2]);
+    //     }
+    //     if (i + 3 < NUM_TESTS) {
+    //         r_wl[i+3].push_back(r[i+2]);
+    //     }
+
+    //     q.enqueueTask(krnl_mmult, &x_wl[i+3], &x[i+3]);
+    //     r_wl[i+3].push_back(x[i+3]);
+
+    //     q.enqueueMigrateMemObjects({c_buf[(i+3)%NUM_MAT]}, CL_MIGRATE_MEM_OBJECT_HOST, &r_wl[i+3], &r[i+3]);
+    //     if (i + 7 < NUM_TESTS) {
+    //         w_wl[i+7].push_back(r[i+3]);
+    //     }
+    //     if (i + 4 < NUM_TESTS) {
+    //         r_wl[i+4].push_back(r[i+3]);
+    //     }
+
+    // }
+    // q.finish();
+
+    cl::Event w[NUM_TESTS], x[NUM_TESTS], r[NUM_TESTS];
+    std::vector<cl::Event> w_wl[NUM_TESTS], x_wl[NUM_TESTS], r_wl[NUM_TESTS];
+    for (int i = 0; i < NUM_TESTS; i+=4) {
+
+        krnl_mmult_1.setArg(0, a_buf[i%NUM_MAT]);
+        krnl_mmult_1.setArg(1, b_buf[i%NUM_MAT]);
+        krnl_mmult_1.setArg(2, c_buf[i%NUM_MAT]);
+
+        if (i == 0) {
+            q.enqueueMigrateMemObjects({a_buf[i%NUM_MAT], b_buf[i%NUM_MAT]}, 0, NULL, &w[i]);
+        } else {
+            q.enqueueMigrateMemObjects({a_buf[i%NUM_MAT], b_buf[i%NUM_MAT]}, 0, &w_wl[i], &w[i]);
+        } 
+
+        x_wl[i].push_back(w[i]);
+        if (i + 1 < NUM_TESTS) {
+            w_wl[i+1].push_back(w[i]);
         }
 
-        write_events.push_back(write_ev);
-        q.enqueueTask(krnl_mmult, &write_events, &exec_ev);
-        exec_events.push_back(exec_ev);
-        q.enqueueMigrateMemObjects({c_buf[i%NUM_MAT]}, CL_MIGRATE_MEM_OBJECT_HOST, &exec_events, &read_ev);
-        read_events.push_back(read_ev);
+        q.enqueueTask(krnl_mmult_1, &x_wl[i], &x[i]);
+        r_wl[i].push_back(x[i]);
+
+        krnl_mmult_2.setArg(0, a_buf[(i+1)%NUM_MAT]);
+        krnl_mmult_2.setArg(1, b_buf[(i+1)%NUM_MAT]);
+        krnl_mmult_2.setArg(2, c_buf[(i+1)%NUM_MAT]);
+        q1.enqueueMigrateMemObjects({a_buf[(i+1)%NUM_MAT], b_buf[(i+1)%NUM_MAT]}, 0, &w_wl[i+1], &w[i+1]);
+        x_wl[i+1].push_back(w[i+1]);
+        if (i + 2 < NUM_TESTS) {
+            w_wl[i+2].push_back(w[i+1]);
+        }
+
+        q.enqueueMigrateMemObjects({c_buf[i%NUM_MAT]}, CL_MIGRATE_MEM_OBJECT_HOST, &r_wl[i], &r[i]);
+        if (i + 4 < NUM_TESTS) {
+            w_wl[i+4].push_back(r[i]);
+        }
+        if (i + 1 < NUM_TESTS) {
+            r_wl[i+1].push_back(r[i]);
+        }
+
+        q1.enqueueTask(krnl_mmult_2, &x_wl[i+1], &x[i+1]);
+        r_wl[i+1].push_back(x[i+1]);
+
+        krnl_mmult_1.setArg(0, a_buf[(i+2)%NUM_MAT]);
+        krnl_mmult_1.setArg(1, b_buf[(i+2)%NUM_MAT]);
+        krnl_mmult_1.setArg(2, c_buf[(i+2)%NUM_MAT]);
+        q2.enqueueMigrateMemObjects({a_buf[(i+2)%NUM_MAT], b_buf[(i+2)%NUM_MAT]}, 0, &w_wl[i+2], &w[i+2]);
+        x_wl[i+2].push_back(w[i+2]);
+        if (i + 3 < NUM_TESTS) {
+            w_wl[i+3].push_back(w[i+2]);
+        }
+
+        q1.enqueueMigrateMemObjects({c_buf[(i+1)%NUM_MAT]}, CL_MIGRATE_MEM_OBJECT_HOST, &r_wl[i+1], &r[i+1]);
+        if (i + 5 < NUM_TESTS) {
+            w_wl[i+5].push_back(r[i+1]);
+        }
+        if (i + 2 < NUM_TESTS) {
+            r_wl[i+2].push_back(r[i+1]);
+        }
+
+        q2.enqueueTask(krnl_mmult_1, &x_wl[i+2], &x[i+2]);
+        r_wl[i+2].push_back(x[i+2]);
+
+        krnl_mmult_2.setArg(0, a_buf[(i+3)%NUM_MAT]);
+        krnl_mmult_2.setArg(1, b_buf[(i+3)%NUM_MAT]);
+        krnl_mmult_2.setArg(2, c_buf[(i+3)%NUM_MAT]);
+        q3.enqueueMigrateMemObjects({a_buf[(i+3)%NUM_MAT], b_buf[(i+3)%NUM_MAT]}, 0, &w_wl[i+3], &w[i+3]);
+        x_wl[i+3].push_back(w[i+3]);
+        if (i + 4 < NUM_TESTS) {
+            w_wl[i+4].push_back(w[i+3]);
+        }
+
+        q2.enqueueMigrateMemObjects({c_buf[(i+2)%NUM_MAT]}, CL_MIGRATE_MEM_OBJECT_HOST, &r_wl[i+2], &r[i+2]);
+        if (i + 6 < NUM_TESTS) {
+            w_wl[i+6].push_back(r[i+2]);
+        }
+        if (i + 3 < NUM_TESTS) {
+            r_wl[i+3].push_back(r[i+2]);
+        }
+
+        q3.enqueueTask(krnl_mmult_2, &x_wl[i+3], &x[i+3]);
+        r_wl[i+3].push_back(x[i+3]);
+
+        q3.enqueueMigrateMemObjects({c_buf[(i+3)%NUM_MAT]}, CL_MIGRATE_MEM_OBJECT_HOST, &r_wl[i+3], &r[i+3]);
+        if (i + 7 < NUM_TESTS) {
+            w_wl[i+7].push_back(r[i+3]);
+        }
+        if (i + 4 < NUM_TESTS) {
+            r_wl[i+4].push_back(r[i+3]);
+        }
+
     }
-
     q.finish();
+    q1.finish();
+    q2.finish();
+    q3.finish();
+
 
     // ------------------------------------------------------------------------------------
     // Step 4: Release Allocated Resources

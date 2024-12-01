@@ -1,0 +1,186 @@
+
+
+================================================================
+== Vitis HLS Report for 'mmult_fpga'
+================================================================
+* Date:           Thu Oct 17 03:36:17 2024
+
+* Version:        2020.2 (Build 3064766 on Wed Nov 18 09:12:47 MST 2020)
+* Project:        mmult_fpga
+* Solution:       solution (Vitis Kernel Flow Target)
+* Product family: zynquplus
+* Target device:  xczu3eg-sbva484-1-i
+
+
+================================================================
+== Performance Estimates
+================================================================
++ Timing: 
+    * Summary: 
+    +--------+---------+----------+------------+
+    |  Clock |  Target | Estimated| Uncertainty|
+    +--------+---------+----------+------------+
+    |ap_clk  |  6.67 ns|  4.867 ns|     1.80 ns|
+    +--------+---------+----------+------------+
+
++ Latency: 
+    * Summary: 
+    +---------+---------+----------+----------+--------+--------+----------+
+    |  Latency (cycles) |  Latency (absolute) |     Interval    | Pipeline |
+    |   min   |   max   |    min   |    max   |   min  |   max  |   Type   |
+    +---------+---------+----------+----------+--------+--------+----------+
+    |   300891|   300891|  2.006 ms|  2.006 ms|  300822|  300822|  dataflow|
+    +---------+---------+----------+----------+--------+--------+----------+
+
+    + Detail: 
+        * Instance: 
+        N/A
+
+        * Loop: 
+        N/A
+
+============================================================
++ Verbose Summary: Synthesis Manager
+============================================================
+InlineROM: 1
+ExposeGlobal: 0
+============================================================
++ Verbose Summary: CDFG Model
+============================================================
+IsTopModel: 1
+ResetActiveHigh: 1
+IsCombinational: 2
+IsDatapathOnly: 0
+HasWiredReturn: 1
+HasMFsm: 0
+HasVarLatency: 1
+IsPipeline: 0
+IsRtlPipelined: 0
+IsInstanceOverlapped: 0
+IsDontTouch: 0
+HasImplIP: 0
+IsGatedGlobalClock: 0
+
+
+============================================================
++ Verbose Summary: Schedule
+============================================================
+* Number of FSM states : 7
+* Pipeline : 0
+* Dataflow Pipeline: 1
+  DF-Pipeline-0: Size = 7, States = { 1 2 3 4 5 6 7 }
+
+* FSM state transitions: 
+1 --> 2 
+2 --> 3 
+3 --> 4 
+4 --> 5 
+5 --> 6 
+6 --> 7 
+7 --> 
+
+* FSM state operations: 
+
+State 1 <SV = 0> <Delay = 1.00>
+ST_1 : Operation 8 [1/1] (1.00ns)   --->   "%C_read = read i64 @_ssdm_op_Read.s_axilite.i64, i64 %C" [/mnt/castor/seas_home/s/songqij/ese532_code/hw6/apps/mmult/fpga/hls/MMult.cpp:111]   --->   Operation 8 'read' 'C_read' <Predicate = true> <Delay = 1.00> <CoreInst = "s_axilite">   --->   Core 122 's_axilite' <Latency = 0> <II = 1> <Delay = 1.00> <Adapter> <Opcode : 'read' 'write'>
+ST_1 : Operation 9 [1/1] (1.00ns)   --->   "%B_read = read i64 @_ssdm_op_Read.s_axilite.i64, i64 %B" [/mnt/castor/seas_home/s/songqij/ese532_code/hw6/apps/mmult/fpga/hls/MMult.cpp:111]   --->   Operation 9 'read' 'B_read' <Predicate = true> <Delay = 1.00> <CoreInst = "s_axilite">   --->   Core 122 's_axilite' <Latency = 0> <II = 1> <Delay = 1.00> <Adapter> <Opcode : 'read' 'write'>
+ST_1 : Operation 10 [1/1] (1.00ns)   --->   "%A_read = read i64 @_ssdm_op_Read.s_axilite.i64, i64 %A" [/mnt/castor/seas_home/s/songqij/ese532_code/hw6/apps/mmult/fpga/hls/MMult.cpp:111]   --->   Operation 10 'read' 'A_read' <Predicate = true> <Delay = 1.00> <CoreInst = "s_axilite">   --->   Core 122 's_axilite' <Latency = 0> <II = 1> <Delay = 1.00> <Adapter> <Opcode : 'read' 'write'>
+ST_1 : Operation 11 [1/1] (0.00ns)   --->   "%C_c = alloca i64 1" [/mnt/castor/seas_home/s/songqij/ese532_code/hw6/apps/mmult/fpga/hls/MMult.cpp:111]   --->   Operation 11 'alloca' 'C_c' <Predicate = true> <Delay = 0.00> <CoreInst = "FIFO_SRL">   --->   Core 81 'FIFO_SRL' <Latency = 0> <II = 1> <Delay = 2.16> <Storage> <Opcode : 'read' 'write' 'nbread' 'nbwrite'> <Ports = 0> <Width = 64> <Depth = 3> <FIFO>
+ST_1 : Operation 12 [1/1] (0.00ns)   --->   "%A_tmp = alloca i64 1" [/mnt/castor/seas_home/s/songqij/ese532_code/hw6/apps/mmult/fpga/hls/MMult.cpp:120]   --->   Operation 12 'alloca' 'A_tmp' <Predicate = true> <Delay = 0.00> <CoreInst = "FIFO_SRL">   --->   Core 81 'FIFO_SRL' <Latency = 0> <II = 1> <Delay = 2.16> <Storage> <Opcode : 'read' 'write' 'nbread' 'nbwrite'> <Ports = 0> <Width = 32> <Depth = 2> <FIFO>
+ST_1 : Operation 13 [1/1] (0.00ns)   --->   "%B_tmp = alloca i64 1" [/mnt/castor/seas_home/s/songqij/ese532_code/hw6/apps/mmult/fpga/hls/MMult.cpp:121]   --->   Operation 13 'alloca' 'B_tmp' <Predicate = true> <Delay = 0.00> <CoreInst = "FIFO_SRL">   --->   Core 81 'FIFO_SRL' <Latency = 0> <II = 1> <Delay = 2.16> <Storage> <Opcode : 'read' 'write' 'nbread' 'nbwrite'> <Ports = 0> <Width = 32> <Depth = 2> <FIFO>
+ST_1 : Operation 14 [1/1] (0.00ns)   --->   "%result = alloca i64 1" [/mnt/castor/seas_home/s/songqij/ese532_code/hw6/apps/mmult/fpga/hls/MMult.cpp:122]   --->   Operation 14 'alloca' 'result' <Predicate = true> <Delay = 0.00> <CoreInst = "FIFO_SRL">   --->   Core 81 'FIFO_SRL' <Latency = 0> <II = 1> <Delay = 2.16> <Storage> <Opcode : 'read' 'write' 'nbread' 'nbwrite'> <Ports = 0> <Width = 32> <Depth = 2> <FIFO>
+
+State 2 <SV = 1> <Delay = 4.86>
+ST_2 : Operation 15 [2/2] (4.86ns)   --->   "%call_ln124 = call void @read3, i512 %b0, i512 %b1, i32 %A_tmp, i32 %B_tmp, i64 %A_read, i64 %B_read, i64 %C_read, i64 %C_c" [/mnt/castor/seas_home/s/songqij/ese532_code/hw6/apps/mmult/fpga/hls/MMult.cpp:124]   --->   Operation 15 'call' 'call_ln124' <Predicate = true> <Delay = 4.86> <CoreType = "Generic">   --->   Core 0 '' <Latency = 0> <II = 1> <Delay = 1.00> <Generic> <Opcode : >
+
+State 3 <SV = 2> <Delay = 0.00>
+ST_3 : Operation 16 [1/2] (0.00ns)   --->   "%call_ln124 = call void @read3, i512 %b0, i512 %b1, i32 %A_tmp, i32 %B_tmp, i64 %A_read, i64 %B_read, i64 %C_read, i64 %C_c" [/mnt/castor/seas_home/s/songqij/ese532_code/hw6/apps/mmult/fpga/hls/MMult.cpp:124]   --->   Operation 16 'call' 'call_ln124' <Predicate = true> <Delay = 0.00> <CoreType = "Generic">   --->   Core 0 '' <Latency = 0> <II = 1> <Delay = 1.00> <Generic> <Opcode : >
+
+State 4 <SV = 3> <Delay = 0.00>
+ST_4 : Operation 17 [2/2] (0.00ns)   --->   "%call_ln125 = call void @execution, i32 %A_tmp, i32 %B_tmp, i32 %result" [/mnt/castor/seas_home/s/songqij/ese532_code/hw6/apps/mmult/fpga/hls/MMult.cpp:125]   --->   Operation 17 'call' 'call_ln125' <Predicate = true> <Delay = 0.00> <CoreType = "Generic">   --->   Core 0 '' <Latency = 0> <II = 1> <Delay = 1.00> <Generic> <Opcode : >
+
+State 5 <SV = 4> <Delay = 0.00>
+ST_5 : Operation 18 [1/2] (0.00ns)   --->   "%call_ln125 = call void @execution, i32 %A_tmp, i32 %B_tmp, i32 %result" [/mnt/castor/seas_home/s/songqij/ese532_code/hw6/apps/mmult/fpga/hls/MMult.cpp:125]   --->   Operation 18 'call' 'call_ln125' <Predicate = true> <Delay = 0.00> <CoreType = "Generic">   --->   Core 0 '' <Latency = 0> <II = 1> <Delay = 1.00> <Generic> <Opcode : >
+
+State 6 <SV = 5> <Delay = 0.00>
+ST_6 : Operation 19 [2/2] (0.00ns)   --->   "%call_ln126 = call void @write, i32 %result, i512 %b2, i64 %C_c" [/mnt/castor/seas_home/s/songqij/ese532_code/hw6/apps/mmult/fpga/hls/MMult.cpp:126]   --->   Operation 19 'call' 'call_ln126' <Predicate = true> <Delay = 0.00> <CoreType = "Generic">   --->   Core 0 '' <Latency = 0> <II = 1> <Delay = 1.00> <Generic> <Opcode : >
+
+State 7 <SV = 6> <Delay = 0.00>
+ST_7 : Operation 20 [1/1] (0.00ns)   --->   "%specdataflowpipeline_ln0 = specdataflowpipeline void @_ssdm_op_SpecDataflowPipeline, i32 4294967295, i32 0, void @empty_7"   --->   Operation 20 'specdataflowpipeline' 'specdataflowpipeline_ln0' <Predicate = true> <Delay = 0.00>
+ST_7 : Operation 21 [1/1] (0.00ns)   --->   "%spectopmodule_ln0 = spectopmodule void @_ssdm_op_SpecTopModule, void @empty_1"   --->   Operation 21 'spectopmodule' 'spectopmodule_ln0' <Predicate = true> <Delay = 0.00>
+ST_7 : Operation 22 [1/1] (0.00ns)   --->   "%specinterface_ln0 = specinterface void @_ssdm_op_SpecInterface, i32 0, void @empty, i32 0, i32 0, void @empty_7, i32 0, i32 0, void @empty_7, void @empty_7, void @empty_7, i32 0, i32 0, i32 0, i32 0, void @empty_7, void @empty_7"   --->   Operation 22 'specinterface' 'specinterface_ln0' <Predicate = true> <Delay = 0.00>
+ST_7 : Operation 23 [1/1] (0.00ns)   --->   "%specinterface_ln0 = specinterface void @_ssdm_op_SpecInterface, i512 %b0, void @empty_2, i32 0, i32 0, void @empty_7, i32 64, i32 0, void @empty_19, void @empty_17, void @empty_7, i32 16, i32 16, i32 16, i32 16, void @empty_7, void @empty_7"   --->   Operation 23 'specinterface' 'specinterface_ln0' <Predicate = true> <Delay = 0.00>
+ST_7 : Operation 24 [1/1] (0.00ns)   --->   "%specbitsmap_ln0 = specbitsmap void @_ssdm_op_SpecBitsMap, i512 %b0"   --->   Operation 24 'specbitsmap' 'specbitsmap_ln0' <Predicate = true> <Delay = 0.00>
+ST_7 : Operation 25 [1/1] (0.00ns)   --->   "%specinterface_ln0 = specinterface void @_ssdm_op_SpecInterface, i512 %b1, void @empty_2, i32 0, i32 0, void @empty_7, i32 64, i32 0, void @empty_6, void @empty_17, void @empty_7, i32 16, i32 16, i32 16, i32 16, void @empty_7, void @empty_7"   --->   Operation 25 'specinterface' 'specinterface_ln0' <Predicate = true> <Delay = 0.00>
+ST_7 : Operation 26 [1/1] (0.00ns)   --->   "%specbitsmap_ln0 = specbitsmap void @_ssdm_op_SpecBitsMap, i512 %b1"   --->   Operation 26 'specbitsmap' 'specbitsmap_ln0' <Predicate = true> <Delay = 0.00>
+ST_7 : Operation 27 [1/1] (0.00ns)   --->   "%specinterface_ln0 = specinterface void @_ssdm_op_SpecInterface, i512 %b2, void @empty_2, i32 0, i32 0, void @empty_7, i32 64, i32 0, void @empty_4, void @empty_17, void @empty_7, i32 16, i32 16, i32 16, i32 16, void @empty_7, void @empty_7"   --->   Operation 27 'specinterface' 'specinterface_ln0' <Predicate = true> <Delay = 0.00>
+ST_7 : Operation 28 [1/1] (0.00ns)   --->   "%specbitsmap_ln0 = specbitsmap void @_ssdm_op_SpecBitsMap, i512 %b2"   --->   Operation 28 'specbitsmap' 'specbitsmap_ln0' <Predicate = true> <Delay = 0.00>
+ST_7 : Operation 29 [1/1] (0.00ns)   --->   "%specinterface_ln0 = specinterface void @_ssdm_op_SpecInterface, i64 %A, void @empty_14, i32 0, i32 0, void @empty_7, i32 0, i32 0, void @empty_18, void @empty_3, void @empty_7, i32 0, i32 0, i32 0, i32 0, void @empty_7, void @empty_15"   --->   Operation 29 'specinterface' 'specinterface_ln0' <Predicate = true> <Delay = 0.00>
+ST_7 : Operation 30 [1/1] (0.00ns)   --->   "%specinterface_ln0 = specinterface void @_ssdm_op_SpecInterface, i64 %A, void @empty_16, i32 0, i32 0, void @empty_7, i32 0, i32 0, void @empty_7, void @empty_7, void @empty_7, i32 0, i32 0, i32 0, i32 0, void @empty_7, void @empty_15"   --->   Operation 30 'specinterface' 'specinterface_ln0' <Predicate = true> <Delay = 0.00>
+ST_7 : Operation 31 [1/1] (0.00ns)   --->   "%specinterface_ln0 = specinterface void @_ssdm_op_SpecInterface, i64 %B, void @empty_14, i32 0, i32 0, void @empty_7, i32 0, i32 0, void @empty_18, void @empty_8, void @empty_7, i32 0, i32 0, i32 0, i32 0, void @empty_7, void @empty_15"   --->   Operation 31 'specinterface' 'specinterface_ln0' <Predicate = true> <Delay = 0.00>
+ST_7 : Operation 32 [1/1] (0.00ns)   --->   "%specinterface_ln0 = specinterface void @_ssdm_op_SpecInterface, i64 %B, void @empty_16, i32 0, i32 0, void @empty_7, i32 0, i32 0, void @empty_7, void @empty_7, void @empty_7, i32 0, i32 0, i32 0, i32 0, void @empty_7, void @empty_15"   --->   Operation 32 'specinterface' 'specinterface_ln0' <Predicate = true> <Delay = 0.00>
+ST_7 : Operation 33 [1/1] (0.00ns)   --->   "%specinterface_ln0 = specinterface void @_ssdm_op_SpecInterface, i64 %C, void @empty_14, i32 0, i32 0, void @empty_7, i32 0, i32 0, void @empty_18, void @empty_10, void @empty_7, i32 0, i32 0, i32 0, i32 0, void @empty_7, void @empty_15"   --->   Operation 33 'specinterface' 'specinterface_ln0' <Predicate = true> <Delay = 0.00>
+ST_7 : Operation 34 [1/1] (0.00ns)   --->   "%specinterface_ln0 = specinterface void @_ssdm_op_SpecInterface, i64 %C, void @empty_16, i32 0, i32 0, void @empty_7, i32 0, i32 0, void @empty_7, void @empty_7, void @empty_7, i32 0, i32 0, i32 0, i32 0, void @empty_7, void @empty_15"   --->   Operation 34 'specinterface' 'specinterface_ln0' <Predicate = true> <Delay = 0.00>
+ST_7 : Operation 35 [1/1] (0.00ns)   --->   "%specinterface_ln0 = specinterface void @_ssdm_op_SpecInterface, i32 0, void @empty_14, i32 0, i32 0, void @empty_7, i32 0, i32 0, void @empty_18, void @empty_7, void @empty_7, i32 0, i32 0, i32 0, i32 0, void @empty_7, void @empty_7"   --->   Operation 35 'specinterface' 'specinterface_ln0' <Predicate = true> <Delay = 0.00>
+ST_7 : Operation 36 [1/1] (0.00ns)   --->   "%empty = specchannel i32 @_ssdm_op_SpecChannel, void @A_tmp_str, i32 1, void @p_str, void @p_str, i32 2, i32 2, i32 %A_tmp, i32 %A_tmp"   --->   Operation 36 'specchannel' 'empty' <Predicate = true> <Delay = 0.00>
+ST_7 : Operation 37 [1/1] (0.00ns)   --->   "%specinterface_ln0 = specinterface void @_ssdm_op_SpecInterface, i32 %A_tmp, void @empty_9, i32 0, i32 0, void @empty_7, i32 0, i32 0, void @empty_7, void @empty_7, void @empty_7, i32 0, i32 0, i32 0, i32 0, void @empty_7, void @empty_7"   --->   Operation 37 'specinterface' 'specinterface_ln0' <Predicate = true> <Delay = 0.00>
+ST_7 : Operation 38 [1/1] (0.00ns)   --->   "%empty_38 = specchannel i32 @_ssdm_op_SpecChannel, void @B_tmp_str, i32 1, void @p_str, void @p_str, i32 2, i32 2, i32 %B_tmp, i32 %B_tmp"   --->   Operation 38 'specchannel' 'empty_38' <Predicate = true> <Delay = 0.00>
+ST_7 : Operation 39 [1/1] (0.00ns)   --->   "%specinterface_ln0 = specinterface void @_ssdm_op_SpecInterface, i32 %B_tmp, void @empty_9, i32 0, i32 0, void @empty_7, i32 0, i32 0, void @empty_7, void @empty_7, void @empty_7, i32 0, i32 0, i32 0, i32 0, void @empty_7, void @empty_7"   --->   Operation 39 'specinterface' 'specinterface_ln0' <Predicate = true> <Delay = 0.00>
+ST_7 : Operation 40 [1/1] (0.00ns)   --->   "%empty_39 = specchannel i32 @_ssdm_op_SpecChannel, void @result_str, i32 1, void @p_str, void @p_str, i32 2, i32 2, i32 %result, i32 %result"   --->   Operation 40 'specchannel' 'empty_39' <Predicate = true> <Delay = 0.00>
+ST_7 : Operation 41 [1/1] (0.00ns)   --->   "%specinterface_ln0 = specinterface void @_ssdm_op_SpecInterface, i32 %result, void @empty_9, i32 0, i32 0, void @empty_7, i32 0, i32 0, void @empty_7, void @empty_7, void @empty_7, i32 0, i32 0, i32 0, i32 0, void @empty_7, void @empty_7"   --->   Operation 41 'specinterface' 'specinterface_ln0' <Predicate = true> <Delay = 0.00>
+ST_7 : Operation 42 [1/1] (0.00ns)   --->   "%empty_40 = specchannel i32 @_ssdm_op_SpecChannel, void @C_c_str, i32 1, void @p_str, void @p_str, i32 3, i32 0, i64 %C_c, i64 %C_c" [/mnt/castor/seas_home/s/songqij/ese532_code/hw6/apps/mmult/fpga/hls/MMult.cpp:111]   --->   Operation 42 'specchannel' 'empty_40' <Predicate = true> <Delay = 0.00>
+ST_7 : Operation 43 [1/1] (0.00ns)   --->   "%specinterface_ln111 = specinterface void @_ssdm_op_SpecInterface, i64 %C_c, void @ap_fifo_str, i32 0, i32 0, void @p_str, i32 0, i32 0, void @p_str, void @p_str, void @p_str, i32 2, i32 2, i32 16, i32 16, void @p_str, void @p_str" [/mnt/castor/seas_home/s/songqij/ese532_code/hw6/apps/mmult/fpga/hls/MMult.cpp:111]   --->   Operation 43 'specinterface' 'specinterface_ln111' <Predicate = true> <Delay = 0.00>
+ST_7 : Operation 44 [1/2] (0.00ns)   --->   "%call_ln126 = call void @write, i32 %result, i512 %b2, i64 %C_c" [/mnt/castor/seas_home/s/songqij/ese532_code/hw6/apps/mmult/fpga/hls/MMult.cpp:126]   --->   Operation 44 'call' 'call_ln126' <Predicate = true> <Delay = 0.00> <CoreType = "Generic">   --->   Core 0 '' <Latency = 0> <II = 1> <Delay = 1.00> <Generic> <Opcode : >
+ST_7 : Operation 45 [1/1] (0.00ns)   --->   "%ret_ln127 = ret" [/mnt/castor/seas_home/s/songqij/ese532_code/hw6/apps/mmult/fpga/hls/MMult.cpp:127]   --->   Operation 45 'ret' 'ret_ln127' <Predicate = true> <Delay = 0.00>
+
+
+============================================================
++ Verbose Summary: Timing violations
+============================================================
+Target clock period: 6.67ns, clock uncertainty: 1.8ns.
+
+ <State 1>: 1ns
+The critical path consists of the following:
+	s_axi read on port 'C' (/mnt/castor/seas_home/s/songqij/ese532_code/hw6/apps/mmult/fpga/hls/MMult.cpp:111) [7]  (1 ns)
+
+ <State 2>: 4.87ns
+The critical path consists of the following:
+	'call' operation ('call_ln124', /mnt/castor/seas_home/s/songqij/ese532_code/hw6/apps/mmult/fpga/hls/MMult.cpp:124) to 'read3' [38]  (4.87 ns)
+
+ <State 3>: 0ns
+The critical path consists of the following:
+
+ <State 4>: 0ns
+The critical path consists of the following:
+
+ <State 5>: 0ns
+The critical path consists of the following:
+
+ <State 6>: 0ns
+The critical path consists of the following:
+
+ <State 7>: 0ns
+The critical path consists of the following:
+
+
+============================================================
++ Verbose Summary: Binding
+============================================================
+N/A
+* FSMD analyzer results:
+  - Output states:
+ - Input state : 
+  - Chain level:
+	State 1
+	State 2
+	State 3
+	State 4
+	State 5
+	State 6
+	State 7
+
+
+============================================================
++ Verbose Summary: Datapath Resource usage 
+============================================================
+N/A

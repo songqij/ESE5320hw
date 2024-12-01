@@ -1,0 +1,48 @@
+===============================================================================
+Version:    v++ v2020.2 (64-bit)
+Build:      SW Build (by xbuild) on 2020-11-18-05:13:29
+Copyright:  Copyright 1986-2020 Xilinx, Inc. All Rights Reserved.
+Created:    Thu Oct 17 03:36:54 2024
+===============================================================================
+
+-------------------------------------------------------------------------------
+Design Name:             kernel
+Target Device:           avnet.com:u96v2_sbc_base:u96v2_sbc_base:1.0
+Target Clock:            150.000000MHz
+Total number of kernels: 1
+-------------------------------------------------------------------------------
+
+Kernel Summary
+Kernel Name  Type  Target              OpenCL Library  Compute Units
+-----------  ----  ------------------  --------------  -------------
+mmult_fpga   c     fpga0:OCL_REGION_0  kernel          1
+
+
+-------------------------------------------------------------------------------
+OpenCL Binary:     kernel
+Kernels mapped to: clc_region
+
+Timing Information (MHz)
+Compute Unit  Kernel Name  Module Name  Target Frequency  Estimated Frequency
+------------  -----------  -----------  ----------------  -------------------
+mmult_fpga_1  mmult_fpga   read3        149.925034        205.465378
+mmult_fpga_1  mmult_fpga   execution    149.925034        214.086914
+mmult_fpga_1  mmult_fpga   write_r      149.925034        205.465378
+mmult_fpga_1  mmult_fpga   mmult_fpga   149.925034        205.465378
+
+Latency Information
+Compute Unit  Kernel Name  Module Name  Start Interval  Best (cycles)  Avg (cycles)  Worst (cycles)  Best (absolute)  Avg (absolute)  Worst (absolute)
+------------  -----------  -----------  --------------  -------------  ------------  --------------  ---------------  --------------  ----------------
+mmult_fpga_1  mmult_fpga   read3        133192          133192         133192        133192          0.888 ms         0.888 ms        0.888 ms
+mmult_fpga_1  mmult_fpga   execution    300821          300821         300821        300821          2.006 ms         2.006 ms        2.006 ms
+mmult_fpga_1  mmult_fpga   write_r      133191          133191         133191        133191          0.888 ms         0.888 ms        0.888 ms
+mmult_fpga_1  mmult_fpga   mmult_fpga   300822          300891         300891        300891          2.006 ms         2.006 ms        2.006 ms
+
+Area Information
+Compute Unit  Kernel Name  Module Name  FF     LUT    DSP  BRAM  URAM
+------------  -----------  -----------  -----  -----  ---  ----  ----
+mmult_fpga_1  mmult_fpga   read3        2115   625    0    0     0
+mmult_fpga_1  mmult_fpga   execution    18705  13670  0    64    0
+mmult_fpga_1  mmult_fpga   write_r      667    1004   0    0     0
+mmult_fpga_1  mmult_fpga   mmult_fpga   26380  20762  0    154   0
+-------------------------------------------------------------------------------

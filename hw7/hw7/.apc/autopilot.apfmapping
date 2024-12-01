@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<autopilotfilemapping:AutoPilotFileMapping xmlns:autopilotfilemapping="www.autoesl.com/autopilotfilemapping">
+  <source>
+    <originFiles name="Compress.cpp" path="/mnt/castor/seas_home/s/songqij/ese532_code/hw7/Compress.cpp"/>
+    <originFiles name="Differentiate.cpp" path="/mnt/castor/seas_home/s/songqij/ese532_code/hw7/Differentiate.cpp"/>
+    <originFiles name="Scale.cpp" path="/mnt/castor/seas_home/s/songqij/ese532_code/hw7/Scale.cpp"/>
+    <originFiles name="Pipeline.h" path="/mnt/castor/seas_home/s/songqij/ese532_code/hw7/Pipeline.h"/>
+    <originFiles name="Filter.cpp" path="/mnt/castor/seas_home/s/songqij/ese532_code/hw7/Filter.cpp"/>
+  </source>
+  <testbench>
+    <originFiles name="testbench_streaming.cpp" path="/mnt/castor/seas_home/s/songqij/ese532_code/hw7/testbench_streaming.cpp"/>
+  </testbench>
+</autopilotfilemapping:AutoPilotFileMapping>

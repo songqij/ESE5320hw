@@ -1,0 +1,40 @@
+Begin Function 'write'
+
+RTL state condition: (1'b1 == ap_CS_fsm_pp0_stage0)
+# ST_3
+local i <phi_111> <integer> <Phi> 'phi' </mnt/castor/seas_home/s/songqij/ese532_code/hw6/apps/mmult/fpga/hls/MMult.cpp:103->/mnt/castor/seas_home/s/songqij/ese532_code/hw6/apps/mmult/fpga/hls/MMult.cpp:111>
+add_ln103 /mnt/castor/seas_home/s/songqij/ese532_code/hw6/apps/mmult/fpga/hls/MMult.cpp:103
+add_ln103 /mnt/castor/seas_home/s/songqij/ese532_code/hw6/apps/mmult/fpga/hls/MMult.cpp:111
+reg: i_reg_114[17:0] lv
+
+local phi_ln105 <phi_111> <integer> <Phi> 'phi' </mnt/castor/seas_home/s/songqij/ese532_code/hw6/apps/mmult/fpga/hls/MMult.cpp:105->/mnt/castor/seas_home/s/songqij/ese532_code/hw6/apps/mmult/fpga/hls/MMult.cpp:111>
+select_ln105 /mnt/castor/seas_home/s/songqij/ese532_code/hw6/apps/mmult/fpga/hls/MMult.cpp:105
+select_ln105 /mnt/castor/seas_home/s/songqij/ese532_code/hw6/apps/mmult/fpga/hls/MMult.cpp:111
+reg: phi_ln105_reg_125[479:0] lv
+
+local icmp_ln103 <icmp_111> <integer> <Comparator> 'icmp' </mnt/castor/seas_home/s/songqij/ese532_code/hw6/apps/mmult/fpga/hls/MMult.cpp:103->/mnt/castor/seas_home/s/songqij/ese532_code/hw6/apps/mmult/fpga/hls/MMult.cpp:111>
+icmp_ln103 /mnt/castor/seas_home/s/songqij/ese532_code/hw6/apps/mmult/fpga/hls/MMult.cpp:103
+icmp_ln103 /mnt/castor/seas_home/s/songqij/ese532_code/hw6/apps/mmult/fpga/hls/MMult.cpp:111
+reg: icmp_ln103_reg_227[0:0] lv
+
+local icmp_ln105 <icmp_111> <integer> <Comparator> 'icmp' </mnt/castor/seas_home/s/songqij/ese532_code/hw6/apps/mmult/fpga/hls/MMult.cpp:105->/mnt/castor/seas_home/s/songqij/ese532_code/hw6/apps/mmult/fpga/hls/MMult.cpp:111>
+icmp_ln105 /mnt/castor/seas_home/s/songqij/ese532_code/hw6/apps/mmult/fpga/hls/MMult.cpp:105
+icmp_ln105 /mnt/castor/seas_home/s/songqij/ese532_code/hw6/apps/mmult/fpga/hls/MMult.cpp:111
+reg: icmp_ln105_reg_231[0:0] lv
+
+# ST_4
+local tmp <read_145> <integer> <FifoRead> 'read' </mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/common/technology/autopilot/hls_stream_39.h:145>
+tmp /mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/common/technology/autopilot/hls_stream_39.h:145
+reg: tmp_reg_236[31:0] lv
+
+
+RTL state condition: (1'b1 == ap_CS_fsm_state1)
+# ST_1
+local trunc_ln <partselect_111> <integer> <> 'partselect' </mnt/castor/seas_home/s/songqij/ese532_code/hw6/apps/mmult/fpga/hls/MMult.cpp:103->/mnt/castor/seas_home/s/songqij/ese532_code/hw6/apps/mmult/fpga/hls/MMult.cpp:111>
+trunc_ln /mnt/castor/seas_home/s/songqij/ese532_code/hw6/apps/mmult/fpga/hls/MMult.cpp:103
+trunc_ln /mnt/castor/seas_home/s/songqij/ese532_code/hw6/apps/mmult/fpga/hls/MMult.cpp:111
+reg: trunc_ln_reg_211[57:0] lv
+
+
+End Function 'write'
+

@@ -18,6 +18,7 @@ class stopwatch
     inline void start() {
       start_time = std::chrono::high_resolution_clock::now();
       calls++;
+      
     };
 
     inline void stop() {

@@ -1,0 +1,1083 @@
+<!DOCTYPE html>
+
+<html>
+<!-- Styles -->
+<style>
+    #chartdiv {
+      width: 100%;
+      height: 1000px;
+    }
+</style>
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <title>OPTraceViewer</title>
+  <script src="https://www.amcharts.com/lib/3/amcharts.js">
+  </script>
+  <script src="https://www.amcharts.com/lib/3/serial.js">
+  </script>
+  <script src="https://www.amcharts.com/lib/3/gantt.js">
+  </script>
+  <script src="https://www.amcharts.com/lib/3/themes/light.js">
+  </script>
+  <script src="https://www.amcharts.com/lib/3/plugins/export/export.min.js">
+  </script>
+  <link rel="stylesheet" href="https://www.amcharts.com/lib/3/plugins/export/export.css" type="text/css" media="all"/>
+
+  <form name="userInputForm" action="javascript:userInputFormCallback()">
+    <fieldset>
+    <legend>Graph Filters:</legend>
+    <table style="width:100%">
+      <col width="50"></col>
+      <col width="20"></col>
+      <col width="60"></col>
+      <tr>
+        <td style="text-align: center"; colspan="3"><input type="number" name="userDurationFilterSecInput" id="userDurationFilterSecInput" value="2" min="0" max="6000" step="1"> sec</td>
+        <td>Filter out run durations lower than this value</td>
+      </tr>
+      <tr>
+        <td></td>
+        <td></td>
+        <td style="text-align: center"><input type="checkbox" name="userGroupPidSortSelected" id="userGroupPidSortSelected"></td>
+        <td>Group sort by process ID</td>
+      </tr>
+      <tr>
+        <td></td>
+        <td bgcolor="#0099ff"></td>
+        <td style="text-align: center"><input type="checkbox" name="userRollupSelected" id="userRollupSelected"></td>
+        <td>Show rollup entries</td>
+      </tr>
+      <tr>
+        <td></td>
+        <td bgcolor="#8dc49f"></td>
+        <td style="text-align: center"><input type="checkbox" name="userIndividualEntrySelected" id="userIndividualEntrySelected"></td>
+        <td>Show individual entries</td>
+      </tr>
+      <tr>
+        <td></td>
+        <td bgcolor="#cd82ad"></td>
+        <td style="text-align: center"><input type="checkbox" name="userCheckpointEntrySelected" id="userCheckpointEntrySelected"></td>
+        <td>Show checkpoints entry</td>
+      </tr>
+       <tr>
+        <td></td>
+        <td bgcolor="#b9783f"></td>
+        <td style="text-align: center"><input type="checkbox" name="userReportEntrySelected" id="userReportEntrySelected"></td>
+        <td>Show report entry</td>
+      </tr>
+
+    </table>
+    <br>
+    <input name="Submit" type="submit" value="Update Graph">
+    </fieldset>
+  </form> 
+
+  <div id="chartdiv">
+  </div>
+
+  <script>
+  </script>
+
+</head>
+
+
+<body>
+<table id="myDynamicTable" cellpadding="2" cellspacing="2" border="1" onclick="tester()">
+  <tr>
+  <td>Task</td>
+  <td>Start</td>
+  <td>Duration</td>
+  </tr>
+</table>
+<script>
+  // Default User Selected variables
+  var m_secondFilter = 1;
+  var m_groupPidSort = true;
+  var m_showRollup = true;
+  var m_showIndividualEntry = false;
+  var m_showCheckpointEntry = false;
+  var m_showReportEntry = false;
+
+  function SetDefaultUserValues()
+  {
+    document.getElementById("userDurationFilterSecInput").value = m_secondFilter;
+    document.getElementById("userGroupPidSortSelected").checked = m_groupPidSort;
+    document.getElementById("userRollupSelected").checked = m_showRollup;
+    document.getElementById("userIndividualEntrySelected").checked = m_showIndividualEntry;
+    document.getElementById("userCheckpointEntrySelected").checked = m_showCheckpointEntry;
+    document.getElementById("userReportEntrySelected").checked = m_showReportEntry;
+  }
+
+  window.onload = function(){
+    SetDefaultUserValues();
+  }
+
+
+
+
+  // Header
+  var header = "Keyword|pid|Entry|SrcFile|Catagory|TimeStampMSec|Action|Task|Tags|Misc";
+                         
+  // Insert Raw Data Here
+  // Note: Do not change the following signature. 
+  var csvData =    [
+      "[OPTRACE]|23658|10|run|cpp|1729150627356|START|OCL_LINK|",
+      "[OPTRACE]|23658|11|setupBinaryForLink|cpp|1729150627356|START|Create Binary|",
+      "[OPTRACE]|23658|12||cpp|1729150627357|END|Create Binary|",
+      "[OPTRACE]|23658|13|setupBinaryForLink|cpp|1729150627357|START|Extract Kernels|",
+      "[OPTRACE]|23658|14||cpp|1729150628047|END|Extract Kernels|",
+      "[OPTRACE]|23658|15|launchStep_|cpp|1729150628206|START|Launch Step: system_link|",
+      "[OPTRACE]|23658|16||cpp|1729150634917|END|Launch Step: system_link|",
+      "[OPTRACE]|23658|17|launchStep_|cpp|1729150634920|START|Launch Step: cf2sw|",
+      "[OPTRACE]|23658|18||cpp|1729150635889|END|Launch Step: cf2sw|",
+      "[OPTRACE]|23658|19|launchStep_|cpp|1729150635891|START|Launch Step: rtd2_system_diagram|",
+      "[OPTRACE]|23658|1|main|cpp|1729150616155|START|v++|ROLLUP_0",
+      "[OPTRACE]|23658|20||cpp|1729150636515|END|Launch Step: rtd2_system_diagram|",
+      "[OPTRACE]|23658|21|launchStep_|cpp|1729150636529|START|Launch Step: vpl|",
+      "[OPTRACE]|23658|2|run|cpp|1729150616155|START|Validate Kernels|",
+      "[OPTRACE]|23658|3||cpp|1729150616201|END|Validate Kernels|",
+      "[OPTRACE]|23658|488||cpp|1729151384301|END|Launch Step: vpl|",
+      "[OPTRACE]|23658|489|launchStep_|cpp|1729151384303|START|Launch Step: rtdgen|",
+      "[OPTRACE]|23658|490|launchCf2sw_|cpp|1729151384316|START|Launch cf2sw|",
+      "[OPTRACE]|23658|491||cpp|1729151386235|END|Launch cf2sw|",
+      "[OPTRACE]|23658|492|writeSystemDiagram|cpp|1729151386235|START|writeSystemDiagram|",
+      "[OPTRACE]|23658|493||cpp|1729151386251|END|writeSystemDiagram|",
+      "[OPTRACE]|23658|494||cpp|1729151386255|END|Launch Step: rtdgen|",
+      "[OPTRACE]|23658|495|launchStep_|cpp|1729151386262|START|Launch Step: xclbinutil|",
+      "[OPTRACE]|23658|496||cpp|1729151387312|END|Launch Step: xclbinutil|",
+      "[OPTRACE]|23658|497|launchStep_|cpp|1729151387314|START|Launch Step: xclbinutilinfo|",
+      "[OPTRACE]|23658|498||cpp|1729151387970|END|Launch Step: xclbinutilinfo|",
+      "[OPTRACE]|23658|499|launchStep_|cpp|1729151387972|START|Launch Step: generate_sc_driver|",
+      "[OPTRACE]|23658|4|prepareProject|cpp|1729150616225|START|Create Solution|",
+      "[OPTRACE]|23658|500||cpp|1729151387982|END|Launch Step: generate_sc_driver|",
+      "[OPTRACE]|23658|501||cpp|1729151387995|END|OCL_LINK|",
+      "[OPTRACE]|23658|502||cpp|1729151388111|END|v++|",
+      "[OPTRACE]|23658|5||cpp|1729150626818|END|Create Solution|",
+      "[OPTRACE]|23658|6|prepareProject|cpp|1729150626818|START|Add Device|",
+      "[OPTRACE]|23658|7|addDevice|cpp|1729150626818|START|Find & Load Device|",
+      "[OPTRACE]|23658|8||cpp|1729150626855|END|Find & Load Device|",
+      "[OPTRACE]|23658|9||cpp|1729150627339|END|Add Device|",
+      "[OPTRACE]|24266|22|main|cpp|1729150637296|START|vpl|",
+      "[OPTRACE]|24266|23|runPlatformLinker|cpp|1729150637327|START|runPlatformLinker|",
+      "[OPTRACE]|24266|24|setupBinaryForLink|cpp|1729150637327|START|Create Solution|",
+      "[OPTRACE]|24266|25||cpp|1729150637344|END|Create Solution|",
+      "[OPTRACE]|24266|26|setupBinaryForLink|cpp|1729150637344|START|Add platform|",
+      "[OPTRACE]|24266|27||cpp|1729150637911|END|Add platform|",
+      "[OPTRACE]|24266|28|setupBinaryForLink|cpp|1729150637912|START|Create Binary|",
+      "[OPTRACE]|24266|29||cpp|1729150637912|END|Create Binary|",
+      "[OPTRACE]|24266|30|setupBinaryForLink|cpp|1729150637912|START|Create Kernels|",
+      "[OPTRACE]|24266|31||cpp|1729150637916|END|Create Kernels|",
+      "[OPTRACE]|24266|32|runPlatformLinker|cpp|1729150637966|START|Process Kernels|",
+      "[OPTRACE]|24266|33||cpp|1729150637966|END|Process Kernels|",
+      "[OPTRACE]|24266|34|runPlatformLinker|cpp|1729150637966|START|Process Kernel Debug|",
+      "[OPTRACE]|24266|35||cpp|1729150637966|END|Process Kernel Debug|",
+      "[OPTRACE]|24266|36|runPlatformLinker|cpp|1729150637967|START|Set Kernel Debug|",
+      "[OPTRACE]|24266|37||cpp|1729150637967|END|Set Kernel Debug|",
+      "[OPTRACE]|24266|38|runPlatformLinker|cpp|1729150637967|START|Set Miscellaneous|",
+      "[OPTRACE]|24266|39||cpp|1729150637967|END|Set Miscellaneous|",
+      "[OPTRACE]|24266|40|run|cpp|1729150637969|START|Extract Platform|",
+      "[OPTRACE]|24266|41||cpp|1729150649814|END|Extract Platform|",
+      "[OPTRACE]|24266|484|runPlatformLinker|cpp|1729151384264|START|Generate Resource Availability Report|",
+      "[OPTRACE]|24266|485||cpp|1729151384264|END|Generate Resource Availability Report|",
+      "[OPTRACE]|24266|486||cpp|1729151384264|END|runPlatformLinker|",
+      "[OPTRACE]|24266|487||cpp|1729151384292|END|vpl|",
+      "[OPTRACE]|24500|386|ipirun.tcl|vpl|1729151078747|END|Synthesis|",
+      "[OPTRACE]|24500|42|/mnt/castor/seas_home/s/songqij/ese532_code/hw6/apps/mmult/_x/link/vivado/vpl/vpl.tcl|vivado_impl|1729150657973|START|Implementation|ROLLUP_1",
+      "[OPTRACE]|24500|43|ipirun.tcl|vpl|1729150658041|START|ipirun|ROLLUP_0",
+      "[OPTRACE]|24500|44|ipirun.tcl|vpl|1729150658042|END|ipirun|",
+      "[OPTRACE]|24500|45|ipirun.tcl|vpl|1729150658081|START|Create project|",
+      "[OPTRACE]|24500|46|ipirun.tcl|vpl|1729150682435|END|Create project|",
+      "[OPTRACE]|24500|47|ipirun.tcl|vpl|1729150682451|START|Create IP caching environment|",
+      "[OPTRACE]|24500|483|ipirun.tcl|vpl|1729151382144|END|Implementation|",
+      "[OPTRACE]|24500|48|ipirun.tcl|vpl|1729150684074|END|Create IP caching environment|",
+      "[OPTRACE]|24500|49|ipirun.tcl|vpl|1729150684074|START|Import/add dynamic BD|",
+      "[OPTRACE]|24500|50|ipirun.tcl|vpl|1729150684075|END|Import/add dynamic BD|",
+      "[OPTRACE]|24500|51|ipirun.tcl|vpl|1729150684075|START|Open BD and insert kernels|",
+      "[OPTRACE]|24500|52|ipirun.tcl|vpl|1729150692249|END|Open BD and insert kernels|",
+      "[OPTRACE]|24500|53|ipirun.tcl|vpl|1729150692264|START|Add debug/profiling support|",
+      "[OPTRACE]|24500|54|ipirun.tcl|vpl|1729150692300|END|Add debug/profiling support|",
+      "[OPTRACE]|24500|55|ipirun.tcl|vpl|1729150692300|START|IPI address assignments|",
+      "[OPTRACE]|24500|56|ipirun.tcl|vpl|1729150692320|END|IPI address assignments|",
+      "[OPTRACE]|24500|57|ipirun.tcl|vpl|1729150692328|START|Save BD|",
+      "[OPTRACE]|24500|58|ipirun.tcl|vpl|1729150692404|END|Save BD|",
+      "[OPTRACE]|24500|59|ipirun.tcl|vpl|1729150692404|START|Create address map and debug IP profile files|",
+      "[OPTRACE]|24500|60|ipirun.tcl|vpl|1729150692410|END|Create address map and debug IP profile files|",
+      "[OPTRACE]|24500|61|ipirun.tcl|vpl|1729150692425|START|Generate output products|",
+      "[OPTRACE]|24500|62|ipirun.tcl|vpl|1729150722560|END|Generate output products|",
+      "[OPTRACE]|24500|63|ipirun.tcl|vpl|1729150722595|START|Source report_commands_tcl|",
+      "[OPTRACE]|24500|64|ipirun.tcl|vpl|1729150722805|END|Source report_commands_tcl|",
+      "[OPTRACE]|24500|65|ipirun.tcl|vpl|1729150722805|START|Source synth_props_tcl|",
+      "[OPTRACE]|24500|66|ipirun.tcl|vpl|1729150731347|END|Source synth_props_tcl|",
+      "[OPTRACE]|24500|67|ipirun.tcl|vpl|1729150731364|START|Source impl_props_tcl|",
+      "[OPTRACE]|24500|68|ipirun.tcl|vpl|1729150731791|END|Source impl_props_tcl|",
+      "[OPTRACE]|24500|69|ipirun.tcl|vpl|1729150731807|START|Synthesis|ROLLUP_1,SYNTH",
+      "[OPTRACE]|25845|130|/mnt/castor/seas_home/s/songqij/ese532_code/hw6/apps/mmult/_x/link/vivado/vpl/prj/prj.runs/u96v2_sbc_base_zynq_ultra_ps_e_0_0_synth_1/u96v2_sbc_base_zynq_ultra_ps_e_0_0.tcl|vivado_synth|1729150753567|END|Adding files|",
+      "[OPTRACE]|25845|131|/mnt/castor/seas_home/s/songqij/ese532_code/hw6/apps/mmult/_x/link/vivado/vpl/prj/prj.runs/u96v2_sbc_base_zynq_ultra_ps_e_0_0_synth_1/u96v2_sbc_base_zynq_ultra_ps_e_0_0.tcl|vivado_synth|1729150753569|START|Configure IP Cache|",
+      "[OPTRACE]|25845|132|/mnt/castor/seas_home/s/songqij/ese532_code/hw6/apps/mmult/_x/link/vivado/vpl/prj/prj.runs/u96v2_sbc_base_zynq_ultra_ps_e_0_0_synth_1/u96v2_sbc_base_zynq_ultra_ps_e_0_0.tcl|vivado_synth|1729150753572|END|Configure IP Cache|",
+      "[OPTRACE]|25845|133|/mnt/castor/seas_home/s/songqij/ese532_code/hw6/apps/mmult/_x/link/vivado/vpl/prj/prj.runs/u96v2_sbc_base_zynq_ultra_ps_e_0_0_synth_1/u96v2_sbc_base_zynq_ultra_ps_e_0_0.tcl|vivado_synth|1729150753573|START|synth_design|",
+      "[OPTRACE]|25845|134|/mnt/castor/seas_home/s/songqij/ese532_code/hw6/apps/mmult/_x/link/vivado/vpl/prj/prj.runs/u96v2_sbc_base_zynq_ultra_ps_e_0_0_synth_1/u96v2_sbc_base_zynq_ultra_ps_e_0_0.tcl|vivado_synth|1729150795786|END|synth_design|",
+      "[OPTRACE]|25845|135|/mnt/castor/seas_home/s/songqij/ese532_code/hw6/apps/mmult/_x/link/vivado/vpl/prj/prj.runs/u96v2_sbc_base_zynq_ultra_ps_e_0_0_synth_1/u96v2_sbc_base_zynq_ultra_ps_e_0_0.tcl|vivado_synth|1729150795786|START|Write IP Cache|",
+      "[OPTRACE]|25845|136|/mnt/castor/seas_home/s/songqij/ese532_code/hw6/apps/mmult/_x/link/vivado/vpl/prj/prj.runs/u96v2_sbc_base_zynq_ultra_ps_e_0_0_synth_1/u96v2_sbc_base_zynq_ultra_ps_e_0_0.tcl|vivado_synth|1729150796832|END|Write IP Cache|",
+      "[OPTRACE]|25845|137|/mnt/castor/seas_home/s/songqij/ese532_code/hw6/apps/mmult/_x/link/vivado/vpl/prj/prj.runs/u96v2_sbc_base_zynq_ultra_ps_e_0_0_synth_1/u96v2_sbc_base_zynq_ultra_ps_e_0_0.tcl|vivado_synth|1729150796832|START|write_checkpoint|CHECKPOINT",
+      "[OPTRACE]|25845|140|/mnt/castor/seas_home/s/songqij/ese532_code/hw6/apps/mmult/_x/link/vivado/vpl/prj/prj.runs/u96v2_sbc_base_zynq_ultra_ps_e_0_0_synth_1/u96v2_sbc_base_zynq_ultra_ps_e_0_0.tcl|vivado_synth|1729150797224|END|write_checkpoint|",
+      "[OPTRACE]|25845|141|/mnt/castor/seas_home/s/songqij/ese532_code/hw6/apps/mmult/_x/link/vivado/vpl/prj/prj.runs/u96v2_sbc_base_zynq_ultra_ps_e_0_0_synth_1/u96v2_sbc_base_zynq_ultra_ps_e_0_0.tcl|vivado_synth|1729150797224|START|synth reports|REPORT",
+      "[OPTRACE]|25845|142|/mnt/castor/seas_home/s/songqij/ese532_code/hw6/apps/mmult/_x/link/vivado/vpl/prj/prj.runs/u96v2_sbc_base_zynq_ultra_ps_e_0_0_synth_1/u96v2_sbc_base_zynq_ultra_ps_e_0_0.tcl|vivado_synth|1729150797275|END|synth reports|",
+      "[OPTRACE]|25845|145|/mnt/castor/seas_home/s/songqij/ese532_code/hw6/apps/mmult/_x/link/vivado/vpl/prj/prj.runs/u96v2_sbc_base_zynq_ultra_ps_e_0_0_synth_1/u96v2_sbc_base_zynq_ultra_ps_e_0_0.tcl|vivado_synth|1729150797610|END|u96v2_sbc_base_zynq_ultra_ps_e_0_0_synth_1|",
+      "[OPTRACE]|25845|74|/mnt/castor/seas_home/s/songqij/ese532_code/hw6/apps/mmult/_x/link/vivado/vpl/prj/prj.runs/u96v2_sbc_base_zynq_ultra_ps_e_0_0_synth_1/u96v2_sbc_base_zynq_ultra_ps_e_0_0.tcl|vivado_synth|1729150746169|START|u96v2_sbc_base_zynq_ultra_ps_e_0_0_synth_1|ROLLUP_AUTO",
+      "[OPTRACE]|25845|75|/mnt/castor/seas_home/s/songqij/ese532_code/hw6/apps/mmult/_x/link/vivado/vpl/prj/prj.runs/u96v2_sbc_base_zynq_ultra_ps_e_0_0_synth_1/u96v2_sbc_base_zynq_ultra_ps_e_0_0.tcl|vivado_synth|1729150746169|START|Creating in-memory project|",
+      "[OPTRACE]|25845|96|/mnt/castor/seas_home/s/songqij/ese532_code/hw6/apps/mmult/_x/link/vivado/vpl/prj/prj.runs/u96v2_sbc_base_zynq_ultra_ps_e_0_0_synth_1/u96v2_sbc_base_zynq_ultra_ps_e_0_0.tcl|vivado_synth|1729150752928|END|Creating in-memory project|",
+      "[OPTRACE]|25845|97|/mnt/castor/seas_home/s/songqij/ese532_code/hw6/apps/mmult/_x/link/vivado/vpl/prj/prj.runs/u96v2_sbc_base_zynq_ultra_ps_e_0_0_synth_1/u96v2_sbc_base_zynq_ultra_ps_e_0_0.tcl|vivado_synth|1729150752928|START|Adding files|",
+      "[OPTRACE]|25847|102|/mnt/castor/seas_home/s/songqij/ese532_code/hw6/apps/mmult/_x/link/vivado/vpl/prj/prj.runs/u96v2_sbc_base_axi_intc_0_0_synth_1/u96v2_sbc_base_axi_intc_0_0.tcl|vivado_synth|1729150753131|END|Adding files|",
+      "[OPTRACE]|25847|103|/mnt/castor/seas_home/s/songqij/ese532_code/hw6/apps/mmult/_x/link/vivado/vpl/prj/prj.runs/u96v2_sbc_base_axi_intc_0_0_synth_1/u96v2_sbc_base_axi_intc_0_0.tcl|vivado_synth|1729150753133|START|Configure IP Cache|",
+      "[OPTRACE]|25847|104|/mnt/castor/seas_home/s/songqij/ese532_code/hw6/apps/mmult/_x/link/vivado/vpl/prj/prj.runs/u96v2_sbc_base_axi_intc_0_0_synth_1/u96v2_sbc_base_axi_intc_0_0.tcl|vivado_synth|1729150753137|END|Configure IP Cache|",
+      "[OPTRACE]|25847|105|/mnt/castor/seas_home/s/songqij/ese532_code/hw6/apps/mmult/_x/link/vivado/vpl/prj/prj.runs/u96v2_sbc_base_axi_intc_0_0_synth_1/u96v2_sbc_base_axi_intc_0_0.tcl|vivado_synth|1729150753138|START|synth_design|",
+      "[OPTRACE]|25847|138|/mnt/castor/seas_home/s/songqij/ese532_code/hw6/apps/mmult/_x/link/vivado/vpl/prj/prj.runs/u96v2_sbc_base_axi_intc_0_0_synth_1/u96v2_sbc_base_axi_intc_0_0.tcl|vivado_synth|1729150797013|END|synth_design|",
+      "[OPTRACE]|25847|139|/mnt/castor/seas_home/s/songqij/ese532_code/hw6/apps/mmult/_x/link/vivado/vpl/prj/prj.runs/u96v2_sbc_base_axi_intc_0_0_synth_1/u96v2_sbc_base_axi_intc_0_0.tcl|vivado_synth|1729150797013|START|Write IP Cache|",
+      "[OPTRACE]|25847|143|/mnt/castor/seas_home/s/songqij/ese532_code/hw6/apps/mmult/_x/link/vivado/vpl/prj/prj.runs/u96v2_sbc_base_axi_intc_0_0_synth_1/u96v2_sbc_base_axi_intc_0_0.tcl|vivado_synth|1729150797557|END|Write IP Cache|",
+      "[OPTRACE]|25847|144|/mnt/castor/seas_home/s/songqij/ese532_code/hw6/apps/mmult/_x/link/vivado/vpl/prj/prj.runs/u96v2_sbc_base_axi_intc_0_0_synth_1/u96v2_sbc_base_axi_intc_0_0.tcl|vivado_synth|1729150797558|START|write_checkpoint|CHECKPOINT",
+      "[OPTRACE]|25847|146|/mnt/castor/seas_home/s/songqij/ese532_code/hw6/apps/mmult/_x/link/vivado/vpl/prj/prj.runs/u96v2_sbc_base_axi_intc_0_0_synth_1/u96v2_sbc_base_axi_intc_0_0.tcl|vivado_synth|1729150797790|END|write_checkpoint|",
+      "[OPTRACE]|25847|147|/mnt/castor/seas_home/s/songqij/ese532_code/hw6/apps/mmult/_x/link/vivado/vpl/prj/prj.runs/u96v2_sbc_base_axi_intc_0_0_synth_1/u96v2_sbc_base_axi_intc_0_0.tcl|vivado_synth|1729150797791|START|synth reports|REPORT",
+      "[OPTRACE]|25847|148|/mnt/castor/seas_home/s/songqij/ese532_code/hw6/apps/mmult/_x/link/vivado/vpl/prj/prj.runs/u96v2_sbc_base_axi_intc_0_0_synth_1/u96v2_sbc_base_axi_intc_0_0.tcl|vivado_synth|1729150797835|END|synth reports|",
+      "[OPTRACE]|25847|149|/mnt/castor/seas_home/s/songqij/ese532_code/hw6/apps/mmult/_x/link/vivado/vpl/prj/prj.runs/u96v2_sbc_base_axi_intc_0_0_synth_1/u96v2_sbc_base_axi_intc_0_0.tcl|vivado_synth|1729150798037|END|u96v2_sbc_base_axi_intc_0_0_synth_1|",
+      "[OPTRACE]|25847|80|/mnt/castor/seas_home/s/songqij/ese532_code/hw6/apps/mmult/_x/link/vivado/vpl/prj/prj.runs/u96v2_sbc_base_axi_intc_0_0_synth_1/u96v2_sbc_base_axi_intc_0_0.tcl|vivado_synth|1729150746271|START|u96v2_sbc_base_axi_intc_0_0_synth_1|ROLLUP_AUTO",
+      "[OPTRACE]|25847|81|/mnt/castor/seas_home/s/songqij/ese532_code/hw6/apps/mmult/_x/link/vivado/vpl/prj/prj.runs/u96v2_sbc_base_axi_intc_0_0_synth_1/u96v2_sbc_base_axi_intc_0_0.tcl|vivado_synth|1729150746272|START|Creating in-memory project|",
+      "[OPTRACE]|25847|98|/mnt/castor/seas_home/s/songqij/ese532_code/hw6/apps/mmult/_x/link/vivado/vpl/prj/prj.runs/u96v2_sbc_base_axi_intc_0_0_synth_1/u96v2_sbc_base_axi_intc_0_0.tcl|vivado_synth|1729150752928|END|Creating in-memory project|",
+      "[OPTRACE]|25847|99|/mnt/castor/seas_home/s/songqij/ese532_code/hw6/apps/mmult/_x/link/vivado/vpl/prj/prj.runs/u96v2_sbc_base_axi_intc_0_0_synth_1/u96v2_sbc_base_axi_intc_0_0.tcl|vivado_synth|1729150752928|START|Adding files|",
+      "[OPTRACE]|25861|126|/mnt/castor/seas_home/s/songqij/ese532_code/hw6/apps/mmult/_x/link/vivado/vpl/prj/prj.runs/u96v2_sbc_base_xbar_0_synth_1/u96v2_sbc_base_xbar_0.tcl|vivado_synth|1729150753399|END|Adding files|",
+      "[OPTRACE]|25861|127|/mnt/castor/seas_home/s/songqij/ese532_code/hw6/apps/mmult/_x/link/vivado/vpl/prj/prj.runs/u96v2_sbc_base_xbar_0_synth_1/u96v2_sbc_base_xbar_0.tcl|vivado_synth|1729150753401|START|Configure IP Cache|",
+      "[OPTRACE]|25861|128|/mnt/castor/seas_home/s/songqij/ese532_code/hw6/apps/mmult/_x/link/vivado/vpl/prj/prj.runs/u96v2_sbc_base_xbar_0_synth_1/u96v2_sbc_base_xbar_0.tcl|vivado_synth|1729150753440|END|Configure IP Cache|",
+      "[OPTRACE]|25861|129|/mnt/castor/seas_home/s/songqij/ese532_code/hw6/apps/mmult/_x/link/vivado/vpl/prj/prj.runs/u96v2_sbc_base_xbar_0_synth_1/u96v2_sbc_base_xbar_0.tcl|vivado_synth|1729150753441|START|synth_design|",
+      "[OPTRACE]|25861|234|/mnt/castor/seas_home/s/songqij/ese532_code/hw6/apps/mmult/_x/link/vivado/vpl/prj/prj.runs/u96v2_sbc_base_xbar_0_synth_1/u96v2_sbc_base_xbar_0.tcl|vivado_synth|1729150854117|END|synth_design|",
+      "[OPTRACE]|25861|235|/mnt/castor/seas_home/s/songqij/ese532_code/hw6/apps/mmult/_x/link/vivado/vpl/prj/prj.runs/u96v2_sbc_base_xbar_0_synth_1/u96v2_sbc_base_xbar_0.tcl|vivado_synth|1729150854117|START|Write IP Cache|",
+      "[OPTRACE]|25861|248|/mnt/castor/seas_home/s/songqij/ese532_code/hw6/apps/mmult/_x/link/vivado/vpl/prj/prj.runs/u96v2_sbc_base_xbar_0_synth_1/u96v2_sbc_base_xbar_0.tcl|vivado_synth|1729150856864|END|Write IP Cache|",
+      "[OPTRACE]|25861|249|/mnt/castor/seas_home/s/songqij/ese532_code/hw6/apps/mmult/_x/link/vivado/vpl/prj/prj.runs/u96v2_sbc_base_xbar_0_synth_1/u96v2_sbc_base_xbar_0.tcl|vivado_synth|1729150856867|START|write_checkpoint|CHECKPOINT",
+      "[OPTRACE]|25861|254|/mnt/castor/seas_home/s/songqij/ese532_code/hw6/apps/mmult/_x/link/vivado/vpl/prj/prj.runs/u96v2_sbc_base_xbar_0_synth_1/u96v2_sbc_base_xbar_0.tcl|vivado_synth|1729150858352|END|write_checkpoint|",
+      "[OPTRACE]|25861|255|/mnt/castor/seas_home/s/songqij/ese532_code/hw6/apps/mmult/_x/link/vivado/vpl/prj/prj.runs/u96v2_sbc_base_xbar_0_synth_1/u96v2_sbc_base_xbar_0.tcl|vivado_synth|1729150858353|START|synth reports|REPORT",
+      "[OPTRACE]|25861|256|/mnt/castor/seas_home/s/songqij/ese532_code/hw6/apps/mmult/_x/link/vivado/vpl/prj/prj.runs/u96v2_sbc_base_xbar_0_synth_1/u96v2_sbc_base_xbar_0.tcl|vivado_synth|1729150858440|END|synth reports|",
+      "[OPTRACE]|25861|257|/mnt/castor/seas_home/s/songqij/ese532_code/hw6/apps/mmult/_x/link/vivado/vpl/prj/prj.runs/u96v2_sbc_base_xbar_0_synth_1/u96v2_sbc_base_xbar_0.tcl|vivado_synth|1729150859368|END|u96v2_sbc_base_xbar_0_synth_1|",
+      "[OPTRACE]|25861|72|/mnt/castor/seas_home/s/songqij/ese532_code/hw6/apps/mmult/_x/link/vivado/vpl/prj/prj.runs/u96v2_sbc_base_xbar_0_synth_1/u96v2_sbc_base_xbar_0.tcl|vivado_synth|1729150746145|START|u96v2_sbc_base_xbar_0_synth_1|ROLLUP_AUTO",
+      "[OPTRACE]|25861|73|/mnt/castor/seas_home/s/songqij/ese532_code/hw6/apps/mmult/_x/link/vivado/vpl/prj/prj.runs/u96v2_sbc_base_xbar_0_synth_1/u96v2_sbc_base_xbar_0.tcl|vivado_synth|1729150746145|START|Creating in-memory project|",
+      "[OPTRACE]|25861|90|/mnt/castor/seas_home/s/songqij/ese532_code/hw6/apps/mmult/_x/link/vivado/vpl/prj/prj.runs/u96v2_sbc_base_xbar_0_synth_1/u96v2_sbc_base_xbar_0.tcl|vivado_synth|1729150752927|END|Creating in-memory project|",
+      "[OPTRACE]|25861|91|/mnt/castor/seas_home/s/songqij/ese532_code/hw6/apps/mmult/_x/link/vivado/vpl/prj/prj.runs/u96v2_sbc_base_xbar_0_synth_1/u96v2_sbc_base_xbar_0.tcl|vivado_synth|1729150752927|START|Adding files|",
+      "[OPTRACE]|25916|122|/mnt/castor/seas_home/s/songqij/ese532_code/hw6/apps/mmult/_x/link/vivado/vpl/prj/prj.runs/u96v2_sbc_base_mmult_fpga_1_0_synth_1/u96v2_sbc_base_mmult_fpga_1_0.tcl|vivado_synth|1729150753222|END|Adding files|",
+      "[OPTRACE]|25916|123|/mnt/castor/seas_home/s/songqij/ese532_code/hw6/apps/mmult/_x/link/vivado/vpl/prj/prj.runs/u96v2_sbc_base_mmult_fpga_1_0_synth_1/u96v2_sbc_base_mmult_fpga_1_0.tcl|vivado_synth|1729150753228|START|Configure IP Cache|",
+      "[OPTRACE]|25916|124|/mnt/castor/seas_home/s/songqij/ese532_code/hw6/apps/mmult/_x/link/vivado/vpl/prj/prj.runs/u96v2_sbc_base_mmult_fpga_1_0_synth_1/u96v2_sbc_base_mmult_fpga_1_0.tcl|vivado_synth|1729150753232|END|Configure IP Cache|",
+      "[OPTRACE]|25916|125|/mnt/castor/seas_home/s/songqij/ese532_code/hw6/apps/mmult/_x/link/vivado/vpl/prj/prj.runs/u96v2_sbc_base_mmult_fpga_1_0_synth_1/u96v2_sbc_base_mmult_fpga_1_0.tcl|vivado_synth|1729150753235|START|synth_design|",
+      "[OPTRACE]|25916|354|/mnt/castor/seas_home/s/songqij/ese532_code/hw6/apps/mmult/_x/link/vivado/vpl/prj/prj.runs/u96v2_sbc_base_mmult_fpga_1_0_synth_1/u96v2_sbc_base_mmult_fpga_1_0.tcl|vivado_synth|1729150973633|END|synth_design|",
+      "[OPTRACE]|25916|355|/mnt/castor/seas_home/s/songqij/ese532_code/hw6/apps/mmult/_x/link/vivado/vpl/prj/prj.runs/u96v2_sbc_base_mmult_fpga_1_0_synth_1/u96v2_sbc_base_mmult_fpga_1_0.tcl|vivado_synth|1729150973633|START|Write IP Cache|",
+      "[OPTRACE]|25916|368|/mnt/castor/seas_home/s/songqij/ese532_code/hw6/apps/mmult/_x/link/vivado/vpl/prj/prj.runs/u96v2_sbc_base_mmult_fpga_1_0_synth_1/u96v2_sbc_base_mmult_fpga_1_0.tcl|vivado_synth|1729150990086|END|Write IP Cache|",
+      "[OPTRACE]|25916|369|/mnt/castor/seas_home/s/songqij/ese532_code/hw6/apps/mmult/_x/link/vivado/vpl/prj/prj.runs/u96v2_sbc_base_mmult_fpga_1_0_synth_1/u96v2_sbc_base_mmult_fpga_1_0.tcl|vivado_synth|1729150990101|START|write_checkpoint|CHECKPOINT",
+      "[OPTRACE]|25916|370|/mnt/castor/seas_home/s/songqij/ese532_code/hw6/apps/mmult/_x/link/vivado/vpl/prj/prj.runs/u96v2_sbc_base_mmult_fpga_1_0_synth_1/u96v2_sbc_base_mmult_fpga_1_0.tcl|vivado_synth|1729150999396|END|write_checkpoint|",
+      "[OPTRACE]|25916|371|/mnt/castor/seas_home/s/songqij/ese532_code/hw6/apps/mmult/_x/link/vivado/vpl/prj/prj.runs/u96v2_sbc_base_mmult_fpga_1_0_synth_1/u96v2_sbc_base_mmult_fpga_1_0.tcl|vivado_synth|1729150999397|START|synth reports|REPORT",
+      "[OPTRACE]|25916|372|/mnt/castor/seas_home/s/songqij/ese532_code/hw6/apps/mmult/_x/link/vivado/vpl/prj/prj.runs/u96v2_sbc_base_mmult_fpga_1_0_synth_1/u96v2_sbc_base_mmult_fpga_1_0.tcl|vivado_synth|1729150999561|END|synth reports|",
+      "[OPTRACE]|25916|373|/mnt/castor/seas_home/s/songqij/ese532_code/hw6/apps/mmult/_x/link/vivado/vpl/prj/prj.runs/u96v2_sbc_base_mmult_fpga_1_0_synth_1/u96v2_sbc_base_mmult_fpga_1_0.tcl|vivado_synth|1729151005545|END|u96v2_sbc_base_mmult_fpga_1_0_synth_1|",
+      "[OPTRACE]|25916|76|/mnt/castor/seas_home/s/songqij/ese532_code/hw6/apps/mmult/_x/link/vivado/vpl/prj/prj.runs/u96v2_sbc_base_mmult_fpga_1_0_synth_1/u96v2_sbc_base_mmult_fpga_1_0.tcl|vivado_synth|1729150746186|START|u96v2_sbc_base_mmult_fpga_1_0_synth_1|ROLLUP_AUTO",
+      "[OPTRACE]|25916|77|/mnt/castor/seas_home/s/songqij/ese532_code/hw6/apps/mmult/_x/link/vivado/vpl/prj/prj.runs/u96v2_sbc_base_mmult_fpga_1_0_synth_1/u96v2_sbc_base_mmult_fpga_1_0.tcl|vivado_synth|1729150746187|START|Creating in-memory project|",
+      "[OPTRACE]|25916|93|/mnt/castor/seas_home/s/songqij/ese532_code/hw6/apps/mmult/_x/link/vivado/vpl/prj/prj.runs/u96v2_sbc_base_mmult_fpga_1_0_synth_1/u96v2_sbc_base_mmult_fpga_1_0.tcl|vivado_synth|1729150752927|END|Creating in-memory project|",
+      "[OPTRACE]|25916|95|/mnt/castor/seas_home/s/songqij/ese532_code/hw6/apps/mmult/_x/link/vivado/vpl/prj/prj.runs/u96v2_sbc_base_mmult_fpga_1_0_synth_1/u96v2_sbc_base_mmult_fpga_1_0.tcl|vivado_synth|1729150752927|START|Adding files|",
+      "[OPTRACE]|25925|110|/mnt/castor/seas_home/s/songqij/ese532_code/hw6/apps/mmult/_x/link/vivado/vpl/prj/prj.runs/u96v2_sbc_base_auto_ds_6_synth_1/u96v2_sbc_base_auto_ds_6.tcl|vivado_synth|1729150753154|END|Adding files|",
+      "[OPTRACE]|25925|111|/mnt/castor/seas_home/s/songqij/ese532_code/hw6/apps/mmult/_x/link/vivado/vpl/prj/prj.runs/u96v2_sbc_base_auto_ds_6_synth_1/u96v2_sbc_base_auto_ds_6.tcl|vivado_synth|1729150753155|START|Configure IP Cache|",
+      "[OPTRACE]|25925|118|/mnt/castor/seas_home/s/songqij/ese532_code/hw6/apps/mmult/_x/link/vivado/vpl/prj/prj.runs/u96v2_sbc_base_auto_ds_6_synth_1/u96v2_sbc_base_auto_ds_6.tcl|vivado_synth|1729150753209|END|Configure IP Cache|",
+      "[OPTRACE]|25925|119|/mnt/castor/seas_home/s/songqij/ese532_code/hw6/apps/mmult/_x/link/vivado/vpl/prj/prj.runs/u96v2_sbc_base_auto_ds_6_synth_1/u96v2_sbc_base_auto_ds_6.tcl|vivado_synth|1729150753212|START|synth_design|",
+      "[OPTRACE]|25925|168|/mnt/castor/seas_home/s/songqij/ese532_code/hw6/apps/mmult/_x/link/vivado/vpl/prj/prj.runs/u96v2_sbc_base_auto_ds_6_synth_1/u96v2_sbc_base_auto_ds_6.tcl|vivado_synth|1729150815046|END|synth_design|",
+      "[OPTRACE]|25925|169|/mnt/castor/seas_home/s/songqij/ese532_code/hw6/apps/mmult/_x/link/vivado/vpl/prj/prj.runs/u96v2_sbc_base_auto_ds_6_synth_1/u96v2_sbc_base_auto_ds_6.tcl|vivado_synth|1729150815046|START|Write IP Cache|",
+      "[OPTRACE]|25925|172|/mnt/castor/seas_home/s/songqij/ese532_code/hw6/apps/mmult/_x/link/vivado/vpl/prj/prj.runs/u96v2_sbc_base_auto_ds_6_synth_1/u96v2_sbc_base_auto_ds_6.tcl|vivado_synth|1729150816049|END|Write IP Cache|",
+      "[OPTRACE]|25925|173|/mnt/castor/seas_home/s/songqij/ese532_code/hw6/apps/mmult/_x/link/vivado/vpl/prj/prj.runs/u96v2_sbc_base_auto_ds_6_synth_1/u96v2_sbc_base_auto_ds_6.tcl|vivado_synth|1729150816050|START|write_checkpoint|CHECKPOINT",
+      "[OPTRACE]|25925|178|/mnt/castor/seas_home/s/songqij/ese532_code/hw6/apps/mmult/_x/link/vivado/vpl/prj/prj.runs/u96v2_sbc_base_auto_ds_6_synth_1/u96v2_sbc_base_auto_ds_6.tcl|vivado_synth|1729150816633|END|write_checkpoint|",
+      "[OPTRACE]|25925|179|/mnt/castor/seas_home/s/songqij/ese532_code/hw6/apps/mmult/_x/link/vivado/vpl/prj/prj.runs/u96v2_sbc_base_auto_ds_6_synth_1/u96v2_sbc_base_auto_ds_6.tcl|vivado_synth|1729150816633|START|synth reports|REPORT",
+      "[OPTRACE]|25925|180|/mnt/castor/seas_home/s/songqij/ese532_code/hw6/apps/mmult/_x/link/vivado/vpl/prj/prj.runs/u96v2_sbc_base_auto_ds_6_synth_1/u96v2_sbc_base_auto_ds_6.tcl|vivado_synth|1729150816682|END|synth reports|",
+      "[OPTRACE]|25925|185|/mnt/castor/seas_home/s/songqij/ese532_code/hw6/apps/mmult/_x/link/vivado/vpl/prj/prj.runs/u96v2_sbc_base_auto_ds_6_synth_1/u96v2_sbc_base_auto_ds_6.tcl|vivado_synth|1729150817062|END|u96v2_sbc_base_auto_ds_6_synth_1|",
+      "[OPTRACE]|25925|78|/mnt/castor/seas_home/s/songqij/ese532_code/hw6/apps/mmult/_x/link/vivado/vpl/prj/prj.runs/u96v2_sbc_base_auto_ds_6_synth_1/u96v2_sbc_base_auto_ds_6.tcl|vivado_synth|1729150746264|START|u96v2_sbc_base_auto_ds_6_synth_1|ROLLUP_AUTO",
+      "[OPTRACE]|25925|79|/mnt/castor/seas_home/s/songqij/ese532_code/hw6/apps/mmult/_x/link/vivado/vpl/prj/prj.runs/u96v2_sbc_base_auto_ds_6_synth_1/u96v2_sbc_base_auto_ds_6.tcl|vivado_synth|1729150746265|START|Creating in-memory project|",
+      "[OPTRACE]|25925|87|/mnt/castor/seas_home/s/songqij/ese532_code/hw6/apps/mmult/_x/link/vivado/vpl/prj/prj.runs/u96v2_sbc_base_auto_ds_6_synth_1/u96v2_sbc_base_auto_ds_6.tcl|vivado_synth|1729150752927|END|Creating in-memory project|",
+      "[OPTRACE]|25925|88|/mnt/castor/seas_home/s/songqij/ese532_code/hw6/apps/mmult/_x/link/vivado/vpl/prj/prj.runs/u96v2_sbc_base_auto_ds_6_synth_1/u96v2_sbc_base_auto_ds_6.tcl|vivado_synth|1729150752927|START|Adding files|",
+      "[OPTRACE]|25927|108|/mnt/castor/seas_home/s/songqij/ese532_code/hw6/apps/mmult/_x/link/vivado/vpl/prj/prj.runs/u96v2_sbc_base_auto_pc_6_synth_1/u96v2_sbc_base_auto_pc_6.tcl|vivado_synth|1729150753152|END|Adding files|",
+      "[OPTRACE]|25927|109|/mnt/castor/seas_home/s/songqij/ese532_code/hw6/apps/mmult/_x/link/vivado/vpl/prj/prj.runs/u96v2_sbc_base_auto_pc_6_synth_1/u96v2_sbc_base_auto_pc_6.tcl|vivado_synth|1729150753154|START|Configure IP Cache|",
+      "[OPTRACE]|25927|115|/mnt/castor/seas_home/s/songqij/ese532_code/hw6/apps/mmult/_x/link/vivado/vpl/prj/prj.runs/u96v2_sbc_base_auto_pc_6_synth_1/u96v2_sbc_base_auto_pc_6.tcl|vivado_synth|1729150753192|END|Configure IP Cache|",
+      "[OPTRACE]|25927|117|/mnt/castor/seas_home/s/songqij/ese532_code/hw6/apps/mmult/_x/link/vivado/vpl/prj/prj.runs/u96v2_sbc_base_auto_pc_6_synth_1/u96v2_sbc_base_auto_pc_6.tcl|vivado_synth|1729150753200|START|synth_design|",
+      "[OPTRACE]|25927|152|/mnt/castor/seas_home/s/songqij/ese532_code/hw6/apps/mmult/_x/link/vivado/vpl/prj/prj.runs/u96v2_sbc_base_auto_pc_6_synth_1/u96v2_sbc_base_auto_pc_6.tcl|vivado_synth|1729150809199|END|synth_design|",
+      "[OPTRACE]|25927|153|/mnt/castor/seas_home/s/songqij/ese532_code/hw6/apps/mmult/_x/link/vivado/vpl/prj/prj.runs/u96v2_sbc_base_auto_pc_6_synth_1/u96v2_sbc_base_auto_pc_6.tcl|vivado_synth|1729150809199|START|Write IP Cache|",
+      "[OPTRACE]|25927|156|/mnt/castor/seas_home/s/songqij/ese532_code/hw6/apps/mmult/_x/link/vivado/vpl/prj/prj.runs/u96v2_sbc_base_auto_pc_6_synth_1/u96v2_sbc_base_auto_pc_6.tcl|vivado_synth|1729150809977|END|Write IP Cache|",
+      "[OPTRACE]|25927|157|/mnt/castor/seas_home/s/songqij/ese532_code/hw6/apps/mmult/_x/link/vivado/vpl/prj/prj.runs/u96v2_sbc_base_auto_pc_6_synth_1/u96v2_sbc_base_auto_pc_6.tcl|vivado_synth|1729150809979|START|write_checkpoint|CHECKPOINT",
+      "[OPTRACE]|25927|161|/mnt/castor/seas_home/s/songqij/ese532_code/hw6/apps/mmult/_x/link/vivado/vpl/prj/prj.runs/u96v2_sbc_base_auto_pc_6_synth_1/u96v2_sbc_base_auto_pc_6.tcl|vivado_synth|1729150810255|END|write_checkpoint|",
+      "[OPTRACE]|25927|162|/mnt/castor/seas_home/s/songqij/ese532_code/hw6/apps/mmult/_x/link/vivado/vpl/prj/prj.runs/u96v2_sbc_base_auto_pc_6_synth_1/u96v2_sbc_base_auto_pc_6.tcl|vivado_synth|1729150810255|START|synth reports|REPORT",
+      "[OPTRACE]|25927|163|/mnt/castor/seas_home/s/songqij/ese532_code/hw6/apps/mmult/_x/link/vivado/vpl/prj/prj.runs/u96v2_sbc_base_auto_pc_6_synth_1/u96v2_sbc_base_auto_pc_6.tcl|vivado_synth|1729150810298|END|synth reports|",
+      "[OPTRACE]|25927|165|/mnt/castor/seas_home/s/songqij/ese532_code/hw6/apps/mmult/_x/link/vivado/vpl/prj/prj.runs/u96v2_sbc_base_auto_pc_6_synth_1/u96v2_sbc_base_auto_pc_6.tcl|vivado_synth|1729150810580|END|u96v2_sbc_base_auto_pc_6_synth_1|",
+      "[OPTRACE]|25927|70|/mnt/castor/seas_home/s/songqij/ese532_code/hw6/apps/mmult/_x/link/vivado/vpl/prj/prj.runs/u96v2_sbc_base_auto_pc_6_synth_1/u96v2_sbc_base_auto_pc_6.tcl|vivado_synth|1729150746138|START|u96v2_sbc_base_auto_pc_6_synth_1|ROLLUP_AUTO",
+      "[OPTRACE]|25927|71|/mnt/castor/seas_home/s/songqij/ese532_code/hw6/apps/mmult/_x/link/vivado/vpl/prj/prj.runs/u96v2_sbc_base_auto_pc_6_synth_1/u96v2_sbc_base_auto_pc_6.tcl|vivado_synth|1729150746138|START|Creating in-memory project|",
+      "[OPTRACE]|25927|92|/mnt/castor/seas_home/s/songqij/ese532_code/hw6/apps/mmult/_x/link/vivado/vpl/prj/prj.runs/u96v2_sbc_base_auto_pc_6_synth_1/u96v2_sbc_base_auto_pc_6.tcl|vivado_synth|1729150752927|END|Creating in-memory project|",
+      "[OPTRACE]|25927|94|/mnt/castor/seas_home/s/songqij/ese532_code/hw6/apps/mmult/_x/link/vivado/vpl/prj/prj.runs/u96v2_sbc_base_auto_pc_6_synth_1/u96v2_sbc_base_auto_pc_6.tcl|vivado_synth|1729150752927|START|Adding files|",
+      "[OPTRACE]|26009|106|/mnt/castor/seas_home/s/songqij/ese532_code/hw6/apps/mmult/_x/link/vivado/vpl/prj/prj.runs/u96v2_sbc_base_auto_pc_1_synth_1/u96v2_sbc_base_auto_pc_1.tcl|vivado_synth|1729150753147|END|Adding files|",
+      "[OPTRACE]|26009|107|/mnt/castor/seas_home/s/songqij/ese532_code/hw6/apps/mmult/_x/link/vivado/vpl/prj/prj.runs/u96v2_sbc_base_auto_pc_1_synth_1/u96v2_sbc_base_auto_pc_1.tcl|vivado_synth|1729150753150|START|Configure IP Cache|",
+      "[OPTRACE]|26009|114|/mnt/castor/seas_home/s/songqij/ese532_code/hw6/apps/mmult/_x/link/vivado/vpl/prj/prj.runs/u96v2_sbc_base_auto_pc_1_synth_1/u96v2_sbc_base_auto_pc_1.tcl|vivado_synth|1729150753190|END|Configure IP Cache|",
+      "[OPTRACE]|26009|116|/mnt/castor/seas_home/s/songqij/ese532_code/hw6/apps/mmult/_x/link/vivado/vpl/prj/prj.runs/u96v2_sbc_base_auto_pc_1_synth_1/u96v2_sbc_base_auto_pc_1.tcl|vivado_synth|1729150753195|START|synth_design|",
+      "[OPTRACE]|26009|150|/mnt/castor/seas_home/s/songqij/ese532_code/hw6/apps/mmult/_x/link/vivado/vpl/prj/prj.runs/u96v2_sbc_base_auto_pc_1_synth_1/u96v2_sbc_base_auto_pc_1.tcl|vivado_synth|1729150808832|END|synth_design|",
+      "[OPTRACE]|26009|151|/mnt/castor/seas_home/s/songqij/ese532_code/hw6/apps/mmult/_x/link/vivado/vpl/prj/prj.runs/u96v2_sbc_base_auto_pc_1_synth_1/u96v2_sbc_base_auto_pc_1.tcl|vivado_synth|1729150808832|START|Write IP Cache|",
+      "[OPTRACE]|26009|154|/mnt/castor/seas_home/s/songqij/ese532_code/hw6/apps/mmult/_x/link/vivado/vpl/prj/prj.runs/u96v2_sbc_base_auto_pc_1_synth_1/u96v2_sbc_base_auto_pc_1.tcl|vivado_synth|1729150809820|END|Write IP Cache|",
+      "[OPTRACE]|26009|155|/mnt/castor/seas_home/s/songqij/ese532_code/hw6/apps/mmult/_x/link/vivado/vpl/prj/prj.runs/u96v2_sbc_base_auto_pc_1_synth_1/u96v2_sbc_base_auto_pc_1.tcl|vivado_synth|1729150809822|START|write_checkpoint|CHECKPOINT",
+      "[OPTRACE]|26009|158|/mnt/castor/seas_home/s/songqij/ese532_code/hw6/apps/mmult/_x/link/vivado/vpl/prj/prj.runs/u96v2_sbc_base_auto_pc_1_synth_1/u96v2_sbc_base_auto_pc_1.tcl|vivado_synth|1729150810119|END|write_checkpoint|",
+      "[OPTRACE]|26009|159|/mnt/castor/seas_home/s/songqij/ese532_code/hw6/apps/mmult/_x/link/vivado/vpl/prj/prj.runs/u96v2_sbc_base_auto_pc_1_synth_1/u96v2_sbc_base_auto_pc_1.tcl|vivado_synth|1729150810120|START|synth reports|REPORT",
+      "[OPTRACE]|26009|160|/mnt/castor/seas_home/s/songqij/ese532_code/hw6/apps/mmult/_x/link/vivado/vpl/prj/prj.runs/u96v2_sbc_base_auto_pc_1_synth_1/u96v2_sbc_base_auto_pc_1.tcl|vivado_synth|1729150810162|END|synth reports|",
+      "[OPTRACE]|26009|164|/mnt/castor/seas_home/s/songqij/ese532_code/hw6/apps/mmult/_x/link/vivado/vpl/prj/prj.runs/u96v2_sbc_base_auto_pc_1_synth_1/u96v2_sbc_base_auto_pc_1.tcl|vivado_synth|1729150810389|END|u96v2_sbc_base_auto_pc_1_synth_1|",
+      "[OPTRACE]|26009|83|/mnt/castor/seas_home/s/songqij/ese532_code/hw6/apps/mmult/_x/link/vivado/vpl/prj/prj.runs/u96v2_sbc_base_auto_pc_1_synth_1/u96v2_sbc_base_auto_pc_1.tcl|vivado_synth|1729150746284|START|u96v2_sbc_base_auto_pc_1_synth_1|ROLLUP_AUTO",
+      "[OPTRACE]|26009|85|/mnt/castor/seas_home/s/songqij/ese532_code/hw6/apps/mmult/_x/link/vivado/vpl/prj/prj.runs/u96v2_sbc_base_auto_pc_1_synth_1/u96v2_sbc_base_auto_pc_1.tcl|vivado_synth|1729150746284|START|Creating in-memory project|",
+      "[OPTRACE]|26009|86|/mnt/castor/seas_home/s/songqij/ese532_code/hw6/apps/mmult/_x/link/vivado/vpl/prj/prj.runs/u96v2_sbc_base_auto_pc_1_synth_1/u96v2_sbc_base_auto_pc_1.tcl|vivado_synth|1729150752927|END|Creating in-memory project|",
+      "[OPTRACE]|26009|89|/mnt/castor/seas_home/s/songqij/ese532_code/hw6/apps/mmult/_x/link/vivado/vpl/prj/prj.runs/u96v2_sbc_base_auto_pc_1_synth_1/u96v2_sbc_base_auto_pc_1.tcl|vivado_synth|1729150752927|START|Adding files|",
+      "[OPTRACE]|26010|100|/mnt/castor/seas_home/s/songqij/ese532_code/hw6/apps/mmult/_x/link/vivado/vpl/prj/prj.runs/u96v2_sbc_base_auto_ds_1_synth_1/u96v2_sbc_base_auto_ds_1.tcl|vivado_synth|1729150752930|END|Creating in-memory project|",
+      "[OPTRACE]|26010|101|/mnt/castor/seas_home/s/songqij/ese532_code/hw6/apps/mmult/_x/link/vivado/vpl/prj/prj.runs/u96v2_sbc_base_auto_ds_1_synth_1/u96v2_sbc_base_auto_ds_1.tcl|vivado_synth|1729150752930|START|Adding files|",
+      "[OPTRACE]|26010|112|/mnt/castor/seas_home/s/songqij/ese532_code/hw6/apps/mmult/_x/link/vivado/vpl/prj/prj.runs/u96v2_sbc_base_auto_ds_1_synth_1/u96v2_sbc_base_auto_ds_1.tcl|vivado_synth|1729150753155|END|Adding files|",
+      "[OPTRACE]|26010|113|/mnt/castor/seas_home/s/songqij/ese532_code/hw6/apps/mmult/_x/link/vivado/vpl/prj/prj.runs/u96v2_sbc_base_auto_ds_1_synth_1/u96v2_sbc_base_auto_ds_1.tcl|vivado_synth|1729150753157|START|Configure IP Cache|",
+      "[OPTRACE]|26010|120|/mnt/castor/seas_home/s/songqij/ese532_code/hw6/apps/mmult/_x/link/vivado/vpl/prj/prj.runs/u96v2_sbc_base_auto_ds_1_synth_1/u96v2_sbc_base_auto_ds_1.tcl|vivado_synth|1729150753216|END|Configure IP Cache|",
+      "[OPTRACE]|26010|121|/mnt/castor/seas_home/s/songqij/ese532_code/hw6/apps/mmult/_x/link/vivado/vpl/prj/prj.runs/u96v2_sbc_base_auto_ds_1_synth_1/u96v2_sbc_base_auto_ds_1.tcl|vivado_synth|1729150753218|START|synth_design|",
+      "[OPTRACE]|26010|166|/mnt/castor/seas_home/s/songqij/ese532_code/hw6/apps/mmult/_x/link/vivado/vpl/prj/prj.runs/u96v2_sbc_base_auto_ds_1_synth_1/u96v2_sbc_base_auto_ds_1.tcl|vivado_synth|1729150814688|END|synth_design|",
+      "[OPTRACE]|26010|167|/mnt/castor/seas_home/s/songqij/ese532_code/hw6/apps/mmult/_x/link/vivado/vpl/prj/prj.runs/u96v2_sbc_base_auto_ds_1_synth_1/u96v2_sbc_base_auto_ds_1.tcl|vivado_synth|1729150814688|START|Write IP Cache|",
+      "[OPTRACE]|26010|170|/mnt/castor/seas_home/s/songqij/ese532_code/hw6/apps/mmult/_x/link/vivado/vpl/prj/prj.runs/u96v2_sbc_base_auto_ds_1_synth_1/u96v2_sbc_base_auto_ds_1.tcl|vivado_synth|1729150815636|END|Write IP Cache|",
+      "[OPTRACE]|26010|171|/mnt/castor/seas_home/s/songqij/ese532_code/hw6/apps/mmult/_x/link/vivado/vpl/prj/prj.runs/u96v2_sbc_base_auto_ds_1_synth_1/u96v2_sbc_base_auto_ds_1.tcl|vivado_synth|1729150815638|START|write_checkpoint|CHECKPOINT",
+      "[OPTRACE]|26010|174|/mnt/castor/seas_home/s/songqij/ese532_code/hw6/apps/mmult/_x/link/vivado/vpl/prj/prj.runs/u96v2_sbc_base_auto_ds_1_synth_1/u96v2_sbc_base_auto_ds_1.tcl|vivado_synth|1729150816127|END|write_checkpoint|",
+      "[OPTRACE]|26010|175|/mnt/castor/seas_home/s/songqij/ese532_code/hw6/apps/mmult/_x/link/vivado/vpl/prj/prj.runs/u96v2_sbc_base_auto_ds_1_synth_1/u96v2_sbc_base_auto_ds_1.tcl|vivado_synth|1729150816127|START|synth reports|REPORT",
+      "[OPTRACE]|26010|176|/mnt/castor/seas_home/s/songqij/ese532_code/hw6/apps/mmult/_x/link/vivado/vpl/prj/prj.runs/u96v2_sbc_base_auto_ds_1_synth_1/u96v2_sbc_base_auto_ds_1.tcl|vivado_synth|1729150816178|END|synth reports|",
+      "[OPTRACE]|26010|177|/mnt/castor/seas_home/s/songqij/ese532_code/hw6/apps/mmult/_x/link/vivado/vpl/prj/prj.runs/u96v2_sbc_base_auto_ds_1_synth_1/u96v2_sbc_base_auto_ds_1.tcl|vivado_synth|1729150816513|END|u96v2_sbc_base_auto_ds_1_synth_1|",
+      "[OPTRACE]|26010|82|/mnt/castor/seas_home/s/songqij/ese532_code/hw6/apps/mmult/_x/link/vivado/vpl/prj/prj.runs/u96v2_sbc_base_auto_ds_1_synth_1/u96v2_sbc_base_auto_ds_1.tcl|vivado_synth|1729150746284|START|u96v2_sbc_base_auto_ds_1_synth_1|ROLLUP_AUTO",
+      "[OPTRACE]|26010|84|/mnt/castor/seas_home/s/songqij/ese532_code/hw6/apps/mmult/_x/link/vivado/vpl/prj/prj.runs/u96v2_sbc_base_auto_ds_1_synth_1/u96v2_sbc_base_auto_ds_1.tcl|vivado_synth|1729150746284|START|Creating in-memory project|",
+      "[OPTRACE]|27411|182|/mnt/castor/seas_home/s/songqij/ese532_code/hw6/apps/mmult/_x/link/vivado/vpl/prj/prj.runs/u96v2_sbc_base_auto_ds_9_synth_1/u96v2_sbc_base_auto_ds_9.tcl|vivado_synth|1729150816798|START|u96v2_sbc_base_auto_ds_9_synth_1|ROLLUP_AUTO",
+      "[OPTRACE]|27411|183|/mnt/castor/seas_home/s/songqij/ese532_code/hw6/apps/mmult/_x/link/vivado/vpl/prj/prj.runs/u96v2_sbc_base_auto_ds_9_synth_1/u96v2_sbc_base_auto_ds_9.tcl|vivado_synth|1729150816798|START|Creating in-memory project|",
+      "[OPTRACE]|27411|186|/mnt/castor/seas_home/s/songqij/ese532_code/hw6/apps/mmult/_x/link/vivado/vpl/prj/prj.runs/u96v2_sbc_base_auto_ds_9_synth_1/u96v2_sbc_base_auto_ds_9.tcl|vivado_synth|1729150823105|END|Creating in-memory project|",
+      "[OPTRACE]|27411|187|/mnt/castor/seas_home/s/songqij/ese532_code/hw6/apps/mmult/_x/link/vivado/vpl/prj/prj.runs/u96v2_sbc_base_auto_ds_9_synth_1/u96v2_sbc_base_auto_ds_9.tcl|vivado_synth|1729150823105|START|Adding files|",
+      "[OPTRACE]|27411|192|/mnt/castor/seas_home/s/songqij/ese532_code/hw6/apps/mmult/_x/link/vivado/vpl/prj/prj.runs/u96v2_sbc_base_auto_ds_9_synth_1/u96v2_sbc_base_auto_ds_9.tcl|vivado_synth|1729150823307|END|Adding files|",
+      "[OPTRACE]|27411|193|/mnt/castor/seas_home/s/songqij/ese532_code/hw6/apps/mmult/_x/link/vivado/vpl/prj/prj.runs/u96v2_sbc_base_auto_ds_9_synth_1/u96v2_sbc_base_auto_ds_9.tcl|vivado_synth|1729150823309|START|Configure IP Cache|",
+      "[OPTRACE]|27411|196|/mnt/castor/seas_home/s/songqij/ese532_code/hw6/apps/mmult/_x/link/vivado/vpl/prj/prj.runs/u96v2_sbc_base_auto_ds_9_synth_1/u96v2_sbc_base_auto_ds_9.tcl|vivado_synth|1729150823363|END|Configure IP Cache|",
+      "[OPTRACE]|27411|197|/mnt/castor/seas_home/s/songqij/ese532_code/hw6/apps/mmult/_x/link/vivado/vpl/prj/prj.runs/u96v2_sbc_base_auto_ds_9_synth_1/u96v2_sbc_base_auto_ds_9.tcl|vivado_synth|1729150823365|START|synth_design|",
+      "[OPTRACE]|27411|318|/mnt/castor/seas_home/s/songqij/ese532_code/hw6/apps/mmult/_x/link/vivado/vpl/prj/prj.runs/u96v2_sbc_base_auto_ds_9_synth_1/u96v2_sbc_base_auto_ds_9.tcl|vivado_synth|1729150888388|END|synth_design|",
+      "[OPTRACE]|27411|319|/mnt/castor/seas_home/s/songqij/ese532_code/hw6/apps/mmult/_x/link/vivado/vpl/prj/prj.runs/u96v2_sbc_base_auto_ds_9_synth_1/u96v2_sbc_base_auto_ds_9.tcl|vivado_synth|1729150888388|START|Write IP Cache|",
+      "[OPTRACE]|27411|320|/mnt/castor/seas_home/s/songqij/ese532_code/hw6/apps/mmult/_x/link/vivado/vpl/prj/prj.runs/u96v2_sbc_base_auto_ds_9_synth_1/u96v2_sbc_base_auto_ds_9.tcl|vivado_synth|1729150889357|END|Write IP Cache|",
+      "[OPTRACE]|27411|321|/mnt/castor/seas_home/s/songqij/ese532_code/hw6/apps/mmult/_x/link/vivado/vpl/prj/prj.runs/u96v2_sbc_base_auto_ds_9_synth_1/u96v2_sbc_base_auto_ds_9.tcl|vivado_synth|1729150889358|START|write_checkpoint|CHECKPOINT",
+      "[OPTRACE]|27411|322|/mnt/castor/seas_home/s/songqij/ese532_code/hw6/apps/mmult/_x/link/vivado/vpl/prj/prj.runs/u96v2_sbc_base_auto_ds_9_synth_1/u96v2_sbc_base_auto_ds_9.tcl|vivado_synth|1729150889786|END|write_checkpoint|",
+      "[OPTRACE]|27411|323|/mnt/castor/seas_home/s/songqij/ese532_code/hw6/apps/mmult/_x/link/vivado/vpl/prj/prj.runs/u96v2_sbc_base_auto_ds_9_synth_1/u96v2_sbc_base_auto_ds_9.tcl|vivado_synth|1729150889786|START|synth reports|REPORT",
+      "[OPTRACE]|27411|324|/mnt/castor/seas_home/s/songqij/ese532_code/hw6/apps/mmult/_x/link/vivado/vpl/prj/prj.runs/u96v2_sbc_base_auto_ds_9_synth_1/u96v2_sbc_base_auto_ds_9.tcl|vivado_synth|1729150889835|END|synth reports|",
+      "[OPTRACE]|27411|325|/mnt/castor/seas_home/s/songqij/ese532_code/hw6/apps/mmult/_x/link/vivado/vpl/prj/prj.runs/u96v2_sbc_base_auto_ds_9_synth_1/u96v2_sbc_base_auto_ds_9.tcl|vivado_synth|1729150890243|END|u96v2_sbc_base_auto_ds_9_synth_1|",
+      "[OPTRACE]|27475|181|/mnt/castor/seas_home/s/songqij/ese532_code/hw6/apps/mmult/_x/link/vivado/vpl/prj/prj.runs/u96v2_sbc_base_auto_pc_9_synth_1/u96v2_sbc_base_auto_pc_9.tcl|vivado_synth|1729150816798|START|u96v2_sbc_base_auto_pc_9_synth_1|ROLLUP_AUTO",
+      "[OPTRACE]|27475|184|/mnt/castor/seas_home/s/songqij/ese532_code/hw6/apps/mmult/_x/link/vivado/vpl/prj/prj.runs/u96v2_sbc_base_auto_pc_9_synth_1/u96v2_sbc_base_auto_pc_9.tcl|vivado_synth|1729150816798|START|Creating in-memory project|",
+      "[OPTRACE]|27475|188|/mnt/castor/seas_home/s/songqij/ese532_code/hw6/apps/mmult/_x/link/vivado/vpl/prj/prj.runs/u96v2_sbc_base_auto_pc_9_synth_1/u96v2_sbc_base_auto_pc_9.tcl|vivado_synth|1729150823112|END|Creating in-memory project|",
+      "[OPTRACE]|27475|189|/mnt/castor/seas_home/s/songqij/ese532_code/hw6/apps/mmult/_x/link/vivado/vpl/prj/prj.runs/u96v2_sbc_base_auto_pc_9_synth_1/u96v2_sbc_base_auto_pc_9.tcl|vivado_synth|1729150823113|START|Adding files|",
+      "[OPTRACE]|27475|190|/mnt/castor/seas_home/s/songqij/ese532_code/hw6/apps/mmult/_x/link/vivado/vpl/prj/prj.runs/u96v2_sbc_base_auto_pc_9_synth_1/u96v2_sbc_base_auto_pc_9.tcl|vivado_synth|1729150823302|END|Adding files|",
+      "[OPTRACE]|27475|191|/mnt/castor/seas_home/s/songqij/ese532_code/hw6/apps/mmult/_x/link/vivado/vpl/prj/prj.runs/u96v2_sbc_base_auto_pc_9_synth_1/u96v2_sbc_base_auto_pc_9.tcl|vivado_synth|1729150823303|START|Configure IP Cache|",
+      "[OPTRACE]|27475|194|/mnt/castor/seas_home/s/songqij/ese532_code/hw6/apps/mmult/_x/link/vivado/vpl/prj/prj.runs/u96v2_sbc_base_auto_pc_9_synth_1/u96v2_sbc_base_auto_pc_9.tcl|vivado_synth|1729150823346|END|Configure IP Cache|",
+      "[OPTRACE]|27475|195|/mnt/castor/seas_home/s/songqij/ese532_code/hw6/apps/mmult/_x/link/vivado/vpl/prj/prj.runs/u96v2_sbc_base_auto_pc_9_synth_1/u96v2_sbc_base_auto_pc_9.tcl|vivado_synth|1729150823348|START|synth_design|",
+      "[OPTRACE]|27475|298|/mnt/castor/seas_home/s/songqij/ese532_code/hw6/apps/mmult/_x/link/vivado/vpl/prj/prj.runs/u96v2_sbc_base_auto_pc_9_synth_1/u96v2_sbc_base_auto_pc_9.tcl|vivado_synth|1729150882903|END|synth_design|",
+      "[OPTRACE]|27475|299|/mnt/castor/seas_home/s/songqij/ese532_code/hw6/apps/mmult/_x/link/vivado/vpl/prj/prj.runs/u96v2_sbc_base_auto_pc_9_synth_1/u96v2_sbc_base_auto_pc_9.tcl|vivado_synth|1729150882904|START|Write IP Cache|",
+      "[OPTRACE]|27475|300|/mnt/castor/seas_home/s/songqij/ese532_code/hw6/apps/mmult/_x/link/vivado/vpl/prj/prj.runs/u96v2_sbc_base_auto_pc_9_synth_1/u96v2_sbc_base_auto_pc_9.tcl|vivado_synth|1729150883533|END|Write IP Cache|",
+      "[OPTRACE]|27475|301|/mnt/castor/seas_home/s/songqij/ese532_code/hw6/apps/mmult/_x/link/vivado/vpl/prj/prj.runs/u96v2_sbc_base_auto_pc_9_synth_1/u96v2_sbc_base_auto_pc_9.tcl|vivado_synth|1729150883535|START|write_checkpoint|CHECKPOINT",
+      "[OPTRACE]|27475|304|/mnt/castor/seas_home/s/songqij/ese532_code/hw6/apps/mmult/_x/link/vivado/vpl/prj/prj.runs/u96v2_sbc_base_auto_pc_9_synth_1/u96v2_sbc_base_auto_pc_9.tcl|vivado_synth|1729150883806|END|write_checkpoint|",
+      "[OPTRACE]|27475|305|/mnt/castor/seas_home/s/songqij/ese532_code/hw6/apps/mmult/_x/link/vivado/vpl/prj/prj.runs/u96v2_sbc_base_auto_pc_9_synth_1/u96v2_sbc_base_auto_pc_9.tcl|vivado_synth|1729150883806|START|synth reports|REPORT",
+      "[OPTRACE]|27475|307|/mnt/castor/seas_home/s/songqij/ese532_code/hw6/apps/mmult/_x/link/vivado/vpl/prj/prj.runs/u96v2_sbc_base_auto_pc_9_synth_1/u96v2_sbc_base_auto_pc_9.tcl|vivado_synth|1729150883854|END|synth reports|",
+      "[OPTRACE]|27475|311|/mnt/castor/seas_home/s/songqij/ese532_code/hw6/apps/mmult/_x/link/vivado/vpl/prj/prj.runs/u96v2_sbc_base_auto_pc_9_synth_1/u96v2_sbc_base_auto_pc_9.tcl|vivado_synth|1729150884108|END|u96v2_sbc_base_auto_pc_9_synth_1|",
+      "[OPTRACE]|28174|198|/mnt/castor/seas_home/s/songqij/ese532_code/hw6/apps/mmult/_x/link/vivado/vpl/prj/prj.runs/u96v2_sbc_base_auto_pc_0_synth_1/u96v2_sbc_base_auto_pc_0.tcl|vivado_synth|1729150827151|START|u96v2_sbc_base_auto_pc_0_synth_1|ROLLUP_AUTO",
+      "[OPTRACE]|28174|199|/mnt/castor/seas_home/s/songqij/ese532_code/hw6/apps/mmult/_x/link/vivado/vpl/prj/prj.runs/u96v2_sbc_base_auto_pc_0_synth_1/u96v2_sbc_base_auto_pc_0.tcl|vivado_synth|1729150827151|START|Creating in-memory project|",
+      "[OPTRACE]|28174|202|/mnt/castor/seas_home/s/songqij/ese532_code/hw6/apps/mmult/_x/link/vivado/vpl/prj/prj.runs/u96v2_sbc_base_auto_pc_0_synth_1/u96v2_sbc_base_auto_pc_0.tcl|vivado_synth|1729150832031|END|Creating in-memory project|",
+      "[OPTRACE]|28174|203|/mnt/castor/seas_home/s/songqij/ese532_code/hw6/apps/mmult/_x/link/vivado/vpl/prj/prj.runs/u96v2_sbc_base_auto_pc_0_synth_1/u96v2_sbc_base_auto_pc_0.tcl|vivado_synth|1729150832031|START|Adding files|",
+      "[OPTRACE]|28174|204|/mnt/castor/seas_home/s/songqij/ese532_code/hw6/apps/mmult/_x/link/vivado/vpl/prj/prj.runs/u96v2_sbc_base_auto_pc_0_synth_1/u96v2_sbc_base_auto_pc_0.tcl|vivado_synth|1729150832217|END|Adding files|",
+      "[OPTRACE]|28174|205|/mnt/castor/seas_home/s/songqij/ese532_code/hw6/apps/mmult/_x/link/vivado/vpl/prj/prj.runs/u96v2_sbc_base_auto_pc_0_synth_1/u96v2_sbc_base_auto_pc_0.tcl|vivado_synth|1729150832219|START|Configure IP Cache|",
+      "[OPTRACE]|28174|208|/mnt/castor/seas_home/s/songqij/ese532_code/hw6/apps/mmult/_x/link/vivado/vpl/prj/prj.runs/u96v2_sbc_base_auto_pc_0_synth_1/u96v2_sbc_base_auto_pc_0.tcl|vivado_synth|1729150832436|END|Configure IP Cache|",
+      "[OPTRACE]|28174|209|/mnt/castor/seas_home/s/songqij/ese532_code/hw6/apps/mmult/_x/link/vivado/vpl/prj/prj.runs/u96v2_sbc_base_auto_pc_0_synth_1/u96v2_sbc_base_auto_pc_0.tcl|vivado_synth|1729150832478|END|u96v2_sbc_base_auto_pc_0_synth_1|",
+      "[OPTRACE]|28235|200|/mnt/castor/seas_home/s/songqij/ese532_code/hw6/apps/mmult/_x/link/vivado/vpl/prj/prj.runs/u96v2_sbc_base_auto_pc_5_synth_1/u96v2_sbc_base_auto_pc_5.tcl|vivado_synth|1729150827245|START|u96v2_sbc_base_auto_pc_5_synth_1|ROLLUP_AUTO",
+      "[OPTRACE]|28235|201|/mnt/castor/seas_home/s/songqij/ese532_code/hw6/apps/mmult/_x/link/vivado/vpl/prj/prj.runs/u96v2_sbc_base_auto_pc_5_synth_1/u96v2_sbc_base_auto_pc_5.tcl|vivado_synth|1729150827246|START|Creating in-memory project|",
+      "[OPTRACE]|28235|206|/mnt/castor/seas_home/s/songqij/ese532_code/hw6/apps/mmult/_x/link/vivado/vpl/prj/prj.runs/u96v2_sbc_base_auto_pc_5_synth_1/u96v2_sbc_base_auto_pc_5.tcl|vivado_synth|1729150832319|END|Creating in-memory project|",
+      "[OPTRACE]|28235|207|/mnt/castor/seas_home/s/songqij/ese532_code/hw6/apps/mmult/_x/link/vivado/vpl/prj/prj.runs/u96v2_sbc_base_auto_pc_5_synth_1/u96v2_sbc_base_auto_pc_5.tcl|vivado_synth|1729150832319|START|Adding files|",
+      "[OPTRACE]|28235|210|/mnt/castor/seas_home/s/songqij/ese532_code/hw6/apps/mmult/_x/link/vivado/vpl/prj/prj.runs/u96v2_sbc_base_auto_pc_5_synth_1/u96v2_sbc_base_auto_pc_5.tcl|vivado_synth|1729150832673|END|Adding files|",
+      "[OPTRACE]|28235|211|/mnt/castor/seas_home/s/songqij/ese532_code/hw6/apps/mmult/_x/link/vivado/vpl/prj/prj.runs/u96v2_sbc_base_auto_pc_5_synth_1/u96v2_sbc_base_auto_pc_5.tcl|vivado_synth|1729150832688|START|Configure IP Cache|",
+      "[OPTRACE]|28235|212|/mnt/castor/seas_home/s/songqij/ese532_code/hw6/apps/mmult/_x/link/vivado/vpl/prj/prj.runs/u96v2_sbc_base_auto_pc_5_synth_1/u96v2_sbc_base_auto_pc_5.tcl|vivado_synth|1729150832823|END|Configure IP Cache|",
+      "[OPTRACE]|28235|213|/mnt/castor/seas_home/s/songqij/ese532_code/hw6/apps/mmult/_x/link/vivado/vpl/prj/prj.runs/u96v2_sbc_base_auto_pc_5_synth_1/u96v2_sbc_base_auto_pc_5.tcl|vivado_synth|1729150832841|END|u96v2_sbc_base_auto_pc_5_synth_1|",
+      "[OPTRACE]|28353|214|/mnt/castor/seas_home/s/songqij/ese532_code/hw6/apps/mmult/_x/link/vivado/vpl/prj/prj.runs/u96v2_sbc_base_auto_pc_4_synth_1/u96v2_sbc_base_auto_pc_4.tcl|vivado_synth|1729150834409|START|u96v2_sbc_base_auto_pc_4_synth_1|ROLLUP_AUTO",
+      "[OPTRACE]|28353|215|/mnt/castor/seas_home/s/songqij/ese532_code/hw6/apps/mmult/_x/link/vivado/vpl/prj/prj.runs/u96v2_sbc_base_auto_pc_4_synth_1/u96v2_sbc_base_auto_pc_4.tcl|vivado_synth|1729150834410|START|Creating in-memory project|",
+      "[OPTRACE]|28353|218|/mnt/castor/seas_home/s/songqij/ese532_code/hw6/apps/mmult/_x/link/vivado/vpl/prj/prj.runs/u96v2_sbc_base_auto_pc_4_synth_1/u96v2_sbc_base_auto_pc_4.tcl|vivado_synth|1729150839177|END|Creating in-memory project|",
+      "[OPTRACE]|28353|219|/mnt/castor/seas_home/s/songqij/ese532_code/hw6/apps/mmult/_x/link/vivado/vpl/prj/prj.runs/u96v2_sbc_base_auto_pc_4_synth_1/u96v2_sbc_base_auto_pc_4.tcl|vivado_synth|1729150839177|START|Adding files|",
+      "[OPTRACE]|28353|222|/mnt/castor/seas_home/s/songqij/ese532_code/hw6/apps/mmult/_x/link/vivado/vpl/prj/prj.runs/u96v2_sbc_base_auto_pc_4_synth_1/u96v2_sbc_base_auto_pc_4.tcl|vivado_synth|1729150839365|END|Adding files|",
+      "[OPTRACE]|28353|223|/mnt/castor/seas_home/s/songqij/ese532_code/hw6/apps/mmult/_x/link/vivado/vpl/prj/prj.runs/u96v2_sbc_base_auto_pc_4_synth_1/u96v2_sbc_base_auto_pc_4.tcl|vivado_synth|1729150839367|START|Configure IP Cache|",
+      "[OPTRACE]|28353|226|/mnt/castor/seas_home/s/songqij/ese532_code/hw6/apps/mmult/_x/link/vivado/vpl/prj/prj.runs/u96v2_sbc_base_auto_pc_4_synth_1/u96v2_sbc_base_auto_pc_4.tcl|vivado_synth|1729150839505|END|Configure IP Cache|",
+      "[OPTRACE]|28353|227|/mnt/castor/seas_home/s/songqij/ese532_code/hw6/apps/mmult/_x/link/vivado/vpl/prj/prj.runs/u96v2_sbc_base_auto_pc_4_synth_1/u96v2_sbc_base_auto_pc_4.tcl|vivado_synth|1729150839523|END|u96v2_sbc_base_auto_pc_4_synth_1|",
+      "[OPTRACE]|28421|216|/mnt/castor/seas_home/s/songqij/ese532_code/hw6/apps/mmult/_x/link/vivado/vpl/prj/prj.runs/u96v2_sbc_base_auto_ds_5_synth_1/u96v2_sbc_base_auto_ds_5.tcl|vivado_synth|1729150834449|START|u96v2_sbc_base_auto_ds_5_synth_1|ROLLUP_AUTO",
+      "[OPTRACE]|28421|217|/mnt/castor/seas_home/s/songqij/ese532_code/hw6/apps/mmult/_x/link/vivado/vpl/prj/prj.runs/u96v2_sbc_base_auto_ds_5_synth_1/u96v2_sbc_base_auto_ds_5.tcl|vivado_synth|1729150834449|START|Creating in-memory project|",
+      "[OPTRACE]|28421|220|/mnt/castor/seas_home/s/songqij/ese532_code/hw6/apps/mmult/_x/link/vivado/vpl/prj/prj.runs/u96v2_sbc_base_auto_ds_5_synth_1/u96v2_sbc_base_auto_ds_5.tcl|vivado_synth|1729150839195|END|Creating in-memory project|",
+      "[OPTRACE]|28421|221|/mnt/castor/seas_home/s/songqij/ese532_code/hw6/apps/mmult/_x/link/vivado/vpl/prj/prj.runs/u96v2_sbc_base_auto_ds_5_synth_1/u96v2_sbc_base_auto_ds_5.tcl|vivado_synth|1729150839195|START|Adding files|",
+      "[OPTRACE]|28421|224|/mnt/castor/seas_home/s/songqij/ese532_code/hw6/apps/mmult/_x/link/vivado/vpl/prj/prj.runs/u96v2_sbc_base_auto_ds_5_synth_1/u96v2_sbc_base_auto_ds_5.tcl|vivado_synth|1729150839382|END|Adding files|",
+      "[OPTRACE]|28421|225|/mnt/castor/seas_home/s/songqij/ese532_code/hw6/apps/mmult/_x/link/vivado/vpl/prj/prj.runs/u96v2_sbc_base_auto_ds_5_synth_1/u96v2_sbc_base_auto_ds_5.tcl|vivado_synth|1729150839384|START|Configure IP Cache|",
+      "[OPTRACE]|28421|228|/mnt/castor/seas_home/s/songqij/ese532_code/hw6/apps/mmult/_x/link/vivado/vpl/prj/prj.runs/u96v2_sbc_base_auto_ds_5_synth_1/u96v2_sbc_base_auto_ds_5.tcl|vivado_synth|1729150839902|END|Configure IP Cache|",
+      "[OPTRACE]|28421|229|/mnt/castor/seas_home/s/songqij/ese532_code/hw6/apps/mmult/_x/link/vivado/vpl/prj/prj.runs/u96v2_sbc_base_auto_ds_5_synth_1/u96v2_sbc_base_auto_ds_5.tcl|vivado_synth|1729150839924|END|u96v2_sbc_base_auto_ds_5_synth_1|",
+      "[OPTRACE]|28721|230|/mnt/castor/seas_home/s/songqij/ese532_code/hw6/apps/mmult/_x/link/vivado/vpl/prj/prj.runs/u96v2_sbc_base_auto_ds_4_synth_1/u96v2_sbc_base_auto_ds_4.tcl|vivado_synth|1729150848857|START|u96v2_sbc_base_auto_ds_4_synth_1|ROLLUP_AUTO",
+      "[OPTRACE]|28721|231|/mnt/castor/seas_home/s/songqij/ese532_code/hw6/apps/mmult/_x/link/vivado/vpl/prj/prj.runs/u96v2_sbc_base_auto_ds_4_synth_1/u96v2_sbc_base_auto_ds_4.tcl|vivado_synth|1729150848857|START|Creating in-memory project|",
+      "[OPTRACE]|28721|236|/mnt/castor/seas_home/s/songqij/ese532_code/hw6/apps/mmult/_x/link/vivado/vpl/prj/prj.runs/u96v2_sbc_base_auto_ds_4_synth_1/u96v2_sbc_base_auto_ds_4.tcl|vivado_synth|1729150855190|END|Creating in-memory project|",
+      "[OPTRACE]|28721|237|/mnt/castor/seas_home/s/songqij/ese532_code/hw6/apps/mmult/_x/link/vivado/vpl/prj/prj.runs/u96v2_sbc_base_auto_ds_4_synth_1/u96v2_sbc_base_auto_ds_4.tcl|vivado_synth|1729150855191|START|Adding files|",
+      "[OPTRACE]|28721|240|/mnt/castor/seas_home/s/songqij/ese532_code/hw6/apps/mmult/_x/link/vivado/vpl/prj/prj.runs/u96v2_sbc_base_auto_ds_4_synth_1/u96v2_sbc_base_auto_ds_4.tcl|vivado_synth|1729150855430|END|Adding files|",
+      "[OPTRACE]|28721|241|/mnt/castor/seas_home/s/songqij/ese532_code/hw6/apps/mmult/_x/link/vivado/vpl/prj/prj.runs/u96v2_sbc_base_auto_ds_4_synth_1/u96v2_sbc_base_auto_ds_4.tcl|vivado_synth|1729150855434|START|Configure IP Cache|",
+      "[OPTRACE]|28721|246|/mnt/castor/seas_home/s/songqij/ese532_code/hw6/apps/mmult/_x/link/vivado/vpl/prj/prj.runs/u96v2_sbc_base_auto_ds_4_synth_1/u96v2_sbc_base_auto_ds_4.tcl|vivado_synth|1729150856126|END|Configure IP Cache|",
+      "[OPTRACE]|28721|247|/mnt/castor/seas_home/s/songqij/ese532_code/hw6/apps/mmult/_x/link/vivado/vpl/prj/prj.runs/u96v2_sbc_base_auto_ds_4_synth_1/u96v2_sbc_base_auto_ds_4.tcl|vivado_synth|1729150856186|END|u96v2_sbc_base_auto_ds_4_synth_1|",
+      "[OPTRACE]|28782|232|/mnt/castor/seas_home/s/songqij/ese532_code/hw6/apps/mmult/_x/link/vivado/vpl/prj/prj.runs/u96v2_sbc_base_auto_pc_3_synth_1/u96v2_sbc_base_auto_pc_3.tcl|vivado_synth|1729150849158|START|u96v2_sbc_base_auto_pc_3_synth_1|ROLLUP_AUTO",
+      "[OPTRACE]|28782|233|/mnt/castor/seas_home/s/songqij/ese532_code/hw6/apps/mmult/_x/link/vivado/vpl/prj/prj.runs/u96v2_sbc_base_auto_pc_3_synth_1/u96v2_sbc_base_auto_pc_3.tcl|vivado_synth|1729150849159|START|Creating in-memory project|",
+      "[OPTRACE]|28782|238|/mnt/castor/seas_home/s/songqij/ese532_code/hw6/apps/mmult/_x/link/vivado/vpl/prj/prj.runs/u96v2_sbc_base_auto_pc_3_synth_1/u96v2_sbc_base_auto_pc_3.tcl|vivado_synth|1729150855417|END|Creating in-memory project|",
+      "[OPTRACE]|28782|239|/mnt/castor/seas_home/s/songqij/ese532_code/hw6/apps/mmult/_x/link/vivado/vpl/prj/prj.runs/u96v2_sbc_base_auto_pc_3_synth_1/u96v2_sbc_base_auto_pc_3.tcl|vivado_synth|1729150855417|START|Adding files|",
+      "[OPTRACE]|28782|242|/mnt/castor/seas_home/s/songqij/ese532_code/hw6/apps/mmult/_x/link/vivado/vpl/prj/prj.runs/u96v2_sbc_base_auto_pc_3_synth_1/u96v2_sbc_base_auto_pc_3.tcl|vivado_synth|1729150855672|END|Adding files|",
+      "[OPTRACE]|28782|243|/mnt/castor/seas_home/s/songqij/ese532_code/hw6/apps/mmult/_x/link/vivado/vpl/prj/prj.runs/u96v2_sbc_base_auto_pc_3_synth_1/u96v2_sbc_base_auto_pc_3.tcl|vivado_synth|1729150855674|START|Configure IP Cache|",
+      "[OPTRACE]|28782|244|/mnt/castor/seas_home/s/songqij/ese532_code/hw6/apps/mmult/_x/link/vivado/vpl/prj/prj.runs/u96v2_sbc_base_auto_pc_3_synth_1/u96v2_sbc_base_auto_pc_3.tcl|vivado_synth|1729150855843|END|Configure IP Cache|",
+      "[OPTRACE]|28782|245|/mnt/castor/seas_home/s/songqij/ese532_code/hw6/apps/mmult/_x/link/vivado/vpl/prj/prj.runs/u96v2_sbc_base_auto_pc_3_synth_1/u96v2_sbc_base_auto_pc_3.tcl|vivado_synth|1729150855884|END|u96v2_sbc_base_auto_pc_3_synth_1|",
+      "[OPTRACE]|28930|250|/mnt/castor/seas_home/s/songqij/ese532_code/hw6/apps/mmult/_x/link/vivado/vpl/prj/prj.runs/u96v2_sbc_base_auto_ds_3_synth_1/u96v2_sbc_base_auto_ds_3.tcl|vivado_synth|1729150857554|START|u96v2_sbc_base_auto_ds_3_synth_1|ROLLUP_AUTO",
+      "[OPTRACE]|28930|251|/mnt/castor/seas_home/s/songqij/ese532_code/hw6/apps/mmult/_x/link/vivado/vpl/prj/prj.runs/u96v2_sbc_base_auto_ds_3_synth_1/u96v2_sbc_base_auto_ds_3.tcl|vivado_synth|1729150857554|START|Creating in-memory project|",
+      "[OPTRACE]|28930|258|/mnt/castor/seas_home/s/songqij/ese532_code/hw6/apps/mmult/_x/link/vivado/vpl/prj/prj.runs/u96v2_sbc_base_auto_ds_3_synth_1/u96v2_sbc_base_auto_ds_3.tcl|vivado_synth|1729150862674|END|Creating in-memory project|",
+      "[OPTRACE]|28930|259|/mnt/castor/seas_home/s/songqij/ese532_code/hw6/apps/mmult/_x/link/vivado/vpl/prj/prj.runs/u96v2_sbc_base_auto_ds_3_synth_1/u96v2_sbc_base_auto_ds_3.tcl|vivado_synth|1729150862674|START|Adding files|",
+      "[OPTRACE]|28930|262|/mnt/castor/seas_home/s/songqij/ese532_code/hw6/apps/mmult/_x/link/vivado/vpl/prj/prj.runs/u96v2_sbc_base_auto_ds_3_synth_1/u96v2_sbc_base_auto_ds_3.tcl|vivado_synth|1729150862871|END|Adding files|",
+      "[OPTRACE]|28930|263|/mnt/castor/seas_home/s/songqij/ese532_code/hw6/apps/mmult/_x/link/vivado/vpl/prj/prj.runs/u96v2_sbc_base_auto_ds_3_synth_1/u96v2_sbc_base_auto_ds_3.tcl|vivado_synth|1729150862872|START|Configure IP Cache|",
+      "[OPTRACE]|28930|268|/mnt/castor/seas_home/s/songqij/ese532_code/hw6/apps/mmult/_x/link/vivado/vpl/prj/prj.runs/u96v2_sbc_base_auto_ds_3_synth_1/u96v2_sbc_base_auto_ds_3.tcl|vivado_synth|1729150863405|END|Configure IP Cache|",
+      "[OPTRACE]|28930|269|/mnt/castor/seas_home/s/songqij/ese532_code/hw6/apps/mmult/_x/link/vivado/vpl/prj/prj.runs/u96v2_sbc_base_auto_ds_3_synth_1/u96v2_sbc_base_auto_ds_3.tcl|vivado_synth|1729150863438|END|u96v2_sbc_base_auto_ds_3_synth_1|",
+      "[OPTRACE]|28997|252|/mnt/castor/seas_home/s/songqij/ese532_code/hw6/apps/mmult/_x/link/vivado/vpl/prj/prj.runs/u96v2_sbc_base_auto_pc_2_synth_1/u96v2_sbc_base_auto_pc_2.tcl|vivado_synth|1729150857742|START|u96v2_sbc_base_auto_pc_2_synth_1|ROLLUP_AUTO",
+      "[OPTRACE]|28997|253|/mnt/castor/seas_home/s/songqij/ese532_code/hw6/apps/mmult/_x/link/vivado/vpl/prj/prj.runs/u96v2_sbc_base_auto_pc_2_synth_1/u96v2_sbc_base_auto_pc_2.tcl|vivado_synth|1729150857743|START|Creating in-memory project|",
+      "[OPTRACE]|28997|260|/mnt/castor/seas_home/s/songqij/ese532_code/hw6/apps/mmult/_x/link/vivado/vpl/prj/prj.runs/u96v2_sbc_base_auto_pc_2_synth_1/u96v2_sbc_base_auto_pc_2.tcl|vivado_synth|1729150862862|END|Creating in-memory project|",
+      "[OPTRACE]|28997|261|/mnt/castor/seas_home/s/songqij/ese532_code/hw6/apps/mmult/_x/link/vivado/vpl/prj/prj.runs/u96v2_sbc_base_auto_pc_2_synth_1/u96v2_sbc_base_auto_pc_2.tcl|vivado_synth|1729150862862|START|Adding files|",
+      "[OPTRACE]|28997|264|/mnt/castor/seas_home/s/songqij/ese532_code/hw6/apps/mmult/_x/link/vivado/vpl/prj/prj.runs/u96v2_sbc_base_auto_pc_2_synth_1/u96v2_sbc_base_auto_pc_2.tcl|vivado_synth|1729150863047|END|Adding files|",
+      "[OPTRACE]|28997|265|/mnt/castor/seas_home/s/songqij/ese532_code/hw6/apps/mmult/_x/link/vivado/vpl/prj/prj.runs/u96v2_sbc_base_auto_pc_2_synth_1/u96v2_sbc_base_auto_pc_2.tcl|vivado_synth|1729150863049|START|Configure IP Cache|",
+      "[OPTRACE]|28997|266|/mnt/castor/seas_home/s/songqij/ese532_code/hw6/apps/mmult/_x/link/vivado/vpl/prj/prj.runs/u96v2_sbc_base_auto_pc_2_synth_1/u96v2_sbc_base_auto_pc_2.tcl|vivado_synth|1729150863188|END|Configure IP Cache|",
+      "[OPTRACE]|28997|267|/mnt/castor/seas_home/s/songqij/ese532_code/hw6/apps/mmult/_x/link/vivado/vpl/prj/prj.runs/u96v2_sbc_base_auto_pc_2_synth_1/u96v2_sbc_base_auto_pc_2.tcl|vivado_synth|1729150863217|END|u96v2_sbc_base_auto_pc_2_synth_1|",
+      "[OPTRACE]|29273|270|/mnt/castor/seas_home/s/songqij/ese532_code/hw6/apps/mmult/_x/link/vivado/vpl/prj/prj.runs/u96v2_sbc_base_auto_ds_2_synth_1/u96v2_sbc_base_auto_ds_2.tcl|vivado_synth|1729150873155|START|u96v2_sbc_base_auto_ds_2_synth_1|ROLLUP_AUTO",
+      "[OPTRACE]|29273|271|/mnt/castor/seas_home/s/songqij/ese532_code/hw6/apps/mmult/_x/link/vivado/vpl/prj/prj.runs/u96v2_sbc_base_auto_ds_2_synth_1/u96v2_sbc_base_auto_ds_2.tcl|vivado_synth|1729150873155|START|Creating in-memory project|",
+      "[OPTRACE]|29273|278|/mnt/castor/seas_home/s/songqij/ese532_code/hw6/apps/mmult/_x/link/vivado/vpl/prj/prj.runs/u96v2_sbc_base_auto_ds_2_synth_1/u96v2_sbc_base_auto_ds_2.tcl|vivado_synth|1729150878667|END|Creating in-memory project|",
+      "[OPTRACE]|29273|279|/mnt/castor/seas_home/s/songqij/ese532_code/hw6/apps/mmult/_x/link/vivado/vpl/prj/prj.runs/u96v2_sbc_base_auto_ds_2_synth_1/u96v2_sbc_base_auto_ds_2.tcl|vivado_synth|1729150878668|START|Adding files|",
+      "[OPTRACE]|29273|282|/mnt/castor/seas_home/s/songqij/ese532_code/hw6/apps/mmult/_x/link/vivado/vpl/prj/prj.runs/u96v2_sbc_base_auto_ds_2_synth_1/u96v2_sbc_base_auto_ds_2.tcl|vivado_synth|1729150878905|END|Adding files|",
+      "[OPTRACE]|29273|283|/mnt/castor/seas_home/s/songqij/ese532_code/hw6/apps/mmult/_x/link/vivado/vpl/prj/prj.runs/u96v2_sbc_base_auto_ds_2_synth_1/u96v2_sbc_base_auto_ds_2.tcl|vivado_synth|1729150878907|START|Configure IP Cache|",
+      "[OPTRACE]|29273|286|/mnt/castor/seas_home/s/songqij/ese532_code/hw6/apps/mmult/_x/link/vivado/vpl/prj/prj.runs/u96v2_sbc_base_auto_ds_2_synth_1/u96v2_sbc_base_auto_ds_2.tcl|vivado_synth|1729150879519|END|Configure IP Cache|",
+      "[OPTRACE]|29273|287|/mnt/castor/seas_home/s/songqij/ese532_code/hw6/apps/mmult/_x/link/vivado/vpl/prj/prj.runs/u96v2_sbc_base_auto_ds_2_synth_1/u96v2_sbc_base_auto_ds_2.tcl|vivado_synth|1729150879551|END|u96v2_sbc_base_auto_ds_2_synth_1|",
+      "[OPTRACE]|29334|272|/mnt/castor/seas_home/s/songqij/ese532_code/hw6/apps/mmult/_x/link/vivado/vpl/prj/prj.runs/u96v2_sbc_base_auto_ds_0_synth_1/u96v2_sbc_base_auto_ds_0.tcl|vivado_synth|1729150873241|START|u96v2_sbc_base_auto_ds_0_synth_1|ROLLUP_AUTO",
+      "[OPTRACE]|29334|273|/mnt/castor/seas_home/s/songqij/ese532_code/hw6/apps/mmult/_x/link/vivado/vpl/prj/prj.runs/u96v2_sbc_base_auto_ds_0_synth_1/u96v2_sbc_base_auto_ds_0.tcl|vivado_synth|1729150873241|START|Creating in-memory project|",
+      "[OPTRACE]|29334|280|/mnt/castor/seas_home/s/songqij/ese532_code/hw6/apps/mmult/_x/link/vivado/vpl/prj/prj.runs/u96v2_sbc_base_auto_ds_0_synth_1/u96v2_sbc_base_auto_ds_0.tcl|vivado_synth|1729150878764|END|Creating in-memory project|",
+      "[OPTRACE]|29334|281|/mnt/castor/seas_home/s/songqij/ese532_code/hw6/apps/mmult/_x/link/vivado/vpl/prj/prj.runs/u96v2_sbc_base_auto_ds_0_synth_1/u96v2_sbc_base_auto_ds_0.tcl|vivado_synth|1729150878764|START|Adding files|",
+      "[OPTRACE]|29334|284|/mnt/castor/seas_home/s/songqij/ese532_code/hw6/apps/mmult/_x/link/vivado/vpl/prj/prj.runs/u96v2_sbc_base_auto_ds_0_synth_1/u96v2_sbc_base_auto_ds_0.tcl|vivado_synth|1729150879026|END|Adding files|",
+      "[OPTRACE]|29334|285|/mnt/castor/seas_home/s/songqij/ese532_code/hw6/apps/mmult/_x/link/vivado/vpl/prj/prj.runs/u96v2_sbc_base_auto_ds_0_synth_1/u96v2_sbc_base_auto_ds_0.tcl|vivado_synth|1729150879029|START|Configure IP Cache|",
+      "[OPTRACE]|29334|288|/mnt/castor/seas_home/s/songqij/ese532_code/hw6/apps/mmult/_x/link/vivado/vpl/prj/prj.runs/u96v2_sbc_base_auto_ds_0_synth_1/u96v2_sbc_base_auto_ds_0.tcl|vivado_synth|1729150879642|END|Configure IP Cache|",
+      "[OPTRACE]|29334|289|/mnt/castor/seas_home/s/songqij/ese532_code/hw6/apps/mmult/_x/link/vivado/vpl/prj/prj.runs/u96v2_sbc_base_auto_ds_0_synth_1/u96v2_sbc_base_auto_ds_0.tcl|vivado_synth|1729150879686|END|u96v2_sbc_base_auto_ds_0_synth_1|",
+      "[OPTRACE]|29402|274|/mnt/castor/seas_home/s/songqij/ese532_code/hw6/apps/mmult/_x/link/vivado/vpl/prj/prj.runs/u96v2_sbc_base_auto_ds_7_synth_1/u96v2_sbc_base_auto_ds_7.tcl|vivado_synth|1729150874467|START|u96v2_sbc_base_auto_ds_7_synth_1|ROLLUP_AUTO",
+      "[OPTRACE]|29402|275|/mnt/castor/seas_home/s/songqij/ese532_code/hw6/apps/mmult/_x/link/vivado/vpl/prj/prj.runs/u96v2_sbc_base_auto_ds_7_synth_1/u96v2_sbc_base_auto_ds_7.tcl|vivado_synth|1729150874468|START|Creating in-memory project|",
+      "[OPTRACE]|29402|290|/mnt/castor/seas_home/s/songqij/ese532_code/hw6/apps/mmult/_x/link/vivado/vpl/prj/prj.runs/u96v2_sbc_base_auto_ds_7_synth_1/u96v2_sbc_base_auto_ds_7.tcl|vivado_synth|1729150880193|END|Creating in-memory project|",
+      "[OPTRACE]|29402|291|/mnt/castor/seas_home/s/songqij/ese532_code/hw6/apps/mmult/_x/link/vivado/vpl/prj/prj.runs/u96v2_sbc_base_auto_ds_7_synth_1/u96v2_sbc_base_auto_ds_7.tcl|vivado_synth|1729150880193|START|Adding files|",
+      "[OPTRACE]|29402|292|/mnt/castor/seas_home/s/songqij/ese532_code/hw6/apps/mmult/_x/link/vivado/vpl/prj/prj.runs/u96v2_sbc_base_auto_ds_7_synth_1/u96v2_sbc_base_auto_ds_7.tcl|vivado_synth|1729150880397|END|Adding files|",
+      "[OPTRACE]|29402|293|/mnt/castor/seas_home/s/songqij/ese532_code/hw6/apps/mmult/_x/link/vivado/vpl/prj/prj.runs/u96v2_sbc_base_auto_ds_7_synth_1/u96v2_sbc_base_auto_ds_7.tcl|vivado_synth|1729150880398|START|Configure IP Cache|",
+      "[OPTRACE]|29402|296|/mnt/castor/seas_home/s/songqij/ese532_code/hw6/apps/mmult/_x/link/vivado/vpl/prj/prj.runs/u96v2_sbc_base_auto_ds_7_synth_1/u96v2_sbc_base_auto_ds_7.tcl|vivado_synth|1729150880939|END|Configure IP Cache|",
+      "[OPTRACE]|29402|297|/mnt/castor/seas_home/s/songqij/ese532_code/hw6/apps/mmult/_x/link/vivado/vpl/prj/prj.runs/u96v2_sbc_base_auto_ds_7_synth_1/u96v2_sbc_base_auto_ds_7.tcl|vivado_synth|1729150880962|END|u96v2_sbc_base_auto_ds_7_synth_1|",
+      "[OPTRACE]|29494|276|/mnt/castor/seas_home/s/songqij/ese532_code/hw6/apps/mmult/_x/link/vivado/vpl/prj/prj.runs/u96v2_sbc_base_auto_pc_7_synth_1/u96v2_sbc_base_auto_pc_7.tcl|vivado_synth|1729150877896|START|u96v2_sbc_base_auto_pc_7_synth_1|ROLLUP_AUTO",
+      "[OPTRACE]|29494|277|/mnt/castor/seas_home/s/songqij/ese532_code/hw6/apps/mmult/_x/link/vivado/vpl/prj/prj.runs/u96v2_sbc_base_auto_pc_7_synth_1/u96v2_sbc_base_auto_pc_7.tcl|vivado_synth|1729150877896|START|Creating in-memory project|",
+      "[OPTRACE]|29494|302|/mnt/castor/seas_home/s/songqij/ese532_code/hw6/apps/mmult/_x/link/vivado/vpl/prj/prj.runs/u96v2_sbc_base_auto_pc_7_synth_1/u96v2_sbc_base_auto_pc_7.tcl|vivado_synth|1729150883660|END|Creating in-memory project|",
+      "[OPTRACE]|29494|303|/mnt/castor/seas_home/s/songqij/ese532_code/hw6/apps/mmult/_x/link/vivado/vpl/prj/prj.runs/u96v2_sbc_base_auto_pc_7_synth_1/u96v2_sbc_base_auto_pc_7.tcl|vivado_synth|1729150883661|START|Adding files|",
+      "[OPTRACE]|29494|306|/mnt/castor/seas_home/s/songqij/ese532_code/hw6/apps/mmult/_x/link/vivado/vpl/prj/prj.runs/u96v2_sbc_base_auto_pc_7_synth_1/u96v2_sbc_base_auto_pc_7.tcl|vivado_synth|1729150883853|END|Adding files|",
+      "[OPTRACE]|29494|308|/mnt/castor/seas_home/s/songqij/ese532_code/hw6/apps/mmult/_x/link/vivado/vpl/prj/prj.runs/u96v2_sbc_base_auto_pc_7_synth_1/u96v2_sbc_base_auto_pc_7.tcl|vivado_synth|1729150883855|START|Configure IP Cache|",
+      "[OPTRACE]|29494|309|/mnt/castor/seas_home/s/songqij/ese532_code/hw6/apps/mmult/_x/link/vivado/vpl/prj/prj.runs/u96v2_sbc_base_auto_pc_7_synth_1/u96v2_sbc_base_auto_pc_7.tcl|vivado_synth|1729150883980|END|Configure IP Cache|",
+      "[OPTRACE]|29494|310|/mnt/castor/seas_home/s/songqij/ese532_code/hw6/apps/mmult/_x/link/vivado/vpl/prj/prj.runs/u96v2_sbc_base_auto_pc_7_synth_1/u96v2_sbc_base_auto_pc_7.tcl|vivado_synth|1729150884009|END|u96v2_sbc_base_auto_pc_7_synth_1|",
+      "[OPTRACE]|29571|294|/mnt/castor/seas_home/s/songqij/ese532_code/hw6/apps/mmult/_x/link/vivado/vpl/prj/prj.runs/u96v2_sbc_base_auto_ds_8_synth_1/u96v2_sbc_base_auto_ds_8.tcl|vivado_synth|1729150880541|START|u96v2_sbc_base_auto_ds_8_synth_1|ROLLUP_AUTO",
+      "[OPTRACE]|29571|295|/mnt/castor/seas_home/s/songqij/ese532_code/hw6/apps/mmult/_x/link/vivado/vpl/prj/prj.runs/u96v2_sbc_base_auto_ds_8_synth_1/u96v2_sbc_base_auto_ds_8.tcl|vivado_synth|1729150880541|START|Creating in-memory project|",
+      "[OPTRACE]|29571|312|/mnt/castor/seas_home/s/songqij/ese532_code/hw6/apps/mmult/_x/link/vivado/vpl/prj/prj.runs/u96v2_sbc_base_auto_ds_8_synth_1/u96v2_sbc_base_auto_ds_8.tcl|vivado_synth|1729150885050|END|Creating in-memory project|",
+      "[OPTRACE]|29571|313|/mnt/castor/seas_home/s/songqij/ese532_code/hw6/apps/mmult/_x/link/vivado/vpl/prj/prj.runs/u96v2_sbc_base_auto_ds_8_synth_1/u96v2_sbc_base_auto_ds_8.tcl|vivado_synth|1729150885051|START|Adding files|",
+      "[OPTRACE]|29571|314|/mnt/castor/seas_home/s/songqij/ese532_code/hw6/apps/mmult/_x/link/vivado/vpl/prj/prj.runs/u96v2_sbc_base_auto_ds_8_synth_1/u96v2_sbc_base_auto_ds_8.tcl|vivado_synth|1729150885271|END|Adding files|",
+      "[OPTRACE]|29571|315|/mnt/castor/seas_home/s/songqij/ese532_code/hw6/apps/mmult/_x/link/vivado/vpl/prj/prj.runs/u96v2_sbc_base_auto_ds_8_synth_1/u96v2_sbc_base_auto_ds_8.tcl|vivado_synth|1729150885274|START|Configure IP Cache|",
+      "[OPTRACE]|29571|316|/mnt/castor/seas_home/s/songqij/ese532_code/hw6/apps/mmult/_x/link/vivado/vpl/prj/prj.runs/u96v2_sbc_base_auto_ds_8_synth_1/u96v2_sbc_base_auto_ds_8.tcl|vivado_synth|1729150885750|END|Configure IP Cache|",
+      "[OPTRACE]|29571|317|/mnt/castor/seas_home/s/songqij/ese532_code/hw6/apps/mmult/_x/link/vivado/vpl/prj/prj.runs/u96v2_sbc_base_auto_ds_8_synth_1/u96v2_sbc_base_auto_ds_8.tcl|vivado_synth|1729150885778|END|u96v2_sbc_base_auto_ds_8_synth_1|",
+      "[OPTRACE]|29875|326|/mnt/castor/seas_home/s/songqij/ese532_code/hw6/apps/mmult/_x/link/vivado/vpl/prj/prj.runs/u96v2_sbc_base_auto_pc_8_synth_1/u96v2_sbc_base_auto_pc_8.tcl|vivado_synth|1729150894982|START|u96v2_sbc_base_auto_pc_8_synth_1|ROLLUP_AUTO",
+      "[OPTRACE]|29875|327|/mnt/castor/seas_home/s/songqij/ese532_code/hw6/apps/mmult/_x/link/vivado/vpl/prj/prj.runs/u96v2_sbc_base_auto_pc_8_synth_1/u96v2_sbc_base_auto_pc_8.tcl|vivado_synth|1729150894982|START|Creating in-memory project|",
+      "[OPTRACE]|29875|330|/mnt/castor/seas_home/s/songqij/ese532_code/hw6/apps/mmult/_x/link/vivado/vpl/prj/prj.runs/u96v2_sbc_base_auto_pc_8_synth_1/u96v2_sbc_base_auto_pc_8.tcl|vivado_synth|1729150899006|END|Creating in-memory project|",
+      "[OPTRACE]|29875|331|/mnt/castor/seas_home/s/songqij/ese532_code/hw6/apps/mmult/_x/link/vivado/vpl/prj/prj.runs/u96v2_sbc_base_auto_pc_8_synth_1/u96v2_sbc_base_auto_pc_8.tcl|vivado_synth|1729150899006|START|Adding files|",
+      "[OPTRACE]|29875|334|/mnt/castor/seas_home/s/songqij/ese532_code/hw6/apps/mmult/_x/link/vivado/vpl/prj/prj.runs/u96v2_sbc_base_auto_pc_8_synth_1/u96v2_sbc_base_auto_pc_8.tcl|vivado_synth|1729150899183|END|Adding files|",
+      "[OPTRACE]|29875|335|/mnt/castor/seas_home/s/songqij/ese532_code/hw6/apps/mmult/_x/link/vivado/vpl/prj/prj.runs/u96v2_sbc_base_auto_pc_8_synth_1/u96v2_sbc_base_auto_pc_8.tcl|vivado_synth|1729150899184|START|Configure IP Cache|",
+      "[OPTRACE]|29875|340|/mnt/castor/seas_home/s/songqij/ese532_code/hw6/apps/mmult/_x/link/vivado/vpl/prj/prj.runs/u96v2_sbc_base_auto_pc_8_synth_1/u96v2_sbc_base_auto_pc_8.tcl|vivado_synth|1729150899322|END|Configure IP Cache|",
+      "[OPTRACE]|29875|341|/mnt/castor/seas_home/s/songqij/ese532_code/hw6/apps/mmult/_x/link/vivado/vpl/prj/prj.runs/u96v2_sbc_base_auto_pc_8_synth_1/u96v2_sbc_base_auto_pc_8.tcl|vivado_synth|1729150899356|END|u96v2_sbc_base_auto_pc_8_synth_1|",
+      "[OPTRACE]|29953|328|/mnt/castor/seas_home/s/songqij/ese532_code/hw6/apps/mmult/_x/link/vivado/vpl/prj/prj.runs/u96v2_sbc_base_auto_ds_10_synth_1/u96v2_sbc_base_auto_ds_10.tcl|vivado_synth|1729150895011|START|u96v2_sbc_base_auto_ds_10_synth_1|ROLLUP_AUTO",
+      "[OPTRACE]|29953|329|/mnt/castor/seas_home/s/songqij/ese532_code/hw6/apps/mmult/_x/link/vivado/vpl/prj/prj.runs/u96v2_sbc_base_auto_ds_10_synth_1/u96v2_sbc_base_auto_ds_10.tcl|vivado_synth|1729150895011|START|Creating in-memory project|",
+      "[OPTRACE]|29953|332|/mnt/castor/seas_home/s/songqij/ese532_code/hw6/apps/mmult/_x/link/vivado/vpl/prj/prj.runs/u96v2_sbc_base_auto_ds_10_synth_1/u96v2_sbc_base_auto_ds_10.tcl|vivado_synth|1729150899022|END|Creating in-memory project|",
+      "[OPTRACE]|29953|333|/mnt/castor/seas_home/s/songqij/ese532_code/hw6/apps/mmult/_x/link/vivado/vpl/prj/prj.runs/u96v2_sbc_base_auto_ds_10_synth_1/u96v2_sbc_base_auto_ds_10.tcl|vivado_synth|1729150899022|START|Adding files|",
+      "[OPTRACE]|29953|336|/mnt/castor/seas_home/s/songqij/ese532_code/hw6/apps/mmult/_x/link/vivado/vpl/prj/prj.runs/u96v2_sbc_base_auto_ds_10_synth_1/u96v2_sbc_base_auto_ds_10.tcl|vivado_synth|1729150899209|END|Adding files|",
+      "[OPTRACE]|29953|337|/mnt/castor/seas_home/s/songqij/ese532_code/hw6/apps/mmult/_x/link/vivado/vpl/prj/prj.runs/u96v2_sbc_base_auto_ds_10_synth_1/u96v2_sbc_base_auto_ds_10.tcl|vivado_synth|1729150899211|START|Configure IP Cache|",
+      "[OPTRACE]|29953|338|/mnt/castor/seas_home/s/songqij/ese532_code/hw6/apps/mmult/_x/link/vivado/vpl/prj/prj.runs/u96v2_sbc_base_auto_ds_10_synth_1/u96v2_sbc_base_auto_ds_10.tcl|vivado_synth|1729150899259|END|Configure IP Cache|",
+      "[OPTRACE]|29953|339|/mnt/castor/seas_home/s/songqij/ese532_code/hw6/apps/mmult/_x/link/vivado/vpl/prj/prj.runs/u96v2_sbc_base_auto_ds_10_synth_1/u96v2_sbc_base_auto_ds_10.tcl|vivado_synth|1729150899261|START|synth_design|",
+      "[OPTRACE]|29953|342|/mnt/castor/seas_home/s/songqij/ese532_code/hw6/apps/mmult/_x/link/vivado/vpl/prj/prj.runs/u96v2_sbc_base_auto_ds_10_synth_1/u96v2_sbc_base_auto_ds_10.tcl|vivado_synth|1729150950988|END|synth_design|",
+      "[OPTRACE]|29953|343|/mnt/castor/seas_home/s/songqij/ese532_code/hw6/apps/mmult/_x/link/vivado/vpl/prj/prj.runs/u96v2_sbc_base_auto_ds_10_synth_1/u96v2_sbc_base_auto_ds_10.tcl|vivado_synth|1729150950988|START|Write IP Cache|",
+      "[OPTRACE]|29953|344|/mnt/castor/seas_home/s/songqij/ese532_code/hw6/apps/mmult/_x/link/vivado/vpl/prj/prj.runs/u96v2_sbc_base_auto_ds_10_synth_1/u96v2_sbc_base_auto_ds_10.tcl|vivado_synth|1729150952255|END|Write IP Cache|",
+      "[OPTRACE]|29953|345|/mnt/castor/seas_home/s/songqij/ese532_code/hw6/apps/mmult/_x/link/vivado/vpl/prj/prj.runs/u96v2_sbc_base_auto_ds_10_synth_1/u96v2_sbc_base_auto_ds_10.tcl|vivado_synth|1729150952256|START|write_checkpoint|CHECKPOINT",
+      "[OPTRACE]|29953|346|/mnt/castor/seas_home/s/songqij/ese532_code/hw6/apps/mmult/_x/link/vivado/vpl/prj/prj.runs/u96v2_sbc_base_auto_ds_10_synth_1/u96v2_sbc_base_auto_ds_10.tcl|vivado_synth|1729150952858|END|write_checkpoint|",
+      "[OPTRACE]|29953|347|/mnt/castor/seas_home/s/songqij/ese532_code/hw6/apps/mmult/_x/link/vivado/vpl/prj/prj.runs/u96v2_sbc_base_auto_ds_10_synth_1/u96v2_sbc_base_auto_ds_10.tcl|vivado_synth|1729150952858|START|synth reports|REPORT",
+      "[OPTRACE]|29953|348|/mnt/castor/seas_home/s/songqij/ese532_code/hw6/apps/mmult/_x/link/vivado/vpl/prj/prj.runs/u96v2_sbc_base_auto_ds_10_synth_1/u96v2_sbc_base_auto_ds_10.tcl|vivado_synth|1729150952913|END|synth reports|",
+      "[OPTRACE]|29953|349|/mnt/castor/seas_home/s/songqij/ese532_code/hw6/apps/mmult/_x/link/vivado/vpl/prj/prj.runs/u96v2_sbc_base_auto_ds_10_synth_1/u96v2_sbc_base_auto_ds_10.tcl|vivado_synth|1729150953453|END|u96v2_sbc_base_auto_ds_10_synth_1|",
+      "[OPTRACE]|30775|352|/mnt/castor/seas_home/s/songqij/ese532_code/hw6/apps/mmult/_x/link/vivado/vpl/prj/prj.runs/u96v2_sbc_base_auto_ds_11_synth_1/u96v2_sbc_base_auto_ds_11.tcl|vivado_synth|1729150970438|START|u96v2_sbc_base_auto_ds_11_synth_1|ROLLUP_AUTO",
+      "[OPTRACE]|30775|353|/mnt/castor/seas_home/s/songqij/ese532_code/hw6/apps/mmult/_x/link/vivado/vpl/prj/prj.runs/u96v2_sbc_base_auto_ds_11_synth_1/u96v2_sbc_base_auto_ds_11.tcl|vivado_synth|1729150970438|START|Creating in-memory project|",
+      "[OPTRACE]|30775|358|/mnt/castor/seas_home/s/songqij/ese532_code/hw6/apps/mmult/_x/link/vivado/vpl/prj/prj.runs/u96v2_sbc_base_auto_ds_11_synth_1/u96v2_sbc_base_auto_ds_11.tcl|vivado_synth|1729150975491|END|Creating in-memory project|",
+      "[OPTRACE]|30775|359|/mnt/castor/seas_home/s/songqij/ese532_code/hw6/apps/mmult/_x/link/vivado/vpl/prj/prj.runs/u96v2_sbc_base_auto_ds_11_synth_1/u96v2_sbc_base_auto_ds_11.tcl|vivado_synth|1729150975491|START|Adding files|",
+      "[OPTRACE]|30775|360|/mnt/castor/seas_home/s/songqij/ese532_code/hw6/apps/mmult/_x/link/vivado/vpl/prj/prj.runs/u96v2_sbc_base_auto_ds_11_synth_1/u96v2_sbc_base_auto_ds_11.tcl|vivado_synth|1729150975692|END|Adding files|",
+      "[OPTRACE]|30775|361|/mnt/castor/seas_home/s/songqij/ese532_code/hw6/apps/mmult/_x/link/vivado/vpl/prj/prj.runs/u96v2_sbc_base_auto_ds_11_synth_1/u96v2_sbc_base_auto_ds_11.tcl|vivado_synth|1729150975694|START|Configure IP Cache|",
+      "[OPTRACE]|30775|365|/mnt/castor/seas_home/s/songqij/ese532_code/hw6/apps/mmult/_x/link/vivado/vpl/prj/prj.runs/u96v2_sbc_base_auto_ds_11_synth_1/u96v2_sbc_base_auto_ds_11.tcl|vivado_synth|1729150976250|END|Configure IP Cache|",
+      "[OPTRACE]|30775|367|/mnt/castor/seas_home/s/songqij/ese532_code/hw6/apps/mmult/_x/link/vivado/vpl/prj/prj.runs/u96v2_sbc_base_auto_ds_11_synth_1/u96v2_sbc_base_auto_ds_11.tcl|vivado_synth|1729150976320|END|u96v2_sbc_base_auto_ds_11_synth_1|",
+      "[OPTRACE]|30776|350|/mnt/castor/seas_home/s/songqij/ese532_code/hw6/apps/mmult/_x/link/vivado/vpl/prj/prj.runs/u96v2_sbc_base_auto_ds_12_synth_1/u96v2_sbc_base_auto_ds_12.tcl|vivado_synth|1729150970432|START|u96v2_sbc_base_auto_ds_12_synth_1|ROLLUP_AUTO",
+      "[OPTRACE]|30776|351|/mnt/castor/seas_home/s/songqij/ese532_code/hw6/apps/mmult/_x/link/vivado/vpl/prj/prj.runs/u96v2_sbc_base_auto_ds_12_synth_1/u96v2_sbc_base_auto_ds_12.tcl|vivado_synth|1729150970432|START|Creating in-memory project|",
+      "[OPTRACE]|30776|356|/mnt/castor/seas_home/s/songqij/ese532_code/hw6/apps/mmult/_x/link/vivado/vpl/prj/prj.runs/u96v2_sbc_base_auto_ds_12_synth_1/u96v2_sbc_base_auto_ds_12.tcl|vivado_synth|1729150975490|END|Creating in-memory project|",
+      "[OPTRACE]|30776|357|/mnt/castor/seas_home/s/songqij/ese532_code/hw6/apps/mmult/_x/link/vivado/vpl/prj/prj.runs/u96v2_sbc_base_auto_ds_12_synth_1/u96v2_sbc_base_auto_ds_12.tcl|vivado_synth|1729150975491|START|Adding files|",
+      "[OPTRACE]|30776|362|/mnt/castor/seas_home/s/songqij/ese532_code/hw6/apps/mmult/_x/link/vivado/vpl/prj/prj.runs/u96v2_sbc_base_auto_ds_12_synth_1/u96v2_sbc_base_auto_ds_12.tcl|vivado_synth|1729150975696|END|Adding files|",
+      "[OPTRACE]|30776|363|/mnt/castor/seas_home/s/songqij/ese532_code/hw6/apps/mmult/_x/link/vivado/vpl/prj/prj.runs/u96v2_sbc_base_auto_ds_12_synth_1/u96v2_sbc_base_auto_ds_12.tcl|vivado_synth|1729150975698|START|Configure IP Cache|",
+      "[OPTRACE]|30776|364|/mnt/castor/seas_home/s/songqij/ese532_code/hw6/apps/mmult/_x/link/vivado/vpl/prj/prj.runs/u96v2_sbc_base_auto_ds_12_synth_1/u96v2_sbc_base_auto_ds_12.tcl|vivado_synth|1729150976246|END|Configure IP Cache|",
+      "[OPTRACE]|30776|366|/mnt/castor/seas_home/s/songqij/ese532_code/hw6/apps/mmult/_x/link/vivado/vpl/prj/prj.runs/u96v2_sbc_base_auto_ds_12_synth_1/u96v2_sbc_base_auto_ds_12.tcl|vivado_synth|1729150976311|END|u96v2_sbc_base_auto_ds_12_synth_1|",
+      "[OPTRACE]|31354|374|/mnt/castor/seas_home/s/songqij/ese532_code/hw6/apps/mmult/_x/link/vivado/vpl/prj/prj.runs/synth_1/u96v2_sbc_base_wrapper.tcl|vivado_synth|1729151021354|START|synth_1|ROLLUP_AUTO",
+      "[OPTRACE]|31354|375|/mnt/castor/seas_home/s/songqij/ese532_code/hw6/apps/mmult/_x/link/vivado/vpl/prj/prj.runs/synth_1/u96v2_sbc_base_wrapper.tcl|vivado_synth|1729151021356|START|Creating in-memory project|",
+      "[OPTRACE]|31354|376|/mnt/castor/seas_home/s/songqij/ese532_code/hw6/apps/mmult/_x/link/vivado/vpl/prj/prj.runs/synth_1/u96v2_sbc_base_wrapper.tcl|vivado_synth|1729151025364|END|Creating in-memory project|",
+      "[OPTRACE]|31354|377|/mnt/castor/seas_home/s/songqij/ese532_code/hw6/apps/mmult/_x/link/vivado/vpl/prj/prj.runs/synth_1/u96v2_sbc_base_wrapper.tcl|vivado_synth|1729151025365|START|Adding files|",
+      "[OPTRACE]|31354|378|/mnt/castor/seas_home/s/songqij/ese532_code/hw6/apps/mmult/_x/link/vivado/vpl/prj/prj.runs/synth_1/u96v2_sbc_base_wrapper.tcl|vivado_synth|1729151029408|END|Adding files|",
+      "[OPTRACE]|31354|379|/mnt/castor/seas_home/s/songqij/ese532_code/hw6/apps/mmult/_x/link/vivado/vpl/prj/prj.runs/synth_1/u96v2_sbc_base_wrapper.tcl|vivado_synth|1729151029415|START|synth_design|",
+      "[OPTRACE]|31354|380|/mnt/castor/seas_home/s/songqij/ese532_code/hw6/apps/mmult/_x/link/vivado/vpl/prj/prj.runs/synth_1/u96v2_sbc_base_wrapper.tcl|vivado_synth|1729151067268|END|synth_design|",
+      "[OPTRACE]|31354|381|/mnt/castor/seas_home/s/songqij/ese532_code/hw6/apps/mmult/_x/link/vivado/vpl/prj/prj.runs/synth_1/u96v2_sbc_base_wrapper.tcl|vivado_synth|1729151067268|START|write_checkpoint|CHECKPOINT",
+      "[OPTRACE]|31354|382|/mnt/castor/seas_home/s/songqij/ese532_code/hw6/apps/mmult/_x/link/vivado/vpl/prj/prj.runs/synth_1/u96v2_sbc_base_wrapper.tcl|vivado_synth|1729151068265|END|write_checkpoint|",
+      "[OPTRACE]|31354|383|/mnt/castor/seas_home/s/songqij/ese532_code/hw6/apps/mmult/_x/link/vivado/vpl/prj/prj.runs/synth_1/u96v2_sbc_base_wrapper.tcl|vivado_synth|1729151068266|START|synth reports|REPORT",
+      "[OPTRACE]|31354|384|/mnt/castor/seas_home/s/songqij/ese532_code/hw6/apps/mmult/_x/link/vivado/vpl/prj/prj.runs/synth_1/u96v2_sbc_base_wrapper.tcl|vivado_synth|1729151068266|END|synth reports|",
+      "[OPTRACE]|31354|385|/mnt/castor/seas_home/s/songqij/ese532_code/hw6/apps/mmult/_x/link/vivado/vpl/prj/prj.runs/synth_1/u96v2_sbc_base_wrapper.tcl|vivado_synth|1729151068269|END|synth_1|",
+      "[OPTRACE]|32144|387|/mnt/castor/seas_home/s/songqij/ese532_code/hw6/apps/mmult/_x/link/vivado/vpl/prj/prj.runs/impl_1/u96v2_sbc_base_wrapper.tcl|vivado_impl|1729151089090|START|impl_1|ROLLUP_1",
+      "[OPTRACE]|32144|388|/mnt/castor/seas_home/s/songqij/ese532_code/hw6/apps/mmult/_x/link/vivado/vpl/prj/prj.runs/impl_1/u96v2_sbc_base_wrapper.tcl|vivado_impl|1729151089091|START|Phase: Init Design|ROLLUP_AUTO",
+      "[OPTRACE]|32144|389|/mnt/castor/seas_home/s/songqij/ese532_code/hw6/apps/mmult/_x/link/vivado/vpl/prj/prj.runs/impl_1/u96v2_sbc_base_wrapper.tcl|vivado_impl|1729151089096|START|Design Initialization: pre hook|",
+      "[OPTRACE]|32144|390|/mnt/castor/seas_home/s/songqij/ese532_code/hw6/apps/mmult/_x/link/vivado/vpl/prj/prj.runs/impl_1/u96v2_sbc_base_wrapper.tcl|vivado_impl|1729151089282|END|Design Initialization: pre hook|",
+      "[OPTRACE]|32144|391|/mnt/castor/seas_home/s/songqij/ese532_code/hw6/apps/mmult/_x/link/vivado/vpl/prj/prj.runs/impl_1/u96v2_sbc_base_wrapper.tcl|vivado_impl|1729151089284|START|create in-memory project|",
+      "[OPTRACE]|32144|392|/mnt/castor/seas_home/s/songqij/ese532_code/hw6/apps/mmult/_x/link/vivado/vpl/prj/prj.runs/impl_1/u96v2_sbc_base_wrapper.tcl|vivado_impl|1729151091475|END|create in-memory project|",
+      "[OPTRACE]|32144|393|/mnt/castor/seas_home/s/songqij/ese532_code/hw6/apps/mmult/_x/link/vivado/vpl/prj/prj.runs/impl_1/u96v2_sbc_base_wrapper.tcl|vivado_impl|1729151091475|START|set parameters|",
+      "[OPTRACE]|32144|394|/mnt/castor/seas_home/s/songqij/ese532_code/hw6/apps/mmult/_x/link/vivado/vpl/prj/prj.runs/impl_1/u96v2_sbc_base_wrapper.tcl|vivado_impl|1729151095212|END|set parameters|",
+      "[OPTRACE]|32144|395|/mnt/castor/seas_home/s/songqij/ese532_code/hw6/apps/mmult/_x/link/vivado/vpl/prj/prj.runs/impl_1/u96v2_sbc_base_wrapper.tcl|vivado_impl|1729151095212|START|add files|",
+      "[OPTRACE]|32144|396|/mnt/castor/seas_home/s/songqij/ese532_code/hw6/apps/mmult/_x/link/vivado/vpl/prj/prj.runs/impl_1/u96v2_sbc_base_wrapper.tcl|vivado_impl|1729151098076|START|read constraints: implementation|",
+      "[OPTRACE]|32144|397|/mnt/castor/seas_home/s/songqij/ese532_code/hw6/apps/mmult/_x/link/vivado/vpl/prj/prj.runs/impl_1/u96v2_sbc_base_wrapper.tcl|vivado_impl|1729151098078|END|read constraints: implementation|",
+      "[OPTRACE]|32144|398|/mnt/castor/seas_home/s/songqij/ese532_code/hw6/apps/mmult/_x/link/vivado/vpl/prj/prj.runs/impl_1/u96v2_sbc_base_wrapper.tcl|vivado_impl|1729151098078|END|add files|",
+      "[OPTRACE]|32144|399|/mnt/castor/seas_home/s/songqij/ese532_code/hw6/apps/mmult/_x/link/vivado/vpl/prj/prj.runs/impl_1/u96v2_sbc_base_wrapper.tcl|vivado_impl|1729151098078|START|link_design|",
+      "[OPTRACE]|32144|400|/mnt/castor/seas_home/s/songqij/ese532_code/hw6/apps/mmult/_x/link/vivado/vpl/prj/prj.runs/impl_1/u96v2_sbc_base_wrapper.tcl|vivado_impl|1729151150095|END|link_design|",
+      "[OPTRACE]|32144|401|/mnt/castor/seas_home/s/songqij/ese532_code/hw6/apps/mmult/_x/link/vivado/vpl/prj/prj.runs/impl_1/u96v2_sbc_base_wrapper.tcl|vivado_impl|1729151150096|START|gray box cells|",
+      "[OPTRACE]|32144|402|/mnt/castor/seas_home/s/songqij/ese532_code/hw6/apps/mmult/_x/link/vivado/vpl/prj/prj.runs/impl_1/u96v2_sbc_base_wrapper.tcl|vivado_impl|1729151150096|END|gray box cells|",
+      "[OPTRACE]|32144|403|/mnt/castor/seas_home/s/songqij/ese532_code/hw6/apps/mmult/_x/link/vivado/vpl/prj/prj.runs/impl_1/u96v2_sbc_base_wrapper.tcl|vivado_impl|1729151150096|START|Design Initialization: post hook|",
+      "[OPTRACE]|32144|404|/mnt/castor/seas_home/s/songqij/ese532_code/hw6/apps/mmult/_x/link/vivado/vpl/prj/prj.runs/impl_1/u96v2_sbc_base_wrapper.tcl|vivado_impl|1729151150112|END|Design Initialization: post hook|",
+      "[OPTRACE]|32144|405|/mnt/castor/seas_home/s/songqij/ese532_code/hw6/apps/mmult/_x/link/vivado/vpl/prj/prj.runs/impl_1/u96v2_sbc_base_wrapper.tcl|vivado_impl|1729151150112|START|init_design_reports|REPORT",
+      "[OPTRACE]|32144|406|/mnt/castor/seas_home/s/songqij/ese532_code/hw6/apps/mmult/_x/link/vivado/vpl/prj/prj.runs/impl_1/u96v2_sbc_base_wrapper.tcl|vivado_impl|1729151150112|END|init_design_reports|",
+      "[OPTRACE]|32144|407|/mnt/castor/seas_home/s/songqij/ese532_code/hw6/apps/mmult/_x/link/vivado/vpl/prj/prj.runs/impl_1/u96v2_sbc_base_wrapper.tcl|vivado_impl|1729151150112|START|init_design_write_hwdef|",
+      "[OPTRACE]|32144|408|/mnt/castor/seas_home/s/songqij/ese532_code/hw6/apps/mmult/_x/link/vivado/vpl/prj/prj.runs/impl_1/u96v2_sbc_base_wrapper.tcl|vivado_impl|1729151150446|END|init_design_write_hwdef|",
+      "[OPTRACE]|32144|409|/mnt/castor/seas_home/s/songqij/ese532_code/hw6/apps/mmult/_x/link/vivado/vpl/prj/prj.runs/impl_1/u96v2_sbc_base_wrapper.tcl|vivado_impl|1729151150449|END|Phase: Init Design|",
+      "[OPTRACE]|32144|410|/mnt/castor/seas_home/s/songqij/ese532_code/hw6/apps/mmult/_x/link/vivado/vpl/prj/prj.runs/impl_1/u96v2_sbc_base_wrapper.tcl|vivado_impl|1729151150449|START|Phase: Opt Design|ROLLUP_AUTO",
+      "[OPTRACE]|32144|411|/mnt/castor/seas_home/s/songqij/ese532_code/hw6/apps/mmult/_x/link/vivado/vpl/prj/prj.runs/impl_1/u96v2_sbc_base_wrapper.tcl|vivado_impl|1729151150452|START|Opt Design: pre hook|",
+      "[OPTRACE]|32144|412|/mnt/castor/seas_home/s/songqij/ese532_code/hw6/apps/mmult/_x/link/vivado/vpl/prj/prj.runs/impl_1/u96v2_sbc_base_wrapper.tcl|vivado_impl|1729151151488|END|Opt Design: pre hook|",
+      "[OPTRACE]|32144|413|/mnt/castor/seas_home/s/songqij/ese532_code/hw6/apps/mmult/_x/link/vivado/vpl/prj/prj.runs/impl_1/u96v2_sbc_base_wrapper.tcl|vivado_impl|1729151151488|START|read constraints: opt_design|",
+      "[OPTRACE]|32144|414|/mnt/castor/seas_home/s/songqij/ese532_code/hw6/apps/mmult/_x/link/vivado/vpl/prj/prj.runs/impl_1/u96v2_sbc_base_wrapper.tcl|vivado_impl|1729151151488|END|read constraints: opt_design|",
+      "[OPTRACE]|32144|415|/mnt/castor/seas_home/s/songqij/ese532_code/hw6/apps/mmult/_x/link/vivado/vpl/prj/prj.runs/impl_1/u96v2_sbc_base_wrapper.tcl|vivado_impl|1729151151488|START|opt_design|",
+      "[OPTRACE]|32144|416|/mnt/castor/seas_home/s/songqij/ese532_code/hw6/apps/mmult/_x/link/vivado/vpl/prj/prj.runs/impl_1/u96v2_sbc_base_wrapper.tcl|vivado_impl|1729151175213|END|opt_design|",
+      "[OPTRACE]|32144|417|/mnt/castor/seas_home/s/songqij/ese532_code/hw6/apps/mmult/_x/link/vivado/vpl/prj/prj.runs/impl_1/u96v2_sbc_base_wrapper.tcl|vivado_impl|1729151175213|START|read constraints: opt_design_post|",
+      "[OPTRACE]|32144|418|/mnt/castor/seas_home/s/songqij/ese532_code/hw6/apps/mmult/_x/link/vivado/vpl/prj/prj.runs/impl_1/u96v2_sbc_base_wrapper.tcl|vivado_impl|1729151175213|END|read constraints: opt_design_post|",
+      "[OPTRACE]|32144|419|/mnt/castor/seas_home/s/songqij/ese532_code/hw6/apps/mmult/_x/link/vivado/vpl/prj/prj.runs/impl_1/u96v2_sbc_base_wrapper.tcl|vivado_impl|1729151175213|START|Opt Design: post hook|",
+      "[OPTRACE]|32144|420|/mnt/castor/seas_home/s/songqij/ese532_code/hw6/apps/mmult/_x/link/vivado/vpl/prj/prj.runs/impl_1/u96v2_sbc_base_wrapper.tcl|vivado_impl|1729151175216|END|Opt Design: post hook|",
+      "[OPTRACE]|32144|421|/mnt/castor/seas_home/s/songqij/ese532_code/hw6/apps/mmult/_x/link/vivado/vpl/prj/prj.runs/impl_1/u96v2_sbc_base_wrapper.tcl|vivado_impl|1729151175216|START|opt_design reports|REPORT",
+      "[OPTRACE]|32144|422|/mnt/castor/seas_home/s/songqij/ese532_code/hw6/apps/mmult/_x/link/vivado/vpl/prj/prj.runs/impl_1/u96v2_sbc_base_wrapper.tcl|vivado_impl|1729151175216|END|opt_design reports|",
+      "[OPTRACE]|32144|423|/mnt/castor/seas_home/s/songqij/ese532_code/hw6/apps/mmult/_x/link/vivado/vpl/prj/prj.runs/impl_1/u96v2_sbc_base_wrapper.tcl|vivado_impl|1729151175237|END|Phase: Opt Design|",
+      "[OPTRACE]|32144|424|/mnt/castor/seas_home/s/songqij/ese532_code/hw6/apps/mmult/_x/link/vivado/vpl/prj/prj.runs/impl_1/u96v2_sbc_base_wrapper.tcl|vivado_impl|1729151175237|START|Phase: Place Design|ROLLUP_AUTO",
+      "[OPTRACE]|32144|425|/mnt/castor/seas_home/s/songqij/ese532_code/hw6/apps/mmult/_x/link/vivado/vpl/prj/prj.runs/impl_1/u96v2_sbc_base_wrapper.tcl|vivado_impl|1729151175242|START|Place Design: pre hook|",
+      "[OPTRACE]|32144|426|/mnt/castor/seas_home/s/songqij/ese532_code/hw6/apps/mmult/_x/link/vivado/vpl/prj/prj.runs/impl_1/u96v2_sbc_base_wrapper.tcl|vivado_impl|1729151175270|END|Place Design: pre hook|",
+      "[OPTRACE]|32144|427|/mnt/castor/seas_home/s/songqij/ese532_code/hw6/apps/mmult/_x/link/vivado/vpl/prj/prj.runs/impl_1/u96v2_sbc_base_wrapper.tcl|vivado_impl|1729151175270|START|read constraints: place_design|",
+      "[OPTRACE]|32144|428|/mnt/castor/seas_home/s/songqij/ese532_code/hw6/apps/mmult/_x/link/vivado/vpl/prj/prj.runs/impl_1/u96v2_sbc_base_wrapper.tcl|vivado_impl|1729151175271|END|read constraints: place_design|",
+      "[OPTRACE]|32144|429|/mnt/castor/seas_home/s/songqij/ese532_code/hw6/apps/mmult/_x/link/vivado/vpl/prj/prj.runs/impl_1/u96v2_sbc_base_wrapper.tcl|vivado_impl|1729151175271|START|place_design|",
+      "[OPTRACE]|32144|430|/mnt/castor/seas_home/s/songqij/ese532_code/hw6/apps/mmult/_x/link/vivado/vpl/prj/prj.runs/impl_1/u96v2_sbc_base_wrapper.tcl|vivado_impl|1729151257733|END|place_design|",
+      "[OPTRACE]|32144|431|/mnt/castor/seas_home/s/songqij/ese532_code/hw6/apps/mmult/_x/link/vivado/vpl/prj/prj.runs/impl_1/u96v2_sbc_base_wrapper.tcl|vivado_impl|1729151257733|START|read constraints: place_design_post|",
+      "[OPTRACE]|32144|432|/mnt/castor/seas_home/s/songqij/ese532_code/hw6/apps/mmult/_x/link/vivado/vpl/prj/prj.runs/impl_1/u96v2_sbc_base_wrapper.tcl|vivado_impl|1729151257733|END|read constraints: place_design_post|",
+      "[OPTRACE]|32144|433|/mnt/castor/seas_home/s/songqij/ese532_code/hw6/apps/mmult/_x/link/vivado/vpl/prj/prj.runs/impl_1/u96v2_sbc_base_wrapper.tcl|vivado_impl|1729151257733|START|Place Design: post hook|",
+      "[OPTRACE]|32144|434|/mnt/castor/seas_home/s/songqij/ese532_code/hw6/apps/mmult/_x/link/vivado/vpl/prj/prj.runs/impl_1/u96v2_sbc_base_wrapper.tcl|vivado_impl|1729151259243|END|Place Design: post hook|",
+      "[OPTRACE]|32144|435|/mnt/castor/seas_home/s/songqij/ese532_code/hw6/apps/mmult/_x/link/vivado/vpl/prj/prj.runs/impl_1/u96v2_sbc_base_wrapper.tcl|vivado_impl|1729151259244|START|place_design reports|REPORT",
+      "[OPTRACE]|32144|436|/mnt/castor/seas_home/s/songqij/ese532_code/hw6/apps/mmult/_x/link/vivado/vpl/prj/prj.runs/impl_1/u96v2_sbc_base_wrapper.tcl|vivado_impl|1729151259244|END|place_design reports|",
+      "[OPTRACE]|32144|437|/mnt/castor/seas_home/s/songqij/ese532_code/hw6/apps/mmult/_x/link/vivado/vpl/prj/prj.runs/impl_1/u96v2_sbc_base_wrapper.tcl|vivado_impl|1729151259246|END|Phase: Place Design|",
+      "[OPTRACE]|32144|438|/mnt/castor/seas_home/s/songqij/ese532_code/hw6/apps/mmult/_x/link/vivado/vpl/prj/prj.runs/impl_1/u96v2_sbc_base_wrapper.tcl|vivado_impl|1729151259246|START|Phase: Physical Opt Design|ROLLUP_AUTO",
+      "[OPTRACE]|32144|439|/mnt/castor/seas_home/s/songqij/ese532_code/hw6/apps/mmult/_x/link/vivado/vpl/prj/prj.runs/impl_1/u96v2_sbc_base_wrapper.tcl|vivado_impl|1729151259250|START|read constraints: phys_opt_design|",
+      "[OPTRACE]|32144|440|/mnt/castor/seas_home/s/songqij/ese532_code/hw6/apps/mmult/_x/link/vivado/vpl/prj/prj.runs/impl_1/u96v2_sbc_base_wrapper.tcl|vivado_impl|1729151259250|END|read constraints: phys_opt_design|",
+      "[OPTRACE]|32144|441|/mnt/castor/seas_home/s/songqij/ese532_code/hw6/apps/mmult/_x/link/vivado/vpl/prj/prj.runs/impl_1/u96v2_sbc_base_wrapper.tcl|vivado_impl|1729151259250|START|phys_opt_design|",
+      "[OPTRACE]|32144|442|/mnt/castor/seas_home/s/songqij/ese532_code/hw6/apps/mmult/_x/link/vivado/vpl/prj/prj.runs/impl_1/u96v2_sbc_base_wrapper.tcl|vivado_impl|1729151263102|END|phys_opt_design|",
+      "[OPTRACE]|32144|443|/mnt/castor/seas_home/s/songqij/ese532_code/hw6/apps/mmult/_x/link/vivado/vpl/prj/prj.runs/impl_1/u96v2_sbc_base_wrapper.tcl|vivado_impl|1729151263102|START|read constraints: phys_opt_design_post|",
+      "[OPTRACE]|32144|444|/mnt/castor/seas_home/s/songqij/ese532_code/hw6/apps/mmult/_x/link/vivado/vpl/prj/prj.runs/impl_1/u96v2_sbc_base_wrapper.tcl|vivado_impl|1729151263102|END|read constraints: phys_opt_design_post|",
+      "[OPTRACE]|32144|445|/mnt/castor/seas_home/s/songqij/ese532_code/hw6/apps/mmult/_x/link/vivado/vpl/prj/prj.runs/impl_1/u96v2_sbc_base_wrapper.tcl|vivado_impl|1729151263102|START|phys_opt_design report|REPORT",
+      "[OPTRACE]|32144|446|/mnt/castor/seas_home/s/songqij/ese532_code/hw6/apps/mmult/_x/link/vivado/vpl/prj/prj.runs/impl_1/u96v2_sbc_base_wrapper.tcl|vivado_impl|1729151263102|END|phys_opt_design report|",
+      "[OPTRACE]|32144|447|/mnt/castor/seas_home/s/songqij/ese532_code/hw6/apps/mmult/_x/link/vivado/vpl/prj/prj.runs/impl_1/u96v2_sbc_base_wrapper.tcl|vivado_impl|1729151263105|END|Phase: Physical Opt Design|",
+      "[OPTRACE]|32144|448|/mnt/castor/seas_home/s/songqij/ese532_code/hw6/apps/mmult/_x/link/vivado/vpl/prj/prj.runs/impl_1/u96v2_sbc_base_wrapper.tcl|vivado_impl|1729151263105|START|Phase: Route Design|ROLLUP_AUTO",
+      "[OPTRACE]|32144|449|/mnt/castor/seas_home/s/songqij/ese532_code/hw6/apps/mmult/_x/link/vivado/vpl/prj/prj.runs/impl_1/u96v2_sbc_base_wrapper.tcl|vivado_impl|1729151263109|START|read constraints: route_design|",
+      "[OPTRACE]|32144|450|/mnt/castor/seas_home/s/songqij/ese532_code/hw6/apps/mmult/_x/link/vivado/vpl/prj/prj.runs/impl_1/u96v2_sbc_base_wrapper.tcl|vivado_impl|1729151263109|END|read constraints: route_design|",
+      "[OPTRACE]|32144|451|/mnt/castor/seas_home/s/songqij/ese532_code/hw6/apps/mmult/_x/link/vivado/vpl/prj/prj.runs/impl_1/u96v2_sbc_base_wrapper.tcl|vivado_impl|1729151263109|START|route_design|",
+      "[OPTRACE]|32144|452|/mnt/castor/seas_home/s/songqij/ese532_code/hw6/apps/mmult/_x/link/vivado/vpl/prj/prj.runs/impl_1/u96v2_sbc_base_wrapper.tcl|vivado_impl|1729151333693|END|route_design|",
+      "[OPTRACE]|32144|453|/mnt/castor/seas_home/s/songqij/ese532_code/hw6/apps/mmult/_x/link/vivado/vpl/prj/prj.runs/impl_1/u96v2_sbc_base_wrapper.tcl|vivado_impl|1729151333693|START|read constraints: route_design_post|",
+      "[OPTRACE]|32144|454|/mnt/castor/seas_home/s/songqij/ese532_code/hw6/apps/mmult/_x/link/vivado/vpl/prj/prj.runs/impl_1/u96v2_sbc_base_wrapper.tcl|vivado_impl|1729151333693|END|read constraints: route_design_post|",
+      "[OPTRACE]|32144|455|/mnt/castor/seas_home/s/songqij/ese532_code/hw6/apps/mmult/_x/link/vivado/vpl/prj/prj.runs/impl_1/u96v2_sbc_base_wrapper.tcl|vivado_impl|1729151333693|START|Route Design: post hook|",
+      "[OPTRACE]|32144|456|/mnt/castor/seas_home/s/songqij/ese532_code/hw6/apps/mmult/_x/link/vivado/vpl/prj/prj.runs/impl_1/u96v2_sbc_base_wrapper.tcl|vivado_impl|1729151339518|END|Route Design: post hook|",
+      "[OPTRACE]|32144|457|/mnt/castor/seas_home/s/songqij/ese532_code/hw6/apps/mmult/_x/link/vivado/vpl/prj/prj.runs/impl_1/u96v2_sbc_base_wrapper.tcl|vivado_impl|1729151339518|START|Route Design: write_checkpoint|CHECKPOINT",
+      "[OPTRACE]|32144|458|/mnt/castor/seas_home/s/songqij/ese532_code/hw6/apps/mmult/_x/link/vivado/vpl/prj/prj.runs/impl_1/u96v2_sbc_base_wrapper.tcl|vivado_impl|1729151351207|END|Route Design: write_checkpoint|",
+      "[OPTRACE]|32144|459|/mnt/castor/seas_home/s/songqij/ese532_code/hw6/apps/mmult/_x/link/vivado/vpl/prj/prj.runs/impl_1/u96v2_sbc_base_wrapper.tcl|vivado_impl|1729151351208|START|route_design reports|REPORT",
+      "[OPTRACE]|32144|460|/mnt/castor/seas_home/s/songqij/ese532_code/hw6/apps/mmult/_x/link/vivado/vpl/prj/prj.runs/impl_1/u96v2_sbc_base_wrapper.tcl|vivado_impl|1729151352854|END|route_design reports|",
+      "[OPTRACE]|32144|461|/mnt/castor/seas_home/s/songqij/ese532_code/hw6/apps/mmult/_x/link/vivado/vpl/prj/prj.runs/impl_1/u96v2_sbc_base_wrapper.tcl|vivado_impl|1729151352854|START|route_design misc|",
+      "[OPTRACE]|32144|462|/mnt/castor/seas_home/s/songqij/ese532_code/hw6/apps/mmult/_x/link/vivado/vpl/prj/prj.runs/impl_1/u96v2_sbc_base_wrapper.tcl|vivado_impl|1729151352855|START|route_design write_checkpoint|CHECKPOINT",
+      "[OPTRACE]|32144|463|/mnt/castor/seas_home/s/songqij/ese532_code/hw6/apps/mmult/_x/link/vivado/vpl/prj/prj.runs/impl_1/u96v2_sbc_base_wrapper.tcl|vivado_impl|1729151352856|END|route_design write_checkpoint|",
+      "[OPTRACE]|32144|464|/mnt/castor/seas_home/s/songqij/ese532_code/hw6/apps/mmult/_x/link/vivado/vpl/prj/prj.runs/impl_1/u96v2_sbc_base_wrapper.tcl|vivado_impl|1729151352858|END|route_design misc|",
+      "[OPTRACE]|32144|465|/mnt/castor/seas_home/s/songqij/ese532_code/hw6/apps/mmult/_x/link/vivado/vpl/prj/prj.runs/impl_1/u96v2_sbc_base_wrapper.tcl|vivado_impl|1729151352859|END|Phase: Route Design|",
+      "[OPTRACE]|32144|466|/mnt/castor/seas_home/s/songqij/ese532_code/hw6/apps/mmult/_x/link/vivado/vpl/prj/prj.runs/impl_1/u96v2_sbc_base_wrapper.tcl|vivado_impl|1729151352859|START|Phase: Write Bitstream|ROLLUP_AUTO",
+      "[OPTRACE]|32144|467|/mnt/castor/seas_home/s/songqij/ese532_code/hw6/apps/mmult/_x/link/vivado/vpl/prj/prj.runs/impl_1/u96v2_sbc_base_wrapper.tcl|vivado_impl|1729151352859|START|write_bitstream setup|",
+      "[OPTRACE]|32144|468|/mnt/castor/seas_home/s/songqij/ese532_code/hw6/apps/mmult/_x/link/vivado/vpl/prj/prj.runs/impl_1/u96v2_sbc_base_wrapper.tcl|vivado_impl|1729151352862|START|Write Bitstream: pre hook|",
+      "[OPTRACE]|32144|469|/mnt/castor/seas_home/s/songqij/ese532_code/hw6/apps/mmult/_x/link/vivado/vpl/prj/prj.runs/impl_1/u96v2_sbc_base_wrapper.tcl|vivado_impl|1729151353221|END|Write Bitstream: pre hook|",
+      "[OPTRACE]|32144|470|/mnt/castor/seas_home/s/songqij/ese532_code/hw6/apps/mmult/_x/link/vivado/vpl/prj/prj.runs/impl_1/u96v2_sbc_base_wrapper.tcl|vivado_impl|1729151353221|START|read constraints: write_bitstream|",
+      "[OPTRACE]|32144|471|/mnt/castor/seas_home/s/songqij/ese532_code/hw6/apps/mmult/_x/link/vivado/vpl/prj/prj.runs/impl_1/u96v2_sbc_base_wrapper.tcl|vivado_impl|1729151353221|END|read constraints: write_bitstream|",
+      "[OPTRACE]|32144|472|/mnt/castor/seas_home/s/songqij/ese532_code/hw6/apps/mmult/_x/link/vivado/vpl/prj/prj.runs/impl_1/u96v2_sbc_base_wrapper.tcl|vivado_impl|1729151353457|END|write_bitstream setup|",
+      "[OPTRACE]|32144|473|/mnt/castor/seas_home/s/songqij/ese532_code/hw6/apps/mmult/_x/link/vivado/vpl/prj/prj.runs/impl_1/u96v2_sbc_base_wrapper.tcl|vivado_impl|1729151353458|START|write_bitstream|",
+      "[OPTRACE]|32144|474|/mnt/castor/seas_home/s/songqij/ese532_code/hw6/apps/mmult/_x/link/vivado/vpl/prj/prj.runs/impl_1/u96v2_sbc_base_wrapper.tcl|vivado_impl|1729151376074|END|write_bitstream|",
+      "[OPTRACE]|32144|475|/mnt/castor/seas_home/s/songqij/ese532_code/hw6/apps/mmult/_x/link/vivado/vpl/prj/prj.runs/impl_1/u96v2_sbc_base_wrapper.tcl|vivado_impl|1729151376074|START|write_bitstream misc|",
+      "[OPTRACE]|32144|476|/mnt/castor/seas_home/s/songqij/ese532_code/hw6/apps/mmult/_x/link/vivado/vpl/prj/prj.runs/impl_1/u96v2_sbc_base_wrapper.tcl|vivado_impl|1729151376074|START|read constraints: write_bitstream_post|",
+      "[OPTRACE]|32144|477|/mnt/castor/seas_home/s/songqij/ese532_code/hw6/apps/mmult/_x/link/vivado/vpl/prj/prj.runs/impl_1/u96v2_sbc_base_wrapper.tcl|vivado_impl|1729151376075|END|read constraints: write_bitstream_post|",
+      "[OPTRACE]|32144|478|/mnt/castor/seas_home/s/songqij/ese532_code/hw6/apps/mmult/_x/link/vivado/vpl/prj/prj.runs/impl_1/u96v2_sbc_base_wrapper.tcl|vivado_impl|1729151376075|START|Write Bitstream: post hook|",
+      "[OPTRACE]|32144|479|/mnt/castor/seas_home/s/songqij/ese532_code/hw6/apps/mmult/_x/link/vivado/vpl/prj/prj.runs/impl_1/u96v2_sbc_base_wrapper.tcl|vivado_impl|1729151376078|END|Write Bitstream: post hook|",
+      "[OPTRACE]|32144|480|/mnt/castor/seas_home/s/songqij/ese532_code/hw6/apps/mmult/_x/link/vivado/vpl/prj/prj.runs/impl_1/u96v2_sbc_base_wrapper.tcl|vivado_impl|1729151376139|END|write_bitstream misc|",
+      "[OPTRACE]|32144|481|/mnt/castor/seas_home/s/songqij/ese532_code/hw6/apps/mmult/_x/link/vivado/vpl/prj/prj.runs/impl_1/u96v2_sbc_base_wrapper.tcl|vivado_impl|1729151376139|END|Phase: Write Bitstream|",
+      "[OPTRACE]|32144|482|/mnt/castor/seas_home/s/songqij/ese532_code/hw6/apps/mmult/_x/link/vivado/vpl/prj/prj.runs/impl_1/u96v2_sbc_base_wrapper.tcl|vivado_impl|1729151376139|END|impl_1|"
+      ];
+
+  var legendData = [
+  { "title": "Report Generation",
+    "color": "#b9783f"
+  }, {
+    "title": "Write Checkpoint",
+    "color": "#cd82ad"
+  },
+  {
+    "title": "Incomplete Data",
+    "color": "#cc4748"
+  } ];
+
+  // -- Convert Raw data into something we can use ---------------------------
+  console.log("Convert log data (%s entries) to Javascript 'JSON' objects...", csvData.length);
+  var jsonData = csvArrayToJSON(header, csvData, "|");
+
+  // -- Clean up the JSON objects --------------------------------------------
+  for (var i = 0; i < jsonData.length; i++) {
+    jsonData[i].Action = jsonData[i].Action.toUpperCase();
+    jsonData[i].Tags = jsonData[i].Tags.toUpperCase();
+    jsonData[i].Tags = jsonData[i].Tags.trim();
+    jsonData[i].TimeStampMSec = parseInt(jsonData[i].TimeStampMSec, 10);
+    jsonData[i].pid = parseInt(jsonData[i].pid, 10);
+  }
+
+  // -- Sort JSON array ------------------------------------------------------
+  console.log("Sorting JSON objects (%s objects) according to timestamps...", jsonData.length);
+  jsonData.sort(compareByTimeStamp);
+
+  // Record the PID grouping order
+  var pidOrder = new Map();
+  for (var i = 0; i < jsonData.length; i++) {
+    if (pidOrder.has(jsonData[i].pid) == false) {
+      pidOrder.set(jsonData[i].pid, i);    // Simple ordering (lower is first)
+    }
+  }
+
+  // -- Create secondary data array for the chart data array -----------------
+  console.log("Preparing graph data...");
+
+  // Task limits
+  var m_startTS = 0;      // Earliest Timestamp
+  var m_endTS = 0;        // Latest Timestamp
+
+  if (jsonData.length > 0) {
+    m_startTS = jsonData[0].TimeStampMSec;
+    m_endTS = jsonData[jsonData.length - 1].TimeStampMSec;
+  }
+
+
+  var chartData = [ ];   // Empty JSON array
+
+
+  populateChartData();
+  tableCreate( chartData );
+
+  filterChartEntries();
+
+  // -- Search for "holes"
+  // -- Sort by common PID
+  // -- Create groupings by process
+
+  console.log("done");
+
+  var chart = AmCharts.makeChart("chartdiv", {
+    "type": "gantt",
+    "theme": "light",
+    "titles": [
+    { "text": "OPTrace", "size": 15}],
+    "marginRight": 70,
+    "period": "fff",                                     // X-Axis
+    "balloonDateFormat": "JJ:NN:SS",
+    "columnWidth": 0.5,                                 // Bar thickness
+    "valueAxis": {
+      "type": "numeric",
+      "title": "Time [HH:MM:SS]",
+      "duration": "ss",
+      "durationUnits": { DD: 'd. ', hh: ':', mm: ':', ss: '' },
+    },
+    "brightnessStep": 10,
+    "graph": {
+      "fillAlphas": 1,
+      "labelFunction": barLabelCallBack,
+      "labelText": " ",
+      "labelPosition": "right",
+      "balloonFunction": ballonLabelCallBack,
+      "balloonText": "<p align='left'> Task: [[task]]<br/>Start:[[start]]<br/>End:[[end]]<br/>Duration:[[duration]]</p>",
+      "bulletField": "bullet",
+      "bulletSize": 8
+    },
+    "rotate": true,
+    "categoryField": "category",
+    "segmentsField": "segments",
+    "colorField": "color",
+    "startDate": "2015-01-01 00:00:00",
+    "startField": "start",
+    "endField": "end",
+    "durationField": "duration",
+    "dataProvider": chartData,
+    "valueScrollbar": {
+      "autoGridCount": true
+    },
+    "chartScrollbar": {
+      "enable": true
+    },
+    "chartCursor": {
+      "cursorColor": "#55bb76",
+      "valueBalloonsEnabled": false,
+      "cursorAlpha": 0.1,
+      "valueLineAlpha": 0.5,
+      "valueLineBalloonEnabled": true,
+      "valueLineEnabled": true,
+      "zoomable": true,
+      "valueZoomable": true,
+      "fullWidth": true
+    },
+    "legend": {
+      "data": legendData,
+    },
+    "export": {
+      "enabled": true
+    }
+  });
+
+  // =========================================================================
+  // Call back methods
+  // =========================================================================
+function ballonLabelCallBack( _graphDataItem )
+{
+  var start = _graphDataItem.values.open;
+  var end = _graphDataItem.values.value;
+  var duration = end - start;
+
+  var result = "<p align='left'>Task: " + _graphDataItem.category + "<br/>Start: " + secondsToHHMMSS(start) + "<br/>End: " + secondsToHHMMSS( end ) + "<br/>Duration: " + secondsToHHMMSS( duration ) + "</p>";
+  return result;
+}
+
+
+function barLabelCallBack( _graphDataItem )
+{
+   var duration = _graphDataItem.values.value - _graphDataItem.values.open;
+
+   return secondsToHHMMSS( duration);
+}
+
+
+function userInputFormCallback()
+{
+  // Second filter
+  m_secondFilter = document.getElementById("userDurationFilterSecInput").value;
+  console.log("Setting second filter to: " + m_secondFilter + " seconds");
+
+  // Group PID Sort
+  m_groupPidSort = document.getElementById("userGroupPidSortSelected").checked;
+  console.log("Group PID filter is set to: " + m_groupPidSort);
+
+  // Rollup filter
+  m_showRollup = document.getElementById("userRollupSelected").checked;
+  console.log("Rollup filter is set to: " + m_showRollup);
+
+  // Individual filter
+  m_showIndividualEntry = document.getElementById("userIndividualEntrySelected").checked;
+  console.log("Individual filter is set to: " + m_showIndividualEntry);
+
+  // Checkpoint Report Entries filter
+  m_showCheckpointEntry = document.getElementById("userCheckpointEntrySelected").checked;
+  console.log("Checkpoint Entry filter is set to: " + m_showCheckpointEntry);
+
+  // Checkpoint Report Entries filter
+  m_showReportEntry = document.getElementById("userReportEntrySelected").checked;
+  console.log("Report Entry filter is set to: " + m_showReportEntry);
+
+  populateChartData();
+  filterChartEntries()
+  chart.dataProvider = chartData;
+  chart.validateData();
+}
+
+  // =========================================================================
+  // Utilities
+  // =========================================================================
+
+
+function populateChartData()
+{
+  chartData = [ ];
+  if (m_groupPidSort == false) {
+    jsonData.sort(compareByTimeStamp);
+  } else {
+    jsonData.sort(compareByGroupTimeStamp);
+  }
+
+  for (var i = 0; i < jsonData.length; i++) {
+    var timestamp = parseInt(jsonData[0].TimeStampMSec, 10);
+
+    if (m_startTS > timestamp) m_startTS = timestamp;
+    if (m_endTS < timestamp) m_endTS = timestamp;
+
+    for (var i = 0; i < jsonData.length; i++) {
+      switch (jsonData[i].Action) {
+      case "START":
+        var categoryEntry = { };
+        categoryEntry["category"] = jsonData[i].Task;
+        categoryEntry["pid"] = jsonData[i].pid;
+
+        var segmentEntry = { };
+        // Normalize entry and convert to seconds
+        segmentEntry["start"] = (jsonData[i].TimeStampMSec - m_startTS) / 1000;
+        segmentEntry["color"] = getTaskBarColor(jsonData[i].Tags)
+        segmentEntry["task"] = jsonData[i].Task;
+        segmentEntry["tags"] = jsonData[i].Tags;
+        segmentEntry["duration"] = -1;
+
+        categoryEntry["segments"] = [ ];
+        categoryEntry["segments"].push(segmentEntry);
+        chartData.push(categoryEntry);
+        break;
+
+      case "END":
+        var catagory = findCatagory(jsonData[i].pid, jsonData[i].Task, chartData);
+        if (catagory != null) {
+          var segmentsEntry = catagory.segments[0];
+          segmentsEntry["end"] = (jsonData[i].TimeStampMSec - m_startTS) / 1000;
+          segmentsEntry["duration"] = segmentsEntry.end - segmentsEntry.start;
+        } else {
+          console.log("Null entry found: pid:%s, Task: %s", jsonData[i].pid, jsonData[i].Task);
+        }
+
+        break;
+
+      default:
+        console.log("Default");
+        break;
+      }
+    }
+  }
+}
+
+function filterChartEntries()
+{
+  for(var i = chartData.length - 1; i >= 0; i--) {
+    var segment = chartData[i].segments[0];
+
+    // -- Remove entries less than 1 seconds
+    if ( segment["duration"] == -1) {
+      segment["bullet"] = "xError";
+      segment["color"] = "#cc4748";
+      segment["duration"] = ((m_endTS - m_startTS) / 1000) - segment["start"];
+    } else if (segment["duration"] <  m_secondFilter) {
+      chartData.splice(i, 1);
+      continue;
+    }
+  
+
+    // Filter by tags
+    var bHasRollup = false;
+    var bHasCheckpoint = false;
+    var bHasReport = false;
+
+    var tags = segment["tags"];
+    console.log("Tag: " + tags);
+    if (tags.search(/ROLLUP_/i) != -1) { bHasRollup = true; }
+    if (tags.search(/CHECKPOINT/i) != -1) { bHasCheckpoint = true; }
+    if (tags.search(/REPORT/i) != -1) { bHasReport = true; }
+
+    var bRemoveEntry = false;
+
+    // Remove rollups
+    if ((m_showRollup == false) && (bHasRollup == true)) {
+      bRemoveEntry = true;
+    }
+    
+    // Remove checkpoints    
+    if ((m_showCheckpointEntry == false) && (bHasCheckpoint == true)) {
+      bRemoveEntry = true;
+    }
+
+    // Remove reports
+    if ((m_showReportEntry == false) && (bHasReport == true)) {
+      bRemoveEntry = true;
+    }
+
+    // Remove individual entry
+    if (((m_showIndividualEntry == false) && 
+         ((bHasRollup == false) &&
+          (bHasCheckpoint == false) &&
+          (bHasReport == false)))) {
+      bRemoveEntry = true;
+    }
+
+    if (bRemoveEntry == true) {
+      chartData.splice(i, 1);
+      continue;
+    }
+  }
+
+  console.log("ChartData.length: " + chartData.length);
+}
+
+
+function getTaskBarColor( _tags )
+{
+  if (_tags == null)
+    return "#8dc49f";
+
+  if (_tags.search(/ROLLUP_AUTO/i) != -1){ return "#0099ff"; }
+  if (_tags.search(/ROLLUP_0/i) != -1)   { return "#006699"; }
+  if (_tags.search(/ROLLUP_1/i) != -1)   { return "#009933"; }
+  if (_tags.search(/ROLLUP_2/i) != -1)   { return "#66ccff"; }
+  if (_tags.search(/REPORT/i) != -1)     { return "#b9783f"; }
+  if (_tags.search(/CHECKPOINT/i) != -1) { return "#cd82ad"; }
+
+  return "#8dc49f"
+}
+
+
+function tableCreate( _chartData ){
+    var myTableDiv = document.getElementById("myDynamicTable");
+
+
+    for ( var i = 0; i < _chartData.length; i++) {
+      var tr = myTableDiv.insertRow();
+
+      var td_task = tr.insertCell();
+      td_task.appendChild(document.createTextNode( _chartData[i].category ));
+
+      var segmentEntry = _chartData[i].segments;
+      var td_start = tr.insertCell();
+      td_start.appendChild(document.createTextNode( secondsToHHMMSS(segmentEntry[0].start) ));
+
+      var td_duration = tr.insertCell();
+      td_duration.appendChild(document.createTextNode( secondsToHHMMSS(segmentEntry[0].duration) ));
+
+    }
+}
+
+function secondsToHHMMSS( _seconds )
+{
+  var hours = Math.floor(_seconds / 3600);
+  var minutes = Math.floor(_seconds % 3600 / 60);
+  var seconds = Math.floor(_seconds % 3600 % 60);
+
+  var result = hours + ":" + (minutes < 10 ? "0" : "") + minutes + ":" + (seconds < 10 ? "0" : "") + seconds; 
+
+  return result;
+}
+
+
+  function findCatagory(_pid, _category, _catagoryArray) {
+    for (var i = (_catagoryArray.length - 1); i >= 0; i--) {
+      if (_pid == _catagoryArray[i].pid) {
+        if (_catagoryArray[i].category == _category) {
+          return  _catagoryArray[i];
+        }
+      }
+    }
+    return null;
+  }
+
+
+  // Compares the timestamps between to JSON objects
+  function compareByTimeStamp(_a, _b) {
+    if (_a.TimeStampMSec < _b.TimeStampMSec) return -1;
+    if (_a.TimeStampMSec > _b.TimeStampMSec) return 1;
+
+    if (_a.pid == _b.pid) {
+      if ((_a.Action == "START") && (_b.Action == "END")) return -1;
+      if ((_a.Action == "END") && (_b.Action == "START")) return 1;
+
+      if(_a.Entry < _b.Entry) return -1;
+      if(_a.Entry > _b.Entry) return 1;
+    }
+
+    return 0;
+  }
+
+
+  // Compares the timestamps between to JSON objects
+  function compareByGroupTimeStamp(_a, _b) {
+    if (pidOrder.get(_a.pid) < pidOrder.get(_b.pid)) return -1;
+
+    if (pidOrder.get(_a.pid) > pidOrder.get(_b.pid)) return 1;
+
+    return compareByTimeStamp(_a, _b);
+  }
+
+
+  // Return array of string values, or NULL if CSV string not well formed.
+  function CSVtoArray(_text, _sep) {
+    // Regex expressions
+    var re_valid_default = /^\s*(?:'[^'\\]*(?:\\[\S\s][^'\\]*)*'|"[^"\\]*(?:\\[\S\s][^"\\]*)*"|[^,'"\s\\]*(?:\s+[^,'"\s\\]+)*)\s*(?:,\s*(?:'[^'\\]*(?:\\[\S\s][^'\\]*)*'|"[^"\\]*(?:\\[\S\s][^"\\]*)*"|[^,'"\s\\]*(?:\s+[^,'"\s\\]+)*)\s*)*$/;
+    var re_value_default = /(?!\s*$)\s*(?:'([^'\\]*(?:\\[\S\s][^'\\]*)*)'|"([^"\\]*(?:\\[\S\s][^"\\]*)*)"|([^,'"\s\\]*(?:\s+[^,'"\s\\]+)*))\s*(?:,|$)/g;
+    var re_special_default = /,\s*$/;
+
+    // Algorithm:
+    //   1) Convert regex expression to a string.
+    //   2) Remove leading regex escape character (e.g., '\')
+    //   3) Remove training regex escape character(s) (e.g., '\' or "\g")
+    //   4) Replace the comma (',') character witht he new delimiter character
+    //   5) Build the regex command
+
+    // Check delimiter, if special insert escapes
+    if (_sep == "|") _sep = "\\|";
+
+    var re_valid = new RegExp(re_valid_default.toString().substr(1).slice(0, -1).replace(/,/g, _sep));
+    var re_value = new RegExp(re_value_default.toString().substr(1).slice(0, -2).replace(/,/g, _sep), 'g');
+    var re_special = new RegExp(re_special_default.toString().substr(1).slice(0, -1).replace(/,/g, _sep));
+
+    // Validate the input string to determine if it is well formed
+    if (!re_valid.test(_text)) return null;
+
+    var a = [ ];                     // Initialize array to receive values.
+    _text.replace(re_value,           // "Walk" the string using replace with callback.
+                  function(m0, m1, m2, m3) {
+                      // Remove backslash from \' in single quoted values.
+                      if      (m1 !== undefined) a.push(m1.replace(/\\'/g, "'"));
+                      // Remove backslash from \" in double quoted values.
+                      else if (m2 !== undefined) a.push(m2.replace(/\\"/g, '"'));
+                      else if (m3 !== undefined) a.push(m3);
+                      return ''; // Return empty string.
+                  });
+
+    // Handle special case of empty last value.
+    if (re_special.test(_text)) a.push('');
+
+    return a;
+  };
+
+
+  // Converts the given CSV array & header into a JSON array
+  function csvArrayToJSON(_header, _csvArray, _sep) {
+    var result = [ ];
+    var headers = CSVtoArray(_header, _sep);
+
+    for (var i = 0; i < _csvArray.length; i++) {
+
+      var obj = { };
+      var currentline = CSVtoArray(_csvArray[i], _sep);
+
+      for (var j = 0; j < headers.length; j++) {
+        obj[headers[j]] = currentline[j];
+      }
+
+      result.push(obj);
+
+    }
+
+    return result; //JavaScript object
+  }
+
+
+</script>
+</body>
+
+</html>
+

@@ -1,0 +1,233 @@
+
+
+================================================================
+== Vitis HLS Report for 'compress_stream'
+================================================================
+* Date:           Thu Nov 21 15:11:47 2024
+
+* Version:        2020.2 (Build 3064766 on Wed Nov 18 09:12:47 MST 2020)
+* Project:        final_project
+* Solution:       solution1 (Vitis Kernel Flow Target)
+* Product family: zynquplus
+* Target device:  xczu3eg-sbva484-1-i
+
+
+================================================================
+== Performance Estimates
+================================================================
++ Timing: 
+    * Summary: 
+    +--------+----------+----------+------------+
+    |  Clock |  Target  | Estimated| Uncertainty|
+    +--------+----------+----------+------------+
+    |ap_clk  |  10.00 ns|  5.850 ns|     2.70 ns|
+    +--------+----------+----------+------------+
+
++ Latency: 
+    * Summary: 
+    +---------+---------+----------+----------+-----+-----+---------+
+    |  Latency (cycles) |  Latency (absolute) |  Interval | Pipeline|
+    |   min   |   max   |    min   |    max   | min | max |   Type  |
+    +---------+---------+----------+----------+-----+-----+---------+
+    |        ?|        ?|         ?|         ?|    ?|    ?|     none|
+    +---------+---------+----------+----------+-----+-----+---------+
+
+    + Detail: 
+        * Instance: 
+        +------------------------------+-------------------+---------+---------+----------+----------+-----+-----+---------+
+        |                              |                   |  Latency (cycles) |  Latency (absolute) |  Interval | Pipeline|
+        |           Instance           |       Module      |   min   |   max   |    min   |    max   | min | max |   Type  |
+        +------------------------------+-------------------+---------+---------+----------+----------+-----+-----+---------+
+        |grp_lookup_and_insert_fu_280  |lookup_and_insert  |        ?|        ?|         ?|         ?|    ?|    ?|     none|
+        +------------------------------+-------------------+---------+---------+----------+----------+-----+-----+---------+
+
+        * Loop: 
+        +--------------------+---------+---------+----------+-----------+-----------+-------+----------+
+        |                    |  Latency (cycles) | Iteration|  Initiation Interval  |  Trip |          |
+        |      Loop Name     |   min   |   max   |  Latency |  achieved |   target  | Count | Pipelined|
+        +--------------------+---------+---------+----------+-----------+-----------+-------+----------+
+        |- Loop 1            |    32768|    32768|         1|          1|          1|  32768|       yes|
+        |- VITIS_LOOP_58_1   |       32|       32|         1|          1|          1|     32|       yes|
+        |- VITIS_LOOP_64_2   |       64|       64|         1|          1|          1|     64|       yes|
+        |- VITIS_LOOP_179_1  |        ?|        ?|         2|          -|          -|      ?|        no|
+        +--------------------+---------+---------+----------+-----------+-----------+-------+----------+
+
+
+
+================================================================
+== Utilization Estimates
+================================================================
+* Summary: 
++-----------------+---------+-----+--------+-------+-----+
+|       Name      | BRAM_18K| DSP |   FF   |  LUT  | URAM|
++-----------------+---------+-----+--------+-------+-----+
+|DSP              |        -|    -|       -|      -|    -|
+|Expression       |        -|    -|       0|    196|    -|
+|FIFO             |        -|    -|       -|      -|    -|
+|Instance         |        -|    -|     629|   2084|    -|
+|Memory           |       68|    -|      24|     12|    -|
+|Multiplexer      |        -|    -|       -|    517|    -|
+|Register         |        -|    -|     242|      -|    -|
++-----------------+---------+-----+--------+-------+-----+
+|Total            |       68|    0|     895|   2809|    0|
++-----------------+---------+-----+--------+-------+-----+
+|Available        |      432|  360|  141120|  70560|    0|
++-----------------+---------+-----+--------+-------+-----+
+|Utilization (%)  |       15|    0|      ~0|      3|    0|
++-----------------+---------+-----+--------+-------+-----+
+
++ Detail: 
+    * Instance: 
+    +------------------------------+-------------------+---------+----+-----+------+-----+
+    |           Instance           |       Module      | BRAM_18K| DSP|  FF |  LUT | URAM|
+    +------------------------------+-------------------+---------+----+-----+------+-----+
+    |grp_lookup_and_insert_fu_280  |lookup_and_insert  |        0|   0|  629|  2084|    0|
+    +------------------------------+-------------------+---------+----+-----+------+-----+
+    |Total                         |                   |        0|   0|  629|  2084|    0|
+    +------------------------------+-------------------+---------+----+-----+------+-----+
+
+    * DSP: 
+    N/A
+
+    * Memory: 
+    +-----------------------+-------------------------------------+---------+----+----+-----+-------+-----+------+-------------+
+    |         Memory        |                Module               | BRAM_18K| FF | LUT| URAM| Words | Bits| Banks| W*Bits*Banks|
+    +-----------------------+-------------------------------------+---------+----+----+-----+-------+-----+------+-------------+
+    |assoc_mem_quarter_0_U  |compress_stream_assoc_mem_quarter_0  |        2|   0|   0|    0|     32|   64|     1|         2048|
+    |assoc_mem_quarter_1_U  |compress_stream_assoc_mem_quarter_0  |        2|   0|   0|    0|     32|   64|     1|         2048|
+    |assoc_mem_quarter_2_U  |compress_stream_assoc_mem_quarter_0  |        2|   0|   0|    0|     32|   64|     1|         2048|
+    |assoc_mem_quarter_3_U  |compress_stream_assoc_mem_quarter_0  |        2|   0|   0|    0|     32|   64|     1|         2048|
+    |assoc_mem_value_U      |compress_stream_assoc_mem_value      |        0|  24|  12|    0|     64|   12|     1|          768|
+    |hash_table_U           |compress_stream_hash_table           |       60|   0|   0|    0|  32768|   33|     1|      1081344|
+    +-----------------------+-------------------------------------+---------+----+----+-----+-------+-----+------+-------------+
+    |Total                  |                                     |       68|  24|  12|    0|  32960|  301|     6|      1090304|
+    +-----------------------+-------------------------------------+---------+----+----+-----+-------+-----+------+-------------+
+
+    * FIFO: 
+    N/A
+
+    * Expression: 
+    +--------------------------------+----------+----+---+----+------------+------------+
+    |          Variable Name         | Operation| DSP| FF| LUT| Bitwidth P0| Bitwidth P1|
+    +--------------------------------+----------+----+---+----+------------+------------+
+    |add_ln58_fu_315_p2              |         +|   0|  0|  13|           6|           1|
+    |add_ln64_fu_335_p2              |         +|   0|  0|  14|           7|           1|
+    |empty_56_fu_298_p2              |         +|   0|  0|  23|          16|           1|
+    |i_4_fu_431_p2                   |         +|   0|  0|  39|          32|           1|
+    |nextCode_1_fu_411_p2            |         +|   0|  0|  39|          32|           1|
+    |ap_block_state7                 |       and|   0|  0|   2|           1|           1|
+    |ap_block_state9                 |       and|   0|  0|   2|           1|           1|
+    |ap_predicate_op81_read_state8   |       and|   0|  0|   2|           1|           1|
+    |grp_nbreadreq_fu_124_p3         |       and|   0|  0|   2|           1|           0|
+    |exitcond386_i_i_fu_304_p2       |      icmp|   0|  0|  13|          16|          17|
+    |icmp_ln179_fu_366_p2            |      icmp|   0|  0|  20|          32|          32|
+    |icmp_ln58_fu_321_p2             |      icmp|   0|  0|  10|           6|           7|
+    |icmp_ln64_fu_341_p2             |      icmp|   0|  0|  11|           7|           8|
+    |ap_block_state1                 |        or|   0|  0|   2|           1|           1|
+    |ap_block_state8                 |        or|   0|  0|   2|           1|           1|
+    |ap_predicate_op87_write_state8  |        or|   0|  0|   2|           1|           1|
+    +--------------------------------+----------+----+---+----+------------+------------+
+    |Total                           |          |   0|  0| 196|         161|          75|
+    +--------------------------------+----------+----+---+----+------------+------------+
+
+    * Multiplexer: 
+    +------------------------------+----+-----------+-----+-----------+
+    |             Name             | LUT| Input Size| Bits| Total Bits|
+    +------------------------------+----+-----------+-----+-----------+
+    |ap_NS_fsm                     |  54|         10|    1|         10|
+    |ap_done                       |   9|          2|    1|          2|
+    |assoc_mem_fill_0_i_i_reg_256  |   9|          2|   32|         64|
+    |assoc_mem_quarter_0_address0  |  14|          3|    5|         15|
+    |assoc_mem_quarter_0_ce0       |  14|          3|    1|          3|
+    |assoc_mem_quarter_0_d0        |  14|          3|   64|        192|
+    |assoc_mem_quarter_0_we0       |  14|          3|    1|          3|
+    |assoc_mem_quarter_1_address0  |  14|          3|    5|         15|
+    |assoc_mem_quarter_1_ce0       |  14|          3|    1|          3|
+    |assoc_mem_quarter_1_d0        |  14|          3|   64|        192|
+    |assoc_mem_quarter_1_we0       |  14|          3|    1|          3|
+    |assoc_mem_quarter_2_address0  |  14|          3|    5|         15|
+    |assoc_mem_quarter_2_ce0       |  14|          3|    1|          3|
+    |assoc_mem_quarter_2_d0        |  14|          3|   64|        192|
+    |assoc_mem_quarter_2_we0       |  14|          3|    1|          3|
+    |assoc_mem_quarter_3_address0  |  14|          3|    5|         15|
+    |assoc_mem_quarter_3_ce0       |  14|          3|    1|          3|
+    |assoc_mem_quarter_3_d0        |  14|          3|   64|        192|
+    |assoc_mem_quarter_3_we0       |  14|          3|    1|          3|
+    |assoc_mem_value_address0      |  14|          3|    6|         18|
+    |assoc_mem_value_ce0           |  14|          3|    1|          3|
+    |assoc_mem_value_d0            |  14|          3|   12|         36|
+    |assoc_mem_value_we0           |  14|          3|    1|          3|
+    |chunk_arr_stream_blk_n        |   9|          2|    1|          2|
+    |codeword_stream_blk_n         |   9|          2|    1|          2|
+    |codeword_stream_din           |  14|          3|   16|         48|
+    |empty_reg_223                 |   9|          2|   16|         32|
+    |gmem_load_loc_blk_n           |   9|          2|    1|          2|
+    |hash_table_address0           |  14|          3|   15|         45|
+    |hash_table_ce0                |  14|          3|    1|          3|
+    |hash_table_d0                 |  14|          3|   33|         99|
+    |hash_table_we0                |  14|          3|    1|          3|
+    |i_2_reg_245                   |   9|          2|    7|         14|
+    |i_3_reg_268                   |   9|          2|   32|         64|
+    |i_reg_234                     |   9|          2|    6|         12|
+    |nextCode_fu_114               |   9|          2|   32|         64|
+    |p_0_fu_110                    |  14|          3|   16|         48|
+    |real_start                    |   9|          2|    1|          2|
+    +------------------------------+----+-----------+-----+-----------+
+    |Total                         | 517|        110|  517|       1428|
+    +------------------------------+----+-----------+-----+-----------+
+
+    * Register: 
+    +-------------------------------------------+----+----+-----+-----------+
+    |                    Name                   | FF | LUT| Bits| Const Bits|
+    +-------------------------------------------+----+----+-----+-----------+
+    |ap_CS_fsm                                  |   9|   0|    9|          0|
+    |ap_done_reg                                |   1|   0|    1|          0|
+    |assoc_mem_fill_0_i_i_reg_256               |  32|   0|   32|          0|
+    |empty_reg_223                              |  16|   0|   16|          0|
+    |gmem_load_loc_read_reg_437                 |  32|   0|   32|          0|
+    |grp_lookup_and_insert_fu_280_ap_start_reg  |   1|   0|    1|          0|
+    |i_2_reg_245                                |   7|   0|    7|          0|
+    |i_3_reg_268                                |  32|   0|   32|          0|
+    |i_reg_234                                  |   6|   0|    6|          0|
+    |nextCode_fu_114                            |  32|   0|   32|          0|
+    |p_0_fu_110                                 |  16|   0|   16|          0|
+    |p_0_load_reg_491                           |  16|   0|   16|          0|
+    |start_once_reg                             |   1|   0|    1|          0|
+    |tmp_V_2_reg_499                            |   8|   0|    8|          0|
+    |tmp_i_i_reg_466                            |   1|   0|    1|          0|
+    |trunc_ln179_reg_509                        |  12|   0|   12|          0|
+    |trunc_ln_reg_504                           |  20|   0|   20|          0|
+    +-------------------------------------------+----+----+-----+-----------+
+    |Total                                      | 242|   0|  242|          0|
+    +-------------------------------------------+----+----+-----+-----------+
+
+
+
+================================================================
+== Interface
+================================================================
+* Summary: 
++--------------------------+-----+-----+------------+------------------+--------------+
+|         RTL Ports        | Dir | Bits|  Protocol  |   Source Object  |    C Type    |
++--------------------------+-----+-----+------------+------------------+--------------+
+|ap_clk                    |   in|    1|  ap_ctrl_hs|   compress_stream|  return value|
+|ap_rst                    |   in|    1|  ap_ctrl_hs|   compress_stream|  return value|
+|ap_start                  |   in|    1|  ap_ctrl_hs|   compress_stream|  return value|
+|start_full_n              |   in|    1|  ap_ctrl_hs|   compress_stream|  return value|
+|ap_done                   |  out|    1|  ap_ctrl_hs|   compress_stream|  return value|
+|ap_continue               |   in|    1|  ap_ctrl_hs|   compress_stream|  return value|
+|ap_idle                   |  out|    1|  ap_ctrl_hs|   compress_stream|  return value|
+|ap_ready                  |  out|    1|  ap_ctrl_hs|   compress_stream|  return value|
+|start_out                 |  out|    1|  ap_ctrl_hs|   compress_stream|  return value|
+|start_write               |  out|    1|  ap_ctrl_hs|   compress_stream|  return value|
+|chunk_arr_stream_dout     |   in|    8|     ap_fifo|  chunk_arr_stream|       pointer|
+|chunk_arr_stream_empty_n  |   in|    1|     ap_fifo|  chunk_arr_stream|       pointer|
+|chunk_arr_stream_read     |  out|    1|     ap_fifo|  chunk_arr_stream|       pointer|
+|codeword_stream_din       |  out|   16|     ap_fifo|   codeword_stream|       pointer|
+|codeword_stream_full_n    |   in|    1|     ap_fifo|   codeword_stream|       pointer|
+|codeword_stream_write     |  out|    1|     ap_fifo|   codeword_stream|       pointer|
+|gmem_load_loc_dout        |   in|   32|     ap_fifo|     gmem_load_loc|       pointer|
+|gmem_load_loc_empty_n     |   in|    1|     ap_fifo|     gmem_load_loc|       pointer|
+|gmem_load_loc_read        |  out|    1|     ap_fifo|     gmem_load_loc|       pointer|
++--------------------------+-----+-----+------------+------------------+--------------+
+

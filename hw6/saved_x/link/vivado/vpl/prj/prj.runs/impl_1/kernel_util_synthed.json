@@ -1,0 +1,42 @@
+{
+    "schema_version": {
+        "major": "1",
+        "minor": "0",
+        "patch": "0"
+    },
+    "design_state": "Synthesized",
+    "user_budget": {
+        "actual_resources": {
+            "LUT": "20043",
+            "LUTAsMem": "4468",
+            "REG": "34676",
+            "BRAM": "23",
+            "DSP": "160"
+        },
+        "supply_resources": {
+            "LUT": "48571",
+            "LUTAsMem": "27554",
+            "REG": "116957",
+            "BRAM": "212",
+            "DSP": "360"
+        }
+    },
+    "kernels": [
+        {
+            "name": "mmult_fpga",
+            "compute_unit_count": "1",
+            "compute_units": [
+                {
+                    "cu_name": "mmult_fpga_1",
+                    "actual_resources": {
+                        "LUT": "20043",
+                        "LUTAsMem": "4468",
+                        "REG": "34676",
+                        "BRAM": "23",
+                        "DSP": "160"
+                    }
+                }
+            ]
+        }
+    ]
+}

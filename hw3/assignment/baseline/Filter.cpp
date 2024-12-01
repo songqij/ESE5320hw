@@ -1,4 +1,7 @@
 #include <stdlib.h>
+#include <stdio.h>
+#include "Stopwatch.h"
+#include "App.h"
 
 #define INPUT_HEIGHT (270)
 #define INPUT_WIDTH (480)
@@ -34,12 +37,18 @@ void Filter_vertical(const unsigned char *Input, unsigned char *Output)
     }
 }
 
-void Filter(const unsigned char *Input, unsigned char *Output)
+void Filter(const unsigned char *Input, unsigned char *Output, stopwatch* time_hFilter, stopwatch* time_vFilter)
 {
   unsigned char *Temp = (unsigned char *)malloc(INPUT_HEIGHT * OUTPUT_WIDTH);
-
+  
+  time_hFilter->start();
   Filter_horizontal(Input, Temp);
+  time_hFilter->stop();
+
+  time_vFilter->start();
   Filter_vertical(Temp, Output);
+  time_vFilter->stop();
+
 
   free(Temp);
 }

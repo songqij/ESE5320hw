@@ -1,0 +1,1040 @@
+
+*** Running vivado
+    with args -log u96v2_sbc_base_wrapper.vdi -applog -m64 -product Vivado -messageDb vivado.pb -mode batch -source u96v2_sbc_base_wrapper.tcl -notrace
+
+
+****** Vivado v2020.2 (64-bit)
+  **** SW Build 3064766 on Wed Nov 18 09:12:47 MST 2020
+  **** IP Build 3064653 on Wed Nov 18 14:17:31 MST 2020
+    ** Copyright 1986-2020 Xilinx, Inc. All Rights Reserved.
+
+source u96v2_sbc_base_wrapper.tcl -notrace
+source /mnt/castor/seas_home/s/songqij/ese532_code/hw6/saved_x/link/vivado/vpl/scripts/_full_init_pre.tcl
+INFO: [IP_Flow 19-234] Refreshing IP repositories
+INFO: [IP_Flow 19-1700] Loaded user IP repository '/mnt/castor/seas_home/s/songqij/ese532_code/hw6/saved_x/link/int/xo/ip_repo/xilinx_com_hls_mmult_fpga_1_0'.
+INFO: [IP_Flow 19-1700] Loaded user IP repository '/mnt/castor/seas_home/s/songqij/ese532_code/hw6/saved_x/link/vivado/vpl/.local/hw_platform/iprepo'.
+INFO: [IP_Flow 19-1700] Loaded user IP repository '/mnt/pollux/software/xilinx/2020.2/Vitis/2020.2/data/cache/xilinx'.
+INFO: [IP_Flow 19-1700] Loaded user IP repository '/mnt/castor/seas_home/s/songqij/ese532_code/hw6/saved_x/link/vivado/vpl/.local/hw_platform/ipcache'.
+INFO: [IP_Flow 19-1700] Loaded user IP repository '/mnt/pollux/software/xilinx/2020.2/Vitis/2020.2/data/ip'.
+INFO: [IP_Flow 19-2313] Loaded Vivado IP repository '/mnt/pollux/software/xilinx/2020.2/Vivado/2020.2/data/ip'.
+update_ip_catalog: Time (s): cpu = 00:00:02 ; elapsed = 00:00:05 . Memory (MB): peak = 2361.160 ; gain = 0.000 ; free physical = 17592 ; free virtual = 27551
+add_files: Time (s): cpu = 00:00:02 ; elapsed = 00:00:06 . Memory (MB): peak = 2361.160 ; gain = 0.000 ; free physical = 17517 ; free virtual = 27477
+Command: link_design -top u96v2_sbc_base_wrapper -part xczu3eg-sbva484-1-i
+Design is defaulting to srcset: sources_1
+Design is defaulting to constrset: constrs_1
+INFO: [Device 21-403] Loading part xczu3eg-sbva484-1-i
+INFO: [Project 1-454] Reading design checkpoint '/mnt/castor/seas_home/s/songqij/ese532_code/hw6/saved_x/link/vivado/vpl/prj/prj.gen/sources_1/bd/u96v2_sbc_base/ip/u96v2_sbc_base_PWM_w_Int_0_0/u96v2_sbc_base_PWM_w_Int_0_0.dcp' for cell 'u96v2_sbc_base_i/PWM_w_Int_0'
+INFO: [Project 1-454] Reading design checkpoint '/mnt/castor/seas_home/s/songqij/ese532_code/hw6/saved_x/link/vivado/vpl/prj/prj.gen/sources_1/bd/u96v2_sbc_base/ip/u96v2_sbc_base_PWM_w_Int_1_0/u96v2_sbc_base_PWM_w_Int_1_0.dcp' for cell 'u96v2_sbc_base_i/PWM_w_Int_1'
+INFO: [Project 1-454] Reading design checkpoint '/mnt/castor/seas_home/s/songqij/ese532_code/hw6/saved_x/link/vivado/vpl/prj/prj.gen/sources_1/bd/u96v2_sbc_base/ip/u96v2_sbc_base_axi_bram_ctrl_0_0/u96v2_sbc_base_axi_bram_ctrl_0_0.dcp' for cell 'u96v2_sbc_base_i/axi_bram_ctrl_0'
+INFO: [Project 1-454] Reading design checkpoint '/mnt/castor/seas_home/s/songqij/ese532_code/hw6/saved_x/link/vivado/vpl/prj/prj.gen/sources_1/bd/u96v2_sbc_base/ip/u96v2_sbc_base_blk_mem_gen_0_0/u96v2_sbc_base_blk_mem_gen_0_0.dcp' for cell 'u96v2_sbc_base_i/axi_bram_ctrl_0_bram'
+INFO: [Project 1-454] Reading design checkpoint '/mnt/castor/seas_home/s/songqij/ese532_code/hw6/saved_x/link/vivado/vpl/prj/prj.gen/sources_1/bd/u96v2_sbc_base/ip/u96v2_sbc_base_axi_gpio_0_0/u96v2_sbc_base_axi_gpio_0_0.dcp' for cell 'u96v2_sbc_base_i/axi_gpio_0'
+INFO: [Project 1-454] Reading design checkpoint '/mnt/castor/seas_home/s/songqij/ese532_code/hw6/saved_x/link/vivado/vpl/prj/prj.gen/sources_1/bd/u96v2_sbc_base/ip/u96v2_sbc_base_axi_gpio_1_0/u96v2_sbc_base_axi_gpio_1_0.dcp' for cell 'u96v2_sbc_base_i/axi_gpio_1'
+INFO: [Project 1-454] Reading design checkpoint '/mnt/castor/seas_home/s/songqij/ese532_code/hw6/saved_x/link/vivado/vpl/prj/prj.gen/sources_1/bd/u96v2_sbc_base/ip/u96v2_sbc_base_axi_gpio_2_0/u96v2_sbc_base_axi_gpio_2_0.dcp' for cell 'u96v2_sbc_base_i/axi_gpio_2'
+INFO: [Project 1-454] Reading design checkpoint '/mnt/castor/seas_home/s/songqij/ese532_code/hw6/saved_x/link/vivado/vpl/prj/prj.gen/sources_1/bd/u96v2_sbc_base/ip/u96v2_sbc_base_axi_intc_0_0/u96v2_sbc_base_axi_intc_0_0.dcp' for cell 'u96v2_sbc_base_i/axi_intc_0'
+INFO: [Project 1-454] Reading design checkpoint '/mnt/castor/seas_home/s/songqij/ese532_code/hw6/saved_x/link/vivado/vpl/prj/prj.gen/sources_1/bd/u96v2_sbc_base/ip/u96v2_sbc_base_axi_uart16550_0_0/u96v2_sbc_base_axi_uart16550_0_0.dcp' for cell 'u96v2_sbc_base_i/axi_uart16550_0'
+INFO: [Project 1-454] Reading design checkpoint '/mnt/castor/seas_home/s/songqij/ese532_code/hw6/saved_x/link/vivado/vpl/prj/prj.gen/sources_1/bd/u96v2_sbc_base/ip/u96v2_sbc_base_axi_uart16550_1_0/u96v2_sbc_base_axi_uart16550_1_0.dcp' for cell 'u96v2_sbc_base_i/axi_uart16550_1'
+INFO: [Project 1-454] Reading design checkpoint '/mnt/castor/seas_home/s/songqij/ese532_code/hw6/saved_x/link/vivado/vpl/prj/prj.gen/sources_1/bd/u96v2_sbc_base/ip/u96v2_sbc_base_clk_wiz_0_0/u96v2_sbc_base_clk_wiz_0_0.dcp' for cell 'u96v2_sbc_base_i/clk_wiz_0'
+INFO: [Project 1-454] Reading design checkpoint '/mnt/castor/seas_home/s/songqij/ese532_code/hw6/saved_x/link/vivado/vpl/prj/prj.gen/sources_1/bd/u96v2_sbc_base/ip/u96v2_sbc_base_mmult_fpga_1_0/u96v2_sbc_base_mmult_fpga_1_0.dcp' for cell 'u96v2_sbc_base_i/mmult_fpga_1'
+INFO: [Project 1-454] Reading design checkpoint '/mnt/castor/seas_home/s/songqij/ese532_code/hw6/saved_x/link/vivado/vpl/prj/prj.gen/sources_1/bd/u96v2_sbc_base/ip/u96v2_sbc_base_proc_sys_reset_0_1/u96v2_sbc_base_proc_sys_reset_0_1.dcp' for cell 'u96v2_sbc_base_i/proc_sys_reset_0'
+INFO: [Project 1-454] Reading design checkpoint '/mnt/castor/seas_home/s/songqij/ese532_code/hw6/saved_x/link/vivado/vpl/prj/prj.gen/sources_1/bd/u96v2_sbc_base/ip/u96v2_sbc_base_proc_sys_reset_1_0/u96v2_sbc_base_proc_sys_reset_1_0.dcp' for cell 'u96v2_sbc_base_i/proc_sys_reset_1'
+INFO: [Project 1-454] Reading design checkpoint '/mnt/castor/seas_home/s/songqij/ese532_code/hw6/saved_x/link/vivado/vpl/prj/prj.gen/sources_1/bd/u96v2_sbc_base/ip/u96v2_sbc_base_proc_sys_reset_2_0/u96v2_sbc_base_proc_sys_reset_2_0.dcp' for cell 'u96v2_sbc_base_i/proc_sys_reset_2'
+INFO: [Project 1-454] Reading design checkpoint '/mnt/castor/seas_home/s/songqij/ese532_code/hw6/saved_x/link/vivado/vpl/prj/prj.gen/sources_1/bd/u96v2_sbc_base/ip/u96v2_sbc_base_proc_sys_reset_3_0/u96v2_sbc_base_proc_sys_reset_3_0.dcp' for cell 'u96v2_sbc_base_i/proc_sys_reset_3'
+INFO: [Project 1-454] Reading design checkpoint '/mnt/castor/seas_home/s/songqij/ese532_code/hw6/saved_x/link/vivado/vpl/prj/prj.gen/sources_1/bd/u96v2_sbc_base/ip/u96v2_sbc_base_proc_sys_reset_4_0/u96v2_sbc_base_proc_sys_reset_4_0.dcp' for cell 'u96v2_sbc_base_i/proc_sys_reset_4'
+INFO: [Project 1-454] Reading design checkpoint '/mnt/castor/seas_home/s/songqij/ese532_code/hw6/saved_x/link/vivado/vpl/prj/prj.gen/sources_1/bd/u96v2_sbc_base/ip/u96v2_sbc_base_proc_sys_reset_5_0/u96v2_sbc_base_proc_sys_reset_5_0.dcp' for cell 'u96v2_sbc_base_i/proc_sys_reset_5'
+INFO: [Project 1-454] Reading design checkpoint '/mnt/castor/seas_home/s/songqij/ese532_code/hw6/saved_x/link/vivado/vpl/prj/prj.gen/sources_1/bd/u96v2_sbc_base/ip/u96v2_sbc_base_proc_sys_reset_6_0/u96v2_sbc_base_proc_sys_reset_6_0.dcp' for cell 'u96v2_sbc_base_i/proc_sys_reset_6'
+INFO: [Project 1-454] Reading design checkpoint '/mnt/castor/seas_home/s/songqij/ese532_code/hw6/saved_x/link/vivado/vpl/prj/prj.gen/sources_1/bd/u96v2_sbc_base/ip/u96v2_sbc_base_proc_sys_reset_0_0/u96v2_sbc_base_proc_sys_reset_0_0.dcp' for cell 'u96v2_sbc_base_i/rst_ps8_0_100M'
+INFO: [Project 1-454] Reading design checkpoint '/mnt/castor/seas_home/s/songqij/ese532_code/hw6/saved_x/link/vivado/vpl/prj/prj.gen/sources_1/bd/u96v2_sbc_base/ip/u96v2_sbc_base_system_management_wiz_0_0/u96v2_sbc_base_system_management_wiz_0_0.dcp' for cell 'u96v2_sbc_base_i/system_management_wiz_0'
+INFO: [Project 1-454] Reading design checkpoint '/mnt/castor/seas_home/s/songqij/ese532_code/hw6/saved_x/link/vivado/vpl/prj/prj.gen/sources_1/bd/u96v2_sbc_base/ip/u96v2_sbc_base_zynq_ultra_ps_e_0_0/u96v2_sbc_base_zynq_ultra_ps_e_0_0.dcp' for cell 'u96v2_sbc_base_i/zynq_ultra_ps_e_0'
+INFO: [Project 1-454] Reading design checkpoint '/mnt/castor/seas_home/s/songqij/ese532_code/hw6/saved_x/link/vivado/vpl/prj/prj.gen/sources_1/bd/u96v2_sbc_base/ip/u96v2_sbc_base_auto_ds_9/u96v2_sbc_base_auto_ds_9.dcp' for cell 'u96v2_sbc_base_i/axi_ic_zynq_ultra_ps_e_0_M_AXI_HPM1_FPD/s00_couplers/auto_ds'
+INFO: [Project 1-454] Reading design checkpoint '/mnt/castor/seas_home/s/songqij/ese532_code/hw6/saved_x/link/vivado/vpl/prj/prj.gen/sources_1/bd/u96v2_sbc_base/ip/u96v2_sbc_base_auto_pc_9/u96v2_sbc_base_auto_pc_9.dcp' for cell 'u96v2_sbc_base_i/axi_ic_zynq_ultra_ps_e_0_M_AXI_HPM1_FPD/s00_couplers/auto_pc'
+INFO: [Project 1-454] Reading design checkpoint '/mnt/castor/seas_home/s/songqij/ese532_code/hw6/saved_x/link/vivado/vpl/prj/prj.gen/sources_1/bd/u96v2_sbc_base/ip/u96v2_sbc_base_auto_ds_10/u96v2_sbc_base_auto_ds_10.dcp' for cell 'u96v2_sbc_base_i/axi_ic_zynq_ultra_ps_e_0_S_AXI_HP0_FPD/s00_couplers/auto_ds'
+INFO: [Project 1-454] Reading design checkpoint '/mnt/castor/seas_home/s/songqij/ese532_code/hw6/saved_x/link/vivado/vpl/prj/prj.gen/sources_1/bd/u96v2_sbc_base/ip/u96v2_sbc_base_auto_ds_11/u96v2_sbc_base_auto_ds_11.dcp' for cell 'u96v2_sbc_base_i/axi_ic_zynq_ultra_ps_e_0_S_AXI_HP1_FPD/s00_couplers/auto_ds'
+INFO: [Project 1-454] Reading design checkpoint '/mnt/castor/seas_home/s/songqij/ese532_code/hw6/saved_x/link/vivado/vpl/prj/prj.gen/sources_1/bd/u96v2_sbc_base/ip/u96v2_sbc_base_auto_ds_12/u96v2_sbc_base_auto_ds_12.dcp' for cell 'u96v2_sbc_base_i/axi_ic_zynq_ultra_ps_e_0_S_AXI_HP2_FPD/s00_couplers/auto_ds'
+INFO: [Project 1-454] Reading design checkpoint '/mnt/castor/seas_home/s/songqij/ese532_code/hw6/saved_x/link/vivado/vpl/prj/prj.gen/sources_1/bd/u96v2_sbc_base/ip/u96v2_sbc_base_xbar_0/u96v2_sbc_base_xbar_0.dcp' for cell 'u96v2_sbc_base_i/ps8_0_axi_periph/xbar'
+INFO: [Project 1-454] Reading design checkpoint '/mnt/castor/seas_home/s/songqij/ese532_code/hw6/saved_x/link/vivado/vpl/prj/prj.gen/sources_1/bd/u96v2_sbc_base/ip/u96v2_sbc_base_auto_ds_0/u96v2_sbc_base_auto_ds_0.dcp' for cell 'u96v2_sbc_base_i/ps8_0_axi_periph/m01_couplers/auto_ds'
+INFO: [Project 1-454] Reading design checkpoint '/mnt/castor/seas_home/s/songqij/ese532_code/hw6/saved_x/link/vivado/vpl/prj/prj.gen/sources_1/bd/u96v2_sbc_base/ip/u96v2_sbc_base_auto_pc_0/u96v2_sbc_base_auto_pc_0.dcp' for cell 'u96v2_sbc_base_i/ps8_0_axi_periph/m01_couplers/auto_pc'
+INFO: [Project 1-454] Reading design checkpoint '/mnt/castor/seas_home/s/songqij/ese532_code/hw6/saved_x/link/vivado/vpl/prj/prj.gen/sources_1/bd/u96v2_sbc_base/ip/u96v2_sbc_base_auto_ds_1/u96v2_sbc_base_auto_ds_1.dcp' for cell 'u96v2_sbc_base_i/ps8_0_axi_periph/m02_couplers/auto_ds'
+INFO: [Project 1-454] Reading design checkpoint '/mnt/castor/seas_home/s/songqij/ese532_code/hw6/saved_x/link/vivado/vpl/prj/prj.gen/sources_1/bd/u96v2_sbc_base/ip/u96v2_sbc_base_auto_pc_1/u96v2_sbc_base_auto_pc_1.dcp' for cell 'u96v2_sbc_base_i/ps8_0_axi_periph/m02_couplers/auto_pc'
+INFO: [Project 1-454] Reading design checkpoint '/mnt/castor/seas_home/s/songqij/ese532_code/hw6/saved_x/link/vivado/vpl/prj/prj.gen/sources_1/bd/u96v2_sbc_base/ip/u96v2_sbc_base_auto_ds_2/u96v2_sbc_base_auto_ds_2.dcp' for cell 'u96v2_sbc_base_i/ps8_0_axi_periph/m03_couplers/auto_ds'
+INFO: [Project 1-454] Reading design checkpoint '/mnt/castor/seas_home/s/songqij/ese532_code/hw6/saved_x/link/vivado/vpl/prj/prj.gen/sources_1/bd/u96v2_sbc_base/ip/u96v2_sbc_base_auto_pc_2/u96v2_sbc_base_auto_pc_2.dcp' for cell 'u96v2_sbc_base_i/ps8_0_axi_periph/m03_couplers/auto_pc'
+INFO: [Project 1-454] Reading design checkpoint '/mnt/castor/seas_home/s/songqij/ese532_code/hw6/saved_x/link/vivado/vpl/prj/prj.gen/sources_1/bd/u96v2_sbc_base/ip/u96v2_sbc_base_auto_ds_3/u96v2_sbc_base_auto_ds_3.dcp' for cell 'u96v2_sbc_base_i/ps8_0_axi_periph/m04_couplers/auto_ds'
+INFO: [Project 1-454] Reading design checkpoint '/mnt/castor/seas_home/s/songqij/ese532_code/hw6/saved_x/link/vivado/vpl/prj/prj.gen/sources_1/bd/u96v2_sbc_base/ip/u96v2_sbc_base_auto_pc_3/u96v2_sbc_base_auto_pc_3.dcp' for cell 'u96v2_sbc_base_i/ps8_0_axi_periph/m04_couplers/auto_pc'
+INFO: [Project 1-454] Reading design checkpoint '/mnt/castor/seas_home/s/songqij/ese532_code/hw6/saved_x/link/vivado/vpl/prj/prj.gen/sources_1/bd/u96v2_sbc_base/ip/u96v2_sbc_base_auto_ds_4/u96v2_sbc_base_auto_ds_4.dcp' for cell 'u96v2_sbc_base_i/ps8_0_axi_periph/m05_couplers/auto_ds'
+INFO: [Project 1-454] Reading design checkpoint '/mnt/castor/seas_home/s/songqij/ese532_code/hw6/saved_x/link/vivado/vpl/prj/prj.gen/sources_1/bd/u96v2_sbc_base/ip/u96v2_sbc_base_auto_pc_4/u96v2_sbc_base_auto_pc_4.dcp' for cell 'u96v2_sbc_base_i/ps8_0_axi_periph/m05_couplers/auto_pc'
+INFO: [Project 1-454] Reading design checkpoint '/mnt/castor/seas_home/s/songqij/ese532_code/hw6/saved_x/link/vivado/vpl/prj/prj.gen/sources_1/bd/u96v2_sbc_base/ip/u96v2_sbc_base_auto_ds_5/u96v2_sbc_base_auto_ds_5.dcp' for cell 'u96v2_sbc_base_i/ps8_0_axi_periph/m06_couplers/auto_ds'
+INFO: [Project 1-454] Reading design checkpoint '/mnt/castor/seas_home/s/songqij/ese532_code/hw6/saved_x/link/vivado/vpl/prj/prj.gen/sources_1/bd/u96v2_sbc_base/ip/u96v2_sbc_base_auto_pc_5/u96v2_sbc_base_auto_pc_5.dcp' for cell 'u96v2_sbc_base_i/ps8_0_axi_periph/m06_couplers/auto_pc'
+INFO: [Project 1-454] Reading design checkpoint '/mnt/castor/seas_home/s/songqij/ese532_code/hw6/saved_x/link/vivado/vpl/prj/prj.gen/sources_1/bd/u96v2_sbc_base/ip/u96v2_sbc_base_auto_ds_6/u96v2_sbc_base_auto_ds_6.dcp' for cell 'u96v2_sbc_base_i/ps8_0_axi_periph/m07_couplers/auto_ds'
+INFO: [Project 1-454] Reading design checkpoint '/mnt/castor/seas_home/s/songqij/ese532_code/hw6/saved_x/link/vivado/vpl/prj/prj.gen/sources_1/bd/u96v2_sbc_base/ip/u96v2_sbc_base_auto_pc_6/u96v2_sbc_base_auto_pc_6.dcp' for cell 'u96v2_sbc_base_i/ps8_0_axi_periph/m07_couplers/auto_pc'
+INFO: [Project 1-454] Reading design checkpoint '/mnt/castor/seas_home/s/songqij/ese532_code/hw6/saved_x/link/vivado/vpl/prj/prj.gen/sources_1/bd/u96v2_sbc_base/ip/u96v2_sbc_base_auto_ds_7/u96v2_sbc_base_auto_ds_7.dcp' for cell 'u96v2_sbc_base_i/ps8_0_axi_periph/m08_couplers/auto_ds'
+INFO: [Project 1-454] Reading design checkpoint '/mnt/castor/seas_home/s/songqij/ese532_code/hw6/saved_x/link/vivado/vpl/prj/prj.gen/sources_1/bd/u96v2_sbc_base/ip/u96v2_sbc_base_auto_pc_7/u96v2_sbc_base_auto_pc_7.dcp' for cell 'u96v2_sbc_base_i/ps8_0_axi_periph/m08_couplers/auto_pc'
+INFO: [Project 1-454] Reading design checkpoint '/mnt/castor/seas_home/s/songqij/ese532_code/hw6/saved_x/link/vivado/vpl/prj/prj.gen/sources_1/bd/u96v2_sbc_base/ip/u96v2_sbc_base_auto_ds_8/u96v2_sbc_base_auto_ds_8.dcp' for cell 'u96v2_sbc_base_i/ps8_0_axi_periph/m09_couplers/auto_ds'
+INFO: [Project 1-454] Reading design checkpoint '/mnt/castor/seas_home/s/songqij/ese532_code/hw6/saved_x/link/vivado/vpl/prj/prj.gen/sources_1/bd/u96v2_sbc_base/ip/u96v2_sbc_base_auto_pc_8/u96v2_sbc_base_auto_pc_8.dcp' for cell 'u96v2_sbc_base_i/ps8_0_axi_periph/m09_couplers/auto_pc'
+Netlist sorting complete. Time (s): cpu = 00:00:00.85 ; elapsed = 00:00:00.84 . Memory (MB): peak = 2822.984 ; gain = 0.000 ; free physical = 16134 ; free virtual = 26267
+INFO: [Netlist 29-17] Analyzing 3183 Unisim elements for replacement
+INFO: [Netlist 29-28] Unisim Transformation completed in 0 CPU seconds
+INFO: [Project 1-479] Netlist was created with Vivado 2020.2
+INFO: [Project 1-570] Preparing netlist for logic optimization
+INFO: [Common 17-41] Interrupt caught. Command should exit soon.
+WARNING: [Opt 31-32] Removing redundant IBUF since it is not being driven by a top-level port. u96v2_sbc_base_i/clk_wiz_0/inst/clkin1_ibuf 
+Resolution: The tool has removed redundant IBUF. To resolve this warning, check for redundant IBUF in the input design.
+WARNING: [Constraints 18-550] Could not create 'IBUF_LOW_PWR' constraint because net 'u96v2_sbc_base_i/clk_wiz_0/clk_in1' is not directly connected to top level port. Synthesis is ignored for IBUF_LOW_PWR but preserved for implementation.
+CRITICAL WARNING: [Designutils 20-1275] Could not find cell 'inst' within module 'u96v2_sbc_base_clk_wiz_0_0' for instance 'u96v2_sbc_base_i/clk_wiz_0'. The XDC file /mnt/castor/seas_home/s/songqij/ese532_code/hw6/saved_x/link/vivado/vpl/prj/prj.gen/sources_1/bd/u96v2_sbc_base/ip/u96v2_sbc_base_clk_wiz_0_0/u96v2_sbc_base_clk_wiz_0_0_board.xdc will not be read for this cell.
+CRITICAL WARNING: [Designutils 20-1275] Could not find cell 'U0' within module 'u96v2_sbc_base_proc_sys_reset_6_0' for instance 'u96v2_sbc_base_i/proc_sys_reset_6'. The XDC file /mnt/castor/seas_home/s/songqij/ese532_code/hw6/saved_x/link/vivado/vpl/prj/prj.gen/sources_1/bd/u96v2_sbc_base/ip/u96v2_sbc_base_proc_sys_reset_6_0/u96v2_sbc_base_proc_sys_reset_6_0.xdc will not be read for this cell.
+CRITICAL WARNING: [Designutils 20-1275] Could not find cell 'U0' within module 'u96v2_sbc_base_proc_sys_reset_6_0' for instance 'u96v2_sbc_base_i/proc_sys_reset_6'. The XDC file /mnt/castor/seas_home/s/songqij/ese532_code/hw6/saved_x/link/vivado/vpl/prj/prj.gen/sources_1/bd/u96v2_sbc_base/ip/u96v2_sbc_base_proc_sys_reset_6_0/u96v2_sbc_base_proc_sys_reset_6_0_board.xdc will not be read for this cell.
+CRITICAL WARNING: [Designutils 20-1275] Could not find cell 'U0' within module 'u96v2_sbc_base_proc_sys_reset_5_0' for instance 'u96v2_sbc_base_i/proc_sys_reset_5'. The XDC file /mnt/castor/seas_home/s/songqij/ese532_code/hw6/saved_x/link/vivado/vpl/prj/prj.gen/sources_1/bd/u96v2_sbc_base/ip/u96v2_sbc_base_proc_sys_reset_5_0/u96v2_sbc_base_proc_sys_reset_5_0.xdc will not be read for this cell.
+CRITICAL WARNING: [Designutils 20-1275] Could not find cell 'U0' within module 'u96v2_sbc_base_proc_sys_reset_5_0' for instance 'u96v2_sbc_base_i/proc_sys_reset_5'. The XDC file /mnt/castor/seas_home/s/songqij/ese532_code/hw6/saved_x/link/vivado/vpl/prj/prj.gen/sources_1/bd/u96v2_sbc_base/ip/u96v2_sbc_base_proc_sys_reset_5_0/u96v2_sbc_base_proc_sys_reset_5_0_board.xdc will not be read for this cell.
+CRITICAL WARNING: [Designutils 20-1275] Could not find cell 'U0' within module 'u96v2_sbc_base_proc_sys_reset_4_0' for instance 'u96v2_sbc_base_i/proc_sys_reset_4'. The XDC file /mnt/castor/seas_home/s/songqij/ese532_code/hw6/saved_x/link/vivado/vpl/prj/prj.gen/sources_1/bd/u96v2_sbc_base/ip/u96v2_sbc_base_proc_sys_reset_4_0/u96v2_sbc_base_proc_sys_reset_4_0.xdc will not be read for this cell.
+CRITICAL WARNING: [Designutils 20-1275] Could not find cell 'U0' within module 'u96v2_sbc_base_proc_sys_reset_4_0' for instance 'u96v2_sbc_base_i/proc_sys_reset_4'. The XDC file /mnt/castor/seas_home/s/songqij/ese532_code/hw6/saved_x/link/vivado/vpl/prj/prj.gen/sources_1/bd/u96v2_sbc_base/ip/u96v2_sbc_base_proc_sys_reset_4_0/u96v2_sbc_base_proc_sys_reset_4_0_board.xdc will not be read for this cell.
+CRITICAL WARNING: [Designutils 20-1275] Could not find cell 'U0' within module 'u96v2_sbc_base_proc_sys_reset_3_0' for instance 'u96v2_sbc_base_i/proc_sys_reset_3'. The XDC file /mnt/castor/seas_home/s/songqij/ese532_code/hw6/saved_x/link/vivado/vpl/prj/prj.gen/sources_1/bd/u96v2_sbc_base/ip/u96v2_sbc_base_proc_sys_reset_3_0/u96v2_sbc_base_proc_sys_reset_3_0.xdc will not be read for this cell.
+CRITICAL WARNING: [Designutils 20-1275] Could not find cell 'U0' within module 'u96v2_sbc_base_proc_sys_reset_3_0' for instance 'u96v2_sbc_base_i/proc_sys_reset_3'. The XDC file /mnt/castor/seas_home/s/songqij/ese532_code/hw6/saved_x/link/vivado/vpl/prj/prj.gen/sources_1/bd/u96v2_sbc_base/ip/u96v2_sbc_base_proc_sys_reset_3_0/u96v2_sbc_base_proc_sys_reset_3_0_board.xdc will not be read for this cell.
+CRITICAL WARNING: [Designutils 20-1275] Could not find cell 'U0' within module 'u96v2_sbc_base_proc_sys_reset_2_0' for instance 'u96v2_sbc_base_i/proc_sys_reset_2'. The XDC file /mnt/castor/seas_home/s/songqij/ese532_code/hw6/saved_x/link/vivado/vpl/prj/prj.gen/sources_1/bd/u96v2_sbc_base/ip/u96v2_sbc_base_proc_sys_reset_2_0/u96v2_sbc_base_proc_sys_reset_2_0.xdc will not be read for this cell.
+CRITICAL WARNING: [Designutils 20-1275] Could not find cell 'U0' within module 'u96v2_sbc_base_proc_sys_reset_2_0' for instance 'u96v2_sbc_base_i/proc_sys_reset_2'. The XDC file /mnt/castor/seas_home/s/songqij/ese532_code/hw6/saved_x/link/vivado/vpl/prj/prj.gen/sources_1/bd/u96v2_sbc_base/ip/u96v2_sbc_base_proc_sys_reset_2_0/u96v2_sbc_base_proc_sys_reset_2_0_board.xdc will not be read for this cell.
+CRITICAL WARNING: [Designutils 20-1275] Could not find cell 'U0' within module 'u96v2_sbc_base_proc_sys_reset_1_0' for instance 'u96v2_sbc_base_i/proc_sys_reset_1'. The XDC file /mnt/castor/seas_home/s/songqij/ese532_code/hw6/saved_x/link/vivado/vpl/prj/prj.gen/sources_1/bd/u96v2_sbc_base/ip/u96v2_sbc_base_proc_sys_reset_1_0/u96v2_sbc_base_proc_sys_reset_1_0.xdc will not be read for this cell.
+CRITICAL WARNING: [Designutils 20-1275] Could not find cell 'U0' within module 'u96v2_sbc_base_proc_sys_reset_1_0' for instance 'u96v2_sbc_base_i/proc_sys_reset_1'. The XDC file /mnt/castor/seas_home/s/songqij/ese532_code/hw6/saved_x/link/vivado/vpl/prj/prj.gen/sources_1/bd/u96v2_sbc_base/ip/u96v2_sbc_base_proc_sys_reset_1_0/u96v2_sbc_base_proc_sys_reset_1_0_board.xdc will not be read for this cell.
+CRITICAL WARNING: [Designutils 20-1275] Could not find cell 'U0' within module 'u96v2_sbc_base_proc_sys_reset_0_1' for instance 'u96v2_sbc_base_i/proc_sys_reset_0'. The XDC file /mnt/castor/seas_home/s/songqij/ese532_code/hw6/saved_x/link/vivado/vpl/prj/prj.gen/sources_1/bd/u96v2_sbc_base/ip/u96v2_sbc_base_proc_sys_reset_0_1/u96v2_sbc_base_proc_sys_reset_0_1.xdc will not be read for this cell.
+CRITICAL WARNING: [Designutils 20-1275] Could not find cell 'U0' within module 'u96v2_sbc_base_proc_sys_reset_0_1' for instance 'u96v2_sbc_base_i/proc_sys_reset_0'. The XDC file /mnt/castor/seas_home/s/songqij/ese532_code/hw6/saved_x/link/vivado/vpl/prj/prj.gen/sources_1/bd/u96v2_sbc_base/ip/u96v2_sbc_base_proc_sys_reset_0_1/u96v2_sbc_base_proc_sys_reset_0_1_board.xdc will not be read for this cell.
+CRITICAL WARNING: [Designutils 20-1275] Could not find cell 'inst' within module 'u96v2_sbc_base_clk_wiz_0_0' for instance 'u96v2_sbc_base_i/clk_wiz_0'. The XDC file /mnt/castor/seas_home/s/songqij/ese532_code/hw6/saved_x/link/vivado/vpl/prj/prj.gen/sources_1/bd/u96v2_sbc_base/ip/u96v2_sbc_base_clk_wiz_0_0/u96v2_sbc_base_clk_wiz_0_0.xdc will not be read for this cell.
+CRITICAL WARNING: [Designutils 20-1275] Could not find cell 'U0' within module 'u96v2_sbc_base_zynq_ultra_ps_e_0_0' for instance 'u96v2_sbc_base_i/zynq_ultra_ps_e_0'. The XDC file /mnt/castor/seas_home/s/songqij/ese532_code/hw6/saved_x/link/vivado/vpl/prj/prj.gen/sources_1/bd/u96v2_sbc_base/ip/u96v2_sbc_base_zynq_ultra_ps_e_0_0/u96v2_sbc_base_zynq_ultra_ps_e_0_0.xdc will not be read for this cell.
+CRITICAL WARNING: [Designutils 20-1275] Could not find cell 'U0' within module 'u96v2_sbc_base_axi_intc_0_0' for instance 'u96v2_sbc_base_i/axi_intc_0'. The XDC file /mnt/castor/seas_home/s/songqij/ese532_code/hw6/saved_x/link/vivado/vpl/prj/prj.gen/sources_1/bd/u96v2_sbc_base/ip/u96v2_sbc_base_axi_intc_0_0/u96v2_sbc_base_axi_intc_0_0.xdc will not be read for this cell.
+CRITICAL WARNING: [Designutils 20-1275] Could not find cell 'U0' within module 'u96v2_sbc_base_system_management_wiz_0_0' for instance 'u96v2_sbc_base_i/system_management_wiz_0'. The XDC file /mnt/castor/seas_home/s/songqij/ese532_code/hw6/saved_x/link/vivado/vpl/prj/prj.gen/sources_1/bd/u96v2_sbc_base/ip/u96v2_sbc_base_system_management_wiz_0_0/u96v2_sbc_base_system_management_wiz_0_0.xdc will not be read for this cell.
+CRITICAL WARNING: [Designutils 20-1275] Could not find cell 'U0' within module 'u96v2_sbc_base_system_management_wiz_0_0' for instance 'u96v2_sbc_base_i/system_management_wiz_0'. The XDC file /mnt/castor/seas_home/s/songqij/ese532_code/hw6/saved_x/link/vivado/vpl/prj/prj.gen/sources_1/bd/u96v2_sbc_base/ip/u96v2_sbc_base_system_management_wiz_0_0/u96v2_sbc_base_system_management_wiz_0_0_board.xdc will not be read for this cell.
+CRITICAL WARNING: [Designutils 20-1275] Could not find cell 'U0' within module 'u96v2_sbc_base_axi_gpio_2_0' for instance 'u96v2_sbc_base_i/axi_gpio_2'. The XDC file /mnt/castor/seas_home/s/songqij/ese532_code/hw6/saved_x/link/vivado/vpl/prj/prj.gen/sources_1/bd/u96v2_sbc_base/ip/u96v2_sbc_base_axi_gpio_2_0/u96v2_sbc_base_axi_gpio_2_0.xdc will not be read for this cell.
+CRITICAL WARNING: [Designutils 20-1275] Could not find cell 'U0' within module 'u96v2_sbc_base_axi_gpio_2_0' for instance 'u96v2_sbc_base_i/axi_gpio_2'. The XDC file /mnt/castor/seas_home/s/songqij/ese532_code/hw6/saved_x/link/vivado/vpl/prj/prj.gen/sources_1/bd/u96v2_sbc_base/ip/u96v2_sbc_base_axi_gpio_2_0/u96v2_sbc_base_axi_gpio_2_0_board.xdc will not be read for this cell.
+CRITICAL WARNING: [Designutils 20-1275] Could not find cell 'U0' within module 'u96v2_sbc_base_axi_gpio_1_0' for instance 'u96v2_sbc_base_i/axi_gpio_1'. The XDC file /mnt/castor/seas_home/s/songqij/ese532_code/hw6/saved_x/link/vivado/vpl/prj/prj.gen/sources_1/bd/u96v2_sbc_base/ip/u96v2_sbc_base_axi_gpio_1_0/u96v2_sbc_base_axi_gpio_1_0.xdc will not be read for this cell.
+CRITICAL WARNING: [Designutils 20-1275] Could not find cell 'U0' within module 'u96v2_sbc_base_axi_gpio_1_0' for instance 'u96v2_sbc_base_i/axi_gpio_1'. The XDC file /mnt/castor/seas_home/s/songqij/ese532_code/hw6/saved_x/link/vivado/vpl/prj/prj.gen/sources_1/bd/u96v2_sbc_base/ip/u96v2_sbc_base_axi_gpio_1_0/u96v2_sbc_base_axi_gpio_1_0_board.xdc will not be read for this cell.
+CRITICAL WARNING: [Designutils 20-1275] Could not find cell 'U0' within module 'u96v2_sbc_base_axi_gpio_0_0' for instance 'u96v2_sbc_base_i/axi_gpio_0'. The XDC file /mnt/castor/seas_home/s/songqij/ese532_code/hw6/saved_x/link/vivado/vpl/prj/prj.gen/sources_1/bd/u96v2_sbc_base/ip/u96v2_sbc_base_axi_gpio_0_0/u96v2_sbc_base_axi_gpio_0_0.xdc will not be read for this cell.
+CRITICAL WARNING: [Designutils 20-1275] Could not find cell 'U0' within module 'u96v2_sbc_base_axi_gpio_0_0' for instance 'u96v2_sbc_base_i/axi_gpio_0'. The XDC file /mnt/castor/seas_home/s/songqij/ese532_code/hw6/saved_x/link/vivado/vpl/prj/prj.gen/sources_1/bd/u96v2_sbc_base/ip/u96v2_sbc_base_axi_gpio_0_0/u96v2_sbc_base_axi_gpio_0_0_board.xdc will not be read for this cell.
+CRITICAL WARNING: [Designutils 20-1275] Could not find cell 'U0' within module 'u96v2_sbc_base_axi_uart16550_1_0' for instance 'u96v2_sbc_base_i/axi_uart16550_1'. The XDC file /mnt/castor/seas_home/s/songqij/ese532_code/hw6/saved_x/link/vivado/vpl/prj/prj.gen/sources_1/bd/u96v2_sbc_base/ip/u96v2_sbc_base_axi_uart16550_1_0/u96v2_sbc_base_axi_uart16550_1_0.xdc will not be read for this cell.
+CRITICAL WARNING: [Designutils 20-1275] Could not find cell 'U0' within module 'u96v2_sbc_base_axi_uart16550_1_0' for instance 'u96v2_sbc_base_i/axi_uart16550_1'. The XDC file /mnt/castor/seas_home/s/songqij/ese532_code/hw6/saved_x/link/vivado/vpl/prj/prj.gen/sources_1/bd/u96v2_sbc_base/ip/u96v2_sbc_base_axi_uart16550_1_0/u96v2_sbc_base_axi_uart16550_1_0_board.xdc will not be read for this cell.
+CRITICAL WARNING: [Designutils 20-1275] Could not find cell 'U0' within module 'u96v2_sbc_base_axi_uart16550_0_0' for instance 'u96v2_sbc_base_i/axi_uart16550_0'. The XDC file /mnt/castor/seas_home/s/songqij/ese532_code/hw6/saved_x/link/vivado/vpl/prj/prj.gen/sources_1/bd/u96v2_sbc_base/ip/u96v2_sbc_base_axi_uart16550_0_0/u96v2_sbc_base_axi_uart16550_0_0.xdc will not be read for this cell.
+CRITICAL WARNING: [Designutils 20-1275] Could not find cell 'U0' within module 'u96v2_sbc_base_axi_uart16550_0_0' for instance 'u96v2_sbc_base_i/axi_uart16550_0'. The XDC file /mnt/castor/seas_home/s/songqij/ese532_code/hw6/saved_x/link/vivado/vpl/prj/prj.gen/sources_1/bd/u96v2_sbc_base/ip/u96v2_sbc_base_axi_uart16550_0_0/u96v2_sbc_base_axi_uart16550_0_0_board.xdc will not be read for this cell.
+CRITICAL WARNING: [Designutils 20-1275] Could not find cell 'U0' within module 'u96v2_sbc_base_proc_sys_reset_0_0' for instance 'u96v2_sbc_base_i/rst_ps8_0_100M'. The XDC file /mnt/castor/seas_home/s/songqij/ese532_code/hw6/saved_x/link/vivado/vpl/prj/prj.gen/sources_1/bd/u96v2_sbc_base/ip/u96v2_sbc_base_proc_sys_reset_0_0/u96v2_sbc_base_proc_sys_reset_0_0.xdc will not be read for this cell.
+CRITICAL WARNING: [Designutils 20-1275] Could not find cell 'U0' within module 'u96v2_sbc_base_proc_sys_reset_0_0' for instance 'u96v2_sbc_base_i/rst_ps8_0_100M'. The XDC file /mnt/castor/seas_home/s/songqij/ese532_code/hw6/saved_x/link/vivado/vpl/prj/prj.gen/sources_1/bd/u96v2_sbc_base/ip/u96v2_sbc_base_proc_sys_reset_0_0/u96v2_sbc_base_proc_sys_reset_0_0_board.xdc will not be read for this cell.
+Parsing XDC File [/mnt/castor/seas_home/s/songqij/ese532_code/hw6/saved_x/link/vivado/vpl/prj/prj.srcs/constrs_1/imports/base/u96v2_sbc_base.xdc]
+Finished Parsing XDC File [/mnt/castor/seas_home/s/songqij/ese532_code/hw6/saved_x/link/vivado/vpl/prj/prj.srcs/constrs_1/imports/base/u96v2_sbc_base.xdc]
+CRITICAL WARNING: [Designutils 20-1275] Could not find cell 'U0' within module 'u96v2_sbc_base_axi_intc_0_0' for instance 'u96v2_sbc_base_i/axi_intc_0'. The XDC file /mnt/castor/seas_home/s/songqij/ese532_code/hw6/saved_x/link/vivado/vpl/prj/prj.gen/sources_1/bd/u96v2_sbc_base/ip/u96v2_sbc_base_axi_intc_0_0/u96v2_sbc_base_axi_intc_0_0_clocks.xdc will not be read for this cell.
+CRITICAL WARNING: [Designutils 20-1275] Could not find cell 'inst' within module 'u96v2_sbc_base_auto_ds_0' for instance 'u96v2_sbc_base_i/ps8_0_axi_periph/m01_couplers/auto_ds'. The XDC file /mnt/castor/seas_home/s/songqij/ese532_code/hw6/saved_x/link/vivado/vpl/prj/prj.gen/sources_1/bd/u96v2_sbc_base/ip/u96v2_sbc_base_auto_ds_0/u96v2_sbc_base_auto_ds_0_clocks.xdc will not be read for this cell.
+CRITICAL WARNING: [Designutils 20-1275] Could not find cell 'inst' within module 'u96v2_sbc_base_auto_ds_1' for instance 'u96v2_sbc_base_i/ps8_0_axi_periph/m02_couplers/auto_ds'. The XDC file /mnt/castor/seas_home/s/songqij/ese532_code/hw6/saved_x/link/vivado/vpl/prj/prj.gen/sources_1/bd/u96v2_sbc_base/ip/u96v2_sbc_base_auto_ds_1/u96v2_sbc_base_auto_ds_1_clocks.xdc will not be read for this cell.
+CRITICAL WARNING: [Designutils 20-1275] Could not find cell 'inst' within module 'u96v2_sbc_base_auto_ds_2' for instance 'u96v2_sbc_base_i/ps8_0_axi_periph/m03_couplers/auto_ds'. The XDC file /mnt/castor/seas_home/s/songqij/ese532_code/hw6/saved_x/link/vivado/vpl/prj/prj.gen/sources_1/bd/u96v2_sbc_base/ip/u96v2_sbc_base_auto_ds_2/u96v2_sbc_base_auto_ds_2_clocks.xdc will not be read for this cell.
+CRITICAL WARNING: [Designutils 20-1275] Could not find cell 'inst' within module 'u96v2_sbc_base_auto_ds_3' for instance 'u96v2_sbc_base_i/ps8_0_axi_periph/m04_couplers/auto_ds'. The XDC file /mnt/castor/seas_home/s/songqij/ese532_code/hw6/saved_x/link/vivado/vpl/prj/prj.gen/sources_1/bd/u96v2_sbc_base/ip/u96v2_sbc_base_auto_ds_3/u96v2_sbc_base_auto_ds_3_clocks.xdc will not be read for this cell.
+CRITICAL WARNING: [Designutils 20-1275] Could not find cell 'inst' within module 'u96v2_sbc_base_auto_ds_4' for instance 'u96v2_sbc_base_i/ps8_0_axi_periph/m05_couplers/auto_ds'. The XDC file /mnt/castor/seas_home/s/songqij/ese532_code/hw6/saved_x/link/vivado/vpl/prj/prj.gen/sources_1/bd/u96v2_sbc_base/ip/u96v2_sbc_base_auto_ds_4/u96v2_sbc_base_auto_ds_4_clocks.xdc will not be read for this cell.
+CRITICAL WARNING: [Designutils 20-1275] Could not find cell 'inst' within module 'u96v2_sbc_base_auto_ds_5' for instance 'u96v2_sbc_base_i/ps8_0_axi_periph/m06_couplers/auto_ds'. The XDC file /mnt/castor/seas_home/s/songqij/ese532_code/hw6/saved_x/link/vivado/vpl/prj/prj.gen/sources_1/bd/u96v2_sbc_base/ip/u96v2_sbc_base_auto_ds_5/u96v2_sbc_base_auto_ds_5_clocks.xdc will not be read for this cell.
+CRITICAL WARNING: [Designutils 20-1275] Could not find cell 'inst' within module 'u96v2_sbc_base_auto_ds_6' for instance 'u96v2_sbc_base_i/ps8_0_axi_periph/m07_couplers/auto_ds'. The XDC file /mnt/castor/seas_home/s/songqij/ese532_code/hw6/saved_x/link/vivado/vpl/prj/prj.gen/sources_1/bd/u96v2_sbc_base/ip/u96v2_sbc_base_auto_ds_6/u96v2_sbc_base_auto_ds_6_clocks.xdc will not be read for this cell.
+CRITICAL WARNING: [Designutils 20-1275] Could not find cell 'inst' within module 'u96v2_sbc_base_auto_ds_7' for instance 'u96v2_sbc_base_i/ps8_0_axi_periph/m08_couplers/auto_ds'. The XDC file /mnt/castor/seas_home/s/songqij/ese532_code/hw6/saved_x/link/vivado/vpl/prj/prj.gen/sources_1/bd/u96v2_sbc_base/ip/u96v2_sbc_base_auto_ds_7/u96v2_sbc_base_auto_ds_7_clocks.xdc will not be read for this cell.
+CRITICAL WARNING: [Designutils 20-1275] Could not find cell 'inst' within module 'u96v2_sbc_base_auto_ds_8' for instance 'u96v2_sbc_base_i/ps8_0_axi_periph/m09_couplers/auto_ds'. The XDC file /mnt/castor/seas_home/s/songqij/ese532_code/hw6/saved_x/link/vivado/vpl/prj/prj.gen/sources_1/bd/u96v2_sbc_base/ip/u96v2_sbc_base_auto_ds_8/u96v2_sbc_base_auto_ds_8_clocks.xdc will not be read for this cell.
+CRITICAL WARNING: [Designutils 20-1275] Could not find cell 'inst' within module 'u96v2_sbc_base_auto_ds_9' for instance 'u96v2_sbc_base_i/axi_ic_zynq_ultra_ps_e_0_M_AXI_HPM1_FPD/s00_couplers/auto_ds'. The XDC file /mnt/castor/seas_home/s/songqij/ese532_code/hw6/saved_x/link/vivado/vpl/prj/prj.gen/sources_1/bd/u96v2_sbc_base/ip/u96v2_sbc_base_auto_ds_9/u96v2_sbc_base_auto_ds_9_clocks.xdc will not be read for this cell.
+CRITICAL WARNING: [Designutils 20-1275] Could not find cell 'inst' within module 'u96v2_sbc_base_auto_ds_10' for instance 'u96v2_sbc_base_i/axi_ic_zynq_ultra_ps_e_0_S_AXI_HP0_FPD/s00_couplers/auto_ds'. The XDC file /mnt/castor/seas_home/s/songqij/ese532_code/hw6/saved_x/link/vivado/vpl/prj/prj.gen/sources_1/bd/u96v2_sbc_base/ip/u96v2_sbc_base_auto_ds_10/u96v2_sbc_base_auto_ds_10_clocks.xdc will not be read for this cell.
+CRITICAL WARNING: [Designutils 20-1275] Could not find cell 'inst' within module 'u96v2_sbc_base_auto_ds_11' for instance 'u96v2_sbc_base_i/axi_ic_zynq_ultra_ps_e_0_S_AXI_HP1_FPD/s00_couplers/auto_ds'. The XDC file /mnt/castor/seas_home/s/songqij/ese532_code/hw6/saved_x/link/vivado/vpl/prj/prj.gen/sources_1/bd/u96v2_sbc_base/ip/u96v2_sbc_base_auto_ds_11/u96v2_sbc_base_auto_ds_11_clocks.xdc will not be read for this cell.
+CRITICAL WARNING: [Designutils 20-1275] Could not find cell 'inst' within module 'u96v2_sbc_base_auto_ds_12' for instance 'u96v2_sbc_base_i/axi_ic_zynq_ultra_ps_e_0_S_AXI_HP2_FPD/s00_couplers/auto_ds'. The XDC file /mnt/castor/seas_home/s/songqij/ese532_code/hw6/saved_x/link/vivado/vpl/prj/prj.gen/sources_1/bd/u96v2_sbc_base/ip/u96v2_sbc_base_auto_ds_12/u96v2_sbc_base_auto_ds_12_clocks.xdc will not be read for this cell.
+INFO: [Project 1-1715] 1 XPM XDC files have been applied to the design.
+INFO: [Opt 31-138] Pushed 0 inverter(s) to 0 load pin(s).
+INFO: [Opt 31-422] The CLOCK_DOMAINS attribute on the BRAM cell u96v2_sbc_base_i/axi_bram_ctrl_0_bram/U0/inst_blk_mem_gen/gnbram.gnative_mem_map_bmg.native_mem_map_blk_mem_gen/valid.cstr/ramloop[0].ram.r/prim_noinit.ram/DEVICE_8SERIES.WITH_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.SERIES8_TDP_SP36_NO_ECC_ATTR.ram has been changed from INDEPENDENT to COMMON to match the clocking topology used for the BRAM.
+INFO: [Opt 31-422] The CLOCK_DOMAINS attribute on the BRAM cell u96v2_sbc_base_i/axi_bram_ctrl_0_bram/U0/inst_blk_mem_gen/gnbram.gnative_mem_map_bmg.native_mem_map_blk_mem_gen/valid.cstr/ramloop[1].ram.r/prim_noinit.ram/DEVICE_8SERIES.WITH_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.SERIES8_TDP_SP36_NO_ECC_ATTR.ram has been changed from INDEPENDENT to COMMON to match the clocking topology used for the BRAM.
+INFO: [Opt 31-422] The CLOCK_DOMAINS attribute on the BRAM cell u96v2_sbc_base_i/axi_bram_ctrl_0_bram/U0/inst_blk_mem_gen/gnbram.gnative_mem_map_bmg.native_mem_map_blk_mem_gen/valid.cstr/ramloop[2].ram.r/prim_noinit.ram/DEVICE_8SERIES.WITH_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.SERIES8_TDP_SP36_NO_ECC_ATTR.ram has been changed from INDEPENDENT to COMMON to match the clocking topology used for the BRAM.
+INFO: [Opt 31-422] The CLOCK_DOMAINS attribute on the BRAM cell u96v2_sbc_base_i/axi_bram_ctrl_0_bram/U0/inst_blk_mem_gen/gnbram.gnative_mem_map_bmg.native_mem_map_blk_mem_gen/valid.cstr/ramloop[3].ram.r/prim_noinit.ram/DEVICE_8SERIES.WITH_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.SERIES8_TDP_SP36_NO_ECC_ATTR.ram has been changed from INDEPENDENT to COMMON to match the clocking topology used for the BRAM.
+65 Infos, 2 Warnings, 46 Critical Warnings and 0 Errors encountered.
+link_design completed successfully
+link_design: Time (s): cpu = 00:00:33 ; elapsed = 00:00:56 . Memory (MB): peak = 3527.168 ; gain = 1166.008 ; free physical = 16717 ; free virtual = 26888
+INFO: [Common 17-344] 'link_design' was cancelled
+INFO: [Common 17-344] 'source' was cancelled
+INFO: [Common 17-206] Exiting Vivado at Thu Oct 17 18:28:33 2024...
+
+*** Running vivado
+    with args -log u96v2_sbc_base_wrapper.vdi -applog -m64 -product Vivado -messageDb vivado.pb -mode batch -source u96v2_sbc_base_wrapper.tcl -notrace
+
+
+****** Vivado v2020.2 (64-bit)
+  **** SW Build 3064766 on Wed Nov 18 09:12:47 MST 2020
+  **** IP Build 3064653 on Wed Nov 18 14:17:31 MST 2020
+    ** Copyright 1986-2020 Xilinx, Inc. All Rights Reserved.
+
+source u96v2_sbc_base_wrapper.tcl -notrace
+source /mnt/castor/seas_home/s/songqij/ese532_code/hw6/saved_x/link/vivado/vpl/scripts/_full_init_pre.tcl
+INFO: [IP_Flow 19-234] Refreshing IP repositories
+INFO: [IP_Flow 19-1700] Loaded user IP repository '/mnt/castor/seas_home/s/songqij/ese532_code/hw6/saved_x/link/int/xo/ip_repo/xilinx_com_hls_mmult_fpga_1_0'.
+INFO: [IP_Flow 19-1700] Loaded user IP repository '/mnt/castor/seas_home/s/songqij/ese532_code/hw6/saved_x/link/vivado/vpl/.local/hw_platform/iprepo'.
+INFO: [IP_Flow 19-1700] Loaded user IP repository '/mnt/pollux/software/xilinx/2020.2/Vitis/2020.2/data/cache/xilinx'.
+INFO: [IP_Flow 19-1700] Loaded user IP repository '/mnt/castor/seas_home/s/songqij/ese532_code/hw6/saved_x/link/vivado/vpl/.local/hw_platform/ipcache'.
+INFO: [IP_Flow 19-1700] Loaded user IP repository '/mnt/pollux/software/xilinx/2020.2/Vitis/2020.2/data/ip'.
+INFO: [IP_Flow 19-2313] Loaded Vivado IP repository '/mnt/pollux/software/xilinx/2020.2/Vivado/2020.2/data/ip'.
+Command: link_design -top u96v2_sbc_base_wrapper -part xczu3eg-sbva484-1-i
+Design is defaulting to srcset: sources_1
+Design is defaulting to constrset: constrs_1
+INFO: [Device 21-403] Loading part xczu3eg-sbva484-1-i
+INFO: [Project 1-454] Reading design checkpoint '/mnt/castor/seas_home/s/songqij/ese532_code/hw6/saved_x/link/vivado/vpl/prj/prj.gen/sources_1/bd/u96v2_sbc_base/ip/u96v2_sbc_base_PWM_w_Int_0_0/u96v2_sbc_base_PWM_w_Int_0_0.dcp' for cell 'u96v2_sbc_base_i/PWM_w_Int_0'
+INFO: [Project 1-454] Reading design checkpoint '/mnt/castor/seas_home/s/songqij/ese532_code/hw6/saved_x/link/vivado/vpl/prj/prj.gen/sources_1/bd/u96v2_sbc_base/ip/u96v2_sbc_base_PWM_w_Int_1_0/u96v2_sbc_base_PWM_w_Int_1_0.dcp' for cell 'u96v2_sbc_base_i/PWM_w_Int_1'
+INFO: [Project 1-454] Reading design checkpoint '/mnt/castor/seas_home/s/songqij/ese532_code/hw6/saved_x/link/vivado/vpl/prj/prj.gen/sources_1/bd/u96v2_sbc_base/ip/u96v2_sbc_base_axi_bram_ctrl_0_0/u96v2_sbc_base_axi_bram_ctrl_0_0.dcp' for cell 'u96v2_sbc_base_i/axi_bram_ctrl_0'
+INFO: [Project 1-454] Reading design checkpoint '/mnt/castor/seas_home/s/songqij/ese532_code/hw6/saved_x/link/vivado/vpl/prj/prj.gen/sources_1/bd/u96v2_sbc_base/ip/u96v2_sbc_base_blk_mem_gen_0_0/u96v2_sbc_base_blk_mem_gen_0_0.dcp' for cell 'u96v2_sbc_base_i/axi_bram_ctrl_0_bram'
+INFO: [Project 1-454] Reading design checkpoint '/mnt/castor/seas_home/s/songqij/ese532_code/hw6/saved_x/link/vivado/vpl/prj/prj.gen/sources_1/bd/u96v2_sbc_base/ip/u96v2_sbc_base_axi_gpio_0_0/u96v2_sbc_base_axi_gpio_0_0.dcp' for cell 'u96v2_sbc_base_i/axi_gpio_0'
+INFO: [Project 1-454] Reading design checkpoint '/mnt/castor/seas_home/s/songqij/ese532_code/hw6/saved_x/link/vivado/vpl/prj/prj.gen/sources_1/bd/u96v2_sbc_base/ip/u96v2_sbc_base_axi_gpio_1_0/u96v2_sbc_base_axi_gpio_1_0.dcp' for cell 'u96v2_sbc_base_i/axi_gpio_1'
+INFO: [Project 1-454] Reading design checkpoint '/mnt/castor/seas_home/s/songqij/ese532_code/hw6/saved_x/link/vivado/vpl/prj/prj.gen/sources_1/bd/u96v2_sbc_base/ip/u96v2_sbc_base_axi_gpio_2_0/u96v2_sbc_base_axi_gpio_2_0.dcp' for cell 'u96v2_sbc_base_i/axi_gpio_2'
+INFO: [Project 1-454] Reading design checkpoint '/mnt/castor/seas_home/s/songqij/ese532_code/hw6/saved_x/link/vivado/vpl/prj/prj.gen/sources_1/bd/u96v2_sbc_base/ip/u96v2_sbc_base_axi_intc_0_0/u96v2_sbc_base_axi_intc_0_0.dcp' for cell 'u96v2_sbc_base_i/axi_intc_0'
+INFO: [Project 1-454] Reading design checkpoint '/mnt/castor/seas_home/s/songqij/ese532_code/hw6/saved_x/link/vivado/vpl/prj/prj.gen/sources_1/bd/u96v2_sbc_base/ip/u96v2_sbc_base_axi_uart16550_0_0/u96v2_sbc_base_axi_uart16550_0_0.dcp' for cell 'u96v2_sbc_base_i/axi_uart16550_0'
+INFO: [Project 1-454] Reading design checkpoint '/mnt/castor/seas_home/s/songqij/ese532_code/hw6/saved_x/link/vivado/vpl/prj/prj.gen/sources_1/bd/u96v2_sbc_base/ip/u96v2_sbc_base_axi_uart16550_1_0/u96v2_sbc_base_axi_uart16550_1_0.dcp' for cell 'u96v2_sbc_base_i/axi_uart16550_1'
+INFO: [Project 1-454] Reading design checkpoint '/mnt/castor/seas_home/s/songqij/ese532_code/hw6/saved_x/link/vivado/vpl/prj/prj.gen/sources_1/bd/u96v2_sbc_base/ip/u96v2_sbc_base_clk_wiz_0_0/u96v2_sbc_base_clk_wiz_0_0.dcp' for cell 'u96v2_sbc_base_i/clk_wiz_0'
+INFO: [Project 1-454] Reading design checkpoint '/mnt/castor/seas_home/s/songqij/ese532_code/hw6/saved_x/link/vivado/vpl/prj/prj.gen/sources_1/bd/u96v2_sbc_base/ip/u96v2_sbc_base_mmult_fpga_1_0/u96v2_sbc_base_mmult_fpga_1_0.dcp' for cell 'u96v2_sbc_base_i/mmult_fpga_1'
+INFO: [Project 1-454] Reading design checkpoint '/mnt/castor/seas_home/s/songqij/ese532_code/hw6/saved_x/link/vivado/vpl/prj/prj.gen/sources_1/bd/u96v2_sbc_base/ip/u96v2_sbc_base_proc_sys_reset_0_1/u96v2_sbc_base_proc_sys_reset_0_1.dcp' for cell 'u96v2_sbc_base_i/proc_sys_reset_0'
+INFO: [Project 1-454] Reading design checkpoint '/mnt/castor/seas_home/s/songqij/ese532_code/hw6/saved_x/link/vivado/vpl/prj/prj.gen/sources_1/bd/u96v2_sbc_base/ip/u96v2_sbc_base_proc_sys_reset_1_0/u96v2_sbc_base_proc_sys_reset_1_0.dcp' for cell 'u96v2_sbc_base_i/proc_sys_reset_1'
+INFO: [Project 1-454] Reading design checkpoint '/mnt/castor/seas_home/s/songqij/ese532_code/hw6/saved_x/link/vivado/vpl/prj/prj.gen/sources_1/bd/u96v2_sbc_base/ip/u96v2_sbc_base_proc_sys_reset_2_0/u96v2_sbc_base_proc_sys_reset_2_0.dcp' for cell 'u96v2_sbc_base_i/proc_sys_reset_2'
+INFO: [Project 1-454] Reading design checkpoint '/mnt/castor/seas_home/s/songqij/ese532_code/hw6/saved_x/link/vivado/vpl/prj/prj.gen/sources_1/bd/u96v2_sbc_base/ip/u96v2_sbc_base_proc_sys_reset_3_0/u96v2_sbc_base_proc_sys_reset_3_0.dcp' for cell 'u96v2_sbc_base_i/proc_sys_reset_3'
+INFO: [Project 1-454] Reading design checkpoint '/mnt/castor/seas_home/s/songqij/ese532_code/hw6/saved_x/link/vivado/vpl/prj/prj.gen/sources_1/bd/u96v2_sbc_base/ip/u96v2_sbc_base_proc_sys_reset_4_0/u96v2_sbc_base_proc_sys_reset_4_0.dcp' for cell 'u96v2_sbc_base_i/proc_sys_reset_4'
+INFO: [Project 1-454] Reading design checkpoint '/mnt/castor/seas_home/s/songqij/ese532_code/hw6/saved_x/link/vivado/vpl/prj/prj.gen/sources_1/bd/u96v2_sbc_base/ip/u96v2_sbc_base_proc_sys_reset_5_0/u96v2_sbc_base_proc_sys_reset_5_0.dcp' for cell 'u96v2_sbc_base_i/proc_sys_reset_5'
+INFO: [Project 1-454] Reading design checkpoint '/mnt/castor/seas_home/s/songqij/ese532_code/hw6/saved_x/link/vivado/vpl/prj/prj.gen/sources_1/bd/u96v2_sbc_base/ip/u96v2_sbc_base_proc_sys_reset_6_0/u96v2_sbc_base_proc_sys_reset_6_0.dcp' for cell 'u96v2_sbc_base_i/proc_sys_reset_6'
+INFO: [Project 1-454] Reading design checkpoint '/mnt/castor/seas_home/s/songqij/ese532_code/hw6/saved_x/link/vivado/vpl/prj/prj.gen/sources_1/bd/u96v2_sbc_base/ip/u96v2_sbc_base_proc_sys_reset_0_0/u96v2_sbc_base_proc_sys_reset_0_0.dcp' for cell 'u96v2_sbc_base_i/rst_ps8_0_100M'
+INFO: [Project 1-454] Reading design checkpoint '/mnt/castor/seas_home/s/songqij/ese532_code/hw6/saved_x/link/vivado/vpl/prj/prj.gen/sources_1/bd/u96v2_sbc_base/ip/u96v2_sbc_base_system_management_wiz_0_0/u96v2_sbc_base_system_management_wiz_0_0.dcp' for cell 'u96v2_sbc_base_i/system_management_wiz_0'
+INFO: [Project 1-454] Reading design checkpoint '/mnt/castor/seas_home/s/songqij/ese532_code/hw6/saved_x/link/vivado/vpl/prj/prj.gen/sources_1/bd/u96v2_sbc_base/ip/u96v2_sbc_base_zynq_ultra_ps_e_0_0/u96v2_sbc_base_zynq_ultra_ps_e_0_0.dcp' for cell 'u96v2_sbc_base_i/zynq_ultra_ps_e_0'
+INFO: [Project 1-454] Reading design checkpoint '/mnt/castor/seas_home/s/songqij/ese532_code/hw6/saved_x/link/vivado/vpl/prj/prj.gen/sources_1/bd/u96v2_sbc_base/ip/u96v2_sbc_base_auto_ds_9/u96v2_sbc_base_auto_ds_9.dcp' for cell 'u96v2_sbc_base_i/axi_ic_zynq_ultra_ps_e_0_M_AXI_HPM1_FPD/s00_couplers/auto_ds'
+INFO: [Project 1-454] Reading design checkpoint '/mnt/castor/seas_home/s/songqij/ese532_code/hw6/saved_x/link/vivado/vpl/prj/prj.gen/sources_1/bd/u96v2_sbc_base/ip/u96v2_sbc_base_auto_pc_9/u96v2_sbc_base_auto_pc_9.dcp' for cell 'u96v2_sbc_base_i/axi_ic_zynq_ultra_ps_e_0_M_AXI_HPM1_FPD/s00_couplers/auto_pc'
+INFO: [Project 1-454] Reading design checkpoint '/mnt/castor/seas_home/s/songqij/ese532_code/hw6/saved_x/link/vivado/vpl/prj/prj.gen/sources_1/bd/u96v2_sbc_base/ip/u96v2_sbc_base_auto_ds_10/u96v2_sbc_base_auto_ds_10.dcp' for cell 'u96v2_sbc_base_i/axi_ic_zynq_ultra_ps_e_0_S_AXI_HP0_FPD/s00_couplers/auto_ds'
+INFO: [Project 1-454] Reading design checkpoint '/mnt/castor/seas_home/s/songqij/ese532_code/hw6/saved_x/link/vivado/vpl/prj/prj.gen/sources_1/bd/u96v2_sbc_base/ip/u96v2_sbc_base_auto_ds_11/u96v2_sbc_base_auto_ds_11.dcp' for cell 'u96v2_sbc_base_i/axi_ic_zynq_ultra_ps_e_0_S_AXI_HP1_FPD/s00_couplers/auto_ds'
+INFO: [Project 1-454] Reading design checkpoint '/mnt/castor/seas_home/s/songqij/ese532_code/hw6/saved_x/link/vivado/vpl/prj/prj.gen/sources_1/bd/u96v2_sbc_base/ip/u96v2_sbc_base_auto_ds_12/u96v2_sbc_base_auto_ds_12.dcp' for cell 'u96v2_sbc_base_i/axi_ic_zynq_ultra_ps_e_0_S_AXI_HP2_FPD/s00_couplers/auto_ds'
+INFO: [Project 1-454] Reading design checkpoint '/mnt/castor/seas_home/s/songqij/ese532_code/hw6/saved_x/link/vivado/vpl/prj/prj.gen/sources_1/bd/u96v2_sbc_base/ip/u96v2_sbc_base_xbar_0/u96v2_sbc_base_xbar_0.dcp' for cell 'u96v2_sbc_base_i/ps8_0_axi_periph/xbar'
+INFO: [Project 1-454] Reading design checkpoint '/mnt/castor/seas_home/s/songqij/ese532_code/hw6/saved_x/link/vivado/vpl/prj/prj.gen/sources_1/bd/u96v2_sbc_base/ip/u96v2_sbc_base_auto_ds_0/u96v2_sbc_base_auto_ds_0.dcp' for cell 'u96v2_sbc_base_i/ps8_0_axi_periph/m01_couplers/auto_ds'
+INFO: [Project 1-454] Reading design checkpoint '/mnt/castor/seas_home/s/songqij/ese532_code/hw6/saved_x/link/vivado/vpl/prj/prj.gen/sources_1/bd/u96v2_sbc_base/ip/u96v2_sbc_base_auto_pc_0/u96v2_sbc_base_auto_pc_0.dcp' for cell 'u96v2_sbc_base_i/ps8_0_axi_periph/m01_couplers/auto_pc'
+INFO: [Project 1-454] Reading design checkpoint '/mnt/castor/seas_home/s/songqij/ese532_code/hw6/saved_x/link/vivado/vpl/prj/prj.gen/sources_1/bd/u96v2_sbc_base/ip/u96v2_sbc_base_auto_ds_1/u96v2_sbc_base_auto_ds_1.dcp' for cell 'u96v2_sbc_base_i/ps8_0_axi_periph/m02_couplers/auto_ds'
+INFO: [Project 1-454] Reading design checkpoint '/mnt/castor/seas_home/s/songqij/ese532_code/hw6/saved_x/link/vivado/vpl/prj/prj.gen/sources_1/bd/u96v2_sbc_base/ip/u96v2_sbc_base_auto_pc_1/u96v2_sbc_base_auto_pc_1.dcp' for cell 'u96v2_sbc_base_i/ps8_0_axi_periph/m02_couplers/auto_pc'
+INFO: [Project 1-454] Reading design checkpoint '/mnt/castor/seas_home/s/songqij/ese532_code/hw6/saved_x/link/vivado/vpl/prj/prj.gen/sources_1/bd/u96v2_sbc_base/ip/u96v2_sbc_base_auto_ds_2/u96v2_sbc_base_auto_ds_2.dcp' for cell 'u96v2_sbc_base_i/ps8_0_axi_periph/m03_couplers/auto_ds'
+INFO: [Project 1-454] Reading design checkpoint '/mnt/castor/seas_home/s/songqij/ese532_code/hw6/saved_x/link/vivado/vpl/prj/prj.gen/sources_1/bd/u96v2_sbc_base/ip/u96v2_sbc_base_auto_pc_2/u96v2_sbc_base_auto_pc_2.dcp' for cell 'u96v2_sbc_base_i/ps8_0_axi_periph/m03_couplers/auto_pc'
+INFO: [Project 1-454] Reading design checkpoint '/mnt/castor/seas_home/s/songqij/ese532_code/hw6/saved_x/link/vivado/vpl/prj/prj.gen/sources_1/bd/u96v2_sbc_base/ip/u96v2_sbc_base_auto_ds_3/u96v2_sbc_base_auto_ds_3.dcp' for cell 'u96v2_sbc_base_i/ps8_0_axi_periph/m04_couplers/auto_ds'
+INFO: [Project 1-454] Reading design checkpoint '/mnt/castor/seas_home/s/songqij/ese532_code/hw6/saved_x/link/vivado/vpl/prj/prj.gen/sources_1/bd/u96v2_sbc_base/ip/u96v2_sbc_base_auto_pc_3/u96v2_sbc_base_auto_pc_3.dcp' for cell 'u96v2_sbc_base_i/ps8_0_axi_periph/m04_couplers/auto_pc'
+INFO: [Project 1-454] Reading design checkpoint '/mnt/castor/seas_home/s/songqij/ese532_code/hw6/saved_x/link/vivado/vpl/prj/prj.gen/sources_1/bd/u96v2_sbc_base/ip/u96v2_sbc_base_auto_ds_4/u96v2_sbc_base_auto_ds_4.dcp' for cell 'u96v2_sbc_base_i/ps8_0_axi_periph/m05_couplers/auto_ds'
+INFO: [Project 1-454] Reading design checkpoint '/mnt/castor/seas_home/s/songqij/ese532_code/hw6/saved_x/link/vivado/vpl/prj/prj.gen/sources_1/bd/u96v2_sbc_base/ip/u96v2_sbc_base_auto_pc_4/u96v2_sbc_base_auto_pc_4.dcp' for cell 'u96v2_sbc_base_i/ps8_0_axi_periph/m05_couplers/auto_pc'
+INFO: [Project 1-454] Reading design checkpoint '/mnt/castor/seas_home/s/songqij/ese532_code/hw6/saved_x/link/vivado/vpl/prj/prj.gen/sources_1/bd/u96v2_sbc_base/ip/u96v2_sbc_base_auto_ds_5/u96v2_sbc_base_auto_ds_5.dcp' for cell 'u96v2_sbc_base_i/ps8_0_axi_periph/m06_couplers/auto_ds'
+INFO: [Project 1-454] Reading design checkpoint '/mnt/castor/seas_home/s/songqij/ese532_code/hw6/saved_x/link/vivado/vpl/prj/prj.gen/sources_1/bd/u96v2_sbc_base/ip/u96v2_sbc_base_auto_pc_5/u96v2_sbc_base_auto_pc_5.dcp' for cell 'u96v2_sbc_base_i/ps8_0_axi_periph/m06_couplers/auto_pc'
+INFO: [Project 1-454] Reading design checkpoint '/mnt/castor/seas_home/s/songqij/ese532_code/hw6/saved_x/link/vivado/vpl/prj/prj.gen/sources_1/bd/u96v2_sbc_base/ip/u96v2_sbc_base_auto_ds_6/u96v2_sbc_base_auto_ds_6.dcp' for cell 'u96v2_sbc_base_i/ps8_0_axi_periph/m07_couplers/auto_ds'
+INFO: [Project 1-454] Reading design checkpoint '/mnt/castor/seas_home/s/songqij/ese532_code/hw6/saved_x/link/vivado/vpl/prj/prj.gen/sources_1/bd/u96v2_sbc_base/ip/u96v2_sbc_base_auto_pc_6/u96v2_sbc_base_auto_pc_6.dcp' for cell 'u96v2_sbc_base_i/ps8_0_axi_periph/m07_couplers/auto_pc'
+INFO: [Project 1-454] Reading design checkpoint '/mnt/castor/seas_home/s/songqij/ese532_code/hw6/saved_x/link/vivado/vpl/prj/prj.gen/sources_1/bd/u96v2_sbc_base/ip/u96v2_sbc_base_auto_ds_7/u96v2_sbc_base_auto_ds_7.dcp' for cell 'u96v2_sbc_base_i/ps8_0_axi_periph/m08_couplers/auto_ds'
+INFO: [Project 1-454] Reading design checkpoint '/mnt/castor/seas_home/s/songqij/ese532_code/hw6/saved_x/link/vivado/vpl/prj/prj.gen/sources_1/bd/u96v2_sbc_base/ip/u96v2_sbc_base_auto_pc_7/u96v2_sbc_base_auto_pc_7.dcp' for cell 'u96v2_sbc_base_i/ps8_0_axi_periph/m08_couplers/auto_pc'
+INFO: [Project 1-454] Reading design checkpoint '/mnt/castor/seas_home/s/songqij/ese532_code/hw6/saved_x/link/vivado/vpl/prj/prj.gen/sources_1/bd/u96v2_sbc_base/ip/u96v2_sbc_base_auto_ds_8/u96v2_sbc_base_auto_ds_8.dcp' for cell 'u96v2_sbc_base_i/ps8_0_axi_periph/m09_couplers/auto_ds'
+INFO: [Project 1-454] Reading design checkpoint '/mnt/castor/seas_home/s/songqij/ese532_code/hw6/saved_x/link/vivado/vpl/prj/prj.gen/sources_1/bd/u96v2_sbc_base/ip/u96v2_sbc_base_auto_pc_8/u96v2_sbc_base_auto_pc_8.dcp' for cell 'u96v2_sbc_base_i/ps8_0_axi_periph/m09_couplers/auto_pc'
+Netlist sorting complete. Time (s): cpu = 00:00:00.90 ; elapsed = 00:00:00.90 . Memory (MB): peak = 2823.297 ; gain = 0.000 ; free physical = 7151 ; free virtual = 15587
+INFO: [Netlist 29-17] Analyzing 3183 Unisim elements for replacement
+INFO: [Netlist 29-28] Unisim Transformation completed in 1 CPU seconds
+INFO: [Project 1-479] Netlist was created with Vivado 2020.2
+INFO: [Project 1-570] Preparing netlist for logic optimization
+WARNING: [Opt 31-32] Removing redundant IBUF since it is not being driven by a top-level port. u96v2_sbc_base_i/clk_wiz_0/inst/clkin1_ibuf 
+Resolution: The tool has removed redundant IBUF. To resolve this warning, check for redundant IBUF in the input design.
+WARNING: [Constraints 18-550] Could not create 'IBUF_LOW_PWR' constraint because net 'u96v2_sbc_base_i/clk_wiz_0/clk_in1' is not directly connected to top level port. Synthesis is ignored for IBUF_LOW_PWR but preserved for implementation.
+Parsing XDC File [/mnt/castor/seas_home/s/songqij/ese532_code/hw6/saved_x/link/vivado/vpl/prj/prj.gen/sources_1/bd/u96v2_sbc_base/ip/u96v2_sbc_base_clk_wiz_0_0/u96v2_sbc_base_clk_wiz_0_0_board.xdc] for cell 'u96v2_sbc_base_i/clk_wiz_0/inst'
+Finished Parsing XDC File [/mnt/castor/seas_home/s/songqij/ese532_code/hw6/saved_x/link/vivado/vpl/prj/prj.gen/sources_1/bd/u96v2_sbc_base/ip/u96v2_sbc_base_clk_wiz_0_0/u96v2_sbc_base_clk_wiz_0_0_board.xdc] for cell 'u96v2_sbc_base_i/clk_wiz_0/inst'
+Parsing XDC File [/mnt/castor/seas_home/s/songqij/ese532_code/hw6/saved_x/link/vivado/vpl/prj/prj.gen/sources_1/bd/u96v2_sbc_base/ip/u96v2_sbc_base_proc_sys_reset_6_0/u96v2_sbc_base_proc_sys_reset_6_0.xdc] for cell 'u96v2_sbc_base_i/proc_sys_reset_6/U0'
+Finished Parsing XDC File [/mnt/castor/seas_home/s/songqij/ese532_code/hw6/saved_x/link/vivado/vpl/prj/prj.gen/sources_1/bd/u96v2_sbc_base/ip/u96v2_sbc_base_proc_sys_reset_6_0/u96v2_sbc_base_proc_sys_reset_6_0.xdc] for cell 'u96v2_sbc_base_i/proc_sys_reset_6/U0'
+Parsing XDC File [/mnt/castor/seas_home/s/songqij/ese532_code/hw6/saved_x/link/vivado/vpl/prj/prj.gen/sources_1/bd/u96v2_sbc_base/ip/u96v2_sbc_base_proc_sys_reset_6_0/u96v2_sbc_base_proc_sys_reset_6_0_board.xdc] for cell 'u96v2_sbc_base_i/proc_sys_reset_6/U0'
+Finished Parsing XDC File [/mnt/castor/seas_home/s/songqij/ese532_code/hw6/saved_x/link/vivado/vpl/prj/prj.gen/sources_1/bd/u96v2_sbc_base/ip/u96v2_sbc_base_proc_sys_reset_6_0/u96v2_sbc_base_proc_sys_reset_6_0_board.xdc] for cell 'u96v2_sbc_base_i/proc_sys_reset_6/U0'
+Parsing XDC File [/mnt/castor/seas_home/s/songqij/ese532_code/hw6/saved_x/link/vivado/vpl/prj/prj.gen/sources_1/bd/u96v2_sbc_base/ip/u96v2_sbc_base_proc_sys_reset_5_0/u96v2_sbc_base_proc_sys_reset_5_0.xdc] for cell 'u96v2_sbc_base_i/proc_sys_reset_5/U0'
+Finished Parsing XDC File [/mnt/castor/seas_home/s/songqij/ese532_code/hw6/saved_x/link/vivado/vpl/prj/prj.gen/sources_1/bd/u96v2_sbc_base/ip/u96v2_sbc_base_proc_sys_reset_5_0/u96v2_sbc_base_proc_sys_reset_5_0.xdc] for cell 'u96v2_sbc_base_i/proc_sys_reset_5/U0'
+Parsing XDC File [/mnt/castor/seas_home/s/songqij/ese532_code/hw6/saved_x/link/vivado/vpl/prj/prj.gen/sources_1/bd/u96v2_sbc_base/ip/u96v2_sbc_base_proc_sys_reset_5_0/u96v2_sbc_base_proc_sys_reset_5_0_board.xdc] for cell 'u96v2_sbc_base_i/proc_sys_reset_5/U0'
+Finished Parsing XDC File [/mnt/castor/seas_home/s/songqij/ese532_code/hw6/saved_x/link/vivado/vpl/prj/prj.gen/sources_1/bd/u96v2_sbc_base/ip/u96v2_sbc_base_proc_sys_reset_5_0/u96v2_sbc_base_proc_sys_reset_5_0_board.xdc] for cell 'u96v2_sbc_base_i/proc_sys_reset_5/U0'
+Parsing XDC File [/mnt/castor/seas_home/s/songqij/ese532_code/hw6/saved_x/link/vivado/vpl/prj/prj.gen/sources_1/bd/u96v2_sbc_base/ip/u96v2_sbc_base_proc_sys_reset_4_0/u96v2_sbc_base_proc_sys_reset_4_0.xdc] for cell 'u96v2_sbc_base_i/proc_sys_reset_4/U0'
+Finished Parsing XDC File [/mnt/castor/seas_home/s/songqij/ese532_code/hw6/saved_x/link/vivado/vpl/prj/prj.gen/sources_1/bd/u96v2_sbc_base/ip/u96v2_sbc_base_proc_sys_reset_4_0/u96v2_sbc_base_proc_sys_reset_4_0.xdc] for cell 'u96v2_sbc_base_i/proc_sys_reset_4/U0'
+Parsing XDC File [/mnt/castor/seas_home/s/songqij/ese532_code/hw6/saved_x/link/vivado/vpl/prj/prj.gen/sources_1/bd/u96v2_sbc_base/ip/u96v2_sbc_base_proc_sys_reset_4_0/u96v2_sbc_base_proc_sys_reset_4_0_board.xdc] for cell 'u96v2_sbc_base_i/proc_sys_reset_4/U0'
+Finished Parsing XDC File [/mnt/castor/seas_home/s/songqij/ese532_code/hw6/saved_x/link/vivado/vpl/prj/prj.gen/sources_1/bd/u96v2_sbc_base/ip/u96v2_sbc_base_proc_sys_reset_4_0/u96v2_sbc_base_proc_sys_reset_4_0_board.xdc] for cell 'u96v2_sbc_base_i/proc_sys_reset_4/U0'
+Parsing XDC File [/mnt/castor/seas_home/s/songqij/ese532_code/hw6/saved_x/link/vivado/vpl/prj/prj.gen/sources_1/bd/u96v2_sbc_base/ip/u96v2_sbc_base_proc_sys_reset_3_0/u96v2_sbc_base_proc_sys_reset_3_0.xdc] for cell 'u96v2_sbc_base_i/proc_sys_reset_3/U0'
+Finished Parsing XDC File [/mnt/castor/seas_home/s/songqij/ese532_code/hw6/saved_x/link/vivado/vpl/prj/prj.gen/sources_1/bd/u96v2_sbc_base/ip/u96v2_sbc_base_proc_sys_reset_3_0/u96v2_sbc_base_proc_sys_reset_3_0.xdc] for cell 'u96v2_sbc_base_i/proc_sys_reset_3/U0'
+Parsing XDC File [/mnt/castor/seas_home/s/songqij/ese532_code/hw6/saved_x/link/vivado/vpl/prj/prj.gen/sources_1/bd/u96v2_sbc_base/ip/u96v2_sbc_base_proc_sys_reset_3_0/u96v2_sbc_base_proc_sys_reset_3_0_board.xdc] for cell 'u96v2_sbc_base_i/proc_sys_reset_3/U0'
+Finished Parsing XDC File [/mnt/castor/seas_home/s/songqij/ese532_code/hw6/saved_x/link/vivado/vpl/prj/prj.gen/sources_1/bd/u96v2_sbc_base/ip/u96v2_sbc_base_proc_sys_reset_3_0/u96v2_sbc_base_proc_sys_reset_3_0_board.xdc] for cell 'u96v2_sbc_base_i/proc_sys_reset_3/U0'
+Parsing XDC File [/mnt/castor/seas_home/s/songqij/ese532_code/hw6/saved_x/link/vivado/vpl/prj/prj.gen/sources_1/bd/u96v2_sbc_base/ip/u96v2_sbc_base_proc_sys_reset_2_0/u96v2_sbc_base_proc_sys_reset_2_0.xdc] for cell 'u96v2_sbc_base_i/proc_sys_reset_2/U0'
+Finished Parsing XDC File [/mnt/castor/seas_home/s/songqij/ese532_code/hw6/saved_x/link/vivado/vpl/prj/prj.gen/sources_1/bd/u96v2_sbc_base/ip/u96v2_sbc_base_proc_sys_reset_2_0/u96v2_sbc_base_proc_sys_reset_2_0.xdc] for cell 'u96v2_sbc_base_i/proc_sys_reset_2/U0'
+Parsing XDC File [/mnt/castor/seas_home/s/songqij/ese532_code/hw6/saved_x/link/vivado/vpl/prj/prj.gen/sources_1/bd/u96v2_sbc_base/ip/u96v2_sbc_base_proc_sys_reset_2_0/u96v2_sbc_base_proc_sys_reset_2_0_board.xdc] for cell 'u96v2_sbc_base_i/proc_sys_reset_2/U0'
+Finished Parsing XDC File [/mnt/castor/seas_home/s/songqij/ese532_code/hw6/saved_x/link/vivado/vpl/prj/prj.gen/sources_1/bd/u96v2_sbc_base/ip/u96v2_sbc_base_proc_sys_reset_2_0/u96v2_sbc_base_proc_sys_reset_2_0_board.xdc] for cell 'u96v2_sbc_base_i/proc_sys_reset_2/U0'
+Parsing XDC File [/mnt/castor/seas_home/s/songqij/ese532_code/hw6/saved_x/link/vivado/vpl/prj/prj.gen/sources_1/bd/u96v2_sbc_base/ip/u96v2_sbc_base_proc_sys_reset_1_0/u96v2_sbc_base_proc_sys_reset_1_0.xdc] for cell 'u96v2_sbc_base_i/proc_sys_reset_1/U0'
+Finished Parsing XDC File [/mnt/castor/seas_home/s/songqij/ese532_code/hw6/saved_x/link/vivado/vpl/prj/prj.gen/sources_1/bd/u96v2_sbc_base/ip/u96v2_sbc_base_proc_sys_reset_1_0/u96v2_sbc_base_proc_sys_reset_1_0.xdc] for cell 'u96v2_sbc_base_i/proc_sys_reset_1/U0'
+Parsing XDC File [/mnt/castor/seas_home/s/songqij/ese532_code/hw6/saved_x/link/vivado/vpl/prj/prj.gen/sources_1/bd/u96v2_sbc_base/ip/u96v2_sbc_base_proc_sys_reset_1_0/u96v2_sbc_base_proc_sys_reset_1_0_board.xdc] for cell 'u96v2_sbc_base_i/proc_sys_reset_1/U0'
+Finished Parsing XDC File [/mnt/castor/seas_home/s/songqij/ese532_code/hw6/saved_x/link/vivado/vpl/prj/prj.gen/sources_1/bd/u96v2_sbc_base/ip/u96v2_sbc_base_proc_sys_reset_1_0/u96v2_sbc_base_proc_sys_reset_1_0_board.xdc] for cell 'u96v2_sbc_base_i/proc_sys_reset_1/U0'
+Parsing XDC File [/mnt/castor/seas_home/s/songqij/ese532_code/hw6/saved_x/link/vivado/vpl/prj/prj.gen/sources_1/bd/u96v2_sbc_base/ip/u96v2_sbc_base_proc_sys_reset_0_1/u96v2_sbc_base_proc_sys_reset_0_1.xdc] for cell 'u96v2_sbc_base_i/proc_sys_reset_0/U0'
+Finished Parsing XDC File [/mnt/castor/seas_home/s/songqij/ese532_code/hw6/saved_x/link/vivado/vpl/prj/prj.gen/sources_1/bd/u96v2_sbc_base/ip/u96v2_sbc_base_proc_sys_reset_0_1/u96v2_sbc_base_proc_sys_reset_0_1.xdc] for cell 'u96v2_sbc_base_i/proc_sys_reset_0/U0'
+Parsing XDC File [/mnt/castor/seas_home/s/songqij/ese532_code/hw6/saved_x/link/vivado/vpl/prj/prj.gen/sources_1/bd/u96v2_sbc_base/ip/u96v2_sbc_base_proc_sys_reset_0_1/u96v2_sbc_base_proc_sys_reset_0_1_board.xdc] for cell 'u96v2_sbc_base_i/proc_sys_reset_0/U0'
+Finished Parsing XDC File [/mnt/castor/seas_home/s/songqij/ese532_code/hw6/saved_x/link/vivado/vpl/prj/prj.gen/sources_1/bd/u96v2_sbc_base/ip/u96v2_sbc_base_proc_sys_reset_0_1/u96v2_sbc_base_proc_sys_reset_0_1_board.xdc] for cell 'u96v2_sbc_base_i/proc_sys_reset_0/U0'
+Parsing XDC File [/mnt/castor/seas_home/s/songqij/ese532_code/hw6/saved_x/link/vivado/vpl/prj/prj.gen/sources_1/bd/u96v2_sbc_base/ip/u96v2_sbc_base_clk_wiz_0_0/u96v2_sbc_base_clk_wiz_0_0.xdc] for cell 'u96v2_sbc_base_i/clk_wiz_0/inst'
+INFO: [Timing 38-35] Done setting XDC timing constraints. [/mnt/castor/seas_home/s/songqij/ese532_code/hw6/saved_x/link/vivado/vpl/prj/prj.gen/sources_1/bd/u96v2_sbc_base/ip/u96v2_sbc_base_clk_wiz_0_0/u96v2_sbc_base_clk_wiz_0_0.xdc:57]
+INFO: [Timing 38-2] Deriving generated clocks [/mnt/castor/seas_home/s/songqij/ese532_code/hw6/saved_x/link/vivado/vpl/prj/prj.gen/sources_1/bd/u96v2_sbc_base/ip/u96v2_sbc_base_clk_wiz_0_0/u96v2_sbc_base_clk_wiz_0_0.xdc:57]
+get_clocks: Time (s): cpu = 00:00:17 ; elapsed = 00:00:08 . Memory (MB): peak = 4045.145 ; gain = 519.031 ; free physical = 3459 ; free virtual = 11934
+Finished Parsing XDC File [/mnt/castor/seas_home/s/songqij/ese532_code/hw6/saved_x/link/vivado/vpl/prj/prj.gen/sources_1/bd/u96v2_sbc_base/ip/u96v2_sbc_base_clk_wiz_0_0/u96v2_sbc_base_clk_wiz_0_0.xdc] for cell 'u96v2_sbc_base_i/clk_wiz_0/inst'
+Parsing XDC File [/mnt/castor/seas_home/s/songqij/ese532_code/hw6/saved_x/link/vivado/vpl/prj/prj.gen/sources_1/bd/u96v2_sbc_base/ip/u96v2_sbc_base_zynq_ultra_ps_e_0_0/u96v2_sbc_base_zynq_ultra_ps_e_0_0.xdc] for cell 'u96v2_sbc_base_i/zynq_ultra_ps_e_0/U0'
+Finished Parsing XDC File [/mnt/castor/seas_home/s/songqij/ese532_code/hw6/saved_x/link/vivado/vpl/prj/prj.gen/sources_1/bd/u96v2_sbc_base/ip/u96v2_sbc_base_zynq_ultra_ps_e_0_0/u96v2_sbc_base_zynq_ultra_ps_e_0_0.xdc] for cell 'u96v2_sbc_base_i/zynq_ultra_ps_e_0/U0'
+Parsing XDC File [/mnt/castor/seas_home/s/songqij/ese532_code/hw6/saved_x/link/vivado/vpl/prj/prj.gen/sources_1/bd/u96v2_sbc_base/ip/u96v2_sbc_base_axi_intc_0_0/u96v2_sbc_base_axi_intc_0_0.xdc] for cell 'u96v2_sbc_base_i/axi_intc_0/U0'
+Finished Parsing XDC File [/mnt/castor/seas_home/s/songqij/ese532_code/hw6/saved_x/link/vivado/vpl/prj/prj.gen/sources_1/bd/u96v2_sbc_base/ip/u96v2_sbc_base_axi_intc_0_0/u96v2_sbc_base_axi_intc_0_0.xdc] for cell 'u96v2_sbc_base_i/axi_intc_0/U0'
+Parsing XDC File [/mnt/castor/seas_home/s/songqij/ese532_code/hw6/saved_x/link/vivado/vpl/prj/prj.gen/sources_1/bd/u96v2_sbc_base/ip/u96v2_sbc_base_system_management_wiz_0_0/u96v2_sbc_base_system_management_wiz_0_0.xdc] for cell 'u96v2_sbc_base_i/system_management_wiz_0/U0'
+Finished Parsing XDC File [/mnt/castor/seas_home/s/songqij/ese532_code/hw6/saved_x/link/vivado/vpl/prj/prj.gen/sources_1/bd/u96v2_sbc_base/ip/u96v2_sbc_base_system_management_wiz_0_0/u96v2_sbc_base_system_management_wiz_0_0.xdc] for cell 'u96v2_sbc_base_i/system_management_wiz_0/U0'
+Parsing XDC File [/mnt/castor/seas_home/s/songqij/ese532_code/hw6/saved_x/link/vivado/vpl/prj/prj.gen/sources_1/bd/u96v2_sbc_base/ip/u96v2_sbc_base_system_management_wiz_0_0/u96v2_sbc_base_system_management_wiz_0_0_board.xdc] for cell 'u96v2_sbc_base_i/system_management_wiz_0/U0'
+Finished Parsing XDC File [/mnt/castor/seas_home/s/songqij/ese532_code/hw6/saved_x/link/vivado/vpl/prj/prj.gen/sources_1/bd/u96v2_sbc_base/ip/u96v2_sbc_base_system_management_wiz_0_0/u96v2_sbc_base_system_management_wiz_0_0_board.xdc] for cell 'u96v2_sbc_base_i/system_management_wiz_0/U0'
+Parsing XDC File [/mnt/castor/seas_home/s/songqij/ese532_code/hw6/saved_x/link/vivado/vpl/prj/prj.gen/sources_1/bd/u96v2_sbc_base/ip/u96v2_sbc_base_axi_gpio_2_0/u96v2_sbc_base_axi_gpio_2_0.xdc] for cell 'u96v2_sbc_base_i/axi_gpio_2/U0'
+Finished Parsing XDC File [/mnt/castor/seas_home/s/songqij/ese532_code/hw6/saved_x/link/vivado/vpl/prj/prj.gen/sources_1/bd/u96v2_sbc_base/ip/u96v2_sbc_base_axi_gpio_2_0/u96v2_sbc_base_axi_gpio_2_0.xdc] for cell 'u96v2_sbc_base_i/axi_gpio_2/U0'
+Parsing XDC File [/mnt/castor/seas_home/s/songqij/ese532_code/hw6/saved_x/link/vivado/vpl/prj/prj.gen/sources_1/bd/u96v2_sbc_base/ip/u96v2_sbc_base_axi_gpio_2_0/u96v2_sbc_base_axi_gpio_2_0_board.xdc] for cell 'u96v2_sbc_base_i/axi_gpio_2/U0'
+Finished Parsing XDC File [/mnt/castor/seas_home/s/songqij/ese532_code/hw6/saved_x/link/vivado/vpl/prj/prj.gen/sources_1/bd/u96v2_sbc_base/ip/u96v2_sbc_base_axi_gpio_2_0/u96v2_sbc_base_axi_gpio_2_0_board.xdc] for cell 'u96v2_sbc_base_i/axi_gpio_2/U0'
+Parsing XDC File [/mnt/castor/seas_home/s/songqij/ese532_code/hw6/saved_x/link/vivado/vpl/prj/prj.gen/sources_1/bd/u96v2_sbc_base/ip/u96v2_sbc_base_axi_gpio_1_0/u96v2_sbc_base_axi_gpio_1_0.xdc] for cell 'u96v2_sbc_base_i/axi_gpio_1/U0'
+Finished Parsing XDC File [/mnt/castor/seas_home/s/songqij/ese532_code/hw6/saved_x/link/vivado/vpl/prj/prj.gen/sources_1/bd/u96v2_sbc_base/ip/u96v2_sbc_base_axi_gpio_1_0/u96v2_sbc_base_axi_gpio_1_0.xdc] for cell 'u96v2_sbc_base_i/axi_gpio_1/U0'
+Parsing XDC File [/mnt/castor/seas_home/s/songqij/ese532_code/hw6/saved_x/link/vivado/vpl/prj/prj.gen/sources_1/bd/u96v2_sbc_base/ip/u96v2_sbc_base_axi_gpio_1_0/u96v2_sbc_base_axi_gpio_1_0_board.xdc] for cell 'u96v2_sbc_base_i/axi_gpio_1/U0'
+Finished Parsing XDC File [/mnt/castor/seas_home/s/songqij/ese532_code/hw6/saved_x/link/vivado/vpl/prj/prj.gen/sources_1/bd/u96v2_sbc_base/ip/u96v2_sbc_base_axi_gpio_1_0/u96v2_sbc_base_axi_gpio_1_0_board.xdc] for cell 'u96v2_sbc_base_i/axi_gpio_1/U0'
+Parsing XDC File [/mnt/castor/seas_home/s/songqij/ese532_code/hw6/saved_x/link/vivado/vpl/prj/prj.gen/sources_1/bd/u96v2_sbc_base/ip/u96v2_sbc_base_axi_gpio_0_0/u96v2_sbc_base_axi_gpio_0_0.xdc] for cell 'u96v2_sbc_base_i/axi_gpio_0/U0'
+Finished Parsing XDC File [/mnt/castor/seas_home/s/songqij/ese532_code/hw6/saved_x/link/vivado/vpl/prj/prj.gen/sources_1/bd/u96v2_sbc_base/ip/u96v2_sbc_base_axi_gpio_0_0/u96v2_sbc_base_axi_gpio_0_0.xdc] for cell 'u96v2_sbc_base_i/axi_gpio_0/U0'
+Parsing XDC File [/mnt/castor/seas_home/s/songqij/ese532_code/hw6/saved_x/link/vivado/vpl/prj/prj.gen/sources_1/bd/u96v2_sbc_base/ip/u96v2_sbc_base_axi_gpio_0_0/u96v2_sbc_base_axi_gpio_0_0_board.xdc] for cell 'u96v2_sbc_base_i/axi_gpio_0/U0'
+Finished Parsing XDC File [/mnt/castor/seas_home/s/songqij/ese532_code/hw6/saved_x/link/vivado/vpl/prj/prj.gen/sources_1/bd/u96v2_sbc_base/ip/u96v2_sbc_base_axi_gpio_0_0/u96v2_sbc_base_axi_gpio_0_0_board.xdc] for cell 'u96v2_sbc_base_i/axi_gpio_0/U0'
+Parsing XDC File [/mnt/castor/seas_home/s/songqij/ese532_code/hw6/saved_x/link/vivado/vpl/prj/prj.gen/sources_1/bd/u96v2_sbc_base/ip/u96v2_sbc_base_axi_uart16550_1_0/u96v2_sbc_base_axi_uart16550_1_0.xdc] for cell 'u96v2_sbc_base_i/axi_uart16550_1/U0'
+Finished Parsing XDC File [/mnt/castor/seas_home/s/songqij/ese532_code/hw6/saved_x/link/vivado/vpl/prj/prj.gen/sources_1/bd/u96v2_sbc_base/ip/u96v2_sbc_base_axi_uart16550_1_0/u96v2_sbc_base_axi_uart16550_1_0.xdc] for cell 'u96v2_sbc_base_i/axi_uart16550_1/U0'
+Parsing XDC File [/mnt/castor/seas_home/s/songqij/ese532_code/hw6/saved_x/link/vivado/vpl/prj/prj.gen/sources_1/bd/u96v2_sbc_base/ip/u96v2_sbc_base_axi_uart16550_1_0/u96v2_sbc_base_axi_uart16550_1_0_board.xdc] for cell 'u96v2_sbc_base_i/axi_uart16550_1/U0'
+Finished Parsing XDC File [/mnt/castor/seas_home/s/songqij/ese532_code/hw6/saved_x/link/vivado/vpl/prj/prj.gen/sources_1/bd/u96v2_sbc_base/ip/u96v2_sbc_base_axi_uart16550_1_0/u96v2_sbc_base_axi_uart16550_1_0_board.xdc] for cell 'u96v2_sbc_base_i/axi_uart16550_1/U0'
+Parsing XDC File [/mnt/castor/seas_home/s/songqij/ese532_code/hw6/saved_x/link/vivado/vpl/prj/prj.gen/sources_1/bd/u96v2_sbc_base/ip/u96v2_sbc_base_axi_uart16550_0_0/u96v2_sbc_base_axi_uart16550_0_0.xdc] for cell 'u96v2_sbc_base_i/axi_uart16550_0/U0'
+Finished Parsing XDC File [/mnt/castor/seas_home/s/songqij/ese532_code/hw6/saved_x/link/vivado/vpl/prj/prj.gen/sources_1/bd/u96v2_sbc_base/ip/u96v2_sbc_base_axi_uart16550_0_0/u96v2_sbc_base_axi_uart16550_0_0.xdc] for cell 'u96v2_sbc_base_i/axi_uart16550_0/U0'
+Parsing XDC File [/mnt/castor/seas_home/s/songqij/ese532_code/hw6/saved_x/link/vivado/vpl/prj/prj.gen/sources_1/bd/u96v2_sbc_base/ip/u96v2_sbc_base_axi_uart16550_0_0/u96v2_sbc_base_axi_uart16550_0_0_board.xdc] for cell 'u96v2_sbc_base_i/axi_uart16550_0/U0'
+Finished Parsing XDC File [/mnt/castor/seas_home/s/songqij/ese532_code/hw6/saved_x/link/vivado/vpl/prj/prj.gen/sources_1/bd/u96v2_sbc_base/ip/u96v2_sbc_base_axi_uart16550_0_0/u96v2_sbc_base_axi_uart16550_0_0_board.xdc] for cell 'u96v2_sbc_base_i/axi_uart16550_0/U0'
+Parsing XDC File [/mnt/castor/seas_home/s/songqij/ese532_code/hw6/saved_x/link/vivado/vpl/prj/prj.gen/sources_1/bd/u96v2_sbc_base/ip/u96v2_sbc_base_proc_sys_reset_0_0/u96v2_sbc_base_proc_sys_reset_0_0.xdc] for cell 'u96v2_sbc_base_i/rst_ps8_0_100M/U0'
+Finished Parsing XDC File [/mnt/castor/seas_home/s/songqij/ese532_code/hw6/saved_x/link/vivado/vpl/prj/prj.gen/sources_1/bd/u96v2_sbc_base/ip/u96v2_sbc_base_proc_sys_reset_0_0/u96v2_sbc_base_proc_sys_reset_0_0.xdc] for cell 'u96v2_sbc_base_i/rst_ps8_0_100M/U0'
+Parsing XDC File [/mnt/castor/seas_home/s/songqij/ese532_code/hw6/saved_x/link/vivado/vpl/prj/prj.gen/sources_1/bd/u96v2_sbc_base/ip/u96v2_sbc_base_proc_sys_reset_0_0/u96v2_sbc_base_proc_sys_reset_0_0_board.xdc] for cell 'u96v2_sbc_base_i/rst_ps8_0_100M/U0'
+Finished Parsing XDC File [/mnt/castor/seas_home/s/songqij/ese532_code/hw6/saved_x/link/vivado/vpl/prj/prj.gen/sources_1/bd/u96v2_sbc_base/ip/u96v2_sbc_base_proc_sys_reset_0_0/u96v2_sbc_base_proc_sys_reset_0_0_board.xdc] for cell 'u96v2_sbc_base_i/rst_ps8_0_100M/U0'
+Parsing XDC File [/mnt/castor/seas_home/s/songqij/ese532_code/hw6/saved_x/link/vivado/vpl/prj/prj.srcs/constrs_1/imports/base/u96v2_sbc_base.xdc]
+Finished Parsing XDC File [/mnt/castor/seas_home/s/songqij/ese532_code/hw6/saved_x/link/vivado/vpl/prj/prj.srcs/constrs_1/imports/base/u96v2_sbc_base.xdc]
+Parsing XDC File [/mnt/castor/seas_home/s/songqij/ese532_code/hw6/saved_x/link/vivado/vpl/prj/prj.gen/sources_1/bd/u96v2_sbc_base/ip/u96v2_sbc_base_axi_intc_0_0/u96v2_sbc_base_axi_intc_0_0_clocks.xdc] for cell 'u96v2_sbc_base_i/axi_intc_0/U0'
+Finished Parsing XDC File [/mnt/castor/seas_home/s/songqij/ese532_code/hw6/saved_x/link/vivado/vpl/prj/prj.gen/sources_1/bd/u96v2_sbc_base/ip/u96v2_sbc_base_axi_intc_0_0/u96v2_sbc_base_axi_intc_0_0_clocks.xdc] for cell 'u96v2_sbc_base_i/axi_intc_0/U0'
+Parsing XDC File [/mnt/castor/seas_home/s/songqij/ese532_code/hw6/saved_x/link/vivado/vpl/prj/prj.gen/sources_1/bd/u96v2_sbc_base/ip/u96v2_sbc_base_auto_ds_0/u96v2_sbc_base_auto_ds_0_clocks.xdc] for cell 'u96v2_sbc_base_i/ps8_0_axi_periph/m01_couplers/auto_ds/inst'
+Finished Parsing XDC File [/mnt/castor/seas_home/s/songqij/ese532_code/hw6/saved_x/link/vivado/vpl/prj/prj.gen/sources_1/bd/u96v2_sbc_base/ip/u96v2_sbc_base_auto_ds_0/u96v2_sbc_base_auto_ds_0_clocks.xdc] for cell 'u96v2_sbc_base_i/ps8_0_axi_periph/m01_couplers/auto_ds/inst'
+Parsing XDC File [/mnt/castor/seas_home/s/songqij/ese532_code/hw6/saved_x/link/vivado/vpl/prj/prj.gen/sources_1/bd/u96v2_sbc_base/ip/u96v2_sbc_base_auto_ds_1/u96v2_sbc_base_auto_ds_1_clocks.xdc] for cell 'u96v2_sbc_base_i/ps8_0_axi_periph/m02_couplers/auto_ds/inst'
+Finished Parsing XDC File [/mnt/castor/seas_home/s/songqij/ese532_code/hw6/saved_x/link/vivado/vpl/prj/prj.gen/sources_1/bd/u96v2_sbc_base/ip/u96v2_sbc_base_auto_ds_1/u96v2_sbc_base_auto_ds_1_clocks.xdc] for cell 'u96v2_sbc_base_i/ps8_0_axi_periph/m02_couplers/auto_ds/inst'
+Parsing XDC File [/mnt/castor/seas_home/s/songqij/ese532_code/hw6/saved_x/link/vivado/vpl/prj/prj.gen/sources_1/bd/u96v2_sbc_base/ip/u96v2_sbc_base_auto_ds_2/u96v2_sbc_base_auto_ds_2_clocks.xdc] for cell 'u96v2_sbc_base_i/ps8_0_axi_periph/m03_couplers/auto_ds/inst'
+Finished Parsing XDC File [/mnt/castor/seas_home/s/songqij/ese532_code/hw6/saved_x/link/vivado/vpl/prj/prj.gen/sources_1/bd/u96v2_sbc_base/ip/u96v2_sbc_base_auto_ds_2/u96v2_sbc_base_auto_ds_2_clocks.xdc] for cell 'u96v2_sbc_base_i/ps8_0_axi_periph/m03_couplers/auto_ds/inst'
+Parsing XDC File [/mnt/castor/seas_home/s/songqij/ese532_code/hw6/saved_x/link/vivado/vpl/prj/prj.gen/sources_1/bd/u96v2_sbc_base/ip/u96v2_sbc_base_auto_ds_3/u96v2_sbc_base_auto_ds_3_clocks.xdc] for cell 'u96v2_sbc_base_i/ps8_0_axi_periph/m04_couplers/auto_ds/inst'
+Finished Parsing XDC File [/mnt/castor/seas_home/s/songqij/ese532_code/hw6/saved_x/link/vivado/vpl/prj/prj.gen/sources_1/bd/u96v2_sbc_base/ip/u96v2_sbc_base_auto_ds_3/u96v2_sbc_base_auto_ds_3_clocks.xdc] for cell 'u96v2_sbc_base_i/ps8_0_axi_periph/m04_couplers/auto_ds/inst'
+Parsing XDC File [/mnt/castor/seas_home/s/songqij/ese532_code/hw6/saved_x/link/vivado/vpl/prj/prj.gen/sources_1/bd/u96v2_sbc_base/ip/u96v2_sbc_base_auto_ds_4/u96v2_sbc_base_auto_ds_4_clocks.xdc] for cell 'u96v2_sbc_base_i/ps8_0_axi_periph/m05_couplers/auto_ds/inst'
+Finished Parsing XDC File [/mnt/castor/seas_home/s/songqij/ese532_code/hw6/saved_x/link/vivado/vpl/prj/prj.gen/sources_1/bd/u96v2_sbc_base/ip/u96v2_sbc_base_auto_ds_4/u96v2_sbc_base_auto_ds_4_clocks.xdc] for cell 'u96v2_sbc_base_i/ps8_0_axi_periph/m05_couplers/auto_ds/inst'
+Parsing XDC File [/mnt/castor/seas_home/s/songqij/ese532_code/hw6/saved_x/link/vivado/vpl/prj/prj.gen/sources_1/bd/u96v2_sbc_base/ip/u96v2_sbc_base_auto_ds_5/u96v2_sbc_base_auto_ds_5_clocks.xdc] for cell 'u96v2_sbc_base_i/ps8_0_axi_periph/m06_couplers/auto_ds/inst'
+Finished Parsing XDC File [/mnt/castor/seas_home/s/songqij/ese532_code/hw6/saved_x/link/vivado/vpl/prj/prj.gen/sources_1/bd/u96v2_sbc_base/ip/u96v2_sbc_base_auto_ds_5/u96v2_sbc_base_auto_ds_5_clocks.xdc] for cell 'u96v2_sbc_base_i/ps8_0_axi_periph/m06_couplers/auto_ds/inst'
+Parsing XDC File [/mnt/castor/seas_home/s/songqij/ese532_code/hw6/saved_x/link/vivado/vpl/prj/prj.gen/sources_1/bd/u96v2_sbc_base/ip/u96v2_sbc_base_auto_ds_6/u96v2_sbc_base_auto_ds_6_clocks.xdc] for cell 'u96v2_sbc_base_i/ps8_0_axi_periph/m07_couplers/auto_ds/inst'
+Finished Parsing XDC File [/mnt/castor/seas_home/s/songqij/ese532_code/hw6/saved_x/link/vivado/vpl/prj/prj.gen/sources_1/bd/u96v2_sbc_base/ip/u96v2_sbc_base_auto_ds_6/u96v2_sbc_base_auto_ds_6_clocks.xdc] for cell 'u96v2_sbc_base_i/ps8_0_axi_periph/m07_couplers/auto_ds/inst'
+Parsing XDC File [/mnt/castor/seas_home/s/songqij/ese532_code/hw6/saved_x/link/vivado/vpl/prj/prj.gen/sources_1/bd/u96v2_sbc_base/ip/u96v2_sbc_base_auto_ds_7/u96v2_sbc_base_auto_ds_7_clocks.xdc] for cell 'u96v2_sbc_base_i/ps8_0_axi_periph/m08_couplers/auto_ds/inst'
+Finished Parsing XDC File [/mnt/castor/seas_home/s/songqij/ese532_code/hw6/saved_x/link/vivado/vpl/prj/prj.gen/sources_1/bd/u96v2_sbc_base/ip/u96v2_sbc_base_auto_ds_7/u96v2_sbc_base_auto_ds_7_clocks.xdc] for cell 'u96v2_sbc_base_i/ps8_0_axi_periph/m08_couplers/auto_ds/inst'
+Parsing XDC File [/mnt/castor/seas_home/s/songqij/ese532_code/hw6/saved_x/link/vivado/vpl/prj/prj.gen/sources_1/bd/u96v2_sbc_base/ip/u96v2_sbc_base_auto_ds_8/u96v2_sbc_base_auto_ds_8_clocks.xdc] for cell 'u96v2_sbc_base_i/ps8_0_axi_periph/m09_couplers/auto_ds/inst'
+Finished Parsing XDC File [/mnt/castor/seas_home/s/songqij/ese532_code/hw6/saved_x/link/vivado/vpl/prj/prj.gen/sources_1/bd/u96v2_sbc_base/ip/u96v2_sbc_base_auto_ds_8/u96v2_sbc_base_auto_ds_8_clocks.xdc] for cell 'u96v2_sbc_base_i/ps8_0_axi_periph/m09_couplers/auto_ds/inst'
+Parsing XDC File [/mnt/castor/seas_home/s/songqij/ese532_code/hw6/saved_x/link/vivado/vpl/prj/prj.gen/sources_1/bd/u96v2_sbc_base/ip/u96v2_sbc_base_auto_ds_9/u96v2_sbc_base_auto_ds_9_clocks.xdc] for cell 'u96v2_sbc_base_i/axi_ic_zynq_ultra_ps_e_0_M_AXI_HPM1_FPD/s00_couplers/auto_ds/inst'
+Finished Parsing XDC File [/mnt/castor/seas_home/s/songqij/ese532_code/hw6/saved_x/link/vivado/vpl/prj/prj.gen/sources_1/bd/u96v2_sbc_base/ip/u96v2_sbc_base_auto_ds_9/u96v2_sbc_base_auto_ds_9_clocks.xdc] for cell 'u96v2_sbc_base_i/axi_ic_zynq_ultra_ps_e_0_M_AXI_HPM1_FPD/s00_couplers/auto_ds/inst'
+Parsing XDC File [/mnt/castor/seas_home/s/songqij/ese532_code/hw6/saved_x/link/vivado/vpl/prj/prj.gen/sources_1/bd/u96v2_sbc_base/ip/u96v2_sbc_base_auto_ds_10/u96v2_sbc_base_auto_ds_10_clocks.xdc] for cell 'u96v2_sbc_base_i/axi_ic_zynq_ultra_ps_e_0_S_AXI_HP0_FPD/s00_couplers/auto_ds/inst'
+Finished Parsing XDC File [/mnt/castor/seas_home/s/songqij/ese532_code/hw6/saved_x/link/vivado/vpl/prj/prj.gen/sources_1/bd/u96v2_sbc_base/ip/u96v2_sbc_base_auto_ds_10/u96v2_sbc_base_auto_ds_10_clocks.xdc] for cell 'u96v2_sbc_base_i/axi_ic_zynq_ultra_ps_e_0_S_AXI_HP0_FPD/s00_couplers/auto_ds/inst'
+Parsing XDC File [/mnt/castor/seas_home/s/songqij/ese532_code/hw6/saved_x/link/vivado/vpl/prj/prj.gen/sources_1/bd/u96v2_sbc_base/ip/u96v2_sbc_base_auto_ds_11/u96v2_sbc_base_auto_ds_11_clocks.xdc] for cell 'u96v2_sbc_base_i/axi_ic_zynq_ultra_ps_e_0_S_AXI_HP1_FPD/s00_couplers/auto_ds/inst'
+Finished Parsing XDC File [/mnt/castor/seas_home/s/songqij/ese532_code/hw6/saved_x/link/vivado/vpl/prj/prj.gen/sources_1/bd/u96v2_sbc_base/ip/u96v2_sbc_base_auto_ds_11/u96v2_sbc_base_auto_ds_11_clocks.xdc] for cell 'u96v2_sbc_base_i/axi_ic_zynq_ultra_ps_e_0_S_AXI_HP1_FPD/s00_couplers/auto_ds/inst'
+Parsing XDC File [/mnt/castor/seas_home/s/songqij/ese532_code/hw6/saved_x/link/vivado/vpl/prj/prj.gen/sources_1/bd/u96v2_sbc_base/ip/u96v2_sbc_base_auto_ds_12/u96v2_sbc_base_auto_ds_12_clocks.xdc] for cell 'u96v2_sbc_base_i/axi_ic_zynq_ultra_ps_e_0_S_AXI_HP2_FPD/s00_couplers/auto_ds/inst'
+Finished Parsing XDC File [/mnt/castor/seas_home/s/songqij/ese532_code/hw6/saved_x/link/vivado/vpl/prj/prj.gen/sources_1/bd/u96v2_sbc_base/ip/u96v2_sbc_base_auto_ds_12/u96v2_sbc_base_auto_ds_12_clocks.xdc] for cell 'u96v2_sbc_base_i/axi_ic_zynq_ultra_ps_e_0_S_AXI_HP2_FPD/s00_couplers/auto_ds/inst'
+INFO: [Project 1-1715] 1 XPM XDC files have been applied to the design.
+INFO: [Opt 31-138] Pushed 0 inverter(s) to 0 load pin(s).
+INFO: [Opt 31-422] The CLOCK_DOMAINS attribute on the BRAM cell u96v2_sbc_base_i/axi_bram_ctrl_0_bram/U0/inst_blk_mem_gen/gnbram.gnative_mem_map_bmg.native_mem_map_blk_mem_gen/valid.cstr/ramloop[0].ram.r/prim_noinit.ram/DEVICE_8SERIES.WITH_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.SERIES8_TDP_SP36_NO_ECC_ATTR.ram has been changed from INDEPENDENT to COMMON to match the clocking topology used for the BRAM.
+INFO: [Opt 31-422] The CLOCK_DOMAINS attribute on the BRAM cell u96v2_sbc_base_i/axi_bram_ctrl_0_bram/U0/inst_blk_mem_gen/gnbram.gnative_mem_map_bmg.native_mem_map_blk_mem_gen/valid.cstr/ramloop[1].ram.r/prim_noinit.ram/DEVICE_8SERIES.WITH_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.SERIES8_TDP_SP36_NO_ECC_ATTR.ram has been changed from INDEPENDENT to COMMON to match the clocking topology used for the BRAM.
+INFO: [Opt 31-422] The CLOCK_DOMAINS attribute on the BRAM cell u96v2_sbc_base_i/axi_bram_ctrl_0_bram/U0/inst_blk_mem_gen/gnbram.gnative_mem_map_bmg.native_mem_map_blk_mem_gen/valid.cstr/ramloop[2].ram.r/prim_noinit.ram/DEVICE_8SERIES.WITH_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.SERIES8_TDP_SP36_NO_ECC_ATTR.ram has been changed from INDEPENDENT to COMMON to match the clocking topology used for the BRAM.
+INFO: [Opt 31-422] The CLOCK_DOMAINS attribute on the BRAM cell u96v2_sbc_base_i/axi_bram_ctrl_0_bram/U0/inst_blk_mem_gen/gnbram.gnative_mem_map_bmg.native_mem_map_blk_mem_gen/valid.cstr/ramloop[3].ram.r/prim_noinit.ram/DEVICE_8SERIES.WITH_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.SERIES8_TDP_SP36_NO_ECC_ATTR.ram has been changed from INDEPENDENT to COMMON to match the clocking topology used for the BRAM.
+Netlist sorting complete. Time (s): cpu = 00:00:00.03 ; elapsed = 00:00:00.02 . Memory (MB): peak = 4629.430 ; gain = 0.000 ; free physical = 3309 ; free virtual = 11789
+INFO: [Project 1-111] Unisim Transformation Summary:
+  A total of 2304 instances were transformed.
+  DSP48E1 => DSP48E2 (DSP_ALU, DSP_A_B_DATA, DSP_C_DATA, DSP_MULTIPLIER, DSP_M_DATA, DSP_OUTPUT, DSP_PREADD, DSP_PREADD_DATA): 160 instances
+  IBUF => IBUF (IBUFCTRL, INBUF): 5 instances
+  RAM32M16 => RAM32M16 (RAMD32(x14), RAMS32(x2)): 91 instances
+  RAM32X1S => RAM32X1S (RAMS32): 2048 instances
+
+67 Infos, 2 Warnings, 0 Critical Warnings and 0 Errors encountered.
+link_design completed successfully
+link_design: Time (s): cpu = 00:01:00 ; elapsed = 00:01:09 . Memory (MB): peak = 4629.430 ; gain = 2306.957 ; free physical = 3345 ; free virtual = 11827
+source /mnt/castor/seas_home/s/songqij/ese532_code/hw6/saved_x/link/vivado/vpl/scripts/_full_init_post.tcl
+Parsing XDC File [/mnt/castor/seas_home/s/songqij/ese532_code/hw6/saved_x/link/vivado/vpl/output/_user_impl_clk.xdc]
+Finished Parsing XDC File [/mnt/castor/seas_home/s/songqij/ese532_code/hw6/saved_x/link/vivado/vpl/output/_user_impl_clk.xdc]
+source /mnt/castor/seas_home/s/songqij/ese532_code/hw6/saved_x/link/vivado/vpl/scripts/_full_opt_pre.tcl
+Post-synthesis utilization DRC check...
+available resources:
+   luts      : 57906
+   registers : 126854
+   brams     : 212
+   dsps      : 360
+required resources:
+   luts      : 20043
+   registers : 34676
+   brams     : 23
+   dsps      : 160
+INFO: System Diagram: Run step: synthed
+CRITICAL WARNING: System Diagram:  invalid command name "::system_diagram::update_with_kernel_usage"
+Command: opt_design
+Attempting to get a license for feature 'Implementation' and/or device 'xczu3eg'
+INFO: [Common 17-349] Got license for feature 'Implementation' and/or device 'xczu3eg'
+Running DRC as a precondition to command opt_design
+
+Starting DRC Task
+INFO: [DRC 23-27] Running DRC with 8 threads
+INFO: [Project 1-461] DRC finished with 0 Errors
+INFO: [Project 1-462] Please refer to the DRC report (report_drc) for more information.
+
+Time (s): cpu = 00:00:03 ; elapsed = 00:00:02 . Memory (MB): peak = 4629.430 ; gain = 0.000 ; free physical = 3214 ; free virtual = 11690
+
+Starting Cache Timing Information Task
+INFO: [Timing 38-35] Done setting XDC timing constraints.
+Ending Cache Timing Information Task | Checksum: 211662b86
+
+Time (s): cpu = 00:00:12 ; elapsed = 00:00:03 . Memory (MB): peak = 4629.430 ; gain = 0.000 ; free physical = 2569 ; free virtual = 11047
+
+Starting Logic Optimization Task
+
+Phase 1 Retarget
+INFO: [Opt 31-138] Pushed 93 inverter(s) to 6611 load pin(s).
+INFO: [Opt 31-49] Retargeted 0 cell(s).
+Phase 1 Retarget | Checksum: 170444294
+
+Time (s): cpu = 00:00:10 ; elapsed = 00:00:04 . Memory (MB): peak = 4629.430 ; gain = 0.000 ; free physical = 1760 ; free virtual = 10238
+INFO: [Opt 31-389] Phase Retarget created 920 cells and removed 1488 cells
+INFO: [Opt 31-1021] In phase Retarget, 466 netlist objects are constrained preventing optimization. Please run opt_design with -debug_log to get more detail. 
+
+Phase 2 Constant propagation
+INFO: [Opt 31-138] Pushed 14 inverter(s) to 24 load pin(s).
+Phase 2 Constant propagation | Checksum: 1c63eb95b
+
+Time (s): cpu = 00:00:11 ; elapsed = 00:00:05 . Memory (MB): peak = 4629.430 ; gain = 0.000 ; free physical = 3753 ; free virtual = 12231
+INFO: [Opt 31-389] Phase Constant propagation created 622 cells and removed 6392 cells
+INFO: [Opt 31-1021] In phase Constant propagation, 467 netlist objects are constrained preventing optimization. Please run opt_design with -debug_log to get more detail. 
+
+Phase 3 Sweep
+Phase 3 Sweep | Checksum: 1cbf85caa
+
+Time (s): cpu = 00:00:14 ; elapsed = 00:00:08 . Memory (MB): peak = 4629.430 ; gain = 0.000 ; free physical = 3056 ; free virtual = 11534
+INFO: [Opt 31-389] Phase Sweep created 0 cells and removed 8982 cells
+INFO: [Opt 31-1021] In phase Sweep, 1403 netlist objects are constrained preventing optimization. Please run opt_design with -debug_log to get more detail. 
+
+Phase 4 BUFG optimization
+INFO: [Opt 31-1077] Phase BUFG optimization inserted 0 global clock buffer(s) for CLOCK_LOW_FANOUT.
+Phase 4 BUFG optimization | Checksum: 1cbf85caa
+
+Time (s): cpu = 00:00:16 ; elapsed = 00:00:10 . Memory (MB): peak = 4629.430 ; gain = 0.000 ; free physical = 2496 ; free virtual = 10985
+INFO: [Opt 31-662] Phase BUFG optimization created 0 cells of which 0 are BUFGs and removed 0 cells.
+
+Phase 5 Shift Register Optimization
+INFO: [Opt 31-1064] SRL Remap converted 0 SRLs to 0 registers and converted 0 registers of register chains to 0 SRLs
+Phase 5 Shift Register Optimization | Checksum: 1cbf85caa
+
+Time (s): cpu = 00:00:16 ; elapsed = 00:00:10 . Memory (MB): peak = 4629.430 ; gain = 0.000 ; free physical = 2509 ; free virtual = 11010
+INFO: [Opt 31-389] Phase Shift Register Optimization created 0 cells and removed 0 cells
+
+Phase 6 Post Processing Netlist
+Phase 6 Post Processing Netlist | Checksum: 1edcb77de
+
+Time (s): cpu = 00:00:16 ; elapsed = 00:00:10 . Memory (MB): peak = 4629.430 ; gain = 0.000 ; free physical = 2474 ; free virtual = 10984
+INFO: [Opt 31-389] Phase Post Processing Netlist created 0 cells and removed 6 cells
+INFO: [Opt 31-1021] In phase Post Processing Netlist, 582 netlist objects are constrained preventing optimization. Please run opt_design with -debug_log to get more detail. 
+Opt_design Change Summary
+=========================
+
+
+-------------------------------------------------------------------------------------------------------------------------
+|  Phase                        |  #Cells created  |  #Cells Removed  |  #Constrained objects preventing optimizations  |
+-------------------------------------------------------------------------------------------------------------------------
+|  Retarget                     |             920  |            1488  |                                            466  |
+|  Constant propagation         |             622  |            6392  |                                            467  |
+|  Sweep                        |               0  |            8982  |                                           1403  |
+|  BUFG optimization            |               0  |               0  |                                              0  |
+|  Shift Register Optimization  |               0  |               0  |                                              0  |
+|  Post Processing Netlist      |               0  |               6  |                                            582  |
+-------------------------------------------------------------------------------------------------------------------------
+
+
+
+Starting Connectivity Check Task
+
+Time (s): cpu = 00:00:00.11 ; elapsed = 00:00:00.12 . Memory (MB): peak = 4629.430 ; gain = 0.000 ; free physical = 2337 ; free virtual = 10860
+Ending Logic Optimization Task | Checksum: 152fe557f
+
+Time (s): cpu = 00:00:17 ; elapsed = 00:00:11 . Memory (MB): peak = 4629.430 ; gain = 0.000 ; free physical = 2336 ; free virtual = 10860
+
+Starting Power Optimization Task
+INFO: [Pwropt 34-132] Skipping clock gating for clocks with a period < 2.00 ns.
+INFO: [Pwropt 34-9] Applying IDT optimizations ...
+INFO: [Pwropt 34-10] Applying ODC optimizations ...
+INFO: [Timing 38-35] Done setting XDC timing constraints.
+Running Vector-less Activity Propagation...
+
+Finished Running Vector-less Activity Propagation
+
+
+Starting PowerOpt Patch Enables Task
+INFO: [Pwropt 34-162] WRITE_MODE attribute of 4 BRAM(s) out of a total of 28 has been updated to save power. Run report_power_opt to get a complete listing of the BRAMs updated.
+INFO: [Pwropt 34-201] Structural ODC has moved 0 WE to EN ports
+Number of BRAM Ports augmented: 4 newly gated: 16 Total Ports: 56
+Ending PowerOpt Patch Enables Task | Checksum: 2420c2881
+
+Time (s): cpu = 00:00:00.37 ; elapsed = 00:00:00.35 . Memory (MB): peak = 4806.027 ; gain = 0.000 ; free physical = 931 ; free virtual = 8921
+Ending Power Optimization Task | Checksum: 2420c2881
+
+Time (s): cpu = 00:00:31 ; elapsed = 00:00:09 . Memory (MB): peak = 4806.027 ; gain = 176.598 ; free physical = 1007 ; free virtual = 8997
+
+Starting Final Cleanup Task
+
+Starting Logic Optimization Task
+INFO: [Timing 38-35] Done setting XDC timing constraints.
+Ending Logic Optimization Task | Checksum: 171167b51
+
+Time (s): cpu = 00:00:19 ; elapsed = 00:00:05 . Memory (MB): peak = 4806.027 ; gain = 0.000 ; free physical = 449 ; free virtual = 8415
+Ending Final Cleanup Task | Checksum: 171167b51
+
+Time (s): cpu = 00:00:21 ; elapsed = 00:00:07 . Memory (MB): peak = 4806.027 ; gain = 0.000 ; free physical = 289 ; free virtual = 8346
+
+Starting Netlist Obfuscation Task
+Netlist sorting complete. Time (s): cpu = 00:00:00.01 ; elapsed = 00:00:00.01 . Memory (MB): peak = 4806.027 ; gain = 0.000 ; free physical = 273 ; free virtual = 8330
+Ending Netlist Obfuscation Task | Checksum: 171167b51
+
+Time (s): cpu = 00:00:00.01 ; elapsed = 00:00:00.01 . Memory (MB): peak = 4806.027 ; gain = 0.000 ; free physical = 273 ; free virtual = 8330
+INFO: [Common 17-83] Releasing license: Implementation
+95 Infos, 2 Warnings, 0 Critical Warnings and 0 Errors encountered.
+opt_design completed successfully
+opt_design: Time (s): cpu = 00:01:26 ; elapsed = 00:00:34 . Memory (MB): peak = 4806.027 ; gain = 176.598 ; free physical = 274 ; free virtual = 8331
+source /mnt/castor/seas_home/s/songqij/ese532_code/hw6/saved_x/link/vivado/vpl/scripts/_full_opt_post.tcl
+INFO: [Timing 38-35] Done setting XDC timing constraints.
+INFO: [Timing 38-480] Writing timing data to binary archive.
+Writing placer database...
+Writing XDEF routing.
+Writing XDEF routing logical nets.
+Writing XDEF routing special nets.
+Write XDEF Complete: Time (s): cpu = 00:00:00.18 ; elapsed = 00:00:00.07 . Memory (MB): peak = 4806.027 ; gain = 0.000 ; free physical = 1596 ; free virtual = 9698
+INFO: [Common 17-1381] The checkpoint '/mnt/castor/seas_home/s/songqij/ese532_code/hw6/saved_x/link/vivado/vpl/prj/prj.runs/impl_1/u96v2_sbc_base_wrapper_opt.dcp' has been generated.
+write_checkpoint: Time (s): cpu = 00:00:30 ; elapsed = 00:00:16 . Memory (MB): peak = 4806.027 ; gain = 0.000 ; free physical = 2111 ; free virtual = 10389
+source /mnt/castor/seas_home/s/songqij/ese532_code/hw6/saved_x/link/vivado/vpl/scripts/_full_place_pre.tcl
+CRITICAL WARNING: [Vivado 12-4430] You are lowering the severity from an ERROR. This can potentially lead to board damage or other functionality issues on hardware. If this is not desired, please run 'reset_property SEVERITY [get_drc_checks HDPR-5]' to undo this change.
+Command: place_design
+Attempting to get a license for feature 'Implementation' and/or device 'xczu3eg'
+INFO: [Common 17-349] Got license for feature 'Implementation' and/or device 'xczu3eg'
+WARNING: [Vivado_Tcl 4-1400] -ultrathreads option currently only supported on multi-SLR devices. Continuing placement in regular mode.
+INFO: [DRC 23-27] Running DRC with 8 threads
+INFO: [Vivado_Tcl 4-198] DRC finished with 0 Errors
+INFO: [Vivado_Tcl 4-199] Please refer to the DRC report (report_drc) for more information.
+Running DRC as a precondition to command place_design
+INFO: [DRC 23-27] Running DRC with 8 threads
+INFO: [Vivado_Tcl 4-198] DRC finished with 0 Errors
+INFO: [Vivado_Tcl 4-199] Please refer to the DRC report (report_drc) for more information.
+
+Starting Placer Task
+INFO: [Place 30-611] Multithreading enabled for place_design using a maximum of 8 CPUs
+
+Phase 1 Placer Initialization
+
+Phase 1.1 Placer Initialization Netlist Sorting
+Netlist sorting complete. Time (s): cpu = 00:00:00.01 ; elapsed = 00:00:00.01 . Memory (MB): peak = 5029.414 ; gain = 0.000 ; free physical = 3514 ; free virtual = 12053
+Phase 1.1 Placer Initialization Netlist Sorting | Checksum: 111bb538e
+
+Time (s): cpu = 00:00:00.03 ; elapsed = 00:00:00.04 . Memory (MB): peak = 5029.414 ; gain = 0.000 ; free physical = 3514 ; free virtual = 12053
+Netlist sorting complete. Time (s): cpu = 00:00:00.01 ; elapsed = 00:00:00.02 . Memory (MB): peak = 5029.414 ; gain = 0.000 ; free physical = 3489 ; free virtual = 12028
+
+Phase 1.2 IO Placement/ Clock Placement/ Build Placer Device
+Phase 1.2 IO Placement/ Clock Placement/ Build Placer Device | Checksum: 12c19c327
+
+Time (s): cpu = 00:00:07 ; elapsed = 00:00:04 . Memory (MB): peak = 5029.414 ; gain = 0.000 ; free physical = 3879 ; free virtual = 12425
+
+Phase 1.3 Build Placer Netlist Model
+Phase 1.3 Build Placer Netlist Model | Checksum: 16ee5a920
+
+Time (s): cpu = 00:00:30 ; elapsed = 00:00:14 . Memory (MB): peak = 5042.430 ; gain = 13.016 ; free physical = 2542 ; free virtual = 11144
+
+Phase 1.4 Constrain Clocks/Macros
+Phase 1.4 Constrain Clocks/Macros | Checksum: 16ee5a920
+
+Time (s): cpu = 00:00:30 ; elapsed = 00:00:14 . Memory (MB): peak = 5042.430 ; gain = 13.016 ; free physical = 2539 ; free virtual = 11142
+Phase 1 Placer Initialization | Checksum: 16ee5a920
+
+Time (s): cpu = 00:00:31 ; elapsed = 00:00:14 . Memory (MB): peak = 5042.430 ; gain = 13.016 ; free physical = 2544 ; free virtual = 11147
+
+Phase 2 Global Placement
+
+Phase 2.1 Floorplanning
+
+Phase 2.1.1 Partition Driven Placement
+
+Phase 2.1.1.1 PBP: Partition Driven Placement
+Phase 2.1.1.1 PBP: Partition Driven Placement | Checksum: 1ae200dd5
+
+Time (s): cpu = 00:00:58 ; elapsed = 00:00:25 . Memory (MB): peak = 5122.469 ; gain = 93.055 ; free physical = 9908 ; free virtual = 18515
+
+Phase 2.1.1.2 PBP: Clock Region Placement
+Phase 2.1.1.2 PBP: Clock Region Placement | Checksum: 196e7507a
+
+Time (s): cpu = 00:00:59 ; elapsed = 00:00:26 . Memory (MB): peak = 5122.469 ; gain = 93.055 ; free physical = 9710 ; free virtual = 18318
+
+Phase 2.1.1.3 PBP: Discrete Incremental
+Phase 2.1.1.3 PBP: Discrete Incremental | Checksum: 1c95a0ec5
+
+Time (s): cpu = 00:00:59 ; elapsed = 00:00:26 . Memory (MB): peak = 5122.469 ; gain = 93.055 ; free physical = 8632 ; free virtual = 17239
+
+Phase 2.1.1.4 PBP: Compute Congestion
+Phase 2.1.1.4 PBP: Compute Congestion | Checksum: 1c95a0ec5
+
+Time (s): cpu = 00:01:00 ; elapsed = 00:00:26 . Memory (MB): peak = 5122.469 ; gain = 93.055 ; free physical = 7870 ; free virtual = 16477
+
+Phase 2.1.1.5 PBP: Macro Placement
+Phase 2.1.1.5 PBP: Macro Placement | Checksum: 21b357ab5
+
+Time (s): cpu = 00:01:01 ; elapsed = 00:00:27 . Memory (MB): peak = 5122.469 ; gain = 93.055 ; free physical = 8771 ; free virtual = 17378
+
+Phase 2.1.1.6 PBP: UpdateTiming
+Phase 2.1.1.6 PBP: UpdateTiming | Checksum: 237549885
+
+Time (s): cpu = 00:01:06 ; elapsed = 00:00:29 . Memory (MB): peak = 5122.469 ; gain = 93.055 ; free physical = 8915 ; free virtual = 17527
+
+Phase 2.1.1.7 PBP: Add part constraints
+Phase 2.1.1.7 PBP: Add part constraints | Checksum: 237549885
+
+Time (s): cpu = 00:01:06 ; elapsed = 00:00:30 . Memory (MB): peak = 5122.469 ; gain = 93.055 ; free physical = 8903 ; free virtual = 17516
+Phase 2.1.1 Partition Driven Placement | Checksum: 237549885
+
+Time (s): cpu = 00:01:06 ; elapsed = 00:00:30 . Memory (MB): peak = 5122.469 ; gain = 93.055 ; free physical = 8914 ; free virtual = 17527
+Phase 2.1 Floorplanning | Checksum: 200dbb63d
+
+Time (s): cpu = 00:01:06 ; elapsed = 00:00:30 . Memory (MB): peak = 5122.469 ; gain = 93.055 ; free physical = 8421 ; free virtual = 17034
+
+Phase 2.2 Update Timing before SLR Path Opt
+Phase 2.2 Update Timing before SLR Path Opt | Checksum: 200dbb63d
+
+Time (s): cpu = 00:01:06 ; elapsed = 00:00:30 . Memory (MB): peak = 5122.469 ; gain = 93.055 ; free physical = 8282 ; free virtual = 16877
+
+Phase 2.3 Global Placement Core
+
+Phase 2.3.1 Physical Synthesis In Placer
+INFO: [Physopt 32-1035] Found 0 LUTNM shape to break, 4708 LUT instances to create LUTNM shape
+INFO: [Physopt 32-1044] Break lutnm for timing: one critical 0, two critical 0, total 0, new lutff created 0
+INFO: [Physopt 32-775] End 1 Pass. Optimized 2231 nets or cells. Created 0 new cell, deleted 2231 existing cells and moved 0 existing cell
+INFO: [Physopt 32-1030] Pass 1. Identified 17 candidate driver sets for equivalent driver rewiring.
+INFO: [Physopt 32-661] Optimized 9 nets.  Re-placed 117 instances.
+INFO: [Physopt 32-775] End 1 Pass. Optimized 9 nets or cells. Created 0 new cell, deleted 0 existing cell and moved 117 existing cells
+Netlist sorting complete. Time (s): cpu = 00:00:00.29 ; elapsed = 00:00:00.30 . Memory (MB): peak = 5122.469 ; gain = 0.000 ; free physical = 8191 ; free virtual = 16828
+INFO: [Physopt 32-65] No nets found for high-fanout optimization.
+INFO: [Physopt 32-232] Optimized 0 net. Created 0 new instance.
+INFO: [Physopt 32-775] End 1 Pass. Optimized 0 net or cell. Created 0 new cell, deleted 0 existing cell and moved 0 existing cell
+INFO: [Physopt 32-670] No setup violation found.  DSP Register Optimization was not performed.
+INFO: [Physopt 32-670] No setup violation found.  Shift Register to Pipeline Optimization was not performed.
+INFO: [Physopt 32-670] No setup violation found.  Shift Register Optimization was not performed.
+INFO: [Physopt 32-670] No setup violation found.  BRAM Register Optimization was not performed.
+INFO: [Physopt 32-670] No setup violation found.  URAM Register Optimization was not performed.
+INFO: [Physopt 32-949] No candidate nets found for dynamic/static region interface net replication
+INFO: [Physopt 32-775] End 1 Pass. Optimized 0 net or cell. Created 0 new cell, deleted 0 existing cell and moved 0 existing cell
+Netlist sorting complete. Time (s): cpu = 00:00:00.02 ; elapsed = 00:00:00.02 . Memory (MB): peak = 5122.469 ; gain = 0.000 ; free physical = 9580 ; free virtual = 18217
+
+Summary of Physical Synthesis Optimizations
+============================================
+
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------------
+|  Optimization                                     |  Added Cells  |  Removed Cells  |  Optimized Cells/Nets  |  Dont Touch  |  Iterations  |  Elapsed   |
+-----------------------------------------------------------------------------------------------------------------------------------------------------------
+|  LUT Combining                                    |            0  |           2231  |                  2231  |           0  |           1  |  00:00:02  |
+|  Equivalent Driver Rewiring                       |            0  |              0  |                     9  |           0  |           1  |  00:00:01  |
+|  Very High Fanout                                 |            0  |              0  |                     0  |           0  |           1  |  00:00:00  |
+|  DSP Register                                     |            0  |              0  |                     0  |           0  |           0  |  00:00:00  |
+|  Shift Register to Pipeline                       |            0  |              0  |                     0  |           0  |           0  |  00:00:00  |
+|  Shift Register                                   |            0  |              0  |                     0  |           0  |           0  |  00:00:00  |
+|  BRAM Register                                    |            0  |              0  |                     0  |           0  |           0  |  00:00:00  |
+|  URAM Register                                    |            0  |              0  |                     0  |           0  |           0  |  00:00:00  |
+|  Dynamic/Static Region Interface Net Replication  |            0  |              0  |                     0  |           0  |           1  |  00:00:00  |
+|  Total                                            |            0  |           2231  |                  2240  |           0  |           4  |  00:00:04  |
+-----------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+Phase 2.3.1 Physical Synthesis In Placer | Checksum: d33072db
+
+Time (s): cpu = 00:02:02 ; elapsed = 00:00:56 . Memory (MB): peak = 5122.469 ; gain = 93.055 ; free physical = 9292 ; free virtual = 17929
+Phase 2.3 Global Placement Core | Checksum: 80d1c900
+
+Time (s): cpu = 00:02:05 ; elapsed = 00:00:57 . Memory (MB): peak = 5122.469 ; gain = 93.055 ; free physical = 9275 ; free virtual = 17913
+Phase 2 Global Placement | Checksum: 80d1c900
+
+Time (s): cpu = 00:02:05 ; elapsed = 00:00:58 . Memory (MB): peak = 5122.469 ; gain = 93.055 ; free physical = 9270 ; free virtual = 17907
+
+Phase 3 Detail Placement
+
+Phase 3.1 Commit Multi Column Macros
+Phase 3.1 Commit Multi Column Macros | Checksum: 72669ea2
+
+Time (s): cpu = 00:02:09 ; elapsed = 00:00:59 . Memory (MB): peak = 5122.469 ; gain = 93.055 ; free physical = 8789 ; free virtual = 17427
+
+Phase 3.2 Commit Most Macros & LUTRAMs
+Phase 3.2 Commit Most Macros & LUTRAMs | Checksum: 17613c71a
+
+Time (s): cpu = 00:02:14 ; elapsed = 00:01:02 . Memory (MB): peak = 5122.469 ; gain = 93.055 ; free physical = 8473 ; free virtual = 17112
+
+Phase 3.3 Small Shape DP
+
+Phase 3.3.1 Small Shape Clustering
+Phase 3.3.1 Small Shape Clustering | Checksum: 11c4e0ea0
+
+Time (s): cpu = 00:02:18 ; elapsed = 00:01:05 . Memory (MB): peak = 5122.469 ; gain = 93.055 ; free physical = 10324 ; free virtual = 18970
+
+Phase 3.3.2 Flow Legalize Slice Clusters
+Phase 3.3.2 Flow Legalize Slice Clusters | Checksum: 16f3897c8
+
+Time (s): cpu = 00:02:19 ; elapsed = 00:01:05 . Memory (MB): peak = 5122.469 ; gain = 93.055 ; free physical = 10334 ; free virtual = 18967
+
+Phase 3.3.3 Slice Area Swap
+Phase 3.3.3 Slice Area Swap | Checksum: 198de0598
+
+Time (s): cpu = 00:02:21 ; elapsed = 00:01:07 . Memory (MB): peak = 5122.469 ; gain = 93.055 ; free physical = 10275 ; free virtual = 18908
+Phase 3.3 Small Shape DP | Checksum: ef0857de
+
+Time (s): cpu = 00:02:29 ; elapsed = 00:01:10 . Memory (MB): peak = 5122.469 ; gain = 93.055 ; free physical = 10866 ; free virtual = 19500
+
+Phase 3.4 Re-assign LUT pins
+Phase 3.4 Re-assign LUT pins | Checksum: 11d3b3e60
+
+Time (s): cpu = 00:02:31 ; elapsed = 00:01:12 . Memory (MB): peak = 5122.469 ; gain = 93.055 ; free physical = 10777 ; free virtual = 19410
+
+Phase 3.5 Pipeline Register Optimization
+Phase 3.5 Pipeline Register Optimization | Checksum: 1a26867e4
+
+Time (s): cpu = 00:02:31 ; elapsed = 00:01:12 . Memory (MB): peak = 5122.469 ; gain = 93.055 ; free physical = 10776 ; free virtual = 19410
+Phase 3 Detail Placement | Checksum: 1a26867e4
+
+Time (s): cpu = 00:02:31 ; elapsed = 00:01:12 . Memory (MB): peak = 5122.469 ; gain = 93.055 ; free physical = 10775 ; free virtual = 19409
+
+Phase 4 Post Placement Optimization and Clean-Up
+
+Phase 4.1 Post Commit Optimization
+INFO: [Timing 38-35] Done setting XDC timing constraints.
+
+Phase 4.1.1 Post Placement Optimization
+Post Placement Optimization Initialization | Checksum: 197162ccb
+
+Phase 4.1.1.1 BUFG Insertion
+
+Starting Physical Synthesis Task
+
+Phase 1 Physical Synthesis Initialization
+INFO: [Physopt 32-721] Multithreading enabled for phys_opt_design using a maximum of 8 CPUs
+INFO: [Physopt 32-619] Estimated Timing Summary | WNS=2.560 | TNS=0.000 |
+Phase 1 Physical Synthesis Initialization | Checksum: 16de75319
+
+Time (s): cpu = 00:00:03 ; elapsed = 00:00:00.61 . Memory (MB): peak = 5122.469 ; gain = 0.000 ; free physical = 12827 ; free virtual = 21467
+INFO: [Place 46-35] Processed net u96v2_sbc_base_i/mmult_fpga_1/U0/ap_rst_n_inv, inserted BUFG to drive 5506 loads.
+INFO: [Place 46-45] Replicated bufg driver u96v2_sbc_base_i/mmult_fpga_1/U0/ap_rst_n_inv_reg_replica
+INFO: [Place 46-35] Processed net u96v2_sbc_base_i/mmult_fpga_1/U0/execution_U0/fadd_32ns_32ns_32_8_full_dsp_1_U9/aclken, inserted BUFG to drive 3881 loads.
+INFO: [Place 46-45] Replicated bufg driver u96v2_sbc_base_i/mmult_fpga_1/U0/execution_U0/fadd_32ns_32ns_32_8_full_dsp_1_U9/ce_r_reg_replica
+INFO: [Place 46-35] Processed net u96v2_sbc_base_i/mmult_fpga_1/U0/execution_U0/fmul_32ns_32ns_32_4_max_dsp_1_U48/E[0], inserted BUFG to drive 4076 loads.
+INFO: [Place 46-35] Processed net u96v2_sbc_base_i/rst_ps8_0_100M/U0/peripheral_aresetn[0], inserted BUFG to drive 2940 loads.
+INFO: [Place 46-45] Replicated bufg driver u96v2_sbc_base_i/rst_ps8_0_100M/U0/ACTIVE_LOW_PR_OUT_DFF[0].FDRE_PER_N_replica
+INFO: [Place 46-35] Processed net u96v2_sbc_base_i/mmult_fpga_1/U0/execution_U0/fmul_32ns_32ns_32_4_max_dsp_1_U67/ce_r, inserted BUFG to drive 2462 loads.
+INFO: [Place 46-45] Replicated bufg driver u96v2_sbc_base_i/mmult_fpga_1/U0/execution_U0/fmul_32ns_32ns_32_4_max_dsp_1_U67/ce_r_reg_replica
+INFO: [Place 46-35] Processed net u96v2_sbc_base_i/mmult_fpga_1/U0/read3_U0/E[0], inserted BUFG to drive 1024 loads.
+INFO: [Place 46-56] BUFG insertion identified 6 candidate nets. Inserted BUFG: 6, Replicated BUFG Driver: 4, Skipped due to Placement/Routing Conflicts: 0, Skipped due to Timing Degradation: 0, Skipped due to Illegal Netlist: 0.
+Ending Physical Synthesis Task | Checksum: 92cc69cc
+
+Time (s): cpu = 00:00:09 ; elapsed = 00:00:04 . Memory (MB): peak = 5122.469 ; gain = 0.000 ; free physical = 12803 ; free virtual = 21448
+Phase 4.1.1.1 BUFG Insertion | Checksum: 17b81cd24
+
+Time (s): cpu = 00:03:00 ; elapsed = 00:01:23 . Memory (MB): peak = 5122.469 ; gain = 93.055 ; free physical = 12808 ; free virtual = 21454
+INFO: [Place 30-746] Post Placement Timing Summary WNS=2.359. For the most accurate timing information please run report_timing.
+
+Time (s): cpu = 00:03:00 ; elapsed = 00:01:23 . Memory (MB): peak = 5122.469 ; gain = 93.055 ; free physical = 12807 ; free virtual = 21454
+Phase 4.1 Post Commit Optimization | Checksum: 95b92d81
+
+Time (s): cpu = 00:03:00 ; elapsed = 00:01:23 . Memory (MB): peak = 5122.469 ; gain = 93.055 ; free physical = 12823 ; free virtual = 21473
+Netlist sorting complete. Time (s): cpu = 00:00:00.34 ; elapsed = 00:00:00.34 . Memory (MB): peak = 5130.469 ; gain = 0.000 ; free physical = 12822 ; free virtual = 21470
+
+Phase 4.2 Post Placement Cleanup
+Phase 4.2 Post Placement Cleanup | Checksum: 1841643b2
+
+Time (s): cpu = 00:03:02 ; elapsed = 00:01:25 . Memory (MB): peak = 5130.469 ; gain = 101.055 ; free physical = 12819 ; free virtual = 21475
+
+Phase 4.3 Placer Reporting
+
+Phase 4.3.1 Print Estimated Congestion
+INFO: [Place 30-612] Post-Placement Estimated Congestion 
+ ________________________________________________________________________
+|           | Global Congestion | Long Congestion   | Short Congestion  |
+| Direction | Region Size       | Region Size       | Region Size       |
+|___________|___________________|___________________|___________________|
+|      North|                1x1|                1x1|                2x2|
+|___________|___________________|___________________|___________________|
+|      South|                1x1|                1x1|                2x2|
+|___________|___________________|___________________|___________________|
+|       East|                2x2|                1x1|                4x4|
+|___________|___________________|___________________|___________________|
+|       West|                2x2|                1x1|                4x4|
+|___________|___________________|___________________|___________________|
+
+Phase 4.3.1 Print Estimated Congestion | Checksum: 1841643b2
+
+Time (s): cpu = 00:03:02 ; elapsed = 00:01:25 . Memory (MB): peak = 5130.469 ; gain = 101.055 ; free physical = 12815 ; free virtual = 21473
+Phase 4.3 Placer Reporting | Checksum: 1841643b2
+
+Time (s): cpu = 00:03:03 ; elapsed = 00:01:25 . Memory (MB): peak = 5130.469 ; gain = 101.055 ; free physical = 12800 ; free virtual = 21457
+
+Phase 4.4 Final Placement Cleanup
+Netlist sorting complete. Time (s): cpu = 00:00:00.01 ; elapsed = 00:00:00.01 . Memory (MB): peak = 5130.469 ; gain = 0.000 ; free physical = 12806 ; free virtual = 21468
+
+Time (s): cpu = 00:03:03 ; elapsed = 00:01:25 . Memory (MB): peak = 5130.469 ; gain = 101.055 ; free physical = 12806 ; free virtual = 21468
+Phase 4 Post Placement Optimization and Clean-Up | Checksum: 19b1a3ab3
+
+Time (s): cpu = 00:03:03 ; elapsed = 00:01:26 . Memory (MB): peak = 5130.469 ; gain = 101.055 ; free physical = 12806 ; free virtual = 21479
+Ending Placer Task | Checksum: 19393a9ab
+
+Time (s): cpu = 00:03:03 ; elapsed = 00:01:26 . Memory (MB): peak = 5130.469 ; gain = 101.055 ; free physical = 12806 ; free virtual = 21482
+INFO: [Common 17-83] Releasing license: Implementation
+139 Infos, 3 Warnings, 1 Critical Warnings and 0 Errors encountered.
+place_design completed successfully
+place_design: Time (s): cpu = 00:03:32 ; elapsed = 00:01:43 . Memory (MB): peak = 5130.469 ; gain = 324.441 ; free physical = 12937 ; free virtual = 21615
+source /mnt/castor/seas_home/s/songqij/ese532_code/hw6/saved_x/link/vivado/vpl/scripts/_full_place_post.tcl
+INFO: System Diagram: Run step: placed
+CRITICAL WARNING: System Diagram:  invalid command name "::system_diagram::update_with_kernel_usage"
+INFO: [Timing 38-480] Writing timing data to binary archive.
+Writing placer database...
+Writing XDEF routing.
+Writing XDEF routing logical nets.
+Writing XDEF routing special nets.
+Write XDEF Complete: Time (s): cpu = 00:00:10 ; elapsed = 00:00:04 . Memory (MB): peak = 5130.469 ; gain = 0.000 ; free physical = 12712 ; free virtual = 21588
+INFO: [Common 17-1381] The checkpoint '/mnt/castor/seas_home/s/songqij/ese532_code/hw6/saved_x/link/vivado/vpl/prj/prj.runs/impl_1/u96v2_sbc_base_wrapper_placed.dcp' has been generated.
+write_checkpoint: Time (s): cpu = 00:00:17 ; elapsed = 00:00:12 . Memory (MB): peak = 5130.469 ; gain = 0.000 ; free physical = 12826 ; free virtual = 21592
+Command: phys_opt_design -directive Explore
+Attempting to get a license for feature 'Implementation' and/or device 'xczu3eg'
+INFO: [Common 17-349] Got license for feature 'Implementation' and/or device 'xczu3eg'
+INFO: [Vivado_Tcl 4-137] Directive used for phys_opt_design is: Explore
+INFO: [Vivado_Tcl 4-383] Design worst setup slack (WNS) is greater than or equal to 0.000 ns. Skipping all physical synthesis optimizations.
+INFO: [Vivado_Tcl 4-232] No setup violation found. The netlist was not modified.
+INFO: [Common 17-83] Releasing license: Implementation
+146 Infos, 3 Warnings, 1 Critical Warnings and 0 Errors encountered.
+phys_opt_design completed successfully
+INFO: [Timing 38-480] Writing timing data to binary archive.
+Writing placer database...
+Writing XDEF routing.
+Writing XDEF routing logical nets.
+Writing XDEF routing special nets.
+Write XDEF Complete: Time (s): cpu = 00:00:08 ; elapsed = 00:00:03 . Memory (MB): peak = 5130.469 ; gain = 0.000 ; free physical = 12525 ; free virtual = 21503
+INFO: [Common 17-1381] The checkpoint '/mnt/castor/seas_home/s/songqij/ese532_code/hw6/saved_x/link/vivado/vpl/prj/prj.runs/impl_1/u96v2_sbc_base_wrapper_physopt.dcp' has been generated.
+write_checkpoint: Time (s): cpu = 00:00:17 ; elapsed = 00:00:12 . Memory (MB): peak = 5130.469 ; gain = 0.000 ; free physical = 12840 ; free virtual = 21524
+Command: route_design -directive Explore
+Attempting to get a license for feature 'Implementation' and/or device 'xczu3eg'
+INFO: [Common 17-349] Got license for feature 'Implementation' and/or device 'xczu3eg'
+Running DRC as a precondition to command route_design
+INFO: [DRC 23-27] Running DRC with 8 threads
+WARNING: [DRC AVAL-318] DSP_dynamic_PCIN_tieoff_only_on_bottom_sites: The DSP48E2 u96v2_sbc_base_i/mmult_fpga_1/U0/execution_U0/fadd_32ns_32ns_32_8_full_dsp_1_U10/mmult_fpga_ap_fadd_6_full_dsp_32_u/inst/i_synth/ADDSUB_OP.ADDSUB/DSP.OP/DSP48E1_BODY.ALIGN_ADD/DSP2/i_no_versal_es1_workaround.DSP is not placed on a bottom site of the device, has OPMODE[5:4] driven by active nets (value '01' uses PCIN bus), and ties some or all of its PCIN bus pin(s) to GND, but that connectivity is only available for the bottom DSP site. Care should be taken for the effect on that PCIN if the DSP site below it is used.
+WARNING: [DRC AVAL-318] DSP_dynamic_PCIN_tieoff_only_on_bottom_sites: The DSP48E2 u96v2_sbc_base_i/mmult_fpga_1/U0/execution_U0/fadd_32ns_32ns_32_8_full_dsp_1_U11/mmult_fpga_ap_fadd_6_full_dsp_32_u/inst/i_synth/ADDSUB_OP.ADDSUB/DSP.OP/DSP48E1_BODY.ALIGN_ADD/DSP2/i_no_versal_es1_workaround.DSP is not placed on a bottom site of the device, has OPMODE[5:4] driven by active nets (value '01' uses PCIN bus), and ties some or all of its PCIN bus pin(s) to GND, but that connectivity is only available for the bottom DSP site. Care should be taken for the effect on that PCIN if the DSP site below it is used.
+WARNING: [DRC AVAL-318] DSP_dynamic_PCIN_tieoff_only_on_bottom_sites: The DSP48E2 u96v2_sbc_base_i/mmult_fpga_1/U0/execution_U0/fadd_32ns_32ns_32_8_full_dsp_1_U12/mmult_fpga_ap_fadd_6_full_dsp_32_u/inst/i_synth/ADDSUB_OP.ADDSUB/DSP.OP/DSP48E1_BODY.ALIGN_ADD/DSP2/i_no_versal_es1_workaround.DSP is not placed on a bottom site of the device, has OPMODE[5:4] driven by active nets (value '01' uses PCIN bus), and ties some or all of its PCIN bus pin(s) to GND, but that connectivity is only available for the bottom DSP site. Care should be taken for the effect on that PCIN if the DSP site below it is used.
+WARNING: [DRC AVAL-318] DSP_dynamic_PCIN_tieoff_only_on_bottom_sites: The DSP48E2 u96v2_sbc_base_i/mmult_fpga_1/U0/execution_U0/fadd_32ns_32ns_32_8_full_dsp_1_U13/mmult_fpga_ap_fadd_6_full_dsp_32_u/inst/i_synth/ADDSUB_OP.ADDSUB/DSP.OP/DSP48E1_BODY.ALIGN_ADD/DSP2/i_no_versal_es1_workaround.DSP is not placed on a bottom site of the device, has OPMODE[5:4] driven by active nets (value '01' uses PCIN bus), and ties some or all of its PCIN bus pin(s) to GND, but that connectivity is only available for the bottom DSP site. Care should be taken for the effect on that PCIN if the DSP site below it is used.
+WARNING: [DRC AVAL-318] DSP_dynamic_PCIN_tieoff_only_on_bottom_sites: The DSP48E2 u96v2_sbc_base_i/mmult_fpga_1/U0/execution_U0/fadd_32ns_32ns_32_8_full_dsp_1_U14/mmult_fpga_ap_fadd_6_full_dsp_32_u/inst/i_synth/ADDSUB_OP.ADDSUB/DSP.OP/DSP48E1_BODY.ALIGN_ADD/DSP2/i_no_versal_es1_workaround.DSP is not placed on a bottom site of the device, has OPMODE[5:4] driven by active nets (value '01' uses PCIN bus), and ties some or all of its PCIN bus pin(s) to GND, but that connectivity is only available for the bottom DSP site. Care should be taken for the effect on that PCIN if the DSP site below it is used.
+WARNING: [DRC AVAL-318] DSP_dynamic_PCIN_tieoff_only_on_bottom_sites: The DSP48E2 u96v2_sbc_base_i/mmult_fpga_1/U0/execution_U0/fadd_32ns_32ns_32_8_full_dsp_1_U15/mmult_fpga_ap_fadd_6_full_dsp_32_u/inst/i_synth/ADDSUB_OP.ADDSUB/DSP.OP/DSP48E1_BODY.ALIGN_ADD/DSP2/i_no_versal_es1_workaround.DSP is not placed on a bottom site of the device, has OPMODE[5:4] driven by active nets (value '01' uses PCIN bus), and ties some or all of its PCIN bus pin(s) to GND, but that connectivity is only available for the bottom DSP site. Care should be taken for the effect on that PCIN if the DSP site below it is used.
+WARNING: [DRC AVAL-318] DSP_dynamic_PCIN_tieoff_only_on_bottom_sites: The DSP48E2 u96v2_sbc_base_i/mmult_fpga_1/U0/execution_U0/fadd_32ns_32ns_32_8_full_dsp_1_U16/mmult_fpga_ap_fadd_6_full_dsp_32_u/inst/i_synth/ADDSUB_OP.ADDSUB/DSP.OP/DSP48E1_BODY.ALIGN_ADD/DSP2/i_no_versal_es1_workaround.DSP is not placed on a bottom site of the device, has OPMODE[5:4] driven by active nets (value '01' uses PCIN bus), and ties some or all of its PCIN bus pin(s) to GND, but that connectivity is only available for the bottom DSP site. Care should be taken for the effect on that PCIN if the DSP site below it is used.
+WARNING: [DRC AVAL-318] DSP_dynamic_PCIN_tieoff_only_on_bottom_sites: The DSP48E2 u96v2_sbc_base_i/mmult_fpga_1/U0/execution_U0/fadd_32ns_32ns_32_8_full_dsp_1_U17/mmult_fpga_ap_fadd_6_full_dsp_32_u/inst/i_synth/ADDSUB_OP.ADDSUB/DSP.OP/DSP48E1_BODY.ALIGN_ADD/DSP2/i_no_versal_es1_workaround.DSP is not placed on a bottom site of the device, has OPMODE[5:4] driven by active nets (value '01' uses PCIN bus), and ties some or all of its PCIN bus pin(s) to GND, but that connectivity is only available for the bottom DSP site. Care should be taken for the effect on that PCIN if the DSP site below it is used.
+WARNING: [DRC AVAL-318] DSP_dynamic_PCIN_tieoff_only_on_bottom_sites: The DSP48E2 u96v2_sbc_base_i/mmult_fpga_1/U0/execution_U0/fadd_32ns_32ns_32_8_full_dsp_1_U18/mmult_fpga_ap_fadd_6_full_dsp_32_u/inst/i_synth/ADDSUB_OP.ADDSUB/DSP.OP/DSP48E1_BODY.ALIGN_ADD/DSP2/i_no_versal_es1_workaround.DSP is not placed on a bottom site of the device, has OPMODE[5:4] driven by active nets (value '01' uses PCIN bus), and ties some or all of its PCIN bus pin(s) to GND, but that connectivity is only available for the bottom DSP site. Care should be taken for the effect on that PCIN if the DSP site below it is used.
+WARNING: [DRC AVAL-318] DSP_dynamic_PCIN_tieoff_only_on_bottom_sites: The DSP48E2 u96v2_sbc_base_i/mmult_fpga_1/U0/execution_U0/fadd_32ns_32ns_32_8_full_dsp_1_U19/mmult_fpga_ap_fadd_6_full_dsp_32_u/inst/i_synth/ADDSUB_OP.ADDSUB/DSP.OP/DSP48E1_BODY.ALIGN_ADD/DSP2/i_no_versal_es1_workaround.DSP is not placed on a bottom site of the device, has OPMODE[5:4] driven by active nets (value '01' uses PCIN bus), and ties some or all of its PCIN bus pin(s) to GND, but that connectivity is only available for the bottom DSP site. Care should be taken for the effect on that PCIN if the DSP site below it is used.
+WARNING: [DRC AVAL-318] DSP_dynamic_PCIN_tieoff_only_on_bottom_sites: The DSP48E2 u96v2_sbc_base_i/mmult_fpga_1/U0/execution_U0/fadd_32ns_32ns_32_8_full_dsp_1_U20/mmult_fpga_ap_fadd_6_full_dsp_32_u/inst/i_synth/ADDSUB_OP.ADDSUB/DSP.OP/DSP48E1_BODY.ALIGN_ADD/DSP2/i_no_versal_es1_workaround.DSP is not placed on a bottom site of the device, has OPMODE[5:4] driven by active nets (value '01' uses PCIN bus), and ties some or all of its PCIN bus pin(s) to GND, but that connectivity is only available for the bottom DSP site. Care should be taken for the effect on that PCIN if the DSP site below it is used.
+WARNING: [DRC AVAL-318] DSP_dynamic_PCIN_tieoff_only_on_bottom_sites: The DSP48E2 u96v2_sbc_base_i/mmult_fpga_1/U0/execution_U0/fadd_32ns_32ns_32_8_full_dsp_1_U21/mmult_fpga_ap_fadd_6_full_dsp_32_u/inst/i_synth/ADDSUB_OP.ADDSUB/DSP.OP/DSP48E1_BODY.ALIGN_ADD/DSP2/i_no_versal_es1_workaround.DSP is not placed on a bottom site of the device, has OPMODE[5:4] driven by active nets (value '01' uses PCIN bus), and ties some or all of its PCIN bus pin(s) to GND, but that connectivity is only available for the bottom DSP site. Care should be taken for the effect on that PCIN if the DSP site below it is used.
+WARNING: [DRC AVAL-318] DSP_dynamic_PCIN_tieoff_only_on_bottom_sites: The DSP48E2 u96v2_sbc_base_i/mmult_fpga_1/U0/execution_U0/fadd_32ns_32ns_32_8_full_dsp_1_U22/mmult_fpga_ap_fadd_6_full_dsp_32_u/inst/i_synth/ADDSUB_OP.ADDSUB/DSP.OP/DSP48E1_BODY.ALIGN_ADD/DSP2/i_no_versal_es1_workaround.DSP is not placed on a bottom site of the device, has OPMODE[5:4] driven by active nets (value '01' uses PCIN bus), and ties some or all of its PCIN bus pin(s) to GND, but that connectivity is only available for the bottom DSP site. Care should be taken for the effect on that PCIN if the DSP site below it is used.
+WARNING: [DRC AVAL-318] DSP_dynamic_PCIN_tieoff_only_on_bottom_sites: The DSP48E2 u96v2_sbc_base_i/mmult_fpga_1/U0/execution_U0/fadd_32ns_32ns_32_8_full_dsp_1_U23/mmult_fpga_ap_fadd_6_full_dsp_32_u/inst/i_synth/ADDSUB_OP.ADDSUB/DSP.OP/DSP48E1_BODY.ALIGN_ADD/DSP2/i_no_versal_es1_workaround.DSP is not placed on a bottom site of the device, has OPMODE[5:4] driven by active nets (value '01' uses PCIN bus), and ties some or all of its PCIN bus pin(s) to GND, but that connectivity is only available for the bottom DSP site. Care should be taken for the effect on that PCIN if the DSP site below it is used.
+WARNING: [DRC AVAL-318] DSP_dynamic_PCIN_tieoff_only_on_bottom_sites: The DSP48E2 u96v2_sbc_base_i/mmult_fpga_1/U0/execution_U0/fadd_32ns_32ns_32_8_full_dsp_1_U24/mmult_fpga_ap_fadd_6_full_dsp_32_u/inst/i_synth/ADDSUB_OP.ADDSUB/DSP.OP/DSP48E1_BODY.ALIGN_ADD/DSP2/i_no_versal_es1_workaround.DSP is not placed on a bottom site of the device, has OPMODE[5:4] driven by active nets (value '01' uses PCIN bus), and ties some or all of its PCIN bus pin(s) to GND, but that connectivity is only available for the bottom DSP site. Care should be taken for the effect on that PCIN if the DSP site below it is used.
+WARNING: [DRC AVAL-318] DSP_dynamic_PCIN_tieoff_only_on_bottom_sites: The DSP48E2 u96v2_sbc_base_i/mmult_fpga_1/U0/execution_U0/fadd_32ns_32ns_32_8_full_dsp_1_U25/mmult_fpga_ap_fadd_6_full_dsp_32_u/inst/i_synth/ADDSUB_OP.ADDSUB/DSP.OP/DSP48E1_BODY.ALIGN_ADD/DSP2/i_no_versal_es1_workaround.DSP is not placed on a bottom site of the device, has OPMODE[5:4] driven by active nets (value '01' uses PCIN bus), and ties some or all of its PCIN bus pin(s) to GND, but that connectivity is only available for the bottom DSP site. Care should be taken for the effect on that PCIN if the DSP site below it is used.
+WARNING: [DRC AVAL-318] DSP_dynamic_PCIN_tieoff_only_on_bottom_sites: The DSP48E2 u96v2_sbc_base_i/mmult_fpga_1/U0/execution_U0/fadd_32ns_32ns_32_8_full_dsp_1_U26/mmult_fpga_ap_fadd_6_full_dsp_32_u/inst/i_synth/ADDSUB_OP.ADDSUB/DSP.OP/DSP48E1_BODY.ALIGN_ADD/DSP2/i_no_versal_es1_workaround.DSP is not placed on a bottom site of the device, has OPMODE[5:4] driven by active nets (value '01' uses PCIN bus), and ties some or all of its PCIN bus pin(s) to GND, but that connectivity is only available for the bottom DSP site. Care should be taken for the effect on that PCIN if the DSP site below it is used.
+WARNING: [DRC AVAL-318] DSP_dynamic_PCIN_tieoff_only_on_bottom_sites: The DSP48E2 u96v2_sbc_base_i/mmult_fpga_1/U0/execution_U0/fadd_32ns_32ns_32_8_full_dsp_1_U27/mmult_fpga_ap_fadd_6_full_dsp_32_u/inst/i_synth/ADDSUB_OP.ADDSUB/DSP.OP/DSP48E1_BODY.ALIGN_ADD/DSP2/i_no_versal_es1_workaround.DSP is not placed on a bottom site of the device, has OPMODE[5:4] driven by active nets (value '01' uses PCIN bus), and ties some or all of its PCIN bus pin(s) to GND, but that connectivity is only available for the bottom DSP site. Care should be taken for the effect on that PCIN if the DSP site below it is used.
+WARNING: [DRC AVAL-318] DSP_dynamic_PCIN_tieoff_only_on_bottom_sites: The DSP48E2 u96v2_sbc_base_i/mmult_fpga_1/U0/execution_U0/fadd_32ns_32ns_32_8_full_dsp_1_U28/mmult_fpga_ap_fadd_6_full_dsp_32_u/inst/i_synth/ADDSUB_OP.ADDSUB/DSP.OP/DSP48E1_BODY.ALIGN_ADD/DSP2/i_no_versal_es1_workaround.DSP is not placed on a bottom site of the device, has OPMODE[5:4] driven by active nets (value '01' uses PCIN bus), and ties some or all of its PCIN bus pin(s) to GND, but that connectivity is only available for the bottom DSP site. Care should be taken for the effect on that PCIN if the DSP site below it is used.
+WARNING: [DRC AVAL-318] DSP_dynamic_PCIN_tieoff_only_on_bottom_sites: The DSP48E2 u96v2_sbc_base_i/mmult_fpga_1/U0/execution_U0/fadd_32ns_32ns_32_8_full_dsp_1_U29/mmult_fpga_ap_fadd_6_full_dsp_32_u/inst/i_synth/ADDSUB_OP.ADDSUB/DSP.OP/DSP48E1_BODY.ALIGN_ADD/DSP2/i_no_versal_es1_workaround.DSP is not placed on a bottom site of the device, has OPMODE[5:4] driven by active nets (value '01' uses PCIN bus), and ties some or all of its PCIN bus pin(s) to GND, but that connectivity is only available for the bottom DSP site. Care should be taken for the effect on that PCIN if the DSP site below it is used.
+WARNING: [DRC AVAL-318] DSP_dynamic_PCIN_tieoff_only_on_bottom_sites: The DSP48E2 u96v2_sbc_base_i/mmult_fpga_1/U0/execution_U0/fadd_32ns_32ns_32_8_full_dsp_1_U30/mmult_fpga_ap_fadd_6_full_dsp_32_u/inst/i_synth/ADDSUB_OP.ADDSUB/DSP.OP/DSP48E1_BODY.ALIGN_ADD/DSP2/i_no_versal_es1_workaround.DSP is not placed on a bottom site of the device, has OPMODE[5:4] driven by active nets (value '01' uses PCIN bus), and ties some or all of its PCIN bus pin(s) to GND, but that connectivity is only available for the bottom DSP site. Care should be taken for the effect on that PCIN if the DSP site below it is used.
+WARNING: [DRC AVAL-318] DSP_dynamic_PCIN_tieoff_only_on_bottom_sites: The DSP48E2 u96v2_sbc_base_i/mmult_fpga_1/U0/execution_U0/fadd_32ns_32ns_32_8_full_dsp_1_U31/mmult_fpga_ap_fadd_6_full_dsp_32_u/inst/i_synth/ADDSUB_OP.ADDSUB/DSP.OP/DSP48E1_BODY.ALIGN_ADD/DSP2/i_no_versal_es1_workaround.DSP is not placed on a bottom site of the device, has OPMODE[5:4] driven by active nets (value '01' uses PCIN bus), and ties some or all of its PCIN bus pin(s) to GND, but that connectivity is only available for the bottom DSP site. Care should be taken for the effect on that PCIN if the DSP site below it is used.
+WARNING: [DRC AVAL-318] DSP_dynamic_PCIN_tieoff_only_on_bottom_sites: The DSP48E2 u96v2_sbc_base_i/mmult_fpga_1/U0/execution_U0/fadd_32ns_32ns_32_8_full_dsp_1_U32/mmult_fpga_ap_fadd_6_full_dsp_32_u/inst/i_synth/ADDSUB_OP.ADDSUB/DSP.OP/DSP48E1_BODY.ALIGN_ADD/DSP2/i_no_versal_es1_workaround.DSP is not placed on a bottom site of the device, has OPMODE[5:4] driven by active nets (value '01' uses PCIN bus), and ties some or all of its PCIN bus pin(s) to GND, but that connectivity is only available for the bottom DSP site. Care should be taken for the effect on that PCIN if the DSP site below it is used.
+WARNING: [DRC AVAL-318] DSP_dynamic_PCIN_tieoff_only_on_bottom_sites: The DSP48E2 u96v2_sbc_base_i/mmult_fpga_1/U0/execution_U0/fadd_32ns_32ns_32_8_full_dsp_1_U33/mmult_fpga_ap_fadd_6_full_dsp_32_u/inst/i_synth/ADDSUB_OP.ADDSUB/DSP.OP/DSP48E1_BODY.ALIGN_ADD/DSP2/i_no_versal_es1_workaround.DSP is not placed on a bottom site of the device, has OPMODE[5:4] driven by active nets (value '01' uses PCIN bus), and ties some or all of its PCIN bus pin(s) to GND, but that connectivity is only available for the bottom DSP site. Care should be taken for the effect on that PCIN if the DSP site below it is used.
+WARNING: [DRC AVAL-318] DSP_dynamic_PCIN_tieoff_only_on_bottom_sites: The DSP48E2 u96v2_sbc_base_i/mmult_fpga_1/U0/execution_U0/fadd_32ns_32ns_32_8_full_dsp_1_U34/mmult_fpga_ap_fadd_6_full_dsp_32_u/inst/i_synth/ADDSUB_OP.ADDSUB/DSP.OP/DSP48E1_BODY.ALIGN_ADD/DSP2/i_no_versal_es1_workaround.DSP is not placed on a bottom site of the device, has OPMODE[5:4] driven by active nets (value '01' uses PCIN bus), and ties some or all of its PCIN bus pin(s) to GND, but that connectivity is only available for the bottom DSP site. Care should be taken for the effect on that PCIN if the DSP site below it is used.
+WARNING: [DRC AVAL-318] DSP_dynamic_PCIN_tieoff_only_on_bottom_sites: The DSP48E2 u96v2_sbc_base_i/mmult_fpga_1/U0/execution_U0/fadd_32ns_32ns_32_8_full_dsp_1_U35/mmult_fpga_ap_fadd_6_full_dsp_32_u/inst/i_synth/ADDSUB_OP.ADDSUB/DSP.OP/DSP48E1_BODY.ALIGN_ADD/DSP2/i_no_versal_es1_workaround.DSP is not placed on a bottom site of the device, has OPMODE[5:4] driven by active nets (value '01' uses PCIN bus), and ties some or all of its PCIN bus pin(s) to GND, but that connectivity is only available for the bottom DSP site. Care should be taken for the effect on that PCIN if the DSP site below it is used.
+WARNING: [DRC AVAL-318] DSP_dynamic_PCIN_tieoff_only_on_bottom_sites: The DSP48E2 u96v2_sbc_base_i/mmult_fpga_1/U0/execution_U0/fadd_32ns_32ns_32_8_full_dsp_1_U36/mmult_fpga_ap_fadd_6_full_dsp_32_u/inst/i_synth/ADDSUB_OP.ADDSUB/DSP.OP/DSP48E1_BODY.ALIGN_ADD/DSP2/i_no_versal_es1_workaround.DSP is not placed on a bottom site of the device, has OPMODE[5:4] driven by active nets (value '01' uses PCIN bus), and ties some or all of its PCIN bus pin(s) to GND, but that connectivity is only available for the bottom DSP site. Care should be taken for the effect on that PCIN if the DSP site below it is used.
+WARNING: [DRC AVAL-318] DSP_dynamic_PCIN_tieoff_only_on_bottom_sites: The DSP48E2 u96v2_sbc_base_i/mmult_fpga_1/U0/execution_U0/fadd_32ns_32ns_32_8_full_dsp_1_U37/mmult_fpga_ap_fadd_6_full_dsp_32_u/inst/i_synth/ADDSUB_OP.ADDSUB/DSP.OP/DSP48E1_BODY.ALIGN_ADD/DSP2/i_no_versal_es1_workaround.DSP is not placed on a bottom site of the device, has OPMODE[5:4] driven by active nets (value '01' uses PCIN bus), and ties some or all of its PCIN bus pin(s) to GND, but that connectivity is only available for the bottom DSP site. Care should be taken for the effect on that PCIN if the DSP site below it is used.
+WARNING: [DRC AVAL-318] DSP_dynamic_PCIN_tieoff_only_on_bottom_sites: The DSP48E2 u96v2_sbc_base_i/mmult_fpga_1/U0/execution_U0/fadd_32ns_32ns_32_8_full_dsp_1_U38/mmult_fpga_ap_fadd_6_full_dsp_32_u/inst/i_synth/ADDSUB_OP.ADDSUB/DSP.OP/DSP48E1_BODY.ALIGN_ADD/DSP2/i_no_versal_es1_workaround.DSP is not placed on a bottom site of the device, has OPMODE[5:4] driven by active nets (value '01' uses PCIN bus), and ties some or all of its PCIN bus pin(s) to GND, but that connectivity is only available for the bottom DSP site. Care should be taken for the effect on that PCIN if the DSP site below it is used.
+WARNING: [DRC AVAL-318] DSP_dynamic_PCIN_tieoff_only_on_bottom_sites: The DSP48E2 u96v2_sbc_base_i/mmult_fpga_1/U0/execution_U0/fadd_32ns_32ns_32_8_full_dsp_1_U39/mmult_fpga_ap_fadd_6_full_dsp_32_u/inst/i_synth/ADDSUB_OP.ADDSUB/DSP.OP/DSP48E1_BODY.ALIGN_ADD/DSP2/i_no_versal_es1_workaround.DSP is not placed on a bottom site of the device, has OPMODE[5:4] driven by active nets (value '01' uses PCIN bus), and ties some or all of its PCIN bus pin(s) to GND, but that connectivity is only available for the bottom DSP site. Care should be taken for the effect on that PCIN if the DSP site below it is used.
+WARNING: [DRC AVAL-318] DSP_dynamic_PCIN_tieoff_only_on_bottom_sites: The DSP48E2 u96v2_sbc_base_i/mmult_fpga_1/U0/execution_U0/fadd_32ns_32ns_32_8_full_dsp_1_U40/mmult_fpga_ap_fadd_6_full_dsp_32_u/inst/i_synth/ADDSUB_OP.ADDSUB/DSP.OP/DSP48E1_BODY.ALIGN_ADD/DSP2/i_no_versal_es1_workaround.DSP is not placed on a bottom site of the device, has OPMODE[5:4] driven by active nets (value '01' uses PCIN bus), and ties some or all of its PCIN bus pin(s) to GND, but that connectivity is only available for the bottom DSP site. Care should be taken for the effect on that PCIN if the DSP site below it is used.
+WARNING: [DRC AVAL-318] DSP_dynamic_PCIN_tieoff_only_on_bottom_sites: The DSP48E2 u96v2_sbc_base_i/mmult_fpga_1/U0/execution_U0/fadd_32ns_32ns_32_8_full_dsp_1_U9/mmult_fpga_ap_fadd_6_full_dsp_32_u/inst/i_synth/ADDSUB_OP.ADDSUB/DSP.OP/DSP48E1_BODY.ALIGN_ADD/DSP2/i_no_versal_es1_workaround.DSP is not placed on a bottom site of the device, has OPMODE[5:4] driven by active nets (value '01' uses PCIN bus), and ties some or all of its PCIN bus pin(s) to GND, but that connectivity is only available for the bottom DSP site. Care should be taken for the effect on that PCIN if the DSP site below it is used.
+INFO: [Vivado_Tcl 4-198] DRC finished with 0 Errors, 32 Warnings
+INFO: [Vivado_Tcl 4-199] Please refer to the DRC report (report_drc) for more information.
+
+
+Starting Routing Task
+INFO: [Route 35-270] Using Router directive 'Explore'.
+INFO: [Route 35-254] Multithreading enabled for route_design using a maximum of 8 CPUs
+Checksum: PlaceDB: c0bc5f7 ConstDB: 0 ShapeSum: 992acd83 RouteDB: ee5d1631
+
+Phase 1 Build RT Design
+Nodegraph reading from file.  Time (s): cpu = 00:00:00.24 ; elapsed = 00:00:00.36 . Memory (MB): peak = 5197.875 ; gain = 0.000 ; free physical = 15179 ; free virtual = 23867
+Phase 1 Build RT Design | Checksum: 59c55660
+
+Time (s): cpu = 00:00:19 ; elapsed = 00:00:05 . Memory (MB): peak = 5197.875 ; gain = 0.000 ; free physical = 14987 ; free virtual = 23675
+Post Restoration Checksum: NetGraph: 3193827 NumContArr: eb68a2f7 Constraints: 7eab71b7 Timing: 0
+
+Phase 2 Router Initialization
+
+Phase 2.1 Fix Topology Constraints
+Phase 2.1 Fix Topology Constraints | Checksum: 16d2d4cd5
+
+Time (s): cpu = 00:00:19 ; elapsed = 00:00:06 . Memory (MB): peak = 5197.875 ; gain = 0.000 ; free physical = 14920 ; free virtual = 23608
+
+Phase 2.2 Pre Route Cleanup
+Phase 2.2 Pre Route Cleanup | Checksum: 16d2d4cd5
+
+Time (s): cpu = 00:00:19 ; elapsed = 00:00:06 . Memory (MB): peak = 5197.875 ; gain = 0.000 ; free physical = 14920 ; free virtual = 23608
+
+Phase 2.3 Global Clock Net Routing
+ Number of Nodes with overlaps = 0
+Phase 2.3 Global Clock Net Routing | Checksum: 18630120f
+
+Time (s): cpu = 00:00:22 ; elapsed = 00:00:07 . Memory (MB): peak = 5197.875 ; gain = 0.000 ; free physical = 14802 ; free virtual = 23489
+
+Phase 2.4 Update Timing
+Phase 2.4 Update Timing | Checksum: 248db845b
+
+Time (s): cpu = 00:00:35 ; elapsed = 00:00:13 . Memory (MB): peak = 5197.875 ; gain = 0.000 ; free physical = 14457 ; free virtual = 23187
+INFO: [Route 35-416] Intermediate Timing Summary | WNS=2.592  | TNS=0.000  | WHS=-0.073 | THS=-26.148|
+
+Phase 2 Router Initialization | Checksum: 1d2cc41aa
+
+Time (s): cpu = 00:00:59 ; elapsed = 00:00:20 . Memory (MB): peak = 5260.180 ; gain = 62.305 ; free physical = 14436 ; free virtual = 23171
+
+Router Utilization Summary
+  Global Vertical Routing Utilization    = 0.000317857 %
+  Global Horizontal Routing Utilization  = 0.000492514 %
+  Routable Net Status*
+  *Does not include unroutable nets such as driverless and loadless.
+  Run report_route_status for detailed report.
+  Number of Failed Nets               = 82542
+    (Failed Nets is the sum of unrouted and partially routed nets)
+  Number of Unrouted Nets             = 71599
+  Number of Partially Routed Nets     = 10943
+  Number of Node Overlaps             = 5
+
+
+Phase 3 Initial Routing
+
+Phase 3.1 Global Routing
+Phase 3.1 Global Routing | Checksum: 1d2cc41aa
+
+Time (s): cpu = 00:01:00 ; elapsed = 00:00:21 . Memory (MB): peak = 5260.180 ; gain = 62.305 ; free physical = 14434 ; free virtual = 23170
+Phase 3 Initial Routing | Checksum: 110476edd
+
+Time (s): cpu = 00:01:13 ; elapsed = 00:00:24 . Memory (MB): peak = 5270.180 ; gain = 72.305 ; free physical = 14397 ; free virtual = 23133
+
+Phase 4 Rip-up And Reroute
+
+Phase 4.1 Global Iteration 0
+ Number of Nodes with overlaps = 13247
+ Number of Nodes with overlaps = 1012
+ Number of Nodes with overlaps = 67
+ Number of Nodes with overlaps = 8
+ Number of Nodes with overlaps = 3
+ Number of Nodes with overlaps = 2
+ Number of Nodes with overlaps = 2
+ Number of Nodes with overlaps = 0
+INFO: [Route 35-416] Intermediate Timing Summary | WNS=1.536  | TNS=0.000  | WHS=-0.040 | THS=-1.997 |
+
+Phase 4.1 Global Iteration 0 | Checksum: 263229b8f
+
+Time (s): cpu = 00:02:38 ; elapsed = 00:00:55 . Memory (MB): peak = 5302.195 ; gain = 104.320 ; free physical = 14295 ; free virtual = 23085
+
+Phase 4.2 Additional Iteration for Hold
+Phase 4.2 Additional Iteration for Hold | Checksum: 2f9bf195a
+
+Time (s): cpu = 00:02:38 ; elapsed = 00:00:56 . Memory (MB): peak = 5302.195 ; gain = 104.320 ; free physical = 14290 ; free virtual = 23081
+Phase 4 Rip-up And Reroute | Checksum: 2f9bf195a
+
+Time (s): cpu = 00:02:38 ; elapsed = 00:00:56 . Memory (MB): peak = 5302.195 ; gain = 104.320 ; free physical = 14289 ; free virtual = 23081
+
+Phase 5 Delay and Skew Optimization
+
+Phase 5.1 Delay CleanUp
+
+Phase 5.1.1 Update Timing
+Phase 5.1.1 Update Timing | Checksum: 3156f6819
+
+Time (s): cpu = 00:02:49 ; elapsed = 00:00:59 . Memory (MB): peak = 5302.195 ; gain = 104.320 ; free physical = 14265 ; free virtual = 23059
+INFO: [Route 35-416] Intermediate Timing Summary | WNS=1.536  | TNS=0.000  | WHS=0.010  | THS=0.000  |
+
+Phase 5.1 Delay CleanUp | Checksum: 3156f6819
+
+Time (s): cpu = 00:02:50 ; elapsed = 00:00:59 . Memory (MB): peak = 5302.195 ; gain = 104.320 ; free physical = 14272 ; free virtual = 23066
+
+Phase 5.2 Clock Skew Optimization
+Phase 5.2 Clock Skew Optimization | Checksum: 3156f6819
+
+Time (s): cpu = 00:02:50 ; elapsed = 00:00:59 . Memory (MB): peak = 5302.195 ; gain = 104.320 ; free physical = 14272 ; free virtual = 23066
+Phase 5 Delay and Skew Optimization | Checksum: 3156f6819
+
+Time (s): cpu = 00:02:50 ; elapsed = 00:00:59 . Memory (MB): peak = 5302.195 ; gain = 104.320 ; free physical = 14271 ; free virtual = 23066
+
+Phase 6 Post Hold Fix
+
+Phase 6.1 Hold Fix Iter
+
+Phase 6.1.1 Update Timing
+Phase 6.1.1 Update Timing | Checksum: 280410644
+
+Time (s): cpu = 00:02:59 ; elapsed = 00:01:02 . Memory (MB): peak = 5302.195 ; gain = 104.320 ; free physical = 14254 ; free virtual = 23040
+INFO: [Route 35-416] Intermediate Timing Summary | WNS=1.536  | TNS=0.000  | WHS=0.010  | THS=0.000  |
+
+Phase 6.1 Hold Fix Iter | Checksum: 304c546b1
+
+Time (s): cpu = 00:02:59 ; elapsed = 00:01:02 . Memory (MB): peak = 5302.195 ; gain = 104.320 ; free physical = 14254 ; free virtual = 23040
+Phase 6 Post Hold Fix | Checksum: 304c546b1
+
+Time (s): cpu = 00:02:59 ; elapsed = 00:01:02 . Memory (MB): peak = 5302.195 ; gain = 104.320 ; free physical = 14253 ; free virtual = 23039
+
+Phase 7 Route finalize
+
+Router Utilization Summary
+  Global Vertical Routing Utilization    = 11.6063 %
+  Global Horizontal Routing Utilization  = 16.158 %
+  Routable Net Status*
+  *Does not include unroutable nets such as driverless and loadless.
+  Run report_route_status for detailed report.
+  Number of Failed Nets               = 0
+    (Failed Nets is the sum of unrouted and partially routed nets)
+  Number of Unrouted Nets             = 0
+  Number of Partially Routed Nets     = 0
+  Number of Node Overlaps             = 0
+
+Phase 7 Route finalize | Checksum: 2773a55cb
+
+Time (s): cpu = 00:03:00 ; elapsed = 00:01:03 . Memory (MB): peak = 5302.195 ; gain = 104.320 ; free physical = 14246 ; free virtual = 23032
+
+Phase 8 Verifying routed nets
+
+ Verification completed successfully
+Phase 8 Verifying routed nets | Checksum: 2773a55cb
+
+Time (s): cpu = 00:03:00 ; elapsed = 00:01:03 . Memory (MB): peak = 5302.195 ; gain = 104.320 ; free physical = 14247 ; free virtual = 23034
+
+Phase 9 Depositing Routes
+Phase 9 Depositing Routes | Checksum: 2773a55cb
+
+Time (s): cpu = 00:03:03 ; elapsed = 00:01:05 . Memory (MB): peak = 5302.195 ; gain = 104.320 ; free physical = 14154 ; free virtual = 22942
+
+Phase 10 Route finalize
+Phase 10 Route finalize | Checksum: 2773a55cb
+
+Time (s): cpu = 00:03:03 ; elapsed = 00:01:05 . Memory (MB): peak = 5302.195 ; gain = 104.320 ; free physical = 14139 ; free virtual = 22927
+
+Phase 11 Post Router Timing
+INFO: [Route 35-20] Post Routing Timing Summary | WNS=1.589  | TNS=0.000  | WHS=0.010  | THS=0.000  |
+
+Phase 11 Post Router Timing | Checksum: 24a092512
+
+Time (s): cpu = 00:03:24 ; elapsed = 00:01:09 . Memory (MB): peak = 5302.195 ; gain = 104.320 ; free physical = 13627 ; free virtual = 22415
+INFO: [Route 35-61] The design met the timing requirement.
+INFO: [Route 72-16] Aggressive Explore Summary
++------+-------+-------+-------+-------+--------+--------------+-------------------+
+| Pass |  WNS  |  TNS  |  WHS  |  THS  | Status | Elapsed Time | Solution Selected |
++------+-------+-------+-------+-------+--------+--------------+-------------------+
+|  1   | 1.536 | 0.000 | 0.010 | 0.000 |  Pass  |   00:00:59   |         x         |
++------+-------+-------+-------+-------+--------+--------------+-------------------+
+|  2   |   -   |   -   |   -   |   -   |  Fail  |   00:00:00   |                   |
++------+-------+-------+-------+-------+--------+--------------+-------------------+
+
+INFO: [Route 35-16] Router Completed Successfully
+
+Time (s): cpu = 00:03:24 ; elapsed = 00:01:10 . Memory (MB): peak = 5302.195 ; gain = 104.320 ; free physical = 13838 ; free virtual = 22626
+
+Routing Is Done.
+INFO: [Common 17-83] Releasing license: Implementation
+163 Infos, 35 Warnings, 1 Critical Warnings and 0 Errors encountered.
+route_design completed successfully
+route_design: Time (s): cpu = 00:03:36 ; elapsed = 00:01:13 . Memory (MB): peak = 5302.195 ; gain = 171.727 ; free physical = 13838 ; free virtual = 22626
+source /mnt/castor/seas_home/s/songqij/ese532_code/hw6/saved_x/link/vivado/vpl/scripts/_full_route_post.tcl
+INFO: System Diagram: Run step: routed
+CRITICAL WARNING: System Diagram:  invalid command name "::system_diagram::update_with_kernel_usage"
+CRITICAL WARNING: Kernel service failed to update compute unit for u96v2_sbc_base_i/mmult_fpga_1/U0: invalid command name "::kernel_service::upsert_compute_unit"
+CRITICAL WARNING: Kernel service failed to write file /mnt/castor/seas_home/s/songqij/ese532_code/hw6/apps/mmult/_x/link/int/kernel_service.json: invalid command name "::kernel_service::write_data"
+WARNING: Unable to find metadata file: /mnt/castor/seas_home/s/songqij/ese532_code/hw6/apps/mmult/_x/link/int/debug_ip_layout.rtd
+INFO: [Timing 38-480] Writing timing data to binary archive.
+Writing placer database...
+Writing XDEF routing.
+Writing XDEF routing logical nets.
+Writing XDEF routing special nets.
+Write XDEF Complete: Time (s): cpu = 00:00:11 ; elapsed = 00:00:05 . Memory (MB): peak = 5302.195 ; gain = 0.000 ; free physical = 13074 ; free virtual = 22072
+INFO: [Common 17-1381] The checkpoint '/mnt/castor/seas_home/s/songqij/ese532_code/hw6/saved_x/link/vivado/vpl/prj/prj.runs/impl_1/u96v2_sbc_base_wrapper_routed.dcp' has been generated.
+write_checkpoint: Time (s): cpu = 00:00:18 ; elapsed = 00:00:13 . Memory (MB): peak = 5302.195 ; gain = 0.000 ; free physical = 13240 ; free virtual = 22084
+INFO: [runtcl-4] Executing : report_timing_summary -max_paths 10 -file u96v2_sbc_base_wrapper_timing_summary_routed.rpt -pb u96v2_sbc_base_wrapper_timing_summary_routed.pb -rpx u96v2_sbc_base_wrapper_timing_summary_routed.rpx -warn_on_violation 
+INFO: [Timing 38-91] UpdateTimingParams: Speed grade: -1, Temperature grade: I, Delay Type: min_max.
+INFO: [Timing 38-191] Multithreading enabled for timing update using a maximum of 8 CPUs
+INFO: [Common 17-206] Exiting Vivado at Thu Oct 17 18:35:45 2024...
